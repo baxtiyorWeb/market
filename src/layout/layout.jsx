@@ -5,12 +5,12 @@ import Footer from "../components/Footer";
 
 export default function Layout() {
   return (
-    <>
+    <div className="bg-[#FAFAFA]">
       <Header />
-      <div className="w-full bg-[#FAFAFA] flex-grow min-h-screen">
+      <div className="w-full  flex-grow min-h-screen">
         <Outlet />
       </div>
       <Footer />
-    </>
+    </div>
   );
 }
