@@ -42,7 +42,7 @@ export default function MyListbox() {
           <li
             key={index}
             className="mt-[5px] cursor-pointer border-b border-t py-3  font-poppins text-[16px] font-normal not-italic leading-[100%] tracking-[-0.08px] text-[#747474] transition  hover:border-t hover:border-slate-500 hover:font-medium hover:text-[#000]"
-            onClick={() => setValue(item.label)}
+            onClick={() => setValue(item.label) || setOpen(!open)}
           >
             {item.label}
           </li>
