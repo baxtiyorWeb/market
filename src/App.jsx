@@ -3,7 +3,7 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Layout from "./layout/layout";
 import Home from "./pages/Home";
-import Details from "./pages/details";
+import Details from "./pages/Details";
 
 const App = () => {
   return (
