@@ -7,6 +7,7 @@ import menuIcon from "../assets/menuIcon.svg";
 import searchIcon from "../assets/searchIcon.svg";
 import plusIcon from "../assets/plusIcon.svg";
 import MyListbox from "../ui/ListBox";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
@@ -32,12 +33,15 @@ export default function Header() {
                 <img src={searchIcon} alt="" />
               </button>
             </div>
-            <button className="flex h-[50px] w-[160px] flex-shrink-0 items-center justify-between rounded-[5px] border border-[#1D828E] p-[30px] py-4 text-[#1D828E]">
+            <Link
+              to="/add-product"
+              className="flex h-[50px] w-[160px] flex-shrink-0 items-center justify-between rounded-[5px] border border-[#1D828E] p-[30px] py-4 text-[#1D828E]"
+            >
               <img src={plusIcon} alt="" />
               <span className="font-poppins text-[18px] font-normal not-italic leading-[100%]">
                 Qo’shish
               </span>
-            </button>
+            </Link>
           </div>
         </Container>
       </div>
