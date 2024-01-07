@@ -1,288 +1,64 @@
-import React from 'react'
+import React from "react";
+import { products } from "../../data/data";
+import { Link } from "react-router-dom";
 
 const Products = () => {
   return (
-    <div className='w-full h-full mt-[100px] '>
+    <div className="mt-[100px] h-full w-full ">
       <div>
-        <h1 className='text-[#130F1E] font-poppins text-[33px] not-italic font-medium leading-normal tracking-[-0.66px] mb-[20px]'>top mahsulotlar</h1>
+        <h1 className="mb-[20px] font-poppins text-[33px] font-medium not-italic leading-normal tracking-[-0.66px] text-[#130F1E]">
+          top mahsulotlar
+        </h1>
       </div>
-      <div className='grid grid-cols-4 gap-[29px] md:grid md:grid-cols-4 sm:grid-cols-2'>
-        <div className='w-[270px] h-[336px] flex-shrink-0 shadow-md  rounded-md overflow-hidden' >
-            <div className='w-[100%] h-[194px] overflow-hidden'>
-              <img src="https://www.topgear.com/sites/default/files/2022/07/13.jpg" className='w-full h-full border cursor-pointer' alt="" />
+      <div className="grid grid-cols-4 gap-[29px] sm:grid-cols-2 md:grid md:grid-cols-4">
+        {products.map((item, index) => (
+          <div
+            className="h-[336px] w-[270px] flex-shrink-0 overflow-hidden  rounded-md shadow-md"
+            key={item.productId}
+          >
+            <div className="h-[194px] w-[100%] overflow-hidden">
+              <Link to={`/detail/${item.productId}`}>
+                <img
+                  src={item.productImg}
+                  className="h-full w-full cursor-pointer border"
+                  alt=""
+                />
+              </Link>
             </div>
-            <div className='px-[18px] mt-4'>
-              <span className='text text-[#130F1E] font-medium text-[16px] not-italic leading-[120%] tracking-[-0.32px] font-poppins'>BYD Chazor DMI</span>
-              <p className='text text-[#130F1E] font-normal text-[16px] not-italic leading-[120%] tracking-[-0.32px]'>
-              120km Flagship Full pozitsiyasi
+            <div className="mt-4 px-[18px]">
+              <span className="text font-poppins text-[16px] font-medium not-italic leading-[120%] tracking-[-0.32px] text-[#130F1E]">
+                {item.productTitle}
+              </span>
+              <p className="text text-[16px] font-normal not-italic leading-[120%] tracking-[-0.32px] text-[#130F1E]">
+                {item.productDescription}
               </p>
-              <div className='flex justify-start items-center  mt-[12px]'>
-                <span className='text text-[#130F1E] font-poppins text-[19px] not-italic font-semibold leading-[100%]'>370 196 800 </span> <p className='ml-1'>so{"'"}m</p>
+              <div className="mt-[12px] flex items-center  justify-start">
+                <span className="text font-poppins text-[19px] font-semibold not-italic leading-[100%] text-[#130F1E]">
+                  {item.productPrice}
+                </span>{" "}
+                <p className="ml-1">so{"'"}m</p>
               </div>
 
-              <div className='mt-3'>
-                <hr className='border border-slate-400'/>
-                <div className='text text-[#959EA7] font-poppins text-[11px] font-normal leading-[100%] tracking-[-0.22px] mt-[13px] flex justify-between items-center'>
-                  <span>Toshkent</span>
-                  <span>02.02.22 | 15:33</span>
+              <div className="mt-3">
+                <hr className="border border-slate-400" />
+                <div className="text mt-[13px] flex items-center justify-between font-poppins text-[11px] font-normal leading-[100%] tracking-[-0.22px] text-[#959EA7]">
+                  <span>{item.productLocation}</span>
+                  <span>{item.productTimeStamps}</span>
                 </div>
               </div>
             </div>
-        </div>
-      
-      <div className='w-[270px] h-[336px] flex-shrink-0 shadow-md  rounded-md overflow-hidden' >
-            <div className='w-[100%] h-[194px] overflow-hidden'>
-              <img src="https://www.topgear.com/sites/default/files/2022/07/13.jpg" className='w-full h-full border cursor-pointer' alt="" />
-            </div>
-            <div className='px-[18px] mt-4'>
-              <span className='text text-[#130F1E] font-medium text-[16px] not-italic leading-[120%] tracking-[-0.32px] font-poppins'>BYD Chazor DMI</span>
-              <p className='text text-[#130F1E] font-normal text-[16px] not-italic leading-[120%] tracking-[-0.32px]'>
-              120km Flagship Full pozitsiyasi
-              </p>
-              <div className='flex justify-start items-center  mt-[12px]'>
-                <span className='text text-[#130F1E] font-poppins text-[19px] not-italic font-semibold leading-[100%]'>370 196 800 </span> <p className='ml-1'>so{"'"}m</p>
-              </div>
-
-              <div className='mt-3'>
-                <hr className='border border-slate-400'/>
-                <div className='text text-[#959EA7] font-poppins text-[11px] font-normal leading-[100%] tracking-[-0.22px] mt-[13px] flex justify-between items-center'>
-                  <span>Toshkent</span>
-                  <span>02.02.22 | 15:33</span>
-                </div>
-              </div>
-            </div>
-        </div>
-        <div className='w-[270px] h-[336px] flex-shrink-0 shadow-md  rounded-md overflow-hidden' >
-            <div className='w-[100%] h-[194px] overflow-hidden'>
-              <img src="https://www.topgear.com/sites/default/files/2022/07/13.jpg" className='w-full h-full border cursor-pointer' alt="" />
-            </div>
-            <div className='px-[18px] mt-4'>
-              <span className='text text-[#130F1E] font-medium text-[16px] not-italic leading-[120%] tracking-[-0.32px] font-poppins'>BYD Chazor DMI</span>
-              <p className='text text-[#130F1E] font-normal text-[16px] not-italic leading-[120%] tracking-[-0.32px]'>
-              120km Flagship Full pozitsiyasi
-              </p>
-              <div className='flex justify-start items-center  mt-[12px]'>
-                <span className='text text-[#130F1E] font-poppins text-[19px] not-italic font-semibold leading-[100%]'>370 196 800 </span> <p className='ml-1'>so{"'"}m</p>
-              </div>
-
-              <div className='mt-3'>
-                <hr className='border border-slate-400'/>
-                <div className='text text-[#959EA7] font-poppins text-[11px] font-normal leading-[100%] tracking-[-0.22px] mt-[13px] flex justify-between items-center'>
-                  <span>Toshkent</span>
-                  <span>02.02.22 | 15:33</span>
-                </div>
-              </div>
-            </div>
-        </div>
-        <div className='w-[270px] h-[336px] flex-shrink-0 shadow-md  rounded-md overflow-hidden' >
-            <div className='w-[100%] h-[194px] overflow-hidden'>
-              <img src="https://www.topgear.com/sites/default/files/2022/07/13.jpg" className='w-full h-full border cursor-pointer' alt="" />
-            </div>
-            <div className='px-[18px] mt-4'>
-              <span className='text text-[#130F1E] font-medium text-[16px] not-italic leading-[120%] tracking-[-0.32px] font-poppins'>BYD Chazor DMI</span>
-              <p className='text text-[#130F1E] font-normal text-[16px] not-italic leading-[120%] tracking-[-0.32px]'>
-              120km Flagship Full pozitsiyasi
-              </p>
-              <div className='flex justify-start items-center  mt-[12px]'>
-                <span className='text text-[#130F1E] font-poppins text-[19px] not-italic font-semibold leading-[100%]'>370 196 800 </span> <p className='ml-1'>so{"'"}m</p>
-              </div>
-
-              <div className='mt-3'>
-                <hr className='border border-slate-400'/>
-                <div className='text text-[#959EA7] font-poppins text-[11px] font-normal leading-[100%] tracking-[-0.22px] mt-[13px] flex justify-between items-center'>
-                  <span>Toshkent</span>
-                  <span>02.02.22 | 15:33</span>
-                </div>
-              </div>
-            </div>
-        </div>
-        <div className='w-[270px] h-[336px] flex-shrink-0 shadow-md  rounded-md overflow-hidden' >
-            <div className='w-[100%] h-[194px] overflow-hidden'>
-              <img src="https://www.topgear.com/sites/default/files/2022/07/13.jpg" className='w-full h-full border cursor-pointer' alt="" />
-            </div>
-            <div className='px-[18px] mt-4'>
-              <span className='text text-[#130F1E] font-medium text-[16px] not-italic leading-[120%] tracking-[-0.32px] font-poppins'>BYD Chazor DMI</span>
-              <p className='text text-[#130F1E] font-normal text-[16px] not-italic leading-[120%] tracking-[-0.32px]'>
-              120km Flagship Full pozitsiyasi
-              </p>
-              <div className='flex justify-start items-center  mt-[12px]'>
-                <span className='text text-[#130F1E] font-poppins text-[19px] not-italic font-semibold leading-[100%]'>370 196 800 </span> <p className='ml-1'>so{"'"}m</p>
-              </div>
-
-              <div className='mt-3'>
-                <hr className='border border-slate-400'/>
-                <div className='text text-[#959EA7] font-poppins text-[11px] font-normal leading-[100%] tracking-[-0.22px] mt-[13px] flex justify-between items-center'>
-                  <span>Toshkent</span>
-                  <span>02.02.22 | 15:33</span>
-                </div>
-              </div>
-            </div>
-        </div>
-        <div className='w-[270px] h-[336px] flex-shrink-0 shadow-md  rounded-md overflow-hidden' >
-            <div className='w-[100%] h-[194px] overflow-hidden'>
-              <img src="https://www.topgear.com/sites/default/files/2022/07/13.jpg" className='w-full h-full border cursor-pointer' alt="" />
-            </div>
-            <div className='px-[18px] mt-4'>
-              <span className='text text-[#130F1E] font-medium text-[16px] not-italic leading-[120%] tracking-[-0.32px] font-poppins'>BYD Chazor DMI</span>
-              <p className='text text-[#130F1E] font-normal text-[16px] not-italic leading-[120%] tracking-[-0.32px]'>
-              120km Flagship Full pozitsiyasi
-              </p>
-              <div className='flex justify-start items-center  mt-[12px]'>
-                <span className='text text-[#130F1E] font-poppins text-[19px] not-italic font-semibold leading-[100%]'>370 196 800 </span> <p className='ml-1'>so{"'"}m</p>
-              </div>
-
-              <div className='mt-3'>
-                <hr className='border border-slate-400'/>
-                <div className='text text-[#959EA7] font-poppins text-[11px] font-normal leading-[100%] tracking-[-0.22px] mt-[13px] flex justify-between items-center'>
-                  <span>Toshkent</span>
-                  <span>02.02.22 | 15:33</span>
-                </div>
-              </div>
-            </div>
-        </div>
-        <div className='w-[270px] h-[336px] flex-shrink-0 shadow-md  rounded-md overflow-hidden' >
-            <div className='w-[100%] h-[194px] overflow-hidden'>
-              <img src="https://www.topgear.com/sites/default/files/2022/07/13.jpg" className='w-full h-full border cursor-pointer' alt="" />
-            </div>
-            <div className='px-[18px] mt-4'>
-              <span className='text text-[#130F1E] font-medium text-[16px] not-italic leading-[120%] tracking-[-0.32px] font-poppins'>BYD Chazor DMI</span>
-              <p className='text text-[#130F1E] font-normal text-[16px] not-italic leading-[120%] tracking-[-0.32px]'>
-              120km Flagship Full pozitsiyasi
-              </p>
-              <div className='flex justify-start items-center  mt-[12px]'>
-                <span className='text text-[#130F1E] font-poppins text-[19px] not-italic font-semibold leading-[100%]'>370 196 800 </span> <p className='ml-1'>so{"'"}m</p>
-              </div>
-
-              <div className='mt-3'>
-                <hr className='border border-slate-400'/>
-                <div className='text text-[#959EA7] font-poppins text-[11px] font-normal leading-[100%] tracking-[-0.22px] mt-[13px] flex justify-between items-center'>
-                  <span>Toshkent</span>
-                  <span>02.02.22 | 15:33</span>
-                </div>
-              </div>
-            </div>
-        </div>
-        <div className='w-[270px] h-[336px] flex-shrink-0 shadow-md  rounded-md overflow-hidden' >
-            <div className='w-[100%] h-[194px] overflow-hidden'>
-              <img src="https://www.topgear.com/sites/default/files/2022/07/13.jpg" className='w-full h-full border cursor-pointer' alt="" />
-            </div>
-            <div className='px-[18px] mt-4'>
-              <span className='text text-[#130F1E] font-medium text-[16px] not-italic leading-[120%] tracking-[-0.32px] font-poppins'>BYD Chazor DMI</span>
-              <p className='text text-[#130F1E] font-normal text-[16px] not-italic leading-[120%] tracking-[-0.32px]'>
-              120km Flagship Full pozitsiyasi
-              </p>
-              <div className='flex justify-start items-center  mt-[12px]'>
-                <span className='text text-[#130F1E] font-poppins text-[19px] not-italic font-semibold leading-[100%]'>370 196 800 </span> <p className='ml-1'>so{"'"}m</p>
-              </div>
-
-              <div className='mt-3'>
-                <hr className='border border-slate-400'/>
-                <div className='text text-[#959EA7] font-poppins text-[11px] font-normal leading-[100%] tracking-[-0.22px] mt-[13px] flex justify-between items-center'>
-                  <span>Toshkent</span>
-                  <span>02.02.22 | 15:33</span>
-                </div>
-              </div>
-            </div>
-        </div>
-        <div className='w-[270px] h-[336px] flex-shrink-0 shadow-md  rounded-md overflow-hidden' >
-            <div className='w-[100%] h-[194px] overflow-hidden'>
-              <img src="https://www.topgear.com/sites/default/files/2022/07/13.jpg" className='w-full h-full border cursor-pointer' alt="" />
-            </div>
-            <div className='px-[18px] mt-4'>
-              <span className='text text-[#130F1E] font-medium text-[16px] not-italic leading-[120%] tracking-[-0.32px] font-poppins'>BYD Chazor DMI</span>
-              <p className='text text-[#130F1E] font-normal text-[16px] not-italic leading-[120%] tracking-[-0.32px]'>
-              120km Flagship Full pozitsiyasi
-              </p>
-              <div className='flex justify-start items-center  mt-[12px]'>
-                <span className='text text-[#130F1E] font-poppins text-[19px] not-italic font-semibold leading-[100%]'>370 196 800 </span> <p className='ml-1'>so{"'"}m</p>
-              </div>
-
-              <div className='mt-3'>
-                <hr className='border border-slate-400'/>
-                <div className='text text-[#959EA7] font-poppins text-[11px] font-normal leading-[100%] tracking-[-0.22px] mt-[13px] flex justify-between items-center'>
-                  <span>Toshkent</span>
-                  <span>02.02.22 | 15:33</span>
-                </div>
-              </div>
-            </div>
-        </div>
-        <div className='w-[270px] h-[336px] flex-shrink-0 shadow-md  rounded-md overflow-hidden' >
-            <div className='w-[100%] h-[194px] overflow-hidden'>
-              <img src="https://www.topgear.com/sites/default/files/2022/07/13.jpg" className='w-full h-full border cursor-pointer' alt="" />
-            </div>
-            <div className='px-[18px] mt-4'>
-              <span className='text text-[#130F1E] font-medium text-[16px] not-italic leading-[120%] tracking-[-0.32px] font-poppins'>BYD Chazor DMI</span>
-              <p className='text text-[#130F1E] font-normal text-[16px] not-italic leading-[120%] tracking-[-0.32px]'>
-              120km Flagship Full pozitsiyasi
-              </p>
-              <div className='flex justify-start items-center  mt-[12px]'>
-                <span className='text text-[#130F1E] font-poppins text-[19px] not-italic font-semibold leading-[100%]'>370 196 800 </span> <p className='ml-1'>so{"'"}m</p>
-              </div>
-
-              <div className='mt-3'>
-                <hr className='border border-slate-400'/>
-                <div className='text text-[#959EA7] font-poppins text-[11px] font-normal leading-[100%] tracking-[-0.22px] mt-[13px] flex justify-between items-center'>
-                  <span>Toshkent</span>
-                  <span>02.02.22 | 15:33</span>
-                </div>
-              </div>
-            </div>
-        </div>
-        <div className='w-[270px] h-[336px] flex-shrink-0 shadow-md  rounded-md overflow-hidden' >
-            <div className='w-[100%] h-[194px] overflow-hidden'>
-              <img src="https://www.topgear.com/sites/default/files/2022/07/13.jpg" className='w-full h-full border cursor-pointer' alt="" />
-            </div>
-            <div className='px-[18px] mt-4'>
-              <span className='text text-[#130F1E] font-medium text-[16px] not-italic leading-[120%] tracking-[-0.32px] font-poppins'>BYD Chazor DMI</span>
-              <p className='text text-[#130F1E] font-normal text-[16px] not-italic leading-[120%] tracking-[-0.32px]'>
-              120km Flagship Full pozitsiyasi
-              </p>
-              <div className='flex justify-start items-center  mt-[12px]'>
-                <span className='text text-[#130F1E] font-poppins text-[19px] not-italic font-semibold leading-[100%]'>370 196 800 </span> <p className='ml-1'>so{"'"}m</p>
-              </div>
-
-              <div className='mt-3'>
-                <hr className='border border-slate-400'/>
-                <div className='text text-[#959EA7] font-poppins text-[11px] font-normal leading-[100%] tracking-[-0.22px] mt-[13px] flex justify-between items-center'>
-                  <span>Toshkent</span>
-                  <span>02.02.22 | 15:33</span>
-                </div>
-              </div>
-            </div>
-        </div>
-        <div className='w-[270px] h-[336px] flex-shrink-0 shadow-md  rounded-md overflow-hidden' >
-            <div className='w-[100%] h-[194px] overflow-hidden'>
-              <img src="https://www.topgear.com/sites/default/files/2022/07/13.jpg" className='w-full h-full border cursor-pointer' alt="" />
-            </div>
-            <div className='px-[18px] mt-4'>
-              <span className='text text-[#130F1E] font-medium text-[16px] not-italic leading-[120%] tracking-[-0.32px] font-poppins'>BYD Chazor DMI</span>
-              <p className='text text-[#130F1E] font-normal text-[16px] not-italic leading-[120%] tracking-[-0.32px]'>
-              120km Flagship Full pozitsiyasi
-              </p>
-              <div className='flex justify-start items-center  mt-[12px]'>
-                <span className='text text-[#130F1E] font-poppins text-[19px] not-italic font-semibold leading-[100%]'>370 196 800 </span> <p className='ml-1'>so{"'"}m</p>
-              </div>
-
-              <div className='mt-3'>
-                <hr className='border border-slate-400'/>
-                <div className='text text-[#959EA7] font-poppins text-[11px] font-normal leading-[100%] tracking-[-0.22px] mt-[13px] flex justify-between items-center'>
-                  <span>Toshkent</span>
-                  <span>02.02.22 | 15:33</span>
-                </div>
-              </div>
-            </div>
-        </div>
-
-
-
+          </div>
+        ))}
       </div>
-       <div className='flex justify-center items-center mt-[50px] mb-[100px]'>
-         <button className='bg-[#1D828E] w-[328px] h-[50px] rounded-[5px] flex-shrink-0 flex justify-center items-center text-[#fff] '>
-          <span className='font-medium not-italic leading-[100%] tracking-[-0.30px] '>Ko’proq ko’rsatish</span>
+      <div className="mb-[100px] mt-[50px] flex items-center justify-center">
+        <button className="flex h-[50px] w-[328px] flex-shrink-0 items-center justify-center rounded-[5px] bg-[#1D828E] text-[#fff] ">
+          <span className="font-medium not-italic leading-[100%] tracking-[-0.30px] ">
+            Ko’proq ko’rsatish
+          </span>
         </button>
-       </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Products
+export default Products;
