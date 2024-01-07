@@ -169,7 +169,7 @@ export default function ProductAbout() {
         </p>
       </div>
       <div className="mb-5 mt-10 h-[1px] w-full bg-[#DFE2E5]"></div>
-      <div className="text text-[#959EA7 ] flex justify-between font-poppins text-[14px] font-normal leading-[100%]">
+      <div className="text text-[#959EA7 ] text flex justify-between font-poppins text-[14px] font-normal leading-[100%] text-[#959EA7]">
         <span>E'lon raqami 6239</span>
         <span className="flex items-center justify-center">
           Ko’rganlar: <FaEye className="ml-2 mr-2" /> 412
