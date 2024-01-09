@@ -1,49 +1,90 @@
-import React from "react";
-import Container from "../shared/Container"
-import { Link } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 import { RiAppleFill, RiTelegramLine } from "react-icons/ri";
+import { Link } from "react-router-dom";
+import Container from "../shared/Container";
 export default function Footer() {
   return (
-    <div className="w-full bg-white h-[202px] flex-shrink-0 border border-[#D2D2D2] py-10 ">
-        <Container>
-          <div className="flex justify-between items-center">
-          <div className="w-[287px] h-[66px] ">
-      <h1 className="text text-[#130F1E] font-poppins text-[40px] not-italic font-medium leading-[100%] tracking-[-0.8px] ">
-        LOGO
-      </h1>
-      <p className="text text-[#808080] font-poppins text-[18px] not-italic font-normal leading-[120%] tracking-[-0.36px] mt-[18px]">
-        Kelishamiz.uz sayti orqali yanada oson toping va qulayliklarga ega bo’ling 
-      </p>
-     </div>
-     <div className="flex justify-center items-center">
-      <div className="flex flex-col mr-[92px]">
-        <Link to={"#"} className="text text-[#130F1E] text-[18px] not-italic font-medium leading-[100%] tracking-[-0.36px] mt-5">Asosiy</Link>
-      <Link to={"#"} className="text text-[#130F1E] text-[18px] not-italic font-medium leading-[100%] tracking-[-0.36px] mt-5">Biz haqimizda</Link>
-      <Link to={"#"} className="text text-[#130F1E] text-[18px] not-italic font-medium leading-[100%] tracking-[-0.36px] mt-5">FAQ</Link>
-      </div>
-      <div className="flex flex-col">
-        <Link to={"#"} className="text text-[#130F1E] text-[18px] not-italic font-medium leading-[100%] tracking-[-0.36px] mt-5">Login</Link>
-      <Link to={"#"} className="text text-[#130F1E] text-[18px] not-italic font-medium leading-[100%] tracking-[-0.36px] mt-5">Profil</Link>
-      <Link to={"#"} className="text text-[#130F1E] text-[18px] not-italic font-medium leading-[100%] tracking-[-0.36px] mt-5">A’loqa uchun </Link>
-      </div>
-     </div>
-     <div>
-      <h1 className="text text-[#130F1E] font-poppins text-[18px] not-italic font-medium leading-[100%] tracking-[-0.36px]">Ijtimoiy tarmoqlar</h1>
-      <div className="flex justify-center items-center mt-4">
-        <div to={"#"} className="w-[60px] h-[60px] border border-[#DFE2E5] flex-shrink-0 rounded-[5px] mr-3 cursor-pointer text-[#1D828E] flex justify-center items-center">
-            <FaGoogle/>
-        </div>
-        <div to={"#"} className="w-[60px] h-[60px] border border-[#DFE2E5] flex-shrink-0 rounded-[5px] mr-3 cursor-pointer text-[#1D828E] flex justify-center items-center">
-            <RiTelegramLine />
-        </div>
-        <div to={"#"} className="w-[60px] h-[60px] border border-[#DFE2E5] flex-shrink-0 rounded-[5px] mr-3 cursor-pointer text-[#1D828E] flex justify-center items-center">
-          <RiAppleFill />
-        </div>
-      </div>
-     </div>
+    <div className="h-[202px] w-full flex-shrink-0 border border-[#D2D2D2] bg-white py-10 ">
+      <Container>
+        <div className="flex items-center justify-between">
+          <div className="h-[66px] w-[287px] ">
+            <h1 className="text font-poppins text-[40px] font-medium not-italic leading-[100%] tracking-[-0.8px] text-[#130F1E] ">
+              LOGO
+            </h1>
+            <p className="text mt-[18px] font-poppins text-[18px] font-normal not-italic leading-[120%] tracking-[-0.36px] text-[#808080]">
+              Kelishamiz.uz sayti orqali yanada oson toping va qulayliklarga ega
+              bo’ling
+            </p>
           </div>
-        </Container>
+          <div className="flex items-center justify-center">
+            <div className="mr-[92px] flex flex-col">
+              <Link
+                to={"#"}
+                className="text mt-5 text-[18px] font-medium not-italic leading-[100%] tracking-[-0.36px] text-[#130F1E]"
+              >
+                Asosiy
+              </Link>
+              <Link
+                to={"#"}
+                className="text mt-5 text-[18px] font-medium not-italic leading-[100%] tracking-[-0.36px] text-[#130F1E]"
+              >
+                Biz haqimizda
+              </Link>
+              <Link
+                to={"#"}
+                className="text mt-5 text-[18px] font-medium not-italic leading-[100%] tracking-[-0.36px] text-[#130F1E]"
+              >
+                FAQ
+              </Link>
+            </div>
+            <div className="flex flex-col">
+              <Link
+                to={"#"}
+                className="text mt-5 text-[18px] font-medium not-italic leading-[100%] tracking-[-0.36px] text-[#130F1E]"
+              >
+                Login
+              </Link>
+              <Link
+                to={"#"}
+                className="text mt-5 text-[18px] font-medium not-italic leading-[100%] tracking-[-0.36px] text-[#130F1E]"
+              >
+                Profil
+              </Link>
+              <Link
+                to={"#"}
+                className="text mt-5 text-[18px] font-medium not-italic leading-[100%] tracking-[-0.36px] text-[#130F1E]"
+              >
+                A’loqa uchun{" "}
+              </Link>
+            </div>
+          </div>
+          <div>
+            <h1 className="text font-poppins text-[18px] font-medium not-italic leading-[100%] tracking-[-0.36px] text-[#130F1E]">
+              Ijtimoiy tarmoqlar
+            </h1>
+            <div className="mt-4 flex items-center justify-center">
+              <div
+                to={"#"}
+                className="mr-3 flex h-[60px] w-[60px] flex-shrink-0 cursor-pointer items-center justify-center rounded-[5px] border border-[#DFE2E5] text-[#1D828E]"
+              >
+                <FaGoogle />
+              </div>
+              <div
+                to={"#"}
+                className="mr-3 flex h-[60px] w-[60px] flex-shrink-0 cursor-pointer items-center justify-center rounded-[5px] border border-[#DFE2E5] text-[#1D828E]"
+              >
+                <RiTelegramLine />
+              </div>
+              <div
+                to={"#"}
+                className="mr-3 flex h-[60px] w-[60px] flex-shrink-0 cursor-pointer items-center justify-center rounded-[5px] border border-[#DFE2E5] text-[#1D828E]"
+              >
+                <RiAppleFill />
+              </div>
+            </div>
+          </div>
+        </div>
+      </Container>
     </div>
   );
 }

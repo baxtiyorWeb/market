@@ -1,6 +1,5 @@
-import React from "react";
-import { products } from "../../data/data";
 import { Link } from "react-router-dom";
+import { products } from "../../data/data";
 
 const Products = () => {
   return (
@@ -11,7 +10,7 @@ const Products = () => {
         </h1>
       </div>
       <div className="grid grid-cols-4 gap-[29px] sm:grid-cols-2 md:grid md:grid-cols-4">
-        {products.map((item, index) => (
+        {products.map((item) => (
           <div
             className="h-[336px] w-[270px] flex-shrink-0 overflow-hidden  rounded-md shadow-md"
             key={item.productId}

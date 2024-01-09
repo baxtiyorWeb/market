@@ -96,3 +96,8 @@
   border: none;
   cursor: pointer !important;
 }
+
+.react-select__option {
+  background-color: transparent !important;
+  padding: 10px !important;
+}

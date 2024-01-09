@@ -1,4 +1,3 @@
-import React from "react";
 import Container from "../shared/Container";
 
 // svg  icons
@@ -8,17 +7,19 @@ import searchIcon from "../assets/searchIcon.svg";
 import plusIcon from "../assets/plusIcon.svg";
 import MyListbox from "../ui/ListBox";
 import { Link } from "react-router-dom";
+import Navigation from "./logo/Navigation";
 
 export default function Header() {
   return (
     <div>
+      <Navigation />
       <div className="h-[100px] w-full bg-white ">
         <Container>
           <div className="flex h-full w-full items-center justify-between ">
-            <button className="flex h-[50px] w-40 flex-shrink-0 items-center justify-between rounded-md bg-[#F4F4F4] p-2 text-center text-[#1D828E]">
+            <button className="flex h-[50px] w-[130px] flex-shrink-0 items-center justify-between rounded-md bg-[#F4F4F4] p-2 text-center text-[#1D828E]">
               <img src={menuIcon} alt="" />
               <span className="text font-poppins  text-[18px] font-normal not-italic leading-[100%]">
-                Kategoriya
+                Katalog
               </span>
             </button>
             <MyListbox />

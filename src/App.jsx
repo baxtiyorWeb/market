@@ -1,18 +1,41 @@
-import React from "react";
-import "./App.css";
+import React, { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
+import "./App.css";
 import Layout from "./layout/layout";
-import Home from "./pages/Home";
-import Details from "./pages/Details";
-import AddProduct from "./pages/AddProduct";
+import Loading from "./ui/loading/Loading";
+
+const Home = lazy(() => import("./pages/Home"));
+const Details = lazy(() => import("./pages/Details"));
+const AddProduct = lazy(() => import("./pages/AddProduct"));
 
 const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route path="/" element={<Home />} />
-        <Route path="/detail/:id" element={<Details />} />
-        <Route path="/add-product" element={<AddProduct />} />
+        <Route
+          path="/"
+          element={
+            <React.Suspense fallback={<Loading />}>
+              <Home />
+            </React.Suspense>
+          }
+        />
+        <Route
+          path="/detail/:id"
+          element={
+            <React.Suspense fallback={<Loading />}>
+              <Details />
+            </React.Suspense>
+          }
+        />
+        <Route
+          path="/add-product"
+          element={
+            <React.Suspense fallback={<Loading />}>
+              <AddProduct />
+            </React.Suspense>
+          }
+        />
       </Route>
     </Routes>
   );

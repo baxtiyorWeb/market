@@ -1,12 +1,12 @@
-import React, { useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
-import Container from "../../shared/Container";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import * as yup from "yup";
-import Select from "react-select";
 import { FaArrowDown } from "react-icons/fa";
+import Select from "react-select";
+import * as yup from "yup";
+import Container from "../../shared/Container";
 export default function AddProductComponent() {
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [open, setOpen] = useState(null);
   // schema buil
   const schema = yup.object().shape({
     test: yup.string().required("test input is required"),
@@ -18,18 +18,20 @@ export default function AddProductComponent() {
   };
 
   // schema buil resolver
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+  const { handleSubmit } = useForm({
     resolver: yupResolver(schema),
   });
-  const value = [
-    {
-      value: "",
-    },
+
+  const options = [
+    { value: "chocolate", label: "Chocolate" },
+    { value: "strawberry", label: "Strawberry" },
+    { value: "vanilla", label: "Vanilla" },
   ];
+
+  const toggleOption = () => {
+    setOpen(!open);
+  };
+
   return (
     <Container>
       <div className="mb-10 mt-[43px]">
@@ -74,17 +76,48 @@ export default function AddProductComponent() {
           </div>
           <div className="mb-10 w-[334px]">
             <span></span>
-            <div className="flex items-center justify-center relative">
+            <div className="relative flex items-center justify-center">
               <input
                 type="text"
                 className="mt-2 h-[50px] w-[334px] shrink-0 cursor-pointer rounded-[10px] border border-[#E2E2E2] bg-[#FAFAFA] p-3 font-poppins text-[16px] outline-none "
                 placeholder="Kategoriyani tanlang"
+                onClick={toggleOption}
               />
-              <FaArrowDown className="absolute right-3 top-6 text-[#505050]" />
+              <FaArrowDown
+                className={
+                  open
+                    ? "absolute right-3 top-6 rotate-180 transform  text-[#505050] transition-all"
+                    : "absolute right-3 top-6 rotate-0 transform  text-[#505050] transition-all"
+                }
+              />
             </div>
-            <div className="">
-              <button className="h-[40px] w-full border ">mashina</button>
-            </div>
+            {/* {open && <ComboOverlay setOpen={setOpen} open={open} />} */}
+            <Select
+              options={options}
+              styles={{
+                control: (baseStyles, state) => ({
+                  ...baseStyles,
+                  borderColor: state.isFocused ? "none" : "none",
+                  boxShadow: state.isFocused ? "none" : "none",
+                  "&:hover": {
+                    borderColor: "none",
+                  },
+                  ":optional": {
+                    "&:hover": "none",
+                  },
+                }),
+                option: (styles, state) => ({
+                  ...styles,
+                  color: "#000",
+                  background: state.isFocused
+                    ? "none"
+                    : state.isSelected
+                      ? "none"
+                      : undefined,
+                  zIndex: 1,
+                }),
+              }}
+            />
           </div>
         </form>
       </div>
