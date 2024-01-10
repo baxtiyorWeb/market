@@ -1,6 +1,6 @@
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
 import { products } from "../../data/data";
-
 const Products = () => {
   return (
     <div className="mt-[100px] h-full w-full ">
@@ -17,10 +17,15 @@ const Products = () => {
           >
             <div className="h-[194px] w-[100%] overflow-hidden">
               <Link to={`/detail/${item.productId}`}>
-                <img
+                {/* <img
                   src={item.productImg}
-                  className="h-full w-full cursor-pointer border"
+                  
                   alt=""
+                /> */}
+                <LazyLoadImage
+                  className="h-full w-full cursor-pointer border"
+                  alt={item.productImg}
+                  src={item.productImg} // use normal <img> attributes as props
                 />
               </Link>
             </div>
