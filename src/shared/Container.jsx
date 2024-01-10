@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function Container({ children }) {
-  return <div className="w-[1145px] h-full m-auto">{children}</div>;
+  return <div className="m-auto h-full w-[1145px]">{children}</div>;
 }

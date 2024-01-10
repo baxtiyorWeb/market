@@ -101,3 +101,16 @@
   background-color: transparent !important;
   padding: 10px !important;
 }
+
+/* antd design  */
+
+.ant-tabs-tab-btn {
+  width: 100px;
+  text-align: center;
+  color: #1d828e !important;
+}
+.ant-tabs-tab-active {
+}
+.ant-tabs-ink-bar-animated {
+  background: #1d828e !important;
+}

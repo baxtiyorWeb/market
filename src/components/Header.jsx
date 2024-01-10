@@ -2,29 +2,45 @@ import Container from "../shared/Container";
 
 // svg  icons
 
-import menuIcon from "../assets/menuIcon.svg";
-import searchIcon from "../assets/searchIcon.svg";
-import plusIcon from "../assets/plusIcon.svg";
-import MyListbox from "../ui/ListBox";
+import { useState } from "react";
+import { MdClose } from "react-icons/md";
 import { Link } from "react-router-dom";
+import menuIcon from "../assets/menuIcon.svg";
+import plusIcon from "../assets/plusIcon.svg";
+import searchIcon from "../assets/searchIcon.svg";
+import Categoriyes from "../ui/Categoriyes";
+import MyListbox from "../ui/ListBox";
 import Navigation from "./logo/Navigation";
 
 export default function Header() {
+  const [open, setOpen] = useState(false);
+
   return (
     <div>
       <Navigation />
       <div className="h-[100px] w-full bg-white ">
         <Container>
           <div className="flex h-full w-full items-center justify-between ">
-            <button className="flex h-[50px] w-[130px] flex-shrink-0 items-center justify-between rounded-md bg-[#F4F4F4] p-2 text-center text-[#1D828E]">
-              <img src={menuIcon} alt="" />
+            <button
+              className="flex h-[50px] w-[130px] flex-shrink-0 items-center justify-between rounded-md bg-[#F4F4F4] p-2 text-center text-[#1D828E]"
+              onClick={() => setOpen(!open)}
+            >
+              {!open ? (
+                <img src={menuIcon} alt="" />
+              ) : (
+                <MdClose className=" text-[30px] " />
+              )}
               <span className="text font-poppins  text-[18px] font-normal not-italic leading-[100%]">
                 Katalog
               </span>
             </button>
-            <MyListbox />
+            <Categoriyes open={open} setOpen={setOpen} />
+            <MyListbox opens={open} setOpens={setOpen} />
 
-            <div className="flex items-center justify-center">
+            <div
+              className="flex items-center justify-center"
+              onClick={() => setOpen(false)}
+            >
               <input
                 type="text"
                 placeholder="Qidiruv"
@@ -37,6 +53,7 @@ export default function Header() {
             <Link
               to="/add-product"
               className="flex h-[50px] w-[160px] flex-shrink-0 items-center justify-between rounded-[5px] border border-[#1D828E] p-[30px] py-4 text-[#1D828E]"
+              onClick={() => setOpen(false)}
             >
               <img src={plusIcon} alt="" />
               <span className="font-poppins text-[18px] font-normal not-italic leading-[100%]">
