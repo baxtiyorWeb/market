@@ -7,7 +7,7 @@ export default function Categoriyes({ open, setOpen }) {
       <div
         className={
           open
-            ? "fixed left-[0%] top-[150px] z-50 h-[86%] w-[100%] bg-[#FAFAFA]  opacity-100 transition-all duration-100"
+            ? "fixed left-[0%] top-[140px] z-50 h-[100%] w-[100%] bg-[#FAFAFA]  opacity-100 transition-all duration-100"
             : "fixed left-[0%] top-[150px] z-[-100] h-[0%]  w-[100%]   opacity-0 transition-all duration-300"
         }
       >
@@ -17,9 +17,13 @@ export default function Categoriyes({ open, setOpen }) {
             onClick={() => setOpen(!open)}
           />
         </div>
-        <div className="w-full ">
-          <CategoryTab />
-        </div>
+        {open ? (
+          <div className="w-full ">
+            <CategoryTab open={open} />
+          </div>
+        ) : (
+          setOpen(false)
+        )}
       </div>
     </div>
   );

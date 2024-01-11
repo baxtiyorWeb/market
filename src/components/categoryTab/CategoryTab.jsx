@@ -66,6 +66,16 @@ const CategoryTab = () => {
       label: "Avto tovarlar",
       children: "Avto tovarlar",
     },
+    {
+      key: "13",
+      label: "Pyabzallar",
+      children: "Pyabzallar",
+    },
+    {
+      key: "14",
+      label: "Sport va Hordiq",
+      children: "Sport va Hordiq",
+    },
   ];
   return (
     <div>

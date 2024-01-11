@@ -1,13 +1,9 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useState } from "react";
+import { Select } from "antd";
 import { useForm } from "react-hook-form";
-import { FaArrowDown } from "react-icons/fa";
-import Select from "react-select";
 import * as yup from "yup";
 import Container from "../../shared/Container";
 export default function AddProductComponent() {
-  const [open, setOpen] = useState(null);
-  // schema buil
   const schema = yup.object().shape({
     test: yup.string().required("test input is required"),
   });
@@ -21,16 +17,6 @@ export default function AddProductComponent() {
   const { handleSubmit } = useForm({
     resolver: yupResolver(schema),
   });
-
-  const options = [
-    { value: "chocolate", label: "Chocolate" },
-    { value: "strawberry", label: "Strawberry" },
-    { value: "vanilla", label: "Vanilla" },
-  ];
-
-  const toggleOption = () => {
-    setOpen(!open);
-  };
 
   return (
     <Container>
@@ -50,7 +36,7 @@ export default function AddProductComponent() {
             </span>
             <input
               type="text"
-              className="focus:border-[1px_solid_rgb(59 130 246)] mt-2 h-[50px] w-[334px] shrink-0 rounded-[5px] border border-[#E2E2E2] bg-[#FAFAFA] p-3 font-poppins text-[16px] outline-none"
+              className="focus:border-[1px_solid_rgb(59 130 246)] mt-2 h-[50px] w-[334px] shrink-0 rounded-[5px] border border-[#E2E2E2] bg-[#FAFAFA] p-3 font-poppins text-[16px] outline-none "
               placeholder="Imomova Mohizoda"
             />
           </div>
@@ -75,48 +61,120 @@ export default function AddProductComponent() {
             />
           </div>
           <div className="mb-10 w-[334px]">
-            <span></span>
-            <div className="relative flex items-center justify-center">
-              <input
-                type="text"
-                className="mt-2 h-[50px] w-[334px] shrink-0 cursor-pointer rounded-[10px] border border-[#E2E2E2] bg-[#FAFAFA] p-3 font-poppins text-[16px] outline-none "
-                placeholder="Kategoriyani tanlang"
-                onClick={toggleOption}
-              />
-              <FaArrowDown
-                className={
-                  open
-                    ? "absolute right-3 top-6 rotate-180 transform  text-[#505050] transition-all"
-                    : "absolute right-3 top-6 rotate-0 transform  text-[#505050] transition-all"
-                }
-              />
-            </div>
+            <span className="text font-poppins text-[14px] font-normal leading-[22px] text-black">
+              Kategoriyani tanlang
+            </span>
             {/* {open && <ComboOverlay setOpen={setOpen} open={open} />} */}
             <Select
-              options={options}
-              styles={{
-                control: (baseStyles, state) => ({
-                  ...baseStyles,
-                  borderColor: state.isFocused ? "none" : "none",
-                  boxShadow: state.isFocused ? "none" : "none",
-                  "&:hover": {
-                    borderColor: "none",
-                  },
-                  ":optional": {
-                    "&:hover": "none",
-                  },
-                }),
-                option: (styles, state) => ({
-                  ...styles,
-                  color: "#000",
-                  background: state.isFocused
-                    ? "none"
-                    : state.isSelected
-                      ? "none"
-                      : undefined,
-                  zIndex: 1,
-                }),
+              style={{
+                width: "100%",
+                height: "50px",
+                marginTop: "8px",
+                borderRadius: "10px",
               }}
+              defaultActiveFirstOption
+              placeholder="Search to Select"
+              optionFilterProp="children"
+              filterOption={(input, option) =>
+                (option?.label ?? "").includes(input)
+              }
+              filterSort={(optionA, optionB) =>
+                (optionA?.label ?? "")
+                  .toLowerCase()
+                  .localeCompare((optionB?.label ?? "").toLowerCase())
+              }
+              options={[
+                {
+                  value: "1",
+                  label: "Not Identified",
+                },
+                {
+                  value: "2",
+                  label: "Closed",
+                },
+                {
+                  value: "3",
+                  label: "Communicated",
+                },
+              ]}
+            />
+          </div>
+          <div className="mb-10 w-[334px]">
+            {/* {open && <ComboOverlay setOpen={setOpen} open={open} />} */}
+            <span className="text font-poppins text-[14px] font-normal leading-[22px] text-black">
+              Hudud
+            </span>
+            <Select
+              style={{
+                width: "100%",
+                height: "50px",
+                marginTop: "8px",
+                borderRadius: "10px",
+              }}
+              defaultActiveFirstOption
+              placeholder="Search to Select"
+              optionFilterProp="children"
+              filterOption={(input, option) =>
+                (option?.label ?? "").includes(input)
+              }
+              filterSort={(optionA, optionB) =>
+                (optionA?.label ?? "")
+                  .toLowerCase()
+                  .localeCompare((optionB?.label ?? "").toLowerCase())
+              }
+              options={[
+                {
+                  value: "1",
+                  label: "Not Identified",
+                },
+                {
+                  value: "2",
+                  label: "Closed",
+                },
+                {
+                  value: "3",
+                  label: "Communicated",
+                },
+              ]}
+            />
+          </div>
+          <div className="mb-10 w-[334px]">
+            {/* {open && <ComboOverlay setOpen={setOpen} open={open} />} */}
+            <span className="text font-poppins text-[14px] font-normal leading-[22px] text-black">
+              Xonadonlar soni
+            </span>
+            <Select
+              style={{
+                width: "100%",
+                height: "50px",
+                marginTop: "8px",
+                borderRadius: "10px",
+              }}
+              defaultActiveFirstOption
+              placeholder="Search to Select"
+              optionFilterProp="children"
+              filterOption={(input, option) =>
+                (option?.label ?? "").includes(input)
+              }
+              filterSort={(optionA, optionB) =>
+                (optionA?.label ?? "")
+                  .toLowerCase()
+                  .localeCompare((optionB?.label ?? "").toLowerCase())
+              }
+              options={[
+                {
+                  value: "1",
+                  label: "Not Identified",
+                },
+                {
+                  value: "2",
+                  label: "Closed",
+                },
+                {
+                  value: "3",
+                  label: "Communicated",
+                },
+              ]}
             />
           </div>
         </form>

@@ -14,11 +14,26 @@ import Navigation from "./logo/Navigation";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [scroll, setScroll] = useState(false);
 
+  const scrollHeader = () => {
+    if (window.scrollY >= 100) {
+      setScroll(true);
+    } else {
+      setScroll(false);
+    }
+  };
+  window.addEventListener("scroll", scrollHeader);
   return (
     <div>
       <Navigation />
-      <div className="h-[100px] w-full bg-white ">
+      <div
+        className={
+          scroll
+            ? "fixed left-0 top-0 z-[300]  mb-[200px] h-[100px] w-full bg-white"
+            : "z-[300]  h-[100px] w-full bg-white "
+        }
+      >
         <Container>
           <div className="flex h-full w-full items-center justify-between ">
             <button

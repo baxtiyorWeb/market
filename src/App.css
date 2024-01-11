@@ -111,6 +111,21 @@
 }
 .ant-tabs-tab-active {
 }
-.ant-tabs-ink-bar-animated {
-  background: #1d828e !important;
+.ant-select-selector {
+  background: transparent !important;
+  box-shadow: 0 0 0 0 !important;
+  border: 1px solid #e2e2e2 !important;
+  font-size: 16px !important;
+  font-family: "Poppins", sans-serif !important;
+  color: #9ca3af !important;
+}
+
+.HoverSlideshow-module_innerContainer__kOA84 {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+.HoverSlideshow-module_img__C-dKU {
+  width: 100%;
+  height: 194px;
 }
