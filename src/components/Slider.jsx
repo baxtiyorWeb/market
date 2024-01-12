@@ -31,6 +31,24 @@ export default function Slider() {
             className="h-[413px] w-full "
           />
         </div>
+        <div>
+          <img
+            src="https://olcha.uz/image/original/sliders/oz/JbZXKLnK8jX2hNbIgi4eXJ3qvZ2jS5vxaJEFA8eZmUN1tsEyQjekKLTDN13t.png"
+            className="h-[413px] w-full "
+          />
+        </div>
+        <div>
+          <img
+            src="https://olcha.uz/image/original/sliders/oz/a0tA8yTf1dhIRnbc59FExu1jJ577UWFXI1Ki1tuM3qW6bwD9jbrWkJbtBbB8.png"
+            className="h-[413px] w-full "
+          />
+        </div>
+        <div>
+          <img
+            src="https://olcha.uz/image/original/sliders/oz/FJpaTzUZfeKjNeEDTHbllALp21oipD2K2QM1nRb3koK2h3ervh5E04cUkUte.jpg"
+            className="h-[413px] w-full "
+          />
+        </div>
       </Carousel>
     </div>
   );
