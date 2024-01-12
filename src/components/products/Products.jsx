@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { products } from "../../data/data";
 const Products = () => {
   return (
-    <div className="mt-[100px] h-full w-full ">
+    <div className="mt-[40px] h-full w-full ">
       <div>
-        <h1 className="mb-[20px] font-poppins text-[33px] font-medium not-italic leading-normal tracking-[-0.66px] text-[#130F1E]">
+        <h1 className="mb-[20px] font-poppins text-[28px] font-medium not-italic leading-normal tracking-[-0.66px] text-[#130F1E]">
           top mahsulotlar
         </h1>
       </div>

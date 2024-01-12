@@ -1,9 +1,8 @@
-import React from "react";
-import Container from "../../shared/Container";
 import { FaGlobe, FaKey, FaUser } from "react-icons/fa";
+import Container from "../../shared/Container";
 export default function Navigation() {
   return (
-    <div className="border-b bg-[#FFF] p-1 ">
+    <div className=" mt-[2px] bg-[#FFF]">
       <Container>
         <div className="flex h-full items-center justify-end">
           <div className="user-menu flex items-center justify-center">

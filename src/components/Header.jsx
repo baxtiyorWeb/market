@@ -19,8 +19,9 @@ export default function Header() {
   const scrollHeader = () => {
     if (window.scrollY >= 100) {
       setScroll(true);
-    } else {
+    } else if (window.scrollY <= window.screenY) {
       setScroll(false);
+      console.log(window.scrollY);
     }
   };
 
@@ -40,7 +41,7 @@ export default function Header() {
         className={
           scroll
             ? "fixed left-0 top-0 z-[300]  mb-[200px] h-[100px] w-full bg-white"
-            : "z-[300]  h-[100px] w-full bg-white "
+            : "z-[300]  h-[80px] w-full bg-white "
         }
       >
         <Container>
