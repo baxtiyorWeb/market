@@ -1,7 +1,12 @@
 export const products = [
   {
     productId: 1,
-    productImg: "https://www.topgear.com/sites/default/files/2022/07/13.jpg",
+    productImg: [
+      "https://cdn.mos.cms.futurecdn.net/f5b4Za98noyKQzJjLmHAnd.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Gaming_PC_set_up.jpg/640px-Gaming_PC_set_up.jpg",
+      "https://tiki.vn/blog/wp-content/uploads/2023/09/pc-la-gi-thumbnail-1.jpg",
+      "https://cdn.autonomous.ai/static/upload/images/common/upload/20200930/6f2cce37d2c.jpg",
+    ],
     productTitle: "BYD Chazor DMI",
     productDescription: "120km Flagship Full pozitsiyasi",
     productPrice: "370 196 800",
@@ -10,7 +15,12 @@ export const products = [
   },
   {
     productId: 2,
-    productImg: "https://www.topgear.com/sites/default/files/2022/07/13.jpg",
+    productImg: [
+      "https://www.apple.com/newsroom/images/product/mac/standard/Apple-iMac-gets-2x-more-performance-03192019_big.jpg.large.jpg",
+      "https://rukminim2.flixcart.com/image/850/1000/j1mggi80/allinone-desktop/p/v/z/apple-mk142hn-a-original-imaet5xbuzhgerxf.jpeg?q=90",
+      "https://media.wired.com/photos/5c9045f333cb7721bef32309/16:9/w_2400,h_1350,c_limit/iMac_21_27-PRINT.jpg",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/imac-24-no-id-blue-selection-hero-202310?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1701459101618",
+    ],
     productTitle: "BYD Chazor DMI",
     productDescription: "120km Flagship Full pozitsiyasi",
     productPrice: "370 196 800",
@@ -19,7 +29,10 @@ export const products = [
   },
   {
     productId: 3,
-    productImg: "https://www.topgear.com/sites/default/files/2022/07/13.jpg",
+    productImg: [
+      "https://i.ytimg.com/vi/x-zSLV2nweU/maxresdefault.jpg",
+      "https://qph.cf2.quoracdn.net/main-qimg-9e414e18c8741a281b538821974a722c-lq",
+    ],
     productTitle: "BYD Chazor DMI",
     productDescription: "120km Flagship Full pozitsiyasi",
     productPrice: "370 196 800",
@@ -28,7 +41,9 @@ export const products = [
   },
   {
     productId: 4,
-    productImg: "https://www.topgear.com/sites/default/files/2022/07/13.jpg",
+    productImg: [
+      "https://www.newegg.com/insider/tech-and-pc-hardware-wallpapers-free-download/asus-rog-strix-b550-e-gaming-amd-am4-3rd-gen-ryzen-atx-gaming-motherboard-pcie-4-0-nvidia-sli-wifi-6-2-5gb-lan-142-power-stages-front-usb-3-2-type-c-addressable-gen-2-rgb-and-aura-sync-15/",
+    ],
     productTitle: "BYD Chazor DMI",
     productDescription: "120km Flagship Full pozitsiyasi",
     productPrice: "370 196 800",
@@ -37,7 +52,11 @@ export const products = [
   },
   {
     productId: 5,
-    productImg: "https://www.topgear.com/sites/default/files/2022/07/13.jpg",
+    productImg: [
+      "https://m.media-amazon.com/images/I/71aARXewm6L._AC_UF894,1000_QL80_.jpg",
+      "https://c1.neweggimages.com/ProductImage/B6VGS2203230GDM91A7.jpg",
+      "https://img.ltwebstatic.com/images3_spmp/2023/07/06/1688625251cc88a199336fb099c1f6d1610cf7201d_thumbnail_720x.jpg",
+    ],
     productTitle: "BYD Chazor DMI",
     productDescription: "120km Flagship Full pozitsiyasi",
     productPrice: "370 196 800",
@@ -46,7 +65,10 @@ export const products = [
   },
   {
     productId: 6,
-    productImg: "https://www.topgear.com/sites/default/files/2022/07/13.jpg",
+    productImg: [
+      "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP776/sp776-mbp15touch-space.jpeg",
+      "https://falabella.scene7.com/is/image/Falabella/gsc_123530085_3722860_1?wid=800&hei=800&qlt=70",
+    ],
     productTitle: "BYD Chazor DMI",
     productDescription: "120km Flagship Full pozitsiyasi",
     productPrice: "370 196 800",
@@ -55,7 +77,10 @@ export const products = [
   },
   {
     productId: 7,
-    productImg: "https://www.topgear.com/sites/default/files/2022/07/13.jpg",
+    productImg: [
+      "https://assets-production.teampeanut.com/stored-image/750/1eyd9-nnur9n.webp?ow=1200&oh=675",
+      "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/87/4611321/1.jpg?0974",
+    ],
     productTitle: "BYD Chazor DMI",
     productDescription: "120km Flagship Full pozitsiyasi",
     productPrice: "370 196 800",
@@ -64,7 +89,10 @@ export const products = [
   },
   {
     productId: 8,
-    productImg: "https://www.topgear.com/sites/default/files/2022/07/13.jpg",
+    productImg: [
+      "https://cdn.thewirecutter.com/wp-content/media/2021/05/27-inch-monitor-2048px-1572.jpg",
+      "https://cdn.thewirecutter.com/wp-content/media/2021/05/27-inch-monitor-2048px-1572.jpg",
+    ],
     productTitle: "BYD Chazor DMI",
     productDescription: "120km Flagship Full pozitsiyasi",
     productPrice: "370 196 800",
@@ -73,7 +101,9 @@ export const products = [
   },
   {
     productId: 9,
-    productImg: "https://www.topgear.com/sites/default/files/2022/07/13.jpg",
+    productImg: [
+      "https://www.cnet.com/a/img/resize/8d47065f9ecb62603a14d9b33f02e3e5c91a512e/hub/2021/05/12/0ad36336-efa0-4310-aff2-c268fec45350/samsung-lf27t350fhnxza-monitor.png?auto=webp&fit=crop&height=900&precrop=885,498,x0,y0&width=1200",
+    ],
     productTitle: "BYD Chazor DMI",
     productDescription: "120km Flagship Full pozitsiyasi",
     productPrice: "370 196 800",
@@ -82,7 +112,10 @@ export const products = [
   },
   {
     productId: 10,
-    productImg: "https://www.topgear.com/sites/default/files/2022/07/13.jpg",
+    productImg: [
+      "https://www.ubuy.com.pk/productimg/?image=aHR0cHM6Ly9tLm1lZGlhLWFtYXpvbi5jb20vaW1hZ2VzL0kvODFlNjZaaUFFRUwuX0FDX1NMMTUwMF8uanBn.jpg",
+      "https://image.made-in-china.com/2f0j00hfMRbZkwnsgY/New-Design-College-School-Bag-for-Boys-Multi-Pockets-Backpack.webp",
+    ],
     productTitle: "BYD Chazor DMI",
     productDescription: "120km Flagship Full pozitsiyasi",
     productPrice: "370 196 800",
@@ -91,7 +124,7 @@ export const products = [
   },
   {
     productId: 11,
-    productImg: "https://www.topgear.com/sites/default/files/2022/07/13.jpg",
+    productImg: ["https://www.topgear.com/sites/default/files/2022/07/13.jpg"],
     productTitle: "BYD Chazor DMI",
     productDescription: "120km Flagship Full pozitsiyasi",
     productPrice: "370 196 800",
@@ -100,7 +133,12 @@ export const products = [
   },
   {
     productId: 12,
-    productImg: "https://www.topgear.com/sites/default/files/2022/07/13.jpg",
+    productImg: [
+      "https://www.topgear.com/sites/default/files/2022/07/13.jpg",
+      "https://www.topgear.com/sites/default/files/2022/07/13.jpg",
+      "https://www.topgear.com/sites/default/files/2022/07/13.jpg",
+      "https://www.topgear.com/sites/default/files/2022/07/13.jpg",
+    ],
     productTitle: "BYD Chazor DMI",
     productDescription: "120km Flagship Full pozitsiyasi",
     productPrice: "370 196 800",
@@ -109,7 +147,7 @@ export const products = [
   },
   {
     productId: 13,
-    productImg: "https://www.topgear.com/sites/default/files/2022/07/13.jpg",
+    productImg: ["https://www.topgear.com/sites/default/files/2022/07/13.jpg"],
     productTitle: "BYD Chazor DMI",
     productDescription: "120km Flagship Full pozitsiyasi",
     productPrice: "370 196 800",
@@ -118,7 +156,7 @@ export const products = [
   },
   {
     productId: 14,
-    productImg: "https://www.topgear.com/sites/default/files/2022/07/13.jpg",
+    productImg: ["https://www.topgear.com/sites/default/files/2022/07/13.jpg"],
     productTitle: "BYD Chazor DMI",
     productDescription: "120km Flagship Full pozitsiyasi",
     productPrice: "370 196 800",
@@ -127,7 +165,7 @@ export const products = [
   },
   {
     productId: 15,
-    productImg: "https://www.topgear.com/sites/default/files/2022/07/13.jpg",
+    productImg: ["https://www.topgear.com/sites/default/files/2022/07/13.jpg"],
     productTitle: "BYD Chazor DMI",
     productDescription: "120km Flagship Full pozitsiyasi",
     productPrice: "370 196 800",
@@ -136,7 +174,7 @@ export const products = [
   },
   {
     productId: 16,
-    productImg: "https://www.topgear.com/sites/default/files/2022/07/13.jpg",
+    productImg: ["https://www.topgear.com/sites/default/files/2022/07/13.jpg"],
     productTitle: "BYD Chazor DMI",
     productDescription: "120km Flagship Full pozitsiyasi",
     productPrice: "370 196 800",
@@ -145,7 +183,7 @@ export const products = [
   },
   {
     productId: 18,
-    productImg: "https://www.topgear.com/sites/default/files/2022/07/13.jpg",
+    productImg: ["https://www.topgear.com/sites/default/files/2022/07/13.jpg"],
     productTitle: "BYD Chazor DMI",
     productDescription: "120km Flagship Full pozitsiyasi",
     productPrice: "370 196 800",
@@ -154,7 +192,7 @@ export const products = [
   },
   {
     productId: 19,
-    productImg: "https://www.topgear.com/sites/default/files/2022/07/13.jpg",
+    productImg: ["https://www.topgear.com/sites/default/files/2022/07/13.jpg"],
     productTitle: "BYD Chazor DMI",
     productDescription: "120km Flagship Full pozitsiyasi",
     productPrice: "370 196 800",
@@ -163,7 +201,7 @@ export const products = [
   },
   {
     productId: 20,
-    productImg: "https://www.topgear.com/sites/default/files/2022/07/13.jpg",
+    productImg: ["https://www.topgear.com/sites/default/files/2022/07/13.jpg"],
     productTitle: "BYD Chazor DMI",
     productDescription: "120km Flagship Full pozitsiyasi",
     productPrice: "370 196 800",
@@ -172,7 +210,7 @@ export const products = [
   },
   {
     productId: 21,
-    productImg: "https://www.topgear.com/sites/default/files/2022/07/13.jpg",
+    productImg: ["https://www.topgear.com/sites/default/files/2022/07/13.jpg"],
     productTitle: "BYD Chazor DMI",
     productDescription: "120km Flagship Full pozitsiyasi",
     productPrice: "370 196 800",

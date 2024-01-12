@@ -84,7 +84,7 @@
 .slide-next-1 .thumbs {
   display: none !important;
 }
-.css-1u9des2-indicatorSeparator {
+.cart-slider .css-1u9des2-indicatorSeparator {
   display: none;
 }
 .css-17ekpuy-control {
@@ -109,8 +109,6 @@
   text-align: center;
   color: #1d828e !important;
 }
-.ant-tabs-tab-active {
-}
 .ant-select-selector {
   background: transparent !important;
   box-shadow: 0 0 0 0 !important;
@@ -128,4 +126,74 @@
 .HoverSlideshow-module_img__C-dKU {
   width: 100%;
   height: 194px;
+}
+
+/* antd design end */
+
+.thumbs {
+  display: flex !important;
+  justify-content: space-around !important;
+}
+.cart-slider .thumbs-wrapper {
+  width: 100%;
+  position: relative;
+  right: 13px;
+}
+.cart-slider .carousel-root {
+  height: 194px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.cart-slider .control-dots {
+  width: 100% !important;
+}
+.cart-slider .animated {
+  background: blue !important;
+}
+
+.cart-slider .slide {
+  width: 100% !important;
+  height: 194px !important;
+}
+.cart-slider .carousel {
+  width: 100%;
+  background: blue !important;
+}
+.cart-slider .slider-wrapper {
+  height: 194px !important  ;
+}
+
+.cart-slider .carousel-slider {
+  height: 100%;
+}
+
+.cart-slider .thumb.selected {
+  border: 2px solid #a06f70 !important;
+}
+
+.cart-slider .slide-next-1 .thumbs {
+  display: block !important;
+  position: relative;
+}
+.cart-slider .css-1u9des2-indicatorSeparator {
+  display: block !important;
+}
+.cart-slider .css-17ekpuy-control {
+  outline: block !important;
+}
+
+.cart-slider .thumbs-wrapper {
+  background: blue !important;
+}
+.control-dots .dot {
+  width: 10px !important;
+  height: 5px !important;
+  border-radius: 1px !important;
+}
+.control-dots .selected {
+  box-shadow: 0 0 0 0 !important;
+  width: 20px !important;
+  transition: 3s ease;
 }

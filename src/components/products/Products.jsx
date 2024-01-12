@@ -1,4 +1,4 @@
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import { Carousel } from "react-responsive-carousel";
 import { Link } from "react-router-dom";
 import { products } from "../../data/data";
 const Products = () => {
@@ -15,19 +15,33 @@ const Products = () => {
             className="h-[336px] w-[270px] flex-shrink-0 overflow-hidden  rounded-md shadow-md"
             key={item.productId}
           >
-            <div className="h-[194px] w-[100%] overflow-hidden">
-              <Link to={`/detail/${item.productId}`}>
-                {/* <img
-                  src={item.productImg}
-                  
-                  alt=""
-                /> */}
-                <LazyLoadImage
-                  className="h-full w-full cursor-pointer border"
-                  alt={item.productImg}
-                  src={item.productImg} // use normal <img> attributes as props
-                />
-              </Link>
+            <div className="relative h-[194px] w-[100%] overflow-hidden">
+              <Carousel
+                emulateTouch
+                autoFocus
+                transitionTime={300}
+                infiniteLoop
+                swipeable
+                showIndicators={true}
+                showStatus={false}
+                className="h-[194px] w-full"
+              >
+                {item.productImg.map((items, index) => (
+                  <div
+                    className="cart-slider flex h-full w-full items-center justify-center border"
+                    key={index}
+                  >
+                    <Link
+                      to={`/detail/${item.productId} ${item.productTitle}`}
+                      key={index}
+                    >
+                      <div className="h-full w-full">
+                        <img src={items} alt="" className="h-[194px] w-full" />
+                      </div>
+                    </Link>
+                  </div>
+                ))}
+              </Carousel>
             </div>
             <div className="mt-4 px-[18px]">
               <span className="text font-poppins text-[16px] font-medium not-italic leading-[120%] tracking-[-0.32px] text-[#130F1E]">

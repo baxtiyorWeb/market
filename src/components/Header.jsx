@@ -2,7 +2,7 @@ import Container from "../shared/Container";
 
 // svg  icons
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MdClose } from "react-icons/md";
 import { Link } from "react-router-dom";
 import menuIcon from "../assets/menuIcon.svg";
@@ -14,7 +14,7 @@ import Navigation from "./logo/Navigation";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
-  const [scroll, setScroll] = useState(false);
+  const [scroll, setScroll] = useState(null);
 
   const scrollHeader = () => {
     if (window.scrollY >= 100) {
@@ -23,7 +23,16 @@ export default function Header() {
       setScroll(false);
     }
   };
-  window.addEventListener("scroll", scrollHeader);
+
+  useEffect(() => {
+    // Add scroll event listener
+    window.addEventListener("scroll", scrollHeader);
+
+    // Remove the event listener when the component is unmounted
+    return () => {
+      window.removeEventListener("scroll", scrollHeader);
+    };
+  }, []);
   return (
     <div>
       <Navigation />
