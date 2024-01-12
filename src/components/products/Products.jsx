@@ -31,10 +31,7 @@ const Products = () => {
                     className="cart-slider flex h-full w-full items-center justify-center border"
                     key={index}
                   >
-                    <Link
-                      to={`/detail/${item.productId} ${item.productImg}`}
-                      key={index}
-                    >
+                    <Link to={`/detail/${item.productId}`} key={index}>
                       <div className="h-full w-full">
                         <img src={items} alt="" className="h-[194px] w-full" />
                       </div>
