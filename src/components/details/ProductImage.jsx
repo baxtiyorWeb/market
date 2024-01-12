@@ -15,25 +15,25 @@ export default function ProductImage() {
       >
         <div className="h-[400px] w-[100%] flex-shrink-0 rounded-[10px]">
           <img
-            src="https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Gaming_PC_set_up.jpg/640px-Gaming_PC_set_up.jpg"
             className="h-[100%] w-[100%]"
           />
         </div>
         <div>
           <img
-            src="https://wallpapers.com/images/featured/4k-oaax18kaapkokaro.jpg"
+            src="https://cdn.mos.cms.futurecdn.net/f5b4Za98noyKQzJjLmHAnd.jpg"
             className="h-[100%] w-[100%]"
           />
         </div>
         <div>
           <img
-            src="https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1525041.jpg&fm=jpg"
+            src="https://cdn.autonomous.ai/static/upload/images/common/upload/20200930/6f2cce37d2c.jpg"
             className="h-[100%] w-[100%]"
           />
         </div>
         <div>
           <img
-            src="https://wallpapers.com/images/featured/4k-oaax18kaapkokaro.jpg"
+            src="https://tiki.vn/blog/wp-content/uploads/2023/09/pc-la-gi-thumbnail-1.jpg"
             className="h-[100%] w-[100%]"
           />
         </div>
