@@ -15,19 +15,19 @@ export default function Slider() {
       >
         <div>
           <img
-            src="	https://images.uzum.uz/cm77399s99ouqbfp450g/main_page_banner.jpg"
+            src="https://olcha.uz/image/original/sliders/oz/4eLWNfkAmz5pDr9EO192VKKKQ35ButlqlWNFSFCFO0ARWyYLmAsHUkHQVAJe.jpg"
             className="h-[413px] w-full "
           />
         </div>
         <div>
           <img
-            src="https://images.uzum.uz/cm0ml132psag1e8u17bg/main_page_banner.jpg"
+            src="https://olcha.uz/image/original/sliders/oz/sH2cyvYl2BqmUQu5srVpMoGJUxLZd8EqxmfQR6m7sjYRJ0PtKNt5UfSHUI7b.jpg"
             className="h-[413px] w-full "
           />
         </div>
         <div>
           <img
-            src="https://images.uzum.uz/cm5fhf125ku1lubqegrg/main_page_banner.jpg"
+            src="https://olcha.uz/image/original/sliders/oz/Mrwm9x0o5zaDUNj9Gnz6hJKT97fqmoxeSO8EOXydCfF7EqO9y9UHP0mD8m08.png"
             className="h-[413px] w-full "
           />
         </div>
