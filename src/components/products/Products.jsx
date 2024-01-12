@@ -1,4 +1,3 @@
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Carousel } from "react-responsive-carousel";
 import { Link } from "react-router-dom";
 import { products } from "../../data/data";
@@ -37,13 +36,7 @@ const Products = () => {
                       key={index}
                     >
                       <div className="h-full w-full">
-                        <LazyLoadImage
-                          src={item.productImg}
-                          effect="opacity"
-                          alt={item.productImg}
-                          width={"100%"}
-                          height={"194px"}
-                        />
+                        <img src={items} alt="" className="h-[194px] w-full" />
                       </div>
                     </Link>
                   </div>
@@ -51,10 +44,10 @@ const Products = () => {
               </Carousel>
             </div>
             <div className="mt-4 px-[18px]">
-              <span className="text font-poppins text-[16px] font-medium not-italic leading-[120%] tracking-[-0.32px] text-[#130F1E]">
+              <span className="text font-poppins text-[16px] font-medium not-italic leading-[120%] tracking-[-0.32px] text-[#130F1E] line-clamp-1">
                 {item.productTitle}
               </span>
-              <p className="text text-[16px] font-normal not-italic leading-[120%] tracking-[-0.32px] text-[#130F1E]">
+              <p className="text text-[16px] font-normal not-italic leading-[120%] tracking-[-0.32px] text-[#130F1E] line-clamp-1">
                 {item.productDescription}
               </p>
               <div className="mt-[12px] flex items-center  justify-start">
