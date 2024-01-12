@@ -10,7 +10,7 @@ export default function Slider() {
         transitionTime={300}
         infiniteLoop
         swipeable
-        showIndicators={false}
+        showIndicators={true}
         showStatus={false}
       >
         <div>
