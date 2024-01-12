@@ -49,6 +49,36 @@ export default function Slider() {
             className="h-[413px] w-full "
           />
         </div>
+        <div>
+          <img
+            src="https://minio.alifnasiya.uz/shop/catalog/carousel/185/1698244324-2%20uzb.jpg"
+            className="h-[413px] w-full "
+          />
+        </div>
+        <div>
+          <img
+            src="https://minio.alifnasiya.uz/shop/catalog/carousel/186/1698761735-3)%201600x491%2043-50_3300%20UZB.png"
+            className="h-[413px] w-full "
+          />
+        </div>
+        <div>
+          <img
+            src="https://assets.asaxiy.uz/uploads/banner/desktop/659d2b642a872.jpg.webp"
+            className="h-[413px] w-full "
+          />
+        </div>
+        <div>
+          <img
+            src="https://assets.asaxiy.uz/uploads/banner/desktop/6586b4a2daf21.jpg.webp"
+            className="h-[413px] w-full "
+          />
+        </div>
+        <div>
+          <img
+            src="https://assets.asaxiy.uz/uploads/banner/desktop/659d2b642a872.jpg.webp"
+            className="h-[413px] w-full "
+          />
+        </div>
       </Carousel>
     </div>
   );
