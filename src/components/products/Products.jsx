@@ -1,3 +1,4 @@
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Carousel } from "react-responsive-carousel";
 import { Link } from "react-router-dom";
 import { products } from "../../data/data";
@@ -36,7 +37,13 @@ const Products = () => {
                       key={index}
                     >
                       <div className="h-full w-full">
-                        <img src={items} alt="" className="h-[194px] w-full" />
+                        <LazyLoadImage
+                          src={item.productImg}
+                          effect="opacity"
+                          alt={item.productImg}
+                          width={"100%"}
+                          height={"194px"}
+                        />
                       </div>
                     </Link>
                   </div>
