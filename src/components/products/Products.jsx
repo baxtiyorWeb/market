@@ -12,7 +12,7 @@ const Products = () => {
       <div className="grid grid-cols-4 gap-[29px] sm:grid-cols-2 md:grid md:grid-cols-4">
         {products.map((item) => (
           <div
-            className="h-[336px] w-[270px] flex-shrink-0 overflow-hidden  rounded-md shadow-md"
+            className="h-[400px] w-[270px] flex-shrink-0 overflow-hidden  rounded-md shadow-md"
             key={item.productId}
           >
             <div className="relative h-[194px] w-[100%] overflow-hidden">
@@ -32,7 +32,7 @@ const Products = () => {
                     key={index}
                   >
                     <Link
-                      to={`/detail/${item.productId} ${item.productTitle}`}
+                      to={`/detail/${item.productId} ${item.productImg}`}
                       key={index}
                     >
                       <div className="h-full w-full">
@@ -44,10 +44,10 @@ const Products = () => {
               </Carousel>
             </div>
             <div className="mt-4 px-[18px]">
-              <span className="text font-poppins text-[16px] font-medium not-italic leading-[120%] tracking-[-0.32px] text-[#130F1E] line-clamp-1">
+              <span className="text line-clamp-1 font-poppins text-[16px] font-medium not-italic leading-[120%] tracking-[-0.32px] text-[#130F1E]">
                 {item.productTitle}
               </span>
-              <p className="text text-[16px] font-normal not-italic leading-[120%] tracking-[-0.32px] text-[#130F1E] line-clamp-1">
+              <p className="text line-clamp-1 text-[16px] font-normal not-italic leading-[120%] tracking-[-0.32px] text-[#130F1E]">
                 {item.productDescription}
               </p>
               <div className="mt-[12px] flex items-center  justify-start">
