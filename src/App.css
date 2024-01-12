@@ -197,3 +197,15 @@
   width: 20px !important;
   transition: 3s ease;
 }
+
+.carousel-slider:hover .control-arrow {
+  opacity: 1 !important;
+}
+
+.control-arrow {
+  width: 30px;
+  height: 30px;
+  opacity: 0 !important;
+  padding: 3px;
+  font-size: 15px;
+}
