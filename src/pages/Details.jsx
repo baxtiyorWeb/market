@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
-import Container from "../shared/Container";
-import ProductImage from "../components/details/ProductImage";
+import { useEffect } from "react";
 import ProductAbout from "../components/details/ProductAbout";
+import ProductImage from "../components/details/ProductImage";
+import Container from "../shared/Container";
 
 export default function Details() {
   const scrollToTop = () => {
@@ -10,6 +10,7 @@ export default function Details() {
   useEffect(() => {
     scrollToTop();
   }, []);
+
   return (
     <Container>
       <div className="flex justify-between">

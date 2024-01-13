@@ -21,11 +21,11 @@ export default function ProductImage() {
         emulateTouch
         autoFocus
         autoPlay
+        transitionTime={300}
         infiniteLoop
         swipeable
         showIndicators={true}
         showStatus={false}
-        verticalSwipe="natural"
       >
         {detailMap.map((item, index) => {
           return (

@@ -14,6 +14,7 @@
     "@hookform/resolvers": "^3.3.4",
     "antd": "^5.12.8",
     "axios": "^1.6.4",
+    "json-server": "^1.0.0-alpha.19",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-headroom": "^3.2.1",

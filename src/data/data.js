@@ -12,6 +12,7 @@ export const products = [
     productPrice: "15 000 000 ",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
+    productView: "345"
   },
   {
     productId: 2,
@@ -26,6 +27,7 @@ export const products = [
     productPrice: "23 196 800",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
+    productView: "445"
   },
   {
     productId: 3,
@@ -38,6 +40,7 @@ export const products = [
     productPrice: "370 196 800",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
+    productView: "35"
   },
   {
     productId: 4,
@@ -49,6 +52,7 @@ export const products = [
     productPrice: "370 196 800",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
+    productView: "33345"
   },
   {
     productId: 5,
@@ -62,6 +66,7 @@ export const products = [
     productPrice: "370 196 800",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
+    productView: "3245"
   },
   {
     productId: 6,
@@ -74,6 +79,7 @@ export const products = [
     productPrice: "370 196 800",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
+    productView: "88345"
   },
   {
     productId: 7,
@@ -86,6 +92,7 @@ export const products = [
     productPrice: "100 000 ",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
+    productView: "1234345"
   },
   {
     productId: 8,
@@ -98,6 +105,7 @@ export const products = [
     productPrice: "998 800",
     productLocation: "Surxondaryo",
     productTimeStamps: "02.02.22 | 15:33",
+    productView: "34345"
   },
   {
     productId: 9,
@@ -109,6 +117,7 @@ export const products = [
     productPrice: "370 196 800",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
+    productView: "3345"
   },
   {
     productId: 5,
@@ -122,6 +131,7 @@ export const products = [
     productPrice: "370 196 800",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
+    productView: "9005"
   },
   {
     productId: 6,
@@ -134,6 +144,7 @@ export const products = [
     productPrice: "370 196 800",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
+    productView: "888"
   },
   {
     productId: 7,
@@ -146,6 +157,7 @@ export const products = [
     productPrice: "370 196 800",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
+    productView: "3925"
   },
   {
     productId: 10,
@@ -158,6 +170,7 @@ export const products = [
     productPrice: "370 196 800",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
+    productView: "1245"
   },
   {
     productId: 11,
@@ -170,6 +183,7 @@ export const products = [
     productPrice: "370 196 800",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
+    productView: "3345"
   },
   {
     productId: 12,
@@ -182,6 +196,7 @@ export const products = [
     productPrice: "370 196 800",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
+    productView: "344"
   },
   {
     productId: 13,
@@ -194,6 +209,7 @@ export const products = [
     productPrice: "370 196 800",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
+    productView: "3435"
   },
   {
     productId: 14,
@@ -206,6 +222,7 @@ export const products = [
     productPrice: "370 196 800",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
+    productView: "3345"
   },
   {
     productId: 10,
@@ -218,6 +235,7 @@ export const products = [
     productPrice: "370 196 800",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
+    productView: "3485"
   },
   {
     productId: 11,
@@ -230,6 +248,7 @@ export const products = [
     productPrice: "370 196 800",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
+    productView: "3458"
   },
   {
     productId: 12,
@@ -242,6 +261,7 @@ export const products = [
     productPrice: "370 196 800",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
+    productView: "34125"
   },
   {
     productId: 7,
@@ -254,6 +274,7 @@ export const products = [
     productPrice: "370 196 800",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
+    productView: "3453"
   },
   {
     productId: 8,
@@ -266,6 +287,7 @@ export const products = [
     productPrice: "370 196 800",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
+    productView: "1345"
   },
   {
     productId: 9,
@@ -277,6 +299,7 @@ export const products = [
     productPrice: "370 196 800",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
+    productView: "3435"
   },
   {
     productId: 10,
@@ -289,6 +312,7 @@ export const products = [
     productPrice: "370 196 800",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
+    productView: "3465"
   },
   {
     productId: 11,
@@ -301,6 +325,7 @@ export const products = [
     productPrice: "370 196 800",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
+    productView: "3145"
   },
   {
     productId: 15,
@@ -312,5 +337,6 @@ export const products = [
     productPrice: "370 196 800",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
+    productView: "1345"
   },
 ];

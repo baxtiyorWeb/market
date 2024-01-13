@@ -13,6 +13,7 @@ export default function AddProductComponent() {
     console.log(data);
   };
 
+
   // schema buil resolver
   const { handleSubmit } = useForm({
     resolver: yupResolver(schema),

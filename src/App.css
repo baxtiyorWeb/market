@@ -209,3 +209,23 @@
   padding: 3px;
   font-size: 15px;
 }
+
+.active {
+  margin-top: 5px;
+  width: 100%;
+  padding-left: 20px;
+  margin-top: 10px;
+  transition: 0.3s ease-in-out;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.tabs {
+  display: none;
+  transition: 0.3s ease;
+}
+
+.tab-elements{
+  width: 400px;
+  margin-top: 30px;
+}

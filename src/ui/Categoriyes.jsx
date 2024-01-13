@@ -1,14 +1,14 @@
 /* eslint-disable react/prop-types */
 import { MdClose } from "react-icons/md";
 import CategoryTab from "../components/categoryTab/CategoryTab";
-export default function Categoriyes({ open, setOpen }) {
+export default function Categoriyes({ open, setOpen , scroll}) {
   return (
     <div>
       <div
         className={
           open
-            ? "fixed left-[0%] top-[140px] z-50 h-[100%] w-[100%] bg-[#FAFAFA]  opacity-100 transition-all duration-100"
-            : "fixed left-[0%] top-[150px] z-[-100] h-[0%]  w-[100%]   opacity-0 transition-all duration-300"
+            ? `fixed left-[10%] ${scroll ? "top-[100px]" : "top-[140px]"} z-50 h-[100%] w-[80%]  bg-[#FAFAFA]  opacity-100 transition-all duration-100`
+            : "fixed left-[10%] top-[150px] z-[-100] h-[0%]  w-[80%]    opacity-0 transition-all duration-300"
         }
       >
         <div className="mb-10">

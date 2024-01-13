@@ -21,7 +21,7 @@ const App = () => {
           }
         />
         <Route
-          path="/detail/:id"
+          path="/details/:id"
           element={
             <React.Suspense fallback={<Loading />}>
               <Details />

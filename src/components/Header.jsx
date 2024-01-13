@@ -59,7 +59,7 @@ export default function Header() {
                 Katalog
               </span>
             </button>
-            <Categoriyes open={open} setOpen={setOpen} />
+            <Categoriyes open={open} setOpen={setOpen} scroll={scroll} />
             <MyListbox opens={open} setOpens={setOpen} />
 
             <div
