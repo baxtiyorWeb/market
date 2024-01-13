@@ -35,14 +35,14 @@ export default function Header() {
     };
   }, []);
   return (
-    <div>
+    <div className={
+      scroll
+        ? "fixed left-0 top-0 z-[300]  mb-[200px] h-[100px] w-full bg-white"
+        : "z-[300]  h-[80px] w-full bg-white "
+    }>
       <Navigation />
       <div
-        className={
-          scroll
-            ? "fixed left-0 top-0 z-[300]  mb-[200px] h-[100px] w-full bg-white"
-            : "z-[300]  h-[80px] w-full bg-white "
-        }
+        className="top-0 z-[300]  h-[100px] w-full bg-white"
       >
         <Container>
           <div className="flex h-full w-full items-center justify-between ">

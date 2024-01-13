@@ -213,7 +213,6 @@
 .active {
   margin-top: 5px;
   width: 100%;
-  padding-left: 20px;
   margin-top: 10px;
   transition: 0.3s ease-in-out;
   display: grid;
@@ -228,4 +227,7 @@
 .tab-elements{
   width: 400px;
   margin-top: 30px;
+}
+.tab-key:not(:nth-child(1)){
+  margin-left: 20px;
 }

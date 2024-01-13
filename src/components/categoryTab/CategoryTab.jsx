@@ -35,15 +35,15 @@ const CategoryTab = () => {
     },
     {
       tabKey: 7,
-      label: "Bolalar tovarlari",
+      label: "o'yinchoqlar",
     },
     {
       tabKey: 8,
-      label: "Xobbi va ijod",
+      label: "Xobbi ",
     },
     {
       tabKey: 9,
-      label: "sport va xordiq",
+      label: "sport",
     },
     {
       tabKey: 10,
@@ -65,8 +65,8 @@ const CategoryTab = () => {
                 key={index}
                 className={
                   tab === item.tabKey
-                    ? `tab-key ml-6  flex h-full w-auto cursor-pointer items-center justify-center border-b-2 border-[#1D828E] transition-all duration-500`
-                    : "tab-key ml-6 flex h-full w-auto cursor-pointer items-center justify-center border-b-2 border-transparent "
+                    ? `tab-key  flex h-full w-auto cursor-pointer items-center justify-center border-b-2 border-[#1D828E] transition-all duration-500`
+                    : "tab-key  flex h-full w-auto cursor-pointer items-center justify-center border-b-2 border-transparent "
                 }
                 onClick={() => tabKeys(item.tabKey)}
               >

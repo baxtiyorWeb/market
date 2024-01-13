@@ -5,7 +5,7 @@ import Products from "./products/Products";
 
 export default function Main() {
   return (
-    <div>
+    <div className="mt-[110px]">
       <Categoriyes />
       <Slider />
       <div>

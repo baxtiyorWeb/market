@@ -9,7 +9,7 @@ export default function Navigation() {
         <div className="flex h-full items-center justify-between">
           <Link to={"/"}>
             {" "}
-            <img src={m_logo} alt="" className="h-[80px] w-[240px]" />
+            <img src={m_logo} alt="" className="h-[70px] w-[230px]" />
           </Link>
           <div className="user-menu flex items-center justify-center">
             <div
