@@ -16,7 +16,7 @@ export default function ProductImage() {
     },
   ];
   return (
-    <div className="products-slide border">
+    <div className="products-slide border overflow-hidden  rounded-[10px]">
       <Carousel
         emulateTouch
         autoFocus
@@ -29,7 +29,7 @@ export default function ProductImage() {
         {detailMap.map((item, index) => {
           return (
             <div
-              className="h-[400px] w-[100%] flex-shrink-0 rounded-[10px]"
+              className="h-[400px] w-[100%] flex-shrink-0 overflow-hidden"
               key={index}
             >
               <img src={item.img} className="h-[100%] w-[100%] object-cover" />
