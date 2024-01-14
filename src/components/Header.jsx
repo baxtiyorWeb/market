@@ -24,8 +24,8 @@ export default function Header({scroll, setScroll}) {
       const scrollY = window.scrollY;
       const direction =
         scrollY > lastScrollY
-          ? " bg-white  transition duration-500 left-0 top-[-300px] z-[300]  mb-[200px] h-[180px] w-full "
-          : " fixed bg-white border flex justify-center itesm-center flex-col top-0 z-[300] transition-all duration-500    h-[180px] w-full";
+          ? " bg-white   transition duration-500 left-0 top-[-300px] z-[300]  mb-[200px] h-[180px] w-full "
+          : " fixed bg-white  flex justify-center itesm-center flex-col top-0 z-[300] transition-all duration-500    h-[180px] w-full";
       if (
         direction !== scroll &&
         (scrollY - lastScrollY > 50 || scrollY - lastScrollY < -5)
