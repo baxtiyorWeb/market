@@ -25,7 +25,7 @@ const App = () => {
           path="/details/:id"
           element={
             <React.Suspense fallback={<Loading />}>
-              <Details />
+              <Details scroll={scroll} />
             </React.Suspense>
           }
         />

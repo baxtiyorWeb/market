@@ -28,7 +28,7 @@ export default function Header({scroll, setScroll}) {
           : " fixed bg-white border flex justify-center itesm-center flex-col top-0 z-[300] transition-all duration-500    h-[180px] w-full";
       if (
         direction !== scroll &&
-        (scrollY - lastScrollY > 5 || scrollY - lastScrollY < -5)
+        (scrollY - lastScrollY > 50 || scrollY - lastScrollY < -5)
       ) {
         setScroll(direction);
       }

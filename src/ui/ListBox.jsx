@@ -36,7 +36,7 @@ export default function MyListbox({ opens }) {
       >
         <img src={locationIcon} alt="" />
         <span className="text font-poppins  text-[18px] font-normal not-italic leading-[100%]">
-          {text}
+          {text ? text : "surxondaryo"}
         </span>
       </button>
       {open ? <Overlay open={open} setOpen={setOpen} /> : open}

@@ -6,8 +6,8 @@ import Products from "./products/Products";
 // eslint-disable-next-line react/prop-types
 export default function Main({scroll}) {
   return (
-    <div className={scroll ? "mt-[180px]" : "mt-[10px]"}>
-      <Categoriyes />
+    <div >
+      <Categoriyes scroll={scroll} />
       <Slider />
       <div>
         <Products />

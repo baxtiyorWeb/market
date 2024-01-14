@@ -4,9 +4,9 @@ import furniture from "../assets/furniture.svg";
 import materials from "../assets/materials.svg";
 import servicesIcon from "../assets/services.svg";
 import transportIcon from "../assets/transport.svg";
-export default function Categoriyes() {
+export default function Categoriyes({scroll}) {
   return (
-    <div className="mt-5">
+    <div className={scroll ? "mt-[160px]" : "mt-[10px]"}>
       <div className="mt-3 flex h-[100px] w-full items-center justify-between">
         <div className="flex flex-col items-center justify-center">
           <div className="flex h-[70px] w-[70px] cursor-pointer items-center justify-center rounded-full bg-[#FFF] bg-[] shadow-sm">

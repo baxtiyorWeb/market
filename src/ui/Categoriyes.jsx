@@ -8,7 +8,7 @@ export default function Categoriyes({ open, setOpen , scroll}) {
       <div
         className={
           open
-            ? `fixed left-[0%] ${scroll ? "top-[170px]" : "top-[170px]"} z-50 h-[100%] w-[100%]  bg-[#FAFAFA]  opacity-100 transition-all duration-100`
+            ? `fixed left-[0%] top-0 z-50 h-[100%] w-[100%]  bg-[#FAFAFA]  opacity-100 transition-all duration-100`
             : "fixed left-[0%] top-[150px] z-[-100] h-[0%]  w-[100%]    opacity-0 transition-all duration-300"
         }
       >

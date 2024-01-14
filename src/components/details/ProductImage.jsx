@@ -20,7 +20,6 @@ export default function ProductImage() {
       <Carousel
         emulateTouch
         autoFocus
-        autoPlay
         transitionTime={300}
         infiniteLoop
         swipeable
@@ -33,7 +32,7 @@ export default function ProductImage() {
               className="h-[400px] w-[100%] flex-shrink-0 rounded-[10px]"
               key={index}
             >
-              <img src={item.img} className="h-[100%] w-[100%]" />
+              <img src={item.img} className="h-[100%] w-[100%] object-cover" />
             </div>
           );
         })}
