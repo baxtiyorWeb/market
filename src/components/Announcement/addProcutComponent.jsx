@@ -21,7 +21,7 @@ export default function AddProductComponent() {
 
   return (
     <Container>
-      <div className="mb-10 mt-[43px]">
+      <div className="mb-10 mt-[140px]">
         <h1 className="text font-poppins text-[33px] font-medium not-italic leading-normal tracking-[-0.33px] text-[#130F1E]">
           Kvartira
         </h1>

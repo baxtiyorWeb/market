@@ -3,9 +3,10 @@ import Categoriyes from "./Categoriyes";
 import Slider from "./Slider";
 import Products from "./products/Products";
 
-export default function Main() {
+// eslint-disable-next-line react/prop-types
+export default function Main({scroll}) {
   return (
-    <div className="mt-[110px]">
+    <div className={scroll ? "mt-[180px]" : "mt-[10px]"}>
       <Categoriyes />
       <Slider />
       <div>

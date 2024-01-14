@@ -21,7 +21,7 @@ export default function Categoriyes({ open, setOpen , scroll}) {
         <Container>
 
         {open ? (
-          <div className="w-full ">
+          <div className="w-full">
             <CategoryTab open={open} />
           </div>
         ) : (

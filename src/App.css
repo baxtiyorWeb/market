@@ -219,6 +219,12 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
 }
+.tab-wrapper-panel{
+  overflow: scroll;
+}
+.tab-wrapper-panel::-webkit-scrollbar{
+  display: none;
+}
 .tabs {
   display: none;
   transition: 0.3s ease;
@@ -230,4 +236,8 @@
 }
 .tab-key:not(:nth-child(1)){
   margin-left: 20px;
+}
+
+.header-top{
+  transition: 0.3s ease;
 }

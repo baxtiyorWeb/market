@@ -66,7 +66,7 @@ const CategoryTab = () => {
                 className={
                   tab === item.tabKey
                     ? `tab-key  flex h-full w-auto cursor-pointer items-center justify-center border-b-2 border-[#1D828E] transition-all duration-500`
-                    : "tab-key  flex h-full w-auto cursor-pointer items-center justify-center border-b-2 border-transparent "
+                    : "tab-key flex h-full w-auto cursor-pointer items-center justify-center border-b-2 border-transparent "
                 }
                 onClick={() => tabKeys(item.tabKey)}
               >
@@ -75,7 +75,7 @@ const CategoryTab = () => {
             );
           })}
         </div>
-        <div>
+        <div className="tab-wrapper-panel">
           <div className={tab === 1 ? "active" : "tabs"}>
             <div className="tab-elements">
               <h1 className="text-teal-700 text-2xl not-italic font-medium">Aksesuarlar</h1>
@@ -131,6 +131,36 @@ const CategoryTab = () => {
           <div className={tab === 2 ? "active" : "tabs"}>
           <div className="tab-elements">
               <h1 className="text-teal-700 text-2xl not-italic font-medium">kompyuter jihozlari</h1>
+              <ul>
+                <li className="text-gray-900 text-[16px] not-italic font-normal mt-5"><Link>Akkumulyatorlar uchun zaryadlovchi qurilmalari</Link> </li>
+                <li className="text-gray-900 text-[16px] not-italic font-normal mt-3"><Link>Oʻt oldirish simlari </Link> </li>
+                <li className="text-gray-900 text-[16px] not-italic font-normal mt-3"><Link> Avtomobil akkumulyatori aksessuarlari </Link> </li>
+                <li className="text-gray-900 text-[16px] not-italic font-normal mt-3"><Link>Akkumulyator klemmalari</Link>  </li>
+                <li className="text-gray-900 text-[16px] not-italic font-normal mt-3"><Link>Elektrmobillar uchun zaryadlash stantsiyalari</Link>  </li>
+              </ul>
+            </div>
+            <div  className="tab-elements">
+              <h1 className="text-teal-700 text-2xl not-italic font-medium">akkumulyator</h1>
+              <ul>
+                <li className="text-gray-900 text-[16px] not-italic font-normal mt-5"><Link>Akkumulyatorlar uchun zaryadlovchi qurilmalari</Link> </li>
+                <li className="text-gray-900 text-[16px] not-italic font-normal mt-3"><Link>Oʻt oldirish simlari </Link> </li>
+                <li className="text-gray-900 text-[16px] not-italic font-normal mt-3"><Link> Avtomobil akkumulyatori aksessuarlari </Link> </li>
+                <li className="text-gray-900 text-[16px] not-italic font-normal mt-3"><Link>Akkumulyator klemmalari</Link>  </li>
+                <li className="text-gray-900 text-[16px] not-italic font-normal mt-3"><Link>Elektrmobillar uchun zaryadlash stantsiyalari</Link>  </li>
+              </ul>
+            </div>
+            <div  className="tab-elements">
+              <h1 className="text-teal-700 text-2xl not-italic font-medium">akkumulyator</h1>
+              <ul>
+                <li className="text-gray-900 text-[16px] not-italic font-normal mt-5"><Link>Akkumulyatorlar uchun zaryadlovchi qurilmalari</Link> </li>
+                <li className="text-gray-900 text-[16px] not-italic font-normal mt-3"><Link>Oʻt oldirish simlari </Link> </li>
+                <li className="text-gray-900 text-[16px] not-italic font-normal mt-3"><Link> Avtomobil akkumulyatori aksessuarlari </Link> </li>
+                <li className="text-gray-900 text-[16px] not-italic font-normal mt-3"><Link>Akkumulyator klemmalari</Link>  </li>
+                <li className="text-gray-900 text-[16px] not-italic font-normal mt-3"><Link>Elektrmobillar uchun zaryadlash stantsiyalari</Link>  </li>
+              </ul>
+            </div>
+            <div  className="tab-elements">
+              <h1 className="text-teal-700 text-2xl not-italic font-medium">akkumulyator</h1>
               <ul>
                 <li className="text-gray-900 text-[16px] not-italic font-normal mt-5"><Link>Akkumulyatorlar uchun zaryadlovchi qurilmalari</Link> </li>
                 <li className="text-gray-900 text-[16px] not-italic font-normal mt-3"><Link>Oʻt oldirish simlari </Link> </li>

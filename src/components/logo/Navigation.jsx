@@ -4,7 +4,7 @@ import m_logo from "../../assets/m_logo.png";
 import { Link } from "react-router-dom";
 export default function Navigation() {
   return (
-    <div className=" mt-[2px] bg-[#FFF]">
+    <div className="mt-[2px] bg-[#FFF] ">
       <Container>
         <div className="flex h-full items-center justify-between">
           <Link to={"/"}>

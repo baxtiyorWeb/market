@@ -1,4 +1,4 @@
-import React, { lazy } from "react";
+import React, { lazy, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Layout from "./layout/layout";
@@ -9,14 +9,15 @@ const Details = lazy(() => import("./pages/Details"));
 const AddProduct = lazy(() => import("./pages/AddProduct"));
 
 const App = () => {
+  const [scroll, setScroll] = useState(null);
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
+      <Route path="/" element={<Layout scroll={scroll} setScroll={setScroll} />}>
         <Route
           path="/"
           element={
             <React.Suspense fallback={<Loading />}>
-              <Home />
+              <Home scroll={scroll} setScroll={setScroll} />
             </React.Suspense>
           }
         />
