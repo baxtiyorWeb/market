@@ -2,7 +2,7 @@
 import { MdClose } from "react-icons/md";
 import CategoryTab from "../components/categoryTab/CategoryTab";
 import Container from "../shared/Container";
-export default function Categoriyes({ open, setOpen , scroll}) {
+export default function Categoriyes({ open, setOpen }) {
   return (
     <div>
       <div
@@ -19,14 +19,13 @@ export default function Categoriyes({ open, setOpen , scroll}) {
           />
         </div>
         <Container>
-
-        {open ? (
-          <div className="w-full">
-            <CategoryTab open={open} />
-          </div>
-        ) : (
-          setOpen(false)
-        )}
+          {open ? (
+            <div className="w-full">
+              <CategoryTab open={open} />
+            </div>
+          ) : (
+            setOpen(false)
+          )}
         </Container>
       </div>
     </div>

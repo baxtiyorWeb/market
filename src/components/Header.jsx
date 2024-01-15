@@ -13,22 +13,19 @@ import Categoriyes from "../ui/Categoriyes";
 import MyListbox from "../ui/ListBox";
 import Navigation from "./logo/Navigation";
 
-export default function Header({scroll, setScroll}) {
+export default function Header() {
   const [open, setOpen] = useState(false);
-  
+  const [scroll, setScroll] = useState(false);
 
   useEffect(() => {
-    let lastScrollY = window.scrollY;
+    let lastScrollY = window.pageYOffset;
 
     const updateScrollDirection = () => {
-      const scrollY = window.scrollY;
-      const direction =
-        scrollY > lastScrollY
-          ? " bg-white   transition duration-500 left-0 top-[-300px] z-[300]  mb-[200px] h-[180px] w-full "
-          : " fixed bg-white  flex justify-center itesm-center flex-col top-0 z-[300] transition-all duration-500    h-[180px] w-full";
+      const scrollY = window.pageYOffset;
+      const direction = scrollY > lastScrollY ? "down" : "up";
       if (
         direction !== scroll &&
-        (scrollY - lastScrollY > 50 || scrollY - lastScrollY < -5)
+        (scrollY - lastScrollY > 5 || scrollY - lastScrollY < -5)
       ) {
         setScroll(direction);
       }
@@ -40,7 +37,11 @@ export default function Header({scroll, setScroll}) {
     };
   }, [scroll]);
   return (
-    <div className={`${scroll} flex justify-center items-center flex-col bg-white  transition duration-500 left-0  z-[300]  mb-[00px] h-[180px] w-full `}>
+    <div
+      className={`sticky ${
+        scroll === "down" ? "-top-[180px]" : "top-0"
+      } transitiona-all left-0 top-0 z-[300] flex  h-[180px] w-full flex-col  items-center  justify-center bg-white duration-500`}
+    >
       <Navigation />
       <Container>
         <div className="flex h-full w-full items-center justify-between ">
