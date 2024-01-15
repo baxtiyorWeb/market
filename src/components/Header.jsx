@@ -70,7 +70,7 @@ export default function Header() {
               placeholder="Qidiruv"
               className="h-[50px] w-[540px] rounded-md border border-[#F4F4F4] bg-[#F9F9F9] pl-[19px] text-[#959EA7] outline-none"
             />
-            <button className="flex h-[50px] w-[50px] items-center justify-center rounded-[5px] bg-[#1D828E]">
+            <button className="flex h-[50px] w-[50px] items-center justify-center rounded-[5px] bg-[#1D828E] ">
               <img src={searchIcon} alt="" />
             </button>
           </div>
