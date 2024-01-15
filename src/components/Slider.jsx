@@ -55,7 +55,7 @@ export default function Slider() {
             className="h-[413px] w-full "
           />
         </div>
-        
+
         <div>
           <img
             src="https://assets.asaxiy.uz/uploads/banner/desktop/659d2b642a872.jpg.webp"
