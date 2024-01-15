@@ -18,10 +18,10 @@ export default function Header() {
   const [scroll, setScroll] = useState(false);
 
   useEffect(() => {
-    let lastScrollY = window.pageYOffset;
+    let lastScrollY = window.scrollY;
 
     const updateScrollDirection = () => {
-      const scrollY = window.pageYOffset;
+      const scrollY = window.scrollY;
       const direction = scrollY > lastScrollY ? "down" : "up";
       if (
         direction !== scroll &&
