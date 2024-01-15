@@ -16,6 +16,7 @@ import Navigation from "./logo/Navigation";
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [scroll, setScroll] = useState(false);
+  // scroll
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
