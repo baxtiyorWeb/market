@@ -8,7 +8,7 @@ export default function Categoriyes({ open, setOpen }) {
       <div
         className={
           open
-            ? `fixed left-[0%] top-0 z-50 h-[100%] w-[100%]  bg-[#FAFAFA]  opacity-100 transition-all duration-100`
+            ? `scroll-wrapper fixed left-[0%] top-0 z-50 h-[100%] w-[100%] overflow-scroll bg-[#FAFAFA]  opacity-100 transition-all duration-100`
             : "fixed left-[0%] top-[150px] z-[-100] h-[0%]  w-[100%]    opacity-0 transition-all duration-300"
         }
       >
@@ -20,7 +20,7 @@ export default function Categoriyes({ open, setOpen }) {
         </div>
         <Container>
           {open ? (
-            <div className="w-full">
+            <div className="h-full w-full">
               <CategoryTab open={open} />
             </div>
           ) : (

@@ -222,9 +222,7 @@
 .tab-wrapper-panel {
   overflow: scroll;
 }
-.tab-wrapper-panel::-webkit-scrollbar {
-  display: none;
-}
+
 .tabs {
   display: none;
   transition: 0.3s ease;
@@ -260,4 +258,12 @@
   width: 1000px !important;
   right: 48%;
 }
-
+.tab-wrapper-panel::-webkit-scrollbar {
+  display: none !important;
+}
+.tab-wrapper-panel::-webkit-scrollbar-button{
+  display: none;
+}
+.scroll-wrapper::-webkit-scrollbar {
+  display: none !important;
+}
