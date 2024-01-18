@@ -1,6 +1,7 @@
 import React, { lazy, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import "./response.css";
 import Layout from "./layout/layout";
 import Loading from "./ui/loading/Loading";
 
@@ -12,7 +13,10 @@ const App = () => {
   const [scroll, setScroll] = useState(null);
   return (
     <Routes>
-      <Route path="/" element={<Layout scroll={scroll} setScroll={setScroll} />}>
+      <Route
+        path="/"
+        element={<Layout scroll={scroll} setScroll={setScroll} />}
+      >
         <Route
           path="/"
           element={

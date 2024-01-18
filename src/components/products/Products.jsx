@@ -11,7 +11,7 @@ const Products = () => {
           top mahsulotlar
         </h1>
       </div>
-      <div className="grid grid-cols-4 gap-[29px] sm:grid-cols-2 md:grid md:grid-cols-4">
+      <div className="response_product_category grid grid-cols-4 gap-[29px]  ">
         {products.map((item, index) => (
           <div
             className="h-[400px] w-[270px] flex-shrink-0 overflow-hidden  rounded-md shadow-md"
@@ -36,15 +36,15 @@ const Products = () => {
                   >
                     <Link to={`/details/${item.productId}`} key={index}>
                       <div className="h-full w-full">
-                        <LazyLoadImage alt={"avatar"}
+                        <LazyLoadImage
+                          alt={"avatar"}
                           src={image}
                           effect="opacity"
                           width={"100%"}
                           delayTime={1500}
                           loading="lazy"
                           className="h-[194px]"
-                          />
-
+                        />
                       </div>
                     </Link>
                   </div>
@@ -72,11 +72,12 @@ const Products = () => {
                   <span>{item.productTimeStamps}</span>
                 </div>
                 <div className="text mt-[20px] flex items-center justify-between font-poppins text-[11px] font-normal leading-[100%] tracking-[-0.22px] text-[#959EA7]">
-                  <span className="flex justify-center items-center">
+                  <span className="flex items-center justify-center">
                     <FaEye className="mr-3 text-[16px]" />
-                    {item.productView}</span>
+                    {item.productView}
+                  </span>
                   <span>
-                    <FaHeart className="text-[18px] cursor-pointer hover:text-red-500" />
+                    <FaHeart className="cursor-pointer text-[18px] hover:text-red-500" />
                   </span>
                 </div>
               </div>

@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import locationIcon from "../assets/location.svg";
+import useToggle from "../hooks/useToggle";
 import Overlay from "./Overlay";
 const options = [
   { label: "Surxondaryo" },
@@ -21,10 +22,15 @@ const options = [
   { label: "Uzun tumani" },
 ];
 
-export default function MyListbox({ opens }) {
-  const [open, setOpen] = useState(false);
+export default function MyListbox() {
+  // const useToggle
+  const { hideLocationMenu, showLocationMenu, open } = useToggle();
+
+  // other states function elements
   const [value, setValue] = useState("");
   const [text, setText] = useState("");
+
+  // end function
 
   return (
     <div>
@@ -32,14 +38,14 @@ export default function MyListbox({ opens }) {
         className={
           "flex h-[50px] w-40 flex-shrink-0 items-center justify-between rounded-md bg-[#F4F4F4] p-2 text-center text-[#1D828E]"
         }
-        onClick={() => setOpen(!open && !opens)}
+        onClick={showLocationMenu}
       >
         <img src={locationIcon} alt="" />
         <span className="text font-poppins  text-[18px] font-normal not-italic leading-[100%]">
           {text ? text : "surxondaryo "}
         </span>
       </button>
-      {open ? <Overlay open={open} setOpen={setOpen} /> : open}
+      {open ? <Overlay closed={hideLocationMenu} /> : open}
       <ul
         className={
           open
@@ -61,7 +67,7 @@ export default function MyListbox({ opens }) {
             <li
               key={index}
               className="cursor-pointer border-b border-t py-3  font-poppins text-[16px] font-normal not-italic leading-[100%] tracking-[-0.08px] text-[#747474] transition  hover:border-t hover:border-slate-500 hover:font-medium hover:text-[#000]"
-              onClick={() => setText(item.label) || setOpen(!open)}
+              onClick={() => setText(item.label) || showLocationMenu()}
             >
               {item.label.replace((match) => `<mark>${match}</mark>`)}
             </li>

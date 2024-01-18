@@ -20,28 +20,30 @@ export default function Header() {
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
-
-    const updateScrollDirection = () => {
-      const scrollY = window.scrollY;
-      const direction = scrollY > lastScrollY ? "down" : "up";
-      if (
-        direction !== scroll &&
-        (scrollY - lastScrollY > 5 || scrollY - lastScrollY < -5)
-      ) {
-        setScroll(direction);
-      }
-      lastScrollY = scrollY > 0 ? scrollY : 0;
-    };
-    window.addEventListener("scroll", updateScrollDirection); // add event listener
-    return () => {
-      window.removeEventListener("scroll", updateScrollDirection); // clean up
-    };
+    if (typeof window !== "undefined") {
+      const updateScrollDirection = () => {
+        const scrollY = window.scrollY;
+        const direction = scrollY > lastScrollY ? "down" : "up";
+        if (
+          direction !== scroll &&
+          (scrollY - lastScrollY > 5 || scrollY - lastScrollY < -5)
+        ) {
+          setScroll(direction);
+        }
+        lastScrollY = scrollY > 0 ? scrollY : 0;
+      };
+      window.addEventListener("scroll", updateScrollDirection); // add event listener
+      return () => {
+        window.removeEventListener("scroll", updateScrollDirection); // clean up
+      };
+    }
   }, [scroll]);
+
   return (
     <div
       className={`sticky ${
         scroll === "down" ? "top-[-180px]" : " top-0"
-      } transitiona-all left-0 top-0 z-[300]  flex h-[180px] w-full  flex-col bg-white items-center justify-center  duration-500`}
+      } transitiona-all left-0 top-0 z-[300]  flex h-[180px] w-full  flex-col items-center justify-center bg-white  duration-500`}
     >
       <Navigation />
       <Container>
