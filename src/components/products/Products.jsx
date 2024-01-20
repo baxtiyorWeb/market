@@ -1,8 +1,8 @@
+import { FaEye, FaHeart } from "react-icons/fa";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Carousel } from "react-responsive-carousel";
 import { Link } from "react-router-dom";
 import { products } from "../../data/data";
-import { FaEye, FaHeart } from "react-icons/fa";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 const Products = () => {
   return (
     <div className="mt-[40px] h-full w-full">

@@ -12,7 +12,7 @@ export const products = [
     productPrice: "15 000 000 ",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
-    productView: "345"
+    productView: "345",
   },
   {
     productId: 18,
@@ -25,7 +25,7 @@ export const products = [
     productPrice: "340 800",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
-    productView: "1245"
+    productView: "1245",
   },
   {
     productId: 2,
@@ -40,9 +40,9 @@ export const products = [
     productPrice: "21 196 800",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
-    productView: "445"
+    productView: "445",
   },
-  
+
   {
     productId: 3,
     productImg: [
@@ -54,7 +54,7 @@ export const products = [
     productPrice: "5 196 800",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
-    productView: "35"
+    productView: "35",
   },
   {
     productId: 4,
@@ -66,7 +66,7 @@ export const products = [
     productPrice: "10 196 800",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
-    productView: "33345"
+    productView: "33345",
   },
   {
     productId: 5,
@@ -80,7 +80,7 @@ export const products = [
     productPrice: "1 196 800",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
-    productView: "3245"
+    productView: "3245",
   },
   {
     productId: 4,
@@ -92,9 +92,9 @@ export const products = [
     productPrice: "10 196 800",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
-    productView: "33345"
+    productView: "33345",
   },
-  
+
   {
     productId: 6,
     productImg: [
@@ -106,7 +106,7 @@ export const products = [
     productPrice: "15 196 800",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
-    productView: "88345"
+    productView: "88345",
   },
   {
     productId: 7,
@@ -119,7 +119,7 @@ export const products = [
     productPrice: "100 000 ",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
-    productView: "1234345"
+    productView: "1234345",
   },
   {
     productId: 8,
@@ -132,9 +132,9 @@ export const products = [
     productPrice: "998 800",
     productLocation: "Surxondaryo",
     productTimeStamps: "02.02.22 | 15:33",
-    productView: "34345"
+    productView: "34345",
   },
-  
+
   {
     productId: 19,
     productImg: [
@@ -146,7 +146,7 @@ export const products = [
     productPrice: "1 196 800",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
-    productView: "3458"
+    productView: "3458",
   },
   {
     productId: 9,
@@ -158,7 +158,7 @@ export const products = [
     productPrice: "2 196 800",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
-    productView: "3345"
+    productView: "3345",
   },
   {
     productId: 5,
@@ -172,7 +172,7 @@ export const products = [
     productPrice: "370 196 800",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
-    productView: "9005"
+    productView: "9005",
   },
   {
     productId: 6,
@@ -185,7 +185,7 @@ export const products = [
     productPrice: "370 196 800",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
-    productView: "888"
+    productView: "888",
   },
   {
     productId: 7,
@@ -198,7 +198,7 @@ export const products = [
     productPrice: "136 800",
     productLocation: "Surxondaryo",
     productTimeStamps: "02.02.22 | 15:33",
-    productView: "3925"
+    productView: "3925",
   },
   {
     productId: 10,
@@ -211,7 +211,7 @@ export const products = [
     productPrice: "340 800",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
-    productView: "1245"
+    productView: "1245",
   },
   {
     productId: 13,
@@ -220,11 +220,12 @@ export const products = [
       "https://assets.asaxiy.uz/product/items/desktop/c81e728d9d4c2f636f067f89cc14862c20230914162728184545uYluqFczI.jpg.webp",
     ],
     productTitle: "sifatli monitor 4k",
-    productDescription: "sifatli monitor 4k kino va seriallarni sifatli tomosha qiling",
+    productDescription:
+      "sifatli monitor 4k kino va seriallarni sifatli tomosha qiling",
     productPrice: "3 196 800",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
-    productView: "3435"
+    productView: "3435",
   },
   {
     productId: 12,
@@ -237,7 +238,7 @@ export const products = [
     productPrice: "3 196 800",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
-    productView: "344"
+    productView: "344",
   },
   {
     productId: 11,
@@ -250,10 +251,9 @@ export const products = [
     productPrice: "1 300 800",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
-    productView: "3345"
+    productView: "3345",
   },
-  
-  
+
   {
     productId: 14,
     productImg: [
@@ -265,9 +265,9 @@ export const products = [
     productPrice: "340 800",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
-    productView: "1245"
+    productView: "1245",
   },
-  
+
   {
     productId: 15,
     productImg: [
@@ -279,7 +279,7 @@ export const products = [
     productPrice: "1 196 800",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
-    productView: "3458"
+    productView: "3458",
   },
   {
     productId: 16,
@@ -292,7 +292,7 @@ export const products = [
     productPrice: "3 196 800",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
-    productView: "344"
+    productView: "344",
   },
   {
     productId: 17,
@@ -301,13 +301,76 @@ export const products = [
       "https://assets.asaxiy.uz/product/items/desktop/c81e728d9d4c2f636f067f89cc14862c20230914162728184545uYluqFczI.jpg.webp",
     ],
     productTitle: "sifatli monitor 4k",
-    productDescription: "sifatli monitor 4k kino va seriallarni sifatli tomosha qiling",
+    productDescription:
+      "sifatli monitor 4k kino va seriallarni sifatli tomosha qiling",
     productPrice: "3 196 800",
     productLocation: "Toshkent",
     productTimeStamps: "02.02.22 | 15:33",
-    productView: "3435"
+    productView: "3435",
   },
-  
-  
-  
+];
+
+export const productOptions = [
+  {
+    value: "Aksessuarlar",
+    title: "Aksessuarlar",
+    children: [
+      {
+        value: " zaryadlovchi qurilmalari",
+        title: " zaryadlovchi qurilmalari",
+      },
+      {
+        value: "Oʻt oldirish simlari",
+        title: "Oʻt oldirish simlari",
+      },
+      {
+        value: "Avtomobil akkumulyatori aksessuarlari",
+        title: "Avtomobil akkumulyatori aksessuarlari",
+      },
+    ],
+  },
+  {
+    value: "kompyuter jihozlar",
+    title: "kompyuter jihozlar",
+    children: [
+      {
+        value: "Komputer va ehtiyot qismlar",
+        title: "Noutbook va ehtiyot qismlar",
+      },
+      {
+        value: "Planshet",
+        title: "Planshet",
+      },
+      {
+        value: "Telefon va akssesuarlar",
+        title: "Telefon va akssesuarlar",
+      },
+      {
+        value: "O’yinlar va pristavkalar",
+        title: "O’yinlar va pristavkalar",
+      },
+      {
+        value: "texnika va ofis uchun",
+        title: "texnika va ofis uchun",
+      },
+    ],
+  },
+  {
+    value: "Asbob uskunalar",
+    title: "Asbob uskunalar",
+    children: [
+      {
+        value: "Gazli, benzenli",
+        title: "Elektrli uskanalar",
+      },
+      {
+        value: "Yog’och uchun uskanalar",
+        title: "Yog’och uchun uskanalar",
+      },
+      {
+        value: "Elektrli uskanalar",
+        title: "Elektrli uskanalar",
+      },
+    ],
+  },
 ];

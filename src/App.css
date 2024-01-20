@@ -261,9 +261,14 @@
 .tab-wrapper-panel::-webkit-scrollbar {
   display: none !important;
 }
-.tab-wrapper-panel::-webkit-scrollbar-button{
+.tab-wrapper-panel::-webkit-scrollbar-button {
   display: none;
 }
 .scroll-wrapper::-webkit-scrollbar {
   display: none !important;
+}
+
+.cart-slider .control-next,
+.control-arrow {
+  margin: 10px;
 }

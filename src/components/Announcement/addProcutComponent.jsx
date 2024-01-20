@@ -1,13 +1,17 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Select, Switch } from "antd";
+import { Select, Switch, TreeSelect } from "antd";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
+import useMap from "../../hooks/useMap";
 import Container from "../../shared/Container";
 import ImgUpload from "../image-upload/ImgUpload";
+import { productOptions } from "./../../data/data";
 // eslint-disable-next-line react/prop-types
 export default function AddProductComponent({ scroll }) {
   const [classActive, setClassActive] = useState(false);
+  const { onChange, value } = useMap();
+
   const schema = yup.object().shape({
     test: yup.string().required("test input is required"),
   });
@@ -38,7 +42,7 @@ export default function AddProductComponent({ scroll }) {
           className="grid grid-cols-1 gap-3"
         >
           <div className="flex items-center justify-between">
-            <div className="mb-10">
+            <div className="mb-10 w-[334px]">
               <span className="text font-poppins text-[14px] font-normal leading-[22px] text-black">
                 To’liq ism
               </span>
@@ -48,7 +52,7 @@ export default function AddProductComponent({ scroll }) {
                 placeholder="Imomova Mohizoda"
               />
             </div>
-            <div className="mb-10">
+            <div className="mb-10 w-[334px]">
               <span className="text font-poppins text-[14px] font-normal leading-[22px] text-black">
                 E-mail
               </span>
@@ -58,7 +62,7 @@ export default function AddProductComponent({ scroll }) {
                 placeholder="imomovamohizoda@gmail.com"
               />
             </div>
-            <div className="mb-10">
+            <div className="mb-10 w-[334px]">
               <span className="text font-poppins text-[14px] font-normal leading-[22px] text-black">
                 Telefon nomer
               </span>
@@ -69,15 +73,35 @@ export default function AddProductComponent({ scroll }) {
               />
             </div>
           </div>
+
           <div className="flex items-center justify-between">
-            <div className="mb-10">
+            <div className="mb-10 w-[334px]">
               <span className="text font-poppins text-[14px] font-normal leading-[22px] text-black">
                 Kategoriyani tanlang
               </span>
-              {/* {open && <ComboOverlay setOpen={setOpen} open={open} />} */}
+              <TreeSelect
+                showSearch
+                style={{
+                  width: "334px",
+                  height: "50px",
+                  marginTop: "8px",
+                  borderRadius: "10px",
+                }}
+                value={value}
+                placeholder={"kategoriyani tanlang"}
+                allowClear
+                treeDefaultExpandAll
+                onChange={onChange}
+                treeData={productOptions}
+              />
+            </div>
+            <div className="mb-10 w-[334px]">
+              <span className="text font-poppins text-[14px] font-normal leading-[22px] text-black">
+                E-mail
+              </span>
               <Select
                 style={{
-                  width: "100%",
+                  width: "334px",
                   height: "50px",
                   marginTop: "8px",
                   borderRadius: "10px",
@@ -110,52 +134,12 @@ export default function AddProductComponent({ scroll }) {
               />
             </div>
             <div className="mb-10 w-[334px]">
-              {/* {open && <ComboOverlay setOpen={setOpen} open={open} />} */}
               <span className="text font-poppins text-[14px] font-normal leading-[22px] text-black">
-                Hudud
+                Telefon nomer
               </span>
               <Select
                 style={{
-                  width: "100%",
-                  height: "50px",
-                  marginTop: "8px",
-                  borderRadius: "10px",
-                }}
-                defaultActiveFirstOption
-                placeholder="Search to Select"
-                optionFilterProp="children"
-                filterOption={(input, option) =>
-                  (option?.label ?? "").includes(input)
-                }
-                filterSort={(optionA, optionB) =>
-                  (optionA?.label ?? "")
-                    .toLowerCase()
-                    .localeCompare((optionB?.label ?? "").toLowerCase())
-                }
-                options={[
-                  {
-                    value: "1",
-                    label: "Not Identified",
-                  },
-                  {
-                    value: "2",
-                    label: "Closed",
-                  },
-                  {
-                    value: "3",
-                    label: "Communicated",
-                  },
-                ]}
-              />
-            </div>
-            <div className="mb-10 w-[334px]">
-              {/* {open && <ComboOverlay setOpen={setOpen} open={open} />} */}
-              <span className="text font-poppins text-[14px] font-normal leading-[22px] text-black">
-                Xonadonlar soni
-              </span>
-              <Select
-                style={{
-                  width: "100%",
+                  width: "334px",
                   height: "50px",
                   marginTop: "8px",
                   borderRadius: "10px",
@@ -188,6 +172,7 @@ export default function AddProductComponent({ scroll }) {
               />
             </div>
           </div>
+
           <div className="flex items-center justify-between">
             <div className="mb-10">
               <span className="text font-poppins text-[14px] font-normal leading-[22px] text-black">
@@ -244,7 +229,7 @@ export default function AddProductComponent({ scroll }) {
                 <button
                   onClick={() => setClassActive(!classActive)}
                   className={
-                    !classActive
+                    !classActive === true
                       ? "h-[42px] w-[161px] flex-shrink-0 rounded-[10px] bg-[#1D828E] text-white"
                       : "h-[42px] w-[161px] flex-shrink-0 rounded-[10px] bg-[#FAFAFA] text-gray-500"
                   }
@@ -254,7 +239,7 @@ export default function AddProductComponent({ scroll }) {
                 <button
                   onClick={() => setClassActive(!classActive)}
                   className={
-                    !classActive
+                    classActive === false
                       ? "h-[42px] w-[161px] flex-shrink-0 rounded-[10px] bg-[#FAFAFA] text-gray-500"
                       : "h-[42px] w-[161px] flex-shrink-0 rounded-[10px] bg-[#1D828E] text-white"
                   }
