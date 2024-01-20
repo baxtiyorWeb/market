@@ -24,11 +24,10 @@ const options = [
 
 export default function MyListbox() {
   // const useToggle
-  const { hideLocationMenu, showLocationMenu, open } = useToggle();
+  const { hideLocationMenu, showLocationMenu, handleCloseLocationMenu,setText,  open, text } = useToggle();
 
   // other states function elements
   const [value, setValue] = useState("");
-  const [text, setText] = useState("");
 
   // end function
 
@@ -67,7 +66,7 @@ export default function MyListbox() {
             <li
               key={index}
               className="cursor-pointer border-b border-t py-3  font-poppins text-[16px] font-normal not-italic leading-[100%] tracking-[-0.08px] text-[#747474] transition  hover:border-t hover:border-slate-500 hover:font-medium hover:text-[#000]"
-              onClick={() => setText(item.label) || showLocationMenu()}
+              onClick={() => setText(item.label) || handleCloseLocationMenu()}
             >
               {item.label.replace((match) => `<mark>${match}</mark>`)}
             </li>
