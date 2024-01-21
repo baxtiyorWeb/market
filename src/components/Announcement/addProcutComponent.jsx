@@ -90,7 +90,6 @@ export default function AddProductComponent({ scroll }) {
                 value={value}
                 placeholder={"kategoriyani tanlang"}
                 allowClear
-                treeDefaultExpandAll
                 onChange={onChange}
                 treeData={productOptions}
               />
