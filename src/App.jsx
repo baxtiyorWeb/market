@@ -1,13 +1,15 @@
 import React, { lazy, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import "./response.css";
 import Layout from "./layout/layout";
+import "./response.css";
 import Loading from "./ui/loading/Loading";
 
 const Home = lazy(() => import("./pages/Home"));
 const Details = lazy(() => import("./pages/Details"));
 const AddProduct = lazy(() => import("./pages/AddProduct"));
+
+// route
 
 const App = () => {
   const [scroll, setScroll] = useState(null);
