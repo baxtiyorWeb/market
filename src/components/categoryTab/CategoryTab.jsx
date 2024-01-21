@@ -54,7 +54,7 @@ const CategoryTab = () => {
       label: "Texnika",
     },
   ];
-
+ 
   return (
     <div className="ml-3 h-[100%] w-full p-5">
       <div className="tab-wrapper h-full w-full ">
