@@ -1,16 +1,18 @@
-import { yupResolver } from "@hookform/resolvers/yup";
-import { Select, Switch, TreeSelect } from "antd";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
-import useMap from "../../hooks/useMap";
-import Container from "../../shared/Container";
-import ImgUpload from "../image-upload/ImgUpload";
-import { productOptions } from "./../../data/data";
+import { yupResolver } from "@hookform/resolvers/yup"
+import { Select, Switch, TreeSelect } from "antd"
+import { useState } from "react"
+import { useForm } from "react-hook-form"
+import * as yup from "yup"
+import useMap from "../../hooks/useMap"
+import useSelectAddCategory from '../../hooks/useSelectAddCategory'
+import Container from "../../shared/Container"
+import ImgUpload from "../image-upload/ImgUpload"
+import { productOptions } from "./../../data/data"
 // eslint-disable-next-line react/prop-types
 export default function AddProductComponent({ scroll }) {
   const [classActive, setClassActive] = useState(false);
-  const { onChange, value } = useMap();
+  const { value } = useMap();
+  const {selectedCategory} = useSelectAddCategory()
 
   const schema = yup.object().shape({
     test: yup.string().required("test input is required"),
@@ -90,7 +92,7 @@ export default function AddProductComponent({ scroll }) {
                 value={value}
                 placeholder={"kategoriyani tanlang"}
                 allowClear
-                onChange={onChange}
+                onChange={selectedCategory}
                 treeData={productOptions}
               />
             </div>

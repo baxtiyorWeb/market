@@ -374,3 +374,15 @@ export const productOptions = [
     ],
   },
 ];
+
+export const categoryComponents = [
+  {
+    title: "Aksessuarlar",
+    childComponent: [
+      {
+        title: "Aksessuarlar",
+        component: "",
+      },
+    ],
+  },
+];
