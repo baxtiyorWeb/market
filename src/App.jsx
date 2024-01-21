@@ -9,7 +9,7 @@ const Home = lazy(() => import("./pages/Home"));
 const Details = lazy(() => import("./pages/Details"));
 const AddProduct = lazy(() => import("./pages/AddProduct"));
 
-// route
+// routes
 
 const App = () => {
   const [scroll, setScroll] = useState(null);
