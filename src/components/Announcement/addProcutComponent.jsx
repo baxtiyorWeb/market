@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { yupResolver } from "@hookform/resolvers/yup"
 import { Select, Switch, TreeSelect } from "antd"
 import { useState } from "react"
@@ -8,7 +9,8 @@ import useSelectAddCategory from '../../hooks/useSelectAddCategory'
 import Container from "../../shared/Container"
 import ImgUpload from "../image-upload/ImgUpload"
 import { productOptions } from "./../../data/data"
-// eslint-disable-next-line react/prop-types
+
+
 export default function AddProductComponent({ scroll }) {
   const [classActive, setClassActive] = useState(false);
   const { value } = useMap();
