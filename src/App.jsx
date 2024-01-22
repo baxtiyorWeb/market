@@ -1,6 +1,7 @@
 import React, { lazy, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import AddProductCategory from "./layout/addProductCategory";
 import Layout from "./layout/layout";
 import "./response.css";
 import Loading from "./ui/loading/Loading";
@@ -35,14 +36,24 @@ const App = () => {
             </React.Suspense>
           }
         />
-        <Route
+        {/* <Route
           path="/add-product"
           element={
             <React.Suspense fallback={<Loading />}>
               <AddProduct />
             </React.Suspense>
           }
-        />
+        /> */}
+        <Route path="/product-form" element={<AddProductCategory />}>
+          <Route
+            path="/product-form/add-product"
+            element={
+              <React.Suspense fallback={<Loading />}>
+                <AddProduct />
+              </React.Suspense>
+            }
+          />
+        </Route>
       </Route>
     </Routes>
   );

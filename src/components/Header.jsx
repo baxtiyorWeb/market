@@ -78,7 +78,7 @@ export default function Header() {
             </button>
           </div>
           <Link
-            to="/add-product"
+            to="/product-form/add-product"
             className="flex h-[50px] w-[160px] flex-shrink-0 items-center justify-between rounded-[5px] border border-[#1D828E] p-[30px] py-4 text-[#1D828E]"
             onClick={() => setOpen(false)}
           >
