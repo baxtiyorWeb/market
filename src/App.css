@@ -181,7 +181,7 @@
   display: block !important;
 }
 .cart-slider .css-17ekpuy-control {
-  outline: block !important;
+  outline: none !important;
 }
 
 .cart-slider .thumbs-wrapper {
@@ -272,3 +272,4 @@
 .control-arrow {
   margin: 10px;
 }
+

@@ -16,7 +16,7 @@ export default function ProductImage() {
     },
   ];
   return (
-    <div className="products-slide border overflow-hidden  rounded-[10px]">
+    <div className="products-slide overflow-hidden rounded-[10px]  border">
       <Carousel
         emulateTouch
         autoFocus
@@ -32,7 +32,11 @@ export default function ProductImage() {
               className="h-[400px] w-[100%] flex-shrink-0 overflow-hidden"
               key={index}
             >
-              <img src={item.img} className="h-[100%] w-[100%] object-cover" />
+              <img
+                src={item.img}
+                alt={""}
+                className="h-[100%] w-[100%] object-cover"
+              />
             </div>
           );
         })}
