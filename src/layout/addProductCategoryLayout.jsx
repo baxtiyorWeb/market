@@ -1,6 +1,5 @@
-import React from "react";
-import { Outlet } from "react-router-dom";
-import Container from "../shared/Container";
+import { Outlet } from "react-router-dom"
+import Container from "../shared/Container"
 
 export default function AddProductCategory() {
   return (

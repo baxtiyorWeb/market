@@ -8,11 +8,15 @@
   display: flex !important;
   justify-content: space-between !important;
   align-items: center;
-  padding: 9px !important;
   position: relative !important;
-  margin-left: 10px !important;
   border-radius: 10px;
 }
+.products-slide .thumb img {
+  border-radius: 0 !important;
+  width: 100%;
+  height: 100%;
+}
+
 .products-slide img {
   border-radius: 10px !important;
 }
@@ -49,6 +53,10 @@
 
 .products-slide .carousel-slider {
   height: 400px;
+}
+.products-slide .slider {
+  position: absolute !important;
+  bottom: 10px;
 }
 
 .products-slide .thumb.selected {
@@ -272,4 +280,3 @@
 .control-arrow {
   margin: 10px;
 }
-

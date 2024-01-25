@@ -1,10 +1,10 @@
-import React, { lazy, useState } from "react";
-import { Route, Routes } from "react-router-dom";
-import "./App.css";
-import AddProductCategory from "./layout/addProductCategory";
-import Layout from "./layout/layout";
-import "./response.css";
-import Loading from "./ui/loading/Loading";
+import React, { lazy, useState } from "react"
+import { Route, Routes } from "react-router-dom"
+import "./App.css"
+import AddProductCategoryLayout from "./layout/addProductCategoryLayout"
+import Layout from "./layout/layout"
+import "./response.css"
+import Loading from "./ui/loading/Loading"
 
 const Home = lazy(() => import("./pages/Home"));
 const Details = lazy(() => import("./pages/Details"));
@@ -44,7 +44,7 @@ const App = () => {
             </React.Suspense>
           }
         /> */}
-        <Route path="/product-form" element={<AddProductCategory />}>
+        <Route path="/product-form" element={<AddProductCategoryLayout />}>
           <Route
             path="/product-form/add-product"
             element={
