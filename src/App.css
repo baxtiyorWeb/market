@@ -280,3 +280,92 @@
 .control-arrow {
   margin: 10px;
 }
+
+/* swipper */
+
+.swiper-slider-imgs {
+  overflow: hidden;
+  position: relative;
+}
+.swiper-slider-imgs .images {
+  width: 100% !important;
+}
+
+.product-images-slider-thumbs-wrapper img {
+  width: 150px;
+  height: 150px;
+}
+.swiper-scrollbar {
+  display: none;
+}
+.swiper-pagination-bullet {
+  width: 20px !important  ;
+  height: 3px;
+  border-radius: 3px !important  ;
+  position: relative;
+  bottom: 50px;
+  background-color: white !important;
+}
+.swiper-pagination-bullet-active {
+  width: 40px !important  ;
+  height: 3px;
+  border-radius: 3px !important  ;
+}
+.swiper-button-next,
+.swiper-button-prev {
+  width: 20px !important;
+  height: 20px !important;
+  color: white !important;
+}
+
+.slider-image {
+  width: 100%;
+}
+.image-gallery-image {
+  height: 400px !important;
+}
+/* Add your custom styles for the slider container */
+.products-slide {
+  width: 100%; /* Set the width as needed */
+}
+
+/* Style for the individual images in the slider */
+.slider-image img {
+  width: 100%; /* Make sure images take the full width of the container */
+  height: 100%; /* Make sure images take the full height of the container */
+  object-fit: cover; /* Ensure the images cover the entire container */
+  border-radius: 10px; /* Add rounded corners */
+  border: 2px solid #ddd; /* Add a border if desired */
+}
+
+/* Style for the thumbnail swiper (if needed) */
+
+.image-gallery-wrapper {
+  margin-top: 5rem;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  border: 1px solid rgb(146, 129, 242);
+  box-shadow: #2b15453d 1px 10px 10px 5px;
+}
+
+@media only screen and (min-device-width: 375px) {
+  .header-wrapper {
+    padding: 1rem;
+  }
+}
+
+.slide-scroll {
+  overflow-x: scroll;
+  user-select: none;
+}
+
+.slide-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.active-img {
+  border: 2px solid #90c049 !important;
+  border-radius: 10px;
+  border-radius: 10px;
+}

@@ -386,3 +386,160 @@ export const categoryComponents = [
     ],
   },
 ];
+
+export const catalog = [
+  {
+    title: "Transport",
+    children: [
+      { title: "Yengil avtomobil", value: "Yengil avtomobil" },
+      {
+        title: "Yuk tashish va mahsus transport",
+        value: "Yuk tashish va mahsus transport",
+      },
+      {
+        title: "Motosikl va mototexnika",
+        value: "Motosikl va mototexnika",
+      },
+      {
+        title: "Ehtiyot qismlar va aksesurarlar",
+        value: "Ehtiyot qismlar va aksesurarlar",
+      },
+    ],
+  },
+  {
+    title: "Ko'chmas mulk",
+    children: [
+      { title: "Kvartira", value: "Kvartira" },
+      {
+        title: "Hovli uy-joylar",
+        value: "Yer-uchastka",
+      },
+      {
+        title: "Motosikl va mototexnika",
+        value: "Motosikl va mototexnika",
+      },
+      {
+        title: "Ehtiyot qismlar va aksesurarlar",
+        value: "Ehtiyot qismlar va aksesurarlar",
+      },
+    ],
+  },
+  {
+    title: "Ish va xizmatlar",
+    children: [
+      { title: "Qurulish remont", value: "Qurulish remont" },
+      {
+        title: "Kunlik ishlar",
+        value: "Kunlik ishlar",
+      },
+      {
+        title: "IT sohasi hizmatlar",
+        value: "IT sohasi hizmatlar",
+      },
+      {
+        title: "Ta’lim",
+        value: "Ta’lim",
+      },
+      {
+        title: "Santexnika",
+        value: "Santexnika",
+      },
+    ],
+  },
+  {
+    title: "Shaxsiy buyumlar",
+    children: [
+      {
+        title: "Erkaklar kiyimlari va oyoq kiyim",
+        value: "Erkaklar kiyimlari va oyoq kiyim",
+      },
+      {
+        title: "Ayollar kiyimlari va oyoq kiyim",
+        value: "Ayollar kiyimlari va oyoq kiyim",
+      },
+      {
+        title: "Bolalar kiyimlari va oyoq kiyim",
+        value: "Bolalar kiyimlari va oyoq kiyim",
+      },
+    ],
+  },
+  {
+    title: "Uy-bog’, mebel",
+    children: [
+      {
+        title: "Mebel",
+        value: "Interier",
+      },
+      {
+        title: "Idishlar va oshxona uchun",
+        value: "Idishlar va oshxona uchun",
+      },
+      {
+        title: "Yoritgichlar",
+        value: "Yoritgichlar",
+      },
+      {
+        title: "Maishiy kimyoviy vositalar",
+        value: "Maishiy kimyoviy vositalar",
+      },
+      {
+        title: "Bog’",
+        value: "Bog’",
+      },
+    ],
+  },
+  {
+    title: "Asbob uskunalar",
+    children: [
+      {
+        title: "Gazli, benzenli",
+        value: "Gazli, benzenli",
+      },
+      {
+        title: "Elektrli uskanalar",
+        value: "Elektrli uskanalar",
+      },
+      {
+        title: "Yog’och uchun uskanalar",
+        value: "Yog’och uchun uskanalar",
+      },
+    ],
+  },
+  {
+    title: "Elektronika va texnika",
+    children: [
+      {
+        title: "Komputer va ehtiyot qismlar",
+        value: "Komputer va ehtiyot qismlar",
+      },
+      {
+        title: "Noutbook va ehtiyot qismlar",
+        value: "Noutbook va ehtiyot qismlar",
+      },
+      {
+        title: "Planshet",
+        value: "Planshet",
+      },
+      {
+        title: "Telefon va akssesuarlar",
+        value: "Telefon va akssesuarlar",
+      },
+      {
+        title: "TV, Video, Audio",
+        value: "TV, Video, Audio",
+      },
+      {
+        title: "O’yinlar va pristavkalar",
+        value: "O’yinlar va pristavkalar",
+      },
+      {
+        title: "Fototexnika",
+        value: "Fototexnika",
+      },
+      {
+        title: "Orgtexnika va ofis uchun",
+        value: "Orgtexnika va ofis uchun",
+      },
+    ],
+  },
+];

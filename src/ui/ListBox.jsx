@@ -24,7 +24,14 @@ const options = [
 
 export default function MyListbox() {
   // const useToggle
-  const { hideLocationMenu, showLocationMenu, handleCloseLocationMenu,setText,  open, text } = useToggle();
+  const {
+    hideLocationMenu,
+    showLocationMenu,
+    handleCloseLocationMenu,
+    setText,
+    open,
+    text,
+  } = useToggle();
 
   // other states function elements
   const [value, setValue] = useState("");
@@ -48,8 +55,8 @@ export default function MyListbox() {
       <ul
         className={
           open
-            ? "fixed bottom-[-10px] left-[35%] z-50  h-[90%] w-[640px]  transform items-center overflow-scroll rounded-[10px] border bg-[#FFF] px-6 py-3 shadow-xl transition-all duration-500"
-            : "fixed bottom-[-600px] left-[35%] z-[-100] h-[601px] w-[640px] border border-slate-500 transition-all duration-500"
+            ? "fixed bottom-[-10px] left-[35%] z-[301]  h-[90%] w-[640px]  transform items-center overflow-scroll rounded-[10px] border bg-[#FFF] px-6 py-3 shadow-xl transition-all duration-500"
+            : "fixed bottom-[-600px] left-[35%] z-[-100] h-[601px] w-[640px]   transition-all duration-500"
         }
       >
         <li className="flex items-center justify-center">

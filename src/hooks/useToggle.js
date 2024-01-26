@@ -2,11 +2,11 @@ import { useState } from "react";
 
 export default function useToggle() {
   const [open, setOpen] = useState(false);
-  const [text, setText] = useState('');
+  const [text, setText] = useState("");
 
   const handleCloseLocationMenu = (e) => {
     hideLocationMenu();
-  }
+  };
 
   const hideLocationMenu = () => {
     setOpen(false);
@@ -19,5 +19,12 @@ export default function useToggle() {
       document.body.style.overflow = "hidden";
     }
   };
-  return { hideLocationMenu, showLocationMenu, handleCloseLocationMenu, setText, text, open };
+  return {
+    hideLocationMenu,
+    showLocationMenu,
+    handleCloseLocationMenu,
+    setText,
+    text,
+    open,
+  };
 }
