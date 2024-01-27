@@ -1,12 +1,18 @@
 import { useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useSearchParams } from "react-router-dom";
 import { catalog } from "../data/data";
 import useToggle from "../hooks/useToggle";
 import Container from "../shared/Container";
 import Overlay from "../ui/Overlay";
 export default function AddProductCategory() {
   const { hideLocationMenu, open, showLocationMenu } = useToggle();
-  const [valueCatalog, setValueCatalog] = useState("");
+  const [params, setParams] = useSearchParams();
+  const [query, setQuery] = useState(params.get("q") || "");
+  const addParams = (value) => {
+    setParams({ q: value });
+    setQuery(value);
+  };
+
   return (
     <div className="product-layout">
       <Container>
@@ -23,9 +29,7 @@ export default function AddProductCategory() {
               Kategoriyani tanlang
             </button>
           </div>
-          <h1 className="text inline  font-poppins text-[33px] font-medium not-italic leading-normal tracking-[-0.33px] text-[#130F1E]">
-            {valueCatalog === "" ? "Kategoriyani tanlang" : valueCatalog}
-          </h1>
+          <h1 className="text inline  font-poppins text-[33px] font-medium not-italic leading-normal tracking-[-0.33px] text-[#130F1E]"></h1>
         </div>
         {open ? <Overlay closed={hideLocationMenu} /> : open}
         {open ? (
@@ -42,7 +46,7 @@ export default function AddProductCategory() {
                         <li
                           key={index}
                           onClick={() =>
-                            setValueCatalog(item.value) != hideLocationMenu()
+                            addParams(item.value) != hideLocationMenu()
                           }
                           className="w-fit cursor-pointer text-sm  hover:underline"
                         >
