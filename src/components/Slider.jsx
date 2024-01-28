@@ -12,6 +12,7 @@ export default function Slider() {
         swipeable
         showIndicators={true}
         showStatus={false}
+        className="select-none "
       >
         <div>
           <img

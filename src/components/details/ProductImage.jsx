@@ -100,12 +100,12 @@ export default function ProductImage() {
         onDragOver={dragOver}
         onDragEnd={dragEnd}
         ref={sliderRef}
-        className="slide-scroll slider-imgs mb-3 mt-3 flex items-center justify-center"
+        className="slide-scroll slider-imgs mb-3 mt-3 flex  items-center justify-center"
       >
         {detailMap.map((item, index) => (
           <div
             key={index}
-            className={`m-3 flex h-[121px] w-[153px] items-center justify-center rounded-[10px] border border-[#C7C7C7] object-cover p-3 px-3 py-3 hover:border-2 hover:border-[#90c049] ${
+            className={`m-3 flex h-[121px] w-[153px]  items-center justify-center rounded-[10px] border border-[#C7C7C7] object-cover p-3 px-3 py-3 hover:border-2 hover:border-[#90c049] ${
               index + 1 === sliderIndex && "active-img "
             }`}
             onClick={() => setSliderIndex(index + 1)}

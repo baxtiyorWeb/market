@@ -1,8 +1,8 @@
-import { FaEye, FaHeart } from "react-icons/fa"
-import { LazyLoadImage } from "react-lazy-load-image-component"
-import { Carousel } from "react-responsive-carousel"
-import { Link } from "react-router-dom"
-import { products } from "../../data/data"
+import { FaEye, FaHeart } from "react-icons/fa";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import { Carousel } from "react-responsive-carousel";
+import { Link } from "react-router-dom";
+import { products } from "../../data/data";
 const Products = () => {
   return (
     <div className="mt-[40px] h-full w-full">
@@ -19,7 +19,6 @@ const Products = () => {
           >
             <div className="relative h-[194px] w-[100%] overflow-hidden">
               <Carousel
-                emulateTouch
                 autoFocus
                 transitionTime={300}
                 infiniteLoop
@@ -27,7 +26,7 @@ const Products = () => {
                 showThumbs={false}
                 showIndicators={true}
                 showStatus={false}
-                className="h-[194px] w-full"
+                className="h-[194px] w-full  select-none"
               >
                 {item.productImg.map((image, index) => (
                   <div

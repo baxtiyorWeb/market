@@ -2,7 +2,6 @@ import React, { lazy, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import AddProductCategoryLayout from "./layout/addProductCategoryLayout";
-import AuthLayout from "./layout/authLayout";
 import Layout from "./layout/layout";
 import "./response.css";
 import Loading from "./ui/loading/Loading";
@@ -10,7 +9,6 @@ import Loading from "./ui/loading/Loading";
 const Home = lazy(() => import("./pages/Home"));
 const Details = lazy(() => import("./pages/Details"));
 const AddProduct = lazy(() => import("./pages/AddProduct"));
-const Register = lazy(() => import("./pages/auth/Register"));
 
 // routes
 
@@ -48,16 +46,6 @@ const App = () => {
               </React.Suspense>
             }
           />
-        </Route>
-        <Route path="/auth" element={<AuthLayout />}>
-          <Route
-            path="/auth/register"
-            element={
-              <React.Suspense fallback={<Loading />}>
-                <Register />
-              </React.Suspense>
-            }
-          ></Route>
         </Route>
       </Route>
     </Routes>

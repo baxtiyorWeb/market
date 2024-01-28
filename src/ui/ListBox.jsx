@@ -47,7 +47,7 @@ export default function MyListbox() {
         onClick={showLocationMenu}
       >
         <img src={locationIcon} alt="" />
-        <span className="text font-poppins  text-[18px] font-normal not-italic leading-[100%]">
+        <span className="text line-clamp-1 font-poppins  text-[18px] font-normal not-italic leading-[100%]">
           {text ? text : "surxondaryo "}
         </span>
       </button>
