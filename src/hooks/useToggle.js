@@ -12,6 +12,18 @@ export default function useToggle() {
     setOpen(false);
     document.body.style.overflow = "unset";
   };
+  
+
+  const hiddenBackground = () => {
+    if (typeof window != "undefined" && window.document) {
+      document.body.style.overflow = "hidden";
+    }
+  }
+
+  const unsetBackground = () => {
+    document.body.style.overflow = "unset";
+  }
+
 
   const showLocationMenu = () => {
     setOpen(true);
@@ -23,6 +35,8 @@ export default function useToggle() {
     hideLocationMenu,
     showLocationMenu,
     handleCloseLocationMenu,
+    hiddenBackground,
+    unsetBackground,
     setText,
     text,
     open,

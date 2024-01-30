@@ -62,7 +62,9 @@ export default function Header() {
             </span>
           </button>
           <Categoriyes open={open} setOpen={setOpen} scroll={scroll} />
+          <div onClick={() => setOpen(false)}>
           <MyListbox opens={open} setOpens={setOpen} />
+          </div>
 
           <div
             className="flex items-center justify-center"
