@@ -1,4 +1,4 @@
-import React, { lazy, useState } from "react";
+import React, { lazy, useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import AddProductCategoryLayout from "./layout/addProductCategoryLayout";
@@ -12,10 +12,14 @@ const AddProduct = lazy(() => import("./pages/AddProduct"));
 
 // routes
 
+
 const App = () => {
+
+
   const [scroll, setScroll] = useState(null);
   return (
-    <Routes>
+    <>
+     <Routes>
       <Route
         path="/"
         element={<Layout scroll={scroll} setScroll={setScroll} />}
@@ -49,6 +53,7 @@ const App = () => {
         </Route>
       </Route>
     </Routes>
+    </>
   );
 };
 
