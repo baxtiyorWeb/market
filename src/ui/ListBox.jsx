@@ -72,7 +72,7 @@ export default function MyListbox() {
           .map((item, index) => (
             <li
               key={index}
-              className="cursor-pointer border-b border-t py-3  font-poppins text-[16px] font-normal not-italic leading-[100%] tracking-[-0.08px] text-[#747474] transition  hover:border-t hover:border-slate-500 hover:font-medium hover:text-[#000]"
+              className="cursor-pointer border-b border-t py-2  font-poppins text-[16px] font-normal not-italic leading-[100%] tracking-[-0.08px] text-[#747474] transition  hover:border-t hover:border-slate-500 hover:font-medium hover:text-[#000]"
               onClick={() => setText(item.label) || handleCloseLocationMenu()}
             >
               {item.label.replace((match) => `<mark>${match}</mark>`)}
