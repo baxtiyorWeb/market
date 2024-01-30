@@ -62,7 +62,7 @@ export default function Header() {
             </span>
           </button>
           <Categoriyes open={open} setOpen={setOpen} scroll={scroll} />
-          <div onClick={() => setOpen(false)}>
+          <div onClick={() => setOpen(false)} className="w-auto h-auto p-0  ">
           <MyListbox opens={open} setOpens={setOpen} />
           </div>
 

@@ -42,7 +42,7 @@ export default function MyListbox() {
     <div>
       <button
         className={
-          "flex h-[50px] w-40 flex-shrink-0 items-center justify-between rounded-md bg-[#F4F4F4] p-2 text-center text-[#1D828E]"
+          "flex h-[50px] w-40 flex-shrink-0 items-center justify-between rounded-md bg-[#F4F4F4] p-1 text-center text-[#1D828E]"
         }
         onClick={showLocationMenu}
       >

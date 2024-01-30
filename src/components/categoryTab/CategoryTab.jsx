@@ -58,6 +58,9 @@ const CategoryTab = () => {
   return (
     <div className="ml-3 h-[100%] w-full p-5">
       <div className="tab-wrapper h-full w-full ">
+        {/* <div className="flex justify-center items-center ">
+          <input type="text" className="p-2  mb-5 w-[400px] border outline-none rounded-md "  placeholder="kategoriya ichidan qidiring"/>
+        </div>  */}
         <div className="tab-panel flex h-[50px] w-full items-center">
           {items.map((item, index) => {
             return (
