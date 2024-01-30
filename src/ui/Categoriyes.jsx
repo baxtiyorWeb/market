@@ -27,11 +27,11 @@ export default function Categoriyes({ open, setOpen }) {
           />
         </div>
         <Container>
-          {open ? (
+          {open ?   backgroundHidden() || (
             <div className="h-full w-full">
               <CategoryTab open={open} />
             </div>
-          ) || backgroundHidden() : (
+          )  : (
             setOpen(false) || backgroundUnset()
           )}
         </Container>
