@@ -1,7 +1,7 @@
-import { FaGlobe, FaKey, FaUser } from "react-icons/fa";
-import { Link } from "react-router-dom";
-import m_logo from "../../assets/m_logo.png";
-import Container from "../../shared/Container";
+import { FaGlobe, FaKey, FaUser } from "react-icons/fa"
+import { Link } from "react-router-dom"
+import m_logo from "../../assets/m_logo.png"
+import Container from "../../shared/Container"
 export default function Navigation() {
   return (
     <div className="mt-[2px] bg-[#FFF] ">
@@ -28,13 +28,14 @@ export default function Navigation() {
                 <FaKey className="mx-2" /> Register
               </div>
             </Link>
+            <Link to={'/profile/dashboard'}>
             <div
               className="ml-3 mr-3 flex cursor-pointer items-center 
               justify-center rounded-md border p-2 hover:bg-slate-200
             "
             >
               <FaUser className="mx-2" /> Profil
-            </div>
+            </div></Link>
           </div>
         </div>
       </Container>

@@ -1,17 +1,17 @@
 /* eslint-disable react/prop-types */
-import Container from "../shared/Container";
+import Container from "../shared/Container"
 
 // svg  icons
 
-import { useEffect, useState } from "react";
-import { MdClose } from "react-icons/md";
-import { Link } from "react-router-dom";
-import menuIcon from "../assets/menuIcon.svg";
-import plusIcon from "../assets/plusIcon.svg";
-import searchIcon from "../assets/searchIcon.svg";
-import Categoriyes from "../ui/Categoriyes";
-import MyListbox from "../ui/ListBox";
-import Navigation from "./logo/Navigation";
+import { useEffect, useState } from "react"
+import { MdClose } from "react-icons/md"
+import { Link } from "react-router-dom"
+import menuIcon from "../assets/menuIcon.svg"
+import plusIcon from "../assets/plusIcon.svg"
+import searchIcon from "../assets/searchIcon.svg"
+import Categoriyes from "../ui/Categoriyes"
+import MyListbox from "../ui/ListBox"
+import Navigation from "./logo/Navigation"
 
 export default function Header() {
   const [open, setOpen] = useState(false);
