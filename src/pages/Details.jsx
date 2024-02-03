@@ -1,25 +1,38 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import ProductAbout from "../components/details/ProductAbout";
 import ProductImage from "../components/details/ProductImage";
 import Container from "../shared/Container";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 export default function Details() {
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const scrollToTop = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
   useEffect(() => {
     scrollToTop();
   }, []);
-
+  const { id } = useParams();
+  useEffect(() => {
+    const getData = async () => {
+      const res = await fetch(`http://localhost:3004/details/${id}`)
+        .then((res) => res.json())
+        .then((data) => setData(data));
+    };
+    getData();
+    setIsLoading(false);
+  }, []);
   return (
     <Container>
       <div className={"flex justify-between"}>
         <div className="mb-[150px] mt-[56px] h-auto w-[790px] flex-shrink-0 border bg-[#fff] p-[30px]">
           <div className="mb-10">
-            <ProductImage />
+            <ProductImage data={data} isLoading={isLoading} />
           </div>
           <hr className="mb-6" />
-          <ProductAbout />
+          <ProductAbout data={data} isLoading={isLoading} />
         </div>
         <aside className="ml-[30px] mt-[6rem] flex h-[262px] w-[350px] flex-col  gap-y-4 rounded-[5px] bg-[#F5F5F5]">
           <div className="flex flex-col items-center py-4">

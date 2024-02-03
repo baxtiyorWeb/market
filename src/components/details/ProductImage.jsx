@@ -1,7 +1,7 @@
 // Import Swiper styles
 import { useEffect, useRef, useState } from "react";
 
-export default function ProductImage() {
+export default function ProductImage({ data, isLoading }) {
   const [sliderIndex, setSliderIndex] = useState(1);
   const [width, setWidth] = useState(0);
   const [start, setStart] = useState(0);
@@ -35,12 +35,12 @@ export default function ProductImage() {
   }, []);
 
   const slideShow = (n) => {
-    if (n > detailMap.length) {
+    if (n > data.productImg.length) {
       setSliderIndex(1);
       console.log(n);
     }
     if (n < 1) {
-      setSliderIndex(detailMap.length);
+      setSliderIndex(data.productImg.length);
     }
   };
 
@@ -59,7 +59,7 @@ export default function ProductImage() {
       console.log(width);
     }
   };
-
+  console.log(data);
   return (
     <div className="products-slide product-details overflow-hidden rounded-[10px] border">
       <div className="product-page-img">
@@ -79,15 +79,17 @@ export default function ProductImage() {
               {">"}
             </button>
           </div>
-          {detailMap.map((item, index) => (
+          {data.productImg?.map((item, index) => (
             <div
               key={index}
-              style={{ display: index + 1 === sliderIndex ? "block" : "none" }}
+              style={{
+                display: index + 1 === sliderIndex ? "block" : "none",
+              }}
             >
               <img
-                src={item.img}
+                src={item}
                 alt=""
-                className={"h-[400px] w-full object-cover"}
+                className={"h-[400px] w-full object-contain"}
               />
             </div>
           ))}
@@ -102,16 +104,16 @@ export default function ProductImage() {
         ref={sliderRef}
         className="slide-scroll slider-imgs mb-3 mt-3 flex  items-center justify-center"
       >
-        {detailMap.map((item, index) => (
+        {data.productImg?.map((item, index) => (
           <div
             key={index}
-            className={`m-3 flex h-[121px] w-[153px]  items-center justify-center rounded-[10px] border border-[#C7C7C7] object-cover p-3 px-3 py-3 hover:border-2 hover:border-[#90c049] ${
+            className={`m-3 flex h-[121px] w-[153px]  items-center justify-center rounded-[10px] border border-[#C7C7C7]  p-3 px-3 py-3 hover:border-2 hover:border-[#90c049] ${
               index + 1 === sliderIndex && "active-img "
             }`}
             onClick={() => setSliderIndex(index + 1)}
           >
             <img
-              src={item.img}
+              src={item}
               alt=""
               className={`h-[100%] w-[100%] cursor-pointer select-none  object-cover`}
             />

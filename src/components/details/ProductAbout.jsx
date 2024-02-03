@@ -1,16 +1,16 @@
 /* eslint-disable react/no-unescaped-entities */
 import { FaEye } from "react-icons/fa";
-export default function ProductAbout() {
+export default function ProductAbout({ data }) {
   return (
     <div className="">
       <div className="my-6 flex items-center justify-between">
         <div className="flex items-center gap-x-4">
           <span className="text-xs font-normal text-[#959EA7]">
-            Toshkent shahar
+            {data.productTitle}
           </span>
           <div className="h-1 w-1 rounded-full bg-[#959EA7]"></div>
           <span className="text-xs font-normal text-[#959EA7]">
-            Qo’shilgan: 20 Aprel, 2022. 14:30
+            {data.productTimeStamps}
           </span>
         </div>
         <div className="relative flex items-center gap-x-4">
@@ -53,11 +53,9 @@ export default function ProductAbout() {
         </div>
       </div>
       <div className="mb-6 flex w-full flex-col gap-y-5">
-        <h1 className="text-2xl font-normal text-black">
-          Iphone 12 pro Max original (holati zo’r)
-        </h1>
+        <h1 className="text-2xl font-normal text-black">{data.productTitle}</h1>
         <h5 className="text-xl font-semibold text-black">
-          370 196 800{" "}
+          {data.productPrice}
           <span className="text-xs font-normal text-[#959EA7]">
             bo'lib to'lashga{" "}
           </span>

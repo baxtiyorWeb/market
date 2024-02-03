@@ -3,7 +3,19 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Carousel } from "react-responsive-carousel";
 import { Link } from "react-router-dom";
 import { products } from "../../data/data";
+import { useEffect, useState } from "react";
+
 const Products = () => {
+  const [data, setData] = useState([]);
+  const getProducts = async () => {
+    await fetch("http://localhost:3004/details")
+      .then((res) => res.json())
+      .then((data) => setData(data));
+  };
+
+  useEffect(() => {
+    let promise = getProducts();
+  }, []);
   return (
     <div className="mt-[40px] h-full w-full">
       <div>
@@ -12,7 +24,7 @@ const Products = () => {
         </h1>
       </div>
       <div className="response_product_category grid grid-cols-4 gap-[29px]  ">
-        {products.map((item, index) => (
+        {data.map((item, index) => (
           <div
             className="h-[400px] w-[270px] flex-shrink-0 overflow-hidden  rounded-md shadow-md"
             key={index}
@@ -33,7 +45,7 @@ const Products = () => {
                     className="cart-slider flex h-full w-full items-center justify-center border"
                     key={index}
                   >
-                    <Link to={`/details/${item.productId}`} key={index}>
+                    <Link to={`/details/${item.id}`} key={index}>
                       <div className="h-full w-full">
                         <LazyLoadImage
                           alt={"avatar"}
