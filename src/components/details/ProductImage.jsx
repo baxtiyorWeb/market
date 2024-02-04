@@ -6,20 +6,7 @@ export default function ProductImage({ data, isLoading }) {
   const [width, setWidth] = useState(0);
   const [start, setStart] = useState(0);
   const [change, setChange] = useState(0);
-  const detailMap = [
-    {
-      img: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Gaming_PC_set_up.jpg/640px-Gaming_PC_set_up.jpg",
-    },
-    {
-      img: "https://cdn.mos.cms.futurecdn.net/f5b4Za98noyKQzJjLmHAnd.jpg",
-    },
-    {
-      img: "https://cdn.autonomous.ai/static/upload/images/common/upload/20200930/6f2cce37d2c.jpg",
-    },
-    {
-      img: "https://tiki.vn/blog/wp-content/uploads/2023/09/pc-la-gi-thumbnail-1.jpg",
-    },
-  ];
+
   const plusSlider = (n) => {
     setSliderIndex((prev) => prev + n);
     slideShow(sliderIndex + n);

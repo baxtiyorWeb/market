@@ -1,14 +1,13 @@
+import { useEffect, useState } from "react";
 import { FaEye, FaHeart } from "react-icons/fa";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Carousel } from "react-responsive-carousel";
 import { Link } from "react-router-dom";
-import { products } from "../../data/data";
-import { useEffect, useState } from "react";
 
 const Products = () => {
   const [data, setData] = useState([]);
   const getProducts = async () => {
-    await fetch("http://localhost:3004/details")
+    await fetch("https://ecb611a2cbdacfd0.mokky.dev/tests/")
       .then((res) => res.json())
       .then((data) => setData(data));
   };

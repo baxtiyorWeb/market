@@ -1,23 +1,23 @@
+import { useEffect, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
+import Loading from "../ui/loading/Loading";
 import Categoriyes from "./Categoriyes";
 import Slider from "./Slider";
 import Products from "./products/Products";
-import Loading from "../ui/loading/Loading";
-import { useEffect, useState } from "react";
 
 // eslint-disable-next-line react/prop-types
-export default function Main({scroll}) {
+export default function Main({ scroll }) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
-      setIsLoading(false)
+      setIsLoading(false);
     }, 1500);
-  }, [])
-  
+  }, []);
+
   return (
     <div>
-     {isLoading ? <Loading/> : ""}
+      {isLoading ? <Loading /> : ""}
 
       <Categoriyes scroll={scroll} />
       <Slider />

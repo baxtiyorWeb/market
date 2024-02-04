@@ -1,9 +1,10 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { BreadCrumbs } from "../components/breadcrumbs/BreadCrambs";
 import ProductAbout from "../components/details/ProductAbout";
 import ProductImage from "../components/details/ProductImage";
 import Container from "../shared/Container";
-import { useParams } from "react-router-dom";
-import axios from "axios";
 
 export default function Details() {
   const [data, setData] = useState([]);
@@ -17,15 +18,21 @@ export default function Details() {
   const { id } = useParams();
   useEffect(() => {
     const getData = async () => {
-      const res = await fetch(`http://localhost:3004/details/${id}`)
-        .then((res) => res.json())
-        .then((data) => setData(data));
+      try {
+        const response = await axios.get(
+          `https://ecb611a2cbdacfd0.mokky.dev/tests/${id}`,
+        );
+        setData(response.data);
+      } catch (error) {
+        console.error("Error fetching history:", error);
+      }
     };
     getData();
     setIsLoading(false);
   }, []);
   return (
     <Container>
+      <BreadCrumbs />
       <div className={"flex justify-between"}>
         <div className="mb-[150px] mt-[56px] h-auto w-[790px] flex-shrink-0 border bg-[#fff] p-[30px]">
           <div className="mb-10">

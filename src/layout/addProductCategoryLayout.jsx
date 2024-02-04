@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Outlet, useSearchParams } from "react-router-dom";
 import { catalog } from "../data/data";
 import useToggle from "../hooks/useToggle";
+import AddProduct from "../pages/AddProduct";
 import Container from "../shared/Container";
 import Overlay from "../ui/Overlay";
 export default function AddProductCategory() {
@@ -97,6 +98,7 @@ export default function AddProductCategory() {
 
         <div className="child-product">
           <Outlet />
+          <AddProduct />
         </div>
       </Container>
     </div>
