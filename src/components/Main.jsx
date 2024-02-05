@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import Loading from "../ui/loading/Loading";
@@ -10,9 +11,15 @@ export default function Main({ scroll }) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    setIsLoading(true);
+    axios
+      .get("https://mokky.dev/dashboard/projects/ecb611a2cbdacfd0")
+      .then((data) => {
+        console.log("ok");
+      });
     setTimeout(() => {
       setIsLoading(false);
-    }, 1500);
+    }, 500);
   }, []);
 
   return (
