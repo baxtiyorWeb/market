@@ -21,11 +21,14 @@ export const BreadCrumbs = () => {
           {pathnames.map((name, index) => {
             const routeTo = `/${pathnames.slice(0, index + 1).join("/")}`;
             const isLast = index === pathnames.length - 1;
+            const title = name.replace(/-/g, " ");
             return isLast ? (
-              <Breadcrumb.Item>{capatilize(name)}</Breadcrumb.Item>
+              <Breadcrumb.Item key={routeTo}>
+                {capatilize(name)}
+              </Breadcrumb.Item>
             ) : (
-              <Breadcrumb.Item>
-                <Link to={`${routeTo}`}>{capatilize(name)}</Link>
+              <Breadcrumb.Item key={routeTo}>
+                <Link to={`${routeTo}`}>{capatilize(title)}</Link>
               </Breadcrumb.Item>
             );
           })}
