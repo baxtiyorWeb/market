@@ -4,6 +4,7 @@ import { FileUpload } from "../../ui/FileUpload";
 
 export default function LightCar() {
   const [value, setValue] = useState(false);
+  const [fileList, setFileList] = useState("");
   const scrollToTop = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
@@ -192,7 +193,20 @@ export default function LightCar() {
       </div>
       <div className="flex w-full items-center justify-start ">
         <div className="mb-10 w-full">
-          <FileUpload />
+          <FileUpload fileList={fileList} setFileList={setFileList} />
+          <p className="text-right">
+            {fileList.length === 0 ? (
+              "4 tagacha rasm tanlang"
+            ) : (
+              <>
+                siz
+                <span className="ml-1 mr-1 font-bold text-[#1d828e]">
+                  {fileList.length}
+                </span>
+                ta rasm yukladingiz
+              </>
+            )}
+          </p>
         </div>
       </div>
 
