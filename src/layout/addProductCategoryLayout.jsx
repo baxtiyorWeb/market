@@ -62,7 +62,7 @@ export default function AddProductCategory() {
                             </span>
                           ) : (
                             <span className="ml-3 mr-1 cursor-auto text-red-500">
-                              - bajarilmoqda
+                              - bajarilmoqda ...
                             </span>
                           )}
                         </li>
