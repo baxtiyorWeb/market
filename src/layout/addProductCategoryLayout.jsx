@@ -1,9 +1,9 @@
-import { useState } from "react"
-import { Outlet, useSearchParams } from "react-router-dom"
-import { catalog } from "../data/data"
-import useToggle from "../hooks/useToggle"
-import Container from "../shared/Container"
-import Overlay from "../ui/Overlay"
+import { useState } from "react";
+import { Outlet, useSearchParams } from "react-router-dom";
+import { catalog } from "../data/data";
+import useToggle from "../hooks/useToggle";
+import Container from "../shared/Container";
+import Overlay from "../ui/Overlay";
 export default function AddProductCategory() {
   const { hideLocationMenu, open, showLocationMenu } = useToggle();
   const [params, setParams] = useSearchParams();
@@ -16,6 +16,10 @@ export default function AddProductCategory() {
   return (
     <div className="product-layout">
       <Container>
+        <h1 className="mt-10 text-center  text-[30px] text-[#1d828e]">
+          {query}
+        </h1>
+
         <div
           className={`${
             scroll ? "mb-10 mt-[0px]" : "mb-10 mt-[181px]"
