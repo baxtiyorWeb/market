@@ -47,14 +47,24 @@ export default function AddProductCategory() {
                     </h1>
                     <ul className="flex flex-col gap-y-3">
                       {item.children.map((item, index) => (
-                        <li
-                          key={index}
-                          onClick={() =>
-                            addParams(item.value) != hideLocationMenu()
-                          }
-                          className="w-fit cursor-pointer text-sm  hover:underline"
-                        >
-                          {item.title}
+                        <li key={index} className="w-fit text-sm ">
+                          <span
+                            onClick={() =>
+                              addParams(item.value) != hideLocationMenu()
+                            }
+                            className="cursor-pointer hover:underline"
+                          >
+                            {item.title}
+                          </span>
+                          {item.status ? (
+                            <span className="ml-3 mr-1 cursor-auto text-teal-500">
+                              - tugatilgan
+                            </span>
+                          ) : (
+                            <span className="ml-3 mr-1 cursor-auto text-red-500">
+                              - bajarilmoqda
+                            </span>
+                          )}
                         </li>
                       ))}
                     </ul>

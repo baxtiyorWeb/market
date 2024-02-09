@@ -391,7 +391,11 @@ export const catalog = [
   {
     title: "Transport",
     children: [
-      { title: "Yengil avtomobil", value: "Yengil avtomobil" },
+      {
+        title: "Yengil avtomobil",
+        value: "Yengil avtomobil",
+        status: true,
+      },
       {
         title: "Yuk tashish va mahsus transport",
         value: "Yuk tashish va mahsus transport",
