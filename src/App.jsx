@@ -18,6 +18,11 @@ const ProfileLayout = lazy(() => import("./layout/profileLayout"));
 
 // routes
 
+
+
+
+
+
 const App = () => {
   const [scroll, setScroll] = useState(null);
   return (

@@ -19,7 +19,7 @@ const Products = () => {
     <div className="mt-[40px] h-full w-full">
       <div>
         <h1 className="mb-[20px] font-poppins text-[28px] font-medium not-italic leading-normal tracking-[-0.66px] text-[#130F1E]">
-          top mahsulotlar
+          barcha mahsulotlar
         </h1>
       </div>
       <div className="response_product_category grid grid-cols-4 gap-[29px]  ">
@@ -95,7 +95,7 @@ const Products = () => {
           </div>
         ))}
       </div>
-      <div className="mb-[100px] mt-[50px] flex items-center justify-center">
+      <div className="mb-[50px] mt-[50px] flex items-center justify-center">
         <button className="flex h-[50px] w-[328px] flex-shrink-0 items-center justify-center rounded-[5px] bg-[#1D828E] text-[#fff] ">
           <span className="font-medium not-italic leading-[100%] tracking-[-0.30px] ">
             Ko’proq ko’rsatish

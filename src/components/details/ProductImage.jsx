@@ -1,11 +1,15 @@
 // Import Swiper styles
 import { useEffect, useRef, useState } from "react";
+import { MdFullscreen } from "react-icons/md";
+import useToggle from "../../hooks/useToggle";
 
 export default function ProductImage({ data, isLoading }) {
   const [sliderIndex, setSliderIndex] = useState(1);
   const [width, setWidth] = useState(0);
   const [start, setStart] = useState(0);
   const [change, setChange] = useState(0);
+  const { handleCloseLocationMenu, open, hideLocationMenu, showLocationMenu } =
+    useToggle();
 
   const plusSlider = (n) => {
     setSliderIndex((prev) => prev + n);
@@ -46,42 +50,84 @@ export default function ProductImage({ data, isLoading }) {
       console.log(width);
     }
   };
-  console.log(data);
+
+  const fullScreenMode = () => {};
+
+  const FullScreenModal = () => {
+    return (
+      <>
+        {open && (
+          <div className="fixed  left-0 top-0 z-[999999] flex justify-center items-center h-full w-full bg-white">
+            <div className="flex h-[80vh] w-[80%] items-center justify-center ">
+              <div className="h-full w-full overflow-scroll scroll-m-5 ">
+                {data.productImg?.map((item, index) => (
+                  <div className={`images-data h-full w-full`}>
+                    <img src={item} className="h-[60%] " alt="" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+      </>
+    );
+  };
+
+  const SliderProduct = () => {
+    return (
+      <>
+        <div className="product-page-img">
+          <div className="relative">
+            <div className="absolute top-[43%] flex w-full justify-between">
+              <button
+                onClick={() => plusSlider(-1)}
+                className="ml-3 h-[50px] w-[50px] rounded-full text-[35px] text-slate-200 transition-all duration-200 hover:bg-slate-500/50 hover:text-slate-100"
+              >
+                {"<"}
+              </button>
+
+              <button
+                onClick={() => plusSlider(1)}
+                className="mr-3 h-[50px] w-[50px] rounded-full text-[35px] text-slate-200 transition-all duration-200 hover:bg-slate-500/50 hover:text-slate-100"
+              >
+                {">"}
+              </button>
+            </div>
+            {data.productImg?.map((item, index) => (
+              <div
+                key={index}
+                className="h-[400px] w-full"
+                style={{
+                  display: index + 1 === sliderIndex ? `flex` : `none`,
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <img
+                  src={item}
+                  alt=""
+                  className={"h-[400px] w-[100%] object-contain "}
+                />
+                <div className="absolute bottom-0 right-0 h-[100px] text-5xl">
+                  <i className="p-2 ">
+                    <FullScreenModal />
+                    <MdFullscreen
+                      onClick={showLocationMenu}
+                      className="cursor-pointer rounded-md p-2 hover:bg-slate-500/50 hover:text-slate-100"
+                    />
+                  </i>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </>
+    );
+  };
+
   return (
     <div className="products-slide product-details overflow-hidden rounded-[10px] border">
-      <div className="product-page-img">
-        <div className="relative">
-          <div className="absolute top-[43%] flex w-full justify-between">
-            <button
-              onClick={() => plusSlider(-1)}
-              className="ml-3 h-[50px] w-[50px] rounded-full text-[35px] text-slate-200 transition-all duration-200 hover:bg-slate-500/50 hover:text-slate-100"
-            >
-              {"<"}
-            </button>
-
-            <button
-              onClick={() => plusSlider(1)}
-              className="mr-3 h-[50px] w-[50px] rounded-full text-[35px] text-slate-200 transition-all duration-200 hover:bg-slate-500/50 hover:text-slate-100"
-            >
-              {">"}
-            </button>
-          </div>
-          {data.productImg?.map((item, index) => (
-            <div
-              key={index}
-              style={{
-                display: index + 1 === sliderIndex ? "block" : "none",
-              }}
-            >
-              <img
-                src={item}
-                alt=""
-                className={"h-[400px] w-full object-contain"}
-              />
-            </div>
-          ))}
-        </div>
-      </div>
+      <SliderProduct />
 
       <div
         draggable={true}
