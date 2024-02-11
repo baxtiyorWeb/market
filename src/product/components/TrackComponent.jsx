@@ -1,36 +1,9 @@
 import React, { useState } from "react";
-import usePropsFormValue from "../../hooks/usePropsFormValue";
+import { Div } from "../../ui/div/div.jsx";
+import { TextArea } from "../../ui/input/TextArea.jsx";
+import { Span } from "../../ui/Span.jsx";
 
-const TrackComponent = ({ onAddCategory }) => {
-  const { onChange, reset, value } = usePropsFormValue();
-  const [categoryInputs, setCategoryInputs] = useState([{ id: 1, value: "" }]);
-
-  const handleAddInput = () => {
-    setCategoryInputs([
-      ...categoryInputs,
-      { id: categoryInputs.length + 1, value: "" },
-    ]);
-  };
-
-  const handleRemoveInput = (id) => {
-    setCategoryInputs(categoryInputs.filter((input) => input.id !== id));
-  };
-
-  const handleInputChange = (id, value) => {
-    setCategoryInputs(
-      categoryInputs.map((input) =>
-        input.id === id ? { ...input, value } : input,
-      ),
-    );
-  };
-
-  const handleAddCategory = () => {
-    const categoryValues = categoryInputs.map((input) => input.value);
-    onAddCategory(categoryValues);
-    // Optional: Reset the inputs
-    setCategoryInputs([{ id: 1, value: "" }]);
-  };
-
+const TrackComponent = () => {
   return (
     <div>
       <div className="flex items-center justify-between">
@@ -67,8 +40,10 @@ const TrackComponent = ({ onAddCategory }) => {
           />
         </div>
       </div>
-      {value}
-      <button onClick={() => handleAddCategory()}>send</button>
+      <Div>
+        <Span />
+        <TextArea className={"resize-none"} />
+      </Div>
     </div>
   );
 };

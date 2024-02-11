@@ -1,15 +1,11 @@
 // Import Swiper styles
 import { Image } from "antd";
 import { useEffect, useRef, useState } from "react";
-import useToggle from "../../hooks/useToggle";
-
-export default function ProductImage({ data, isLoading }) {
+export default function ProductImage({ data }) {
   const [sliderIndex, setSliderIndex] = useState(1);
   const [width, setWidth] = useState(0);
   const [start, setStart] = useState(0);
   const [change, setChange] = useState(0);
-  const { handleCloseLocationMenu, open, hideLocationMenu, showLocationMenu } =
-    useToggle();
 
   const plusSlider = (n) => {
     setSliderIndex((prev) => prev + n);
@@ -85,7 +81,6 @@ export default function ProductImage({ data, isLoading }) {
                   <Image
                     src={item}
                     loading="lazy"
-                    
                     width={"100%"}
                     height={"400px"}
                     className={"img-product border bg-center  "}
