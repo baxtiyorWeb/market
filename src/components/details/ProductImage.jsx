@@ -84,6 +84,8 @@ export default function ProductImage({ data, isLoading }) {
                 >
                   <Image
                     src={item}
+                    loading="lazy"
+                    
                     width={"100%"}
                     height={"400px"}
                     className={"img-product border bg-center  "}
