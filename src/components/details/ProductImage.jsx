@@ -54,14 +54,14 @@ export default function ProductImage({ data }) {
           <div className="relative">
             <div className="absolute top-[43%]  flex w-full justify-between">
               <button
-                onClick={() => plusSlider(-1)}
+                onClick={() => plusSlider(1)}
                 className="absolute right-0 z-20 ml-3 h-[50px] w-[50px] rounded-full text-[35px] text-slate-200 transition-all duration-200 hover:bg-slate-500/50 hover:text-slate-100"
               >
                 {">"}
               </button>
 
               <button
-                onClick={() => plusSlider(1)}
+                onClick={() => plusSlider(-1)}
                 className="right-0 z-20 mr-3 h-[50px] w-[50px] rounded-full text-[35px] text-slate-200 transition-all duration-200 hover:bg-slate-500/50 hover:text-slate-100"
               >
                 {"<"}
