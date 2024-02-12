@@ -399,6 +399,7 @@ export const catalog = [
       {
         title: "Yuk tashish va mahsus transport",
         value: "Yuk tashish va mahsus transport",
+        status: true,
       },
       {
         title: "Motosikl va mototexnika",

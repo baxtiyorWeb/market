@@ -1,9 +1,15 @@
 import React, { useState } from "react";
-import { Div } from "../../ui/div/div.jsx";
-import { TextArea } from "../../ui/input/TextArea.jsx";
+import CheckBox from "../../ui/CheckBox.jsx";
+import { FileUpload } from "../../ui/FileUpload.jsx";
 import { Span } from "../../ui/Span.jsx";
+import SwitchedMode from "../../ui/SwitchedMode.jsx";
+import Action from "../../ui/actions/Action.jsx";
+import { Div } from "../../ui/div/div.jsx";
+import Input from "../../ui/input/Input.jsx";
+import { TextArea } from "../../ui/input/TextArea.jsx";
 
 const TrackComponent = () => {
+  const [fileList, setFileList] = useState("");
   return (
     <div>
       <div className="flex items-center justify-between">
@@ -40,10 +46,46 @@ const TrackComponent = () => {
           />
         </div>
       </div>
-      <Div>
+      <Div className={"mb-10"}>
         <Span />
         <TextArea className={"resize-none"} />
       </Div>
+
+      <Div className={"mb-10 w-full"}>
+        <Span>E'lon nomi</Span>
+        <Input className={"w-full"} placeholder={"E'lon nomi "} />
+      </Div>
+      <Div className={"mb-10 flex items-center justify-start"}>
+        <Input className={""} placeholder={"narxni kiriting "} />
+        <CheckBox />
+      </Div>
+      <Div>
+        <SwitchedMode />
+      </Div>
+      <div className="flex items-center justify-between">
+        <Div className={"w-full"}>
+          <FileUpload fileList={fileList} setFileList={setFileList} />
+          <p className="text-right">
+            {fileList.length === 0 ? (
+              "4 tagacha rasm tanlang"
+            ) : (
+              <>
+                siz
+                <span className="ml-1 mr-1 font-bold text-[#1d828e]">
+                  {fileList.length}
+                </span>
+                ta rasm yukladingiz
+              </>
+            )}
+          </p>
+        </Div>
+      </div>
+
+      <div className="flex items-center justify-start">
+        <Div className={"mb-10 mt-[104px]"}>
+          <Action />
+        </Div>
+      </div>
     </div>
   );
 };
