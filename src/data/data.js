@@ -404,6 +404,7 @@ export const catalog = [
       {
         title: "Motosikl va mototexnika",
         value: "Motosikl va mototexnika",
+        status: true,
       },
       {
         title: "Ehtiyot qismlar va aksesurarlar",

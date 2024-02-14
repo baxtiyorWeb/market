@@ -1,4 +1,5 @@
 import { useSearchParams } from "react-router-dom";
+import Motorcycle from "../product/components/Motorcycle";
 import TrackComponent from "../product/components/TrackComponent";
 import LightCar from "../product/components/lightCar";
 
@@ -11,7 +12,10 @@ export default function AddProduct() {
       <div className="child-product">
         {searchParamValue.get("q") === "Yengil avtomobil" && <LightCar />}
         {searchParamValue.get("q") === "Yuk tashish va mahsus transport" && (
-          <TrackComponent  />
+          <TrackComponent />
+        )}
+        {searchParamValue.get("q") === "Motosikl va mototexnika" && (
+          <Motorcycle />
         )}
       </div>
     </>
