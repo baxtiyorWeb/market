@@ -1,15 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import CheckBox from "../../ui/CheckBox.jsx";
 import { FileUpload } from "../../ui/FileUpload.jsx";
 import { Span } from "../../ui/Span.jsx";
 import SwitchedMode from "../../ui/SwitchedMode.jsx";
-import Action from "../../ui/actions/Action.jsx";
 import { Div } from "../../ui/div/div.jsx";
 import Input from "../../ui/input/Input.jsx";
 import { TextArea } from "../../ui/input/TextArea.jsx";
 
 const TrackComponent = () => {
-  const [fileList, setFileList] = useState("");
   return (
     <div>
       <div className="flex items-center justify-between">
@@ -21,7 +19,7 @@ const TrackComponent = () => {
             type="text"
             className="focus:border-[1px_solid_rgb(59 130 246)] mt-2 h-[50px] w-[334px] shrink-0 rounded-[5px] border border-[#E2E2E2] bg-[#FAFAFA] p-3 font-poppins text-[16px] outline-none "
             placeholder="markasini kiriting "
-            onChange={(e) => handleInputChange(input.id, e.target.value)}
+            onChange={(e) => setState({ ...state, name: e.target.value })}
           />
         </div>
         <div className="mb-10 w-[334px]">
@@ -32,7 +30,7 @@ const TrackComponent = () => {
             type="text"
             className="mt-2 h-[50px] w-[334px] shrink-0 rounded-[10px] border border-[#E2E2E2] bg-[#FAFAFA] p-3 font-poppins text-[16px] outline-none"
             placeholder="masalan 1 yoki 2"
-            onChange={(e) => handleInputChange(input.id, e.target.value)}
+            onChange={(e) => handleInputChange()}
           />
         </div>
         <div className="mb-10 w-[334px]">
@@ -83,7 +81,18 @@ const TrackComponent = () => {
 
       <div className="flex items-center justify-start">
         <Div className={"mb-10 mt-[104px]"}>
-          <Action />
+          <button
+            class="border-input hover:bg-accent hover:text-accent-foreground mr-10 inline-flex h-11 items-center justify-center rounded-md border bg-white px-8 text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none"
+            type="button"
+          >
+            Bekor qilish
+          </button>
+          <button
+            class="ring-offset-background inline-flex h-11 items-center justify-center rounded-md bg-[#1d828e] px-8 text-[15px] font-medium text-white transition-colors duration-200 ease-in-out hover:bg-emerald-600 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
+            type="submit"
+          >
+            E’lonni yuklash
+          </button>
         </Div>
       </div>
     </div>
