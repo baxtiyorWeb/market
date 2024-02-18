@@ -22,61 +22,74 @@ const App = () => {
   const [scroll, setScroll] = useState(null);
   return (
     <>
-    <div className="fixed z-[10000] ml-5 p-2">
-      <BreadCrumbs />
-    </div>
-    <Routes>
-      <Route
-        path="/"
-        element={<Layout scroll={scroll} setScroll={setScroll} />}
-      >
+      <div className="fixed z-[10000] ml-5 p-2">
+        <BreadCrumbs />
+      </div>
+      <Routes>
         <Route
           path="/"
-          element={<React.Suspense fallback={<Loading />}>
-            <Home scroll={scroll} setScroll={setScroll} />
-          </React.Suspense>}
-        />
-
-        <Route
-          path="/details/:id"
-          element={<React.Suspense fallback={<Loading />}>
-            <Details scroll={scroll} />
-          </React.Suspense>}
-        />
-
-        <Route path="/product-form" element={<AddProductCategoryLayout />}>
-          <Route
-            path="add-product"
-            element={<React.Suspense fallback={<Loading />}>
-              <AddProduct />
-            </React.Suspense>}
-          />
-        </Route>
-        <Route
-          path="/profile"
-          element={<React.Suspense fallback={<Loading />}>
-            <ProfileLayout />
-          </React.Suspense>}
+          element={<Layout scroll={scroll} setScroll={setScroll} />}
         >
-          <Route path="/profile/dashboard" element={<Profile />}></Route>
+          <Route
+            path="/"
+            element={
+              <React.Suspense fallback={<Loading />}>
+                <Home scroll={scroll} setScroll={setScroll} />
+              </React.Suspense>
+            }
+          />
+
+          <Route
+            path="/details/:id"
+            element={
+              <React.Suspense fallback={<Loading />}>
+                <Details scroll={scroll} />
+              </React.Suspense>
+            }
+          />
+
+          <Route path="/product-form" element={<AddProductCategoryLayout />}>
+            <Route
+              path="add-product"
+              element={
+                <React.Suspense fallback={<Loading />}>
+                  <AddProduct />
+                </React.Suspense>
+              }
+            />
+          </Route>
+          <Route
+            path="/profile"
+            element={
+              <React.Suspense fallback={<Loading />}>
+                <ProfileLayout />
+              </React.Suspense>
+            }
+          >
+            <Route path="/profile/dashboard" element={<Profile />}></Route>
+          </Route>
         </Route>
-      </Route>
-      <Route path="/auth" element={<AuthLayout />}>
-        <Route
-          path="/auth/register"
-          element={<React.Suspense fallback={<Loading />}>
-            <Register />
-          </React.Suspense>}
-        ></Route>
-        <Route
-          path="/auth/login"
-          element={<React.Suspense fallback={<Loading />}>
-            <Login />
-          </React.Suspense>}
-        ></Route>
-      </Route>
-    </Routes>
-  </>);
+        <Route path="/auth" element={<AuthLayout />}>
+          <Route
+            path="/auth/register"
+            element={
+              <React.Suspense fallback={<Loading />}>
+                <Register />
+              </React.Suspense>
+            }
+          ></Route>
+          <Route
+            path="/auth/login"
+            element={
+              <React.Suspense fallback={<Loading />}>
+                <Login />
+              </React.Suspense>
+            }
+          ></Route>
+        </Route>
+      </Routes>
+    </>
+  );
 };
 
 export default App;

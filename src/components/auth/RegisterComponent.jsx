@@ -1,5 +1,5 @@
-import InputNumberDetector from '../../ui/input/InputNumberDetector'
+import InputNumberDetector from "../../ui/input/InputNumberDetector";
 
 export default function RegisterComponent() {
-  return <InputNumberDetector/>
+  return <InputNumberDetector />;
 }

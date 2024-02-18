@@ -1,6 +1,19 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect } from "react";
 import Location from "./../../../assets/location.svg";
 export default function UserBalance() {
+  useEffect(() => {
+    (async () => {
+      const { data } = axios.get(
+        "http://95.130.227.131:8080/api/v1/user/list?page=1&size=10",
+        {
+          headers: "application/json",
+        },
+      );
+      console.log(data.name);
+    })();
+  }, []);
+
   return (
     <>
       <div className="user-title flex items-center justify-between">

@@ -1,46 +1,53 @@
-import { message } from "antd";
 import axios from "axios";
 import { useState } from "react";
-import { PatternFormat } from "react-number-format";
-import { useMutation } from "react-query";
+import { useNavigate } from "react-router-dom";
 export default function InputNumberDetector() {
-  const [state, setState] = useState({
-    username: "",
-    password: "",
-  });
+  const navigate = useNavigate();
 
-  const { mutate } = useMutation({
-    mutationFn: (states) => {
-      return axios.post(
-        "http://95.130.227.131:8080/api/v1/authority/sign-in",
-        {
-          ...states,
-        },
+  const [phone, setPhone] = useState("");
+  const [confirm, setConfirm] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  const registerPhoneOrPhone = async () => {
+    try {
+      setLoading(true);
+      const data = await axios.post(
+        `http://95.130.227.131:8080/api/v1/authority/register-by-phone?phone=${phone}`,
         {
           headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Content-Type": "application/json",
-            "access-control-allow-origin": "*",
+            "Content-Type": "application/x-www-form-urlencoded",
           },
         },
       );
-    },
-    onSuccess: (e) => {
-      message.success("succes data post");
-      console.log(e.data);
-    },
-    onError: (e) => {
-      console.log("xatolik", e);
-    },
-  });
-
-  const obj = {
-    username: state.username,
-    password: state.password,
+      setOpen(!open);
+      console.log(data);
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      setLoading(false);
+    }
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    mutate(obj);
+
+  const confirmCode = async () => {
+    try {
+      const data = await axios.post(
+        `http://95.130.227.131:8080/api/v1/authority/code-confirm?code=${confirm}`,
+        {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        },
+      );
+
+      console.log(data);
+      setOpen(false);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+  const handleSubmit = () => {
+    registerPhoneOrPhone();
   };
 
   return (
@@ -53,38 +60,47 @@ export default function InputNumberDetector() {
       </div>
       <div className="input-container"></div>
       <div className="flex h-[600px] w-[550px]  items-center justify-center rounded-md p-1">
-        <form
-          onSubmit={handleSubmit}
-          className="flex h-[100%] w-auto flex-col items-center justify-center rounded-md border-2 border-teal-600 p-1"
-        >
-          <PatternFormat
-            type="tel"
-            placeholder="00-000-00-00"
-            className="mb-3 h-[67px]  w-[400px] rounded-none border-none p-3  text-[18px] outline-none"
-            valueIsNumericString
-            format="+998 ## ### ## ##"
-            mask="-"
-          />
-          <input
-            type="text"
-            placeholder="emailni kiriting..."
-            className="mb-3 h-[67px]  w-[400px] rounded-none border-none p-3  text-[18px] outline-none"
-            onChange={(e) => setState({ ...state, username: e.target.value })}
-            value={state.username}
-          />
-          <input
-            type="password"
-            placeholder="passwordni kiriting..."
-            className="mb-3 h-[67px]  w-[400px] rounded-none border-none p-3  text-[18px] outline-none"
-            onChange={(e) => setState({ ...state, password: e.target.value })}
-            value={state.password}
-          />
-          <button className="relative mb-3 h-[67px] bg-[#fff]  p-3 text-teal-700 outline-none">
-            {" "}
-            <hr className="absolute " />
-            yuborish
-          </button>
-        </form>
+        <div className="flex h-[100%] w-auto flex-col items-center justify-center rounded-md border-2 border-teal-600 p-1">
+          {open && (
+            <input
+              type="text"
+              placeholder="sms dan kelgan koddi kiriting"
+              className="mb-3 h-[67px]  w-[400px] rounded-none border-none p-3  text-[18px] outline-none"
+              onChange={(e) => setConfirm(e.target.value)}
+            />
+          )}
+
+          {
+            <input
+              type="tel"
+              placeholder="00-000-00-00"
+              className="mb-3 h-[67px]  w-[400px] rounded-none border-none p-3  text-[18px] outline-none"
+              // valueIsNumericString
+              // format="## ### ## ##"
+              // mask="-"
+              onChange={(e) => setPhone(e.target.value)}
+            />
+          }
+          {!open ? (
+            <button
+              onClick={handleSubmit}
+              className="relative mb-3 h-[67px] bg-[#fff]  p-3 text-teal-700 outline-none"
+            >
+              {" "}
+              <hr className="absolute " />
+              {loading ? "loadiing" : "ok"}
+            </button>
+          ) : (
+            <button
+              onClick={confirmCode}
+              className="relative mb-3 h-[67px] bg-[#fff]  p-3 text-teal-700 outline-none"
+            >
+              {" "}
+              <hr className="absolute " />
+              confirm
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );
