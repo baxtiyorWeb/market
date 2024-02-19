@@ -19,7 +19,7 @@ export default function Navigation() {
             >
               <FaGlobe className="mx-2" /> UZ
             </div>
-            <Link to={"/auth/login"}>
+            <Link to={"/auth/register"}>
               <div
                 className="ml-3 mr-3 flex cursor-pointer items-center 
               justify-center rounded-md border p-2 hover:bg-slate-200

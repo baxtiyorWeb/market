@@ -1,6 +1,7 @@
 import React, { lazy, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import Confirm from "./components/auth/confirm";
 import { BreadCrumbs } from "./components/breadcrumbs/BreadCrambs";
 import AddProductCategoryLayout from "./layout/addProductCategoryLayout";
 import AuthLayout from "./layout/authLayout";
@@ -83,6 +84,14 @@ const App = () => {
             element={
               <React.Suspense fallback={<Loading />}>
                 <Login />
+              </React.Suspense>
+            }
+          ></Route>
+          <Route
+            path="/auth/confirm"
+            element={
+              <React.Suspense fallback={<Loading />}>
+                <Confirm />
               </React.Suspense>
             }
           ></Route>

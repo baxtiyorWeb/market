@@ -330,4 +330,9 @@
   border: 1px dashed #1d828e !important;
 }
 
+/* antd loading */
+
+.ant-spin-dot-item {
+  background-color: white !important;
+}
 /* antd design add styles end*/
