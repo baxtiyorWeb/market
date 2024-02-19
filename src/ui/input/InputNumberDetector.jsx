@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SpinLoading from "../loading/spinLoading";
+
 export default function InputNumberDetector() {
   const navigate = useNavigate();
   const [phone, setPhone] = useState("");
@@ -13,17 +14,22 @@ export default function InputNumberDetector() {
       setLoading(true);
       const data = await axios.post(
         `http://95.130.227.131:8080/api/v1/authority/register-by-phone`,
-        null,
         {
           params: {
-            phone: phone,
-          },
+            phone: phone
+          }
         },
         {
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
+            "Cookie": "JSESSIONID=82B87CECDB8A7F72E042C79E8F0CC784"
           },
-        },
+
+          method: "post",
+          maxBodyLength: Infinity,
+          data: ""
+
+        }
       );
       setPhone("");
       navigate("/auth/confirm");
@@ -64,7 +70,7 @@ export default function InputNumberDetector() {
             <div className="send-details">
               <button
                 disabled={
-                   phone.length === 0  < true === phone.length >= 9
+                  phone.length === 0 < true === phone.length >= 9
                 }
                 className="mb-5 mt-5 h-[50px] w-[328px] rounded-md bg-[#1D828E] text-white disabled:cursor-not-allowed disabled:bg-[#1d838eb4]"
                 onClick={() => registerPhoneOrPhone()}
