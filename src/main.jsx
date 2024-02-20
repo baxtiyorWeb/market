@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -5,7 +6,6 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App.jsx";
 import { AuthProvider } from "./context/authContext.jsx";
 import "./index.css";
-import axios from "axios";
 axios.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem(
   "token",
 )}`;

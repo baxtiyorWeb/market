@@ -1,4 +1,5 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import CheckBox from "../../ui/CheckBox.jsx";
 import { FileUpload } from "../../ui/FileUpload.jsx";
 import { Span } from "../../ui/Span.jsx";
@@ -6,8 +7,63 @@ import SwitchedMode from "../../ui/SwitchedMode.jsx";
 import { Div } from "../../ui/div/div.jsx";
 import Input from "../../ui/input/Input.jsx";
 import { TextArea } from "../../ui/input/TextArea.jsx";
+import SpinLoading from "../../ui/loading/spinLoading.jsx";
 
 const TrackComponent = () => {
+  const [fileList, setFileList] = useState("");
+  const [state, setState] = useState({
+    name: "",
+  });
+  const [loading, setLoading] = useState(false);
+
+  const addCategory = async () => {
+    try {
+      setLoading(true);
+      const data = await axios.post(
+        "http://95.130.227.131:8080/api/v1/product",
+        {
+          id: 0,
+          name: "state.name",
+          price: 10,
+          canAgree: true,
+          description: "asdasasd",
+          categoryId: 0,
+          districtId: 0,
+          address: "dasdaweadasda",
+          propertyValueForms: [
+            {
+              propertyId: 0,
+              intValue: 0,
+              stringValue: "dasdasasd",
+              booleanValue: true,
+              doubleValue: 0,
+              dateValue: "2024-02-20T08:28:32.755Z",
+            },
+          ],
+          productImageForms: [
+            {
+              image: "dsadasdasdasd.jpg",
+              mainImage: true,
+            },
+          ],
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json, text/plain, */*",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        },
+      );
+
+      console.log(data);
+    } catch (e) {
+      console.log(e);
+      console.log(state);
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <div>
       <div className="flex items-center justify-between">
@@ -30,7 +86,6 @@ const TrackComponent = () => {
             type="text"
             className="mt-2 h-[50px] w-[334px] shrink-0 rounded-[10px] border border-[#E2E2E2] bg-[#FAFAFA] p-3 font-poppins text-[16px] outline-none"
             placeholder="masalan 1 yoki 2"
-            onChange={(e) => handleInputChange()}
           />
         </div>
         <div className="mb-10 w-[334px]">
@@ -50,7 +105,7 @@ const TrackComponent = () => {
       </Div>
 
       <Div className={"mb-10 w-full"}>
-        <Span>E'lon nomi</Span>
+        <Span>E&apos;lon nomi</Span>
         <Input className={"w-full"} placeholder={"E'lon nomi "} />
       </Div>
       <Div className={"mb-10 flex items-center justify-start"}>
@@ -82,16 +137,17 @@ const TrackComponent = () => {
       <div className="flex items-center justify-start">
         <Div className={"mb-10 mt-[104px]"}>
           <button
-            class="border-input hover:bg-accent hover:text-accent-foreground mr-10 inline-flex h-11 items-center justify-center rounded-md border bg-white px-8 text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none"
+            className="border-input hover:bg-accent hover:text-accent-foreground mr-10 inline-flex h-11 items-center justify-center rounded-md border bg-white px-8 text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none"
             type="button"
           >
             Bekor qilish
           </button>
           <button
-            class="ring-offset-background inline-flex h-11 items-center justify-center rounded-md bg-[#1d828e] px-8 text-[15px] font-medium text-white transition-colors duration-200 ease-in-out hover:bg-emerald-600 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
+            className="ring-offset-background inline-flex  h-[45px] w-[175px] items-center justify-center rounded-md bg-[#1d828e] px-8 text-[15px] font-medium text-white transition-colors duration-200 ease-in-out hover:bg-emerald-600 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
             type="submit"
+            onClick={addCategory}
           >
-            E’lonni yuklash
+            {loading ? <SpinLoading /> : "E’lonni yuklash"}
           </button>
         </Div>
       </div>

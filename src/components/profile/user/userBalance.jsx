@@ -1,19 +1,6 @@
-import axios from "axios";
-import React, { useEffect } from "react";
+import React from "react";
 import Location from "./../../../assets/location.svg";
 export default function UserBalance() {
-  useEffect(() => {
-    (async () => {
-      const { data } = axios.get(
-        "http://95.130.227.131:8080/api/v1/user/list?page=1&size=10",
-        {
-          headers: "application/json",
-        },
-      );
-      console.log(data.name);
-    })();
-  }, []);
-
   return (
     <>
       <div className="user-title flex items-center justify-between">
@@ -55,10 +42,10 @@ export default function UserBalance() {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="mr-2 h-4 w-4"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="mr-2 h-4 w-4"
               >
                 <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"></path>
                 <path d="M3 5v14a2 2 0 0 0 2 2h16v-5"></path>
@@ -74,10 +61,10 @@ export default function UserBalance() {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="mr-2 h-4 w-4"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="mr-2 h-4 w-4"
               >
                 <circle cx="8" cy="21" r="1"></circle>
                 <circle cx="19" cy="21" r="1"></circle>
