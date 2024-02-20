@@ -1,23 +1,41 @@
-import axios from "axios";
+import { message } from "antd";
 import { useState } from "react";
-import { useMutation } from "react-query";
 import SpinLoading from "../../ui/loading/spinLoading";
 
 export default function Confirm() {
   const [confirm, setConfirm] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const { mutate, isLoading } = useMutation({
-    mutationFn: () => {
-      return axios.post("http://95.130.227.131:8080/api/v1/authority/code-confirm", null, {
-        params: { code: confirm.toString() }, headers: {
-          Accept: "application/json", "Content-Type": "application/json"
-
+  async function mutate() {
+    setIsLoading(true);
+    const data = await fetch(
+      `http://95.130.227.131:8080/api/v1/authority/code-confirm?code=` +
+        confirm,
+      {
+        headers: {
+          accept: "*/*",
+          "accept-language": "en-US,en;q=0.9,uz;q=0.8",
+          cookie: "JSESSIONID=0C4D8096D44B7485CE90320E86F24C98",
+          Referer: "http://95.130.227.131:8080/api/v1/swagger-ui/index.html",
+          "Referrer-Policy": "strict-origin-when-cross-origin",
         },
-        maxBodyLength: Infinity
-      });
+        body: null,
+        method: "POST",
+      },
+    );
+
+    if (data.ok === 200) {
+      message.success("kod to'g'ri: " + confirm);
+    } else {
+      if (data.status === 400) {
+        message.error("ma'lumot xato: " + confirm);
+        setIsLoading(false);
+      }
     }
-  });
-  return (<div>
+  }
+
+  return (
+    <div>
       <div className="flex h-[600px] flex-col items-center justify-center rounded-md">
         <div className="flex w-full flex-col items-center justify-center">
           <span className="mb-3 block">4 talik sms xabarni kiriting</span>
@@ -44,6 +62,7 @@ export default function Confirm() {
           ro&apos;yxatdan o&apos;tganmisiz
         </span>
       </div>
-    </div>);
+    </div>
+  );
 }
 // 907462987

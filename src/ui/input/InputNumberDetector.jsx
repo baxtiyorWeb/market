@@ -21,14 +21,9 @@ export default function InputNumberDetector() {
         },
         {
           headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-            "Cookie": "JSESSIONID=82B87CECDB8A7F72E042C79E8F0CC784"
+            Authorization: `Bearer ${localStorage.getItem("token")}`
           },
-
-          method: "post",
-          maxBodyLength: Infinity,
-          data: ""
-
+          method: "post"
         }
       );
       setPhone("");
