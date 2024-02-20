@@ -36,7 +36,7 @@ export default function LoginComponent() {
         );
 
         console.log(data);
-        navigate("/auth/register");
+        navigate("/");
       } catch (error) {
         console.log(error);
       }
