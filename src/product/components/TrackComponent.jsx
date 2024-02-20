@@ -51,7 +51,7 @@ const TrackComponent = () => {
           headers: {
             "Content-Type": "application/json",
             Accept: "application/json, text/plain, */*",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            // Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         },
       );
