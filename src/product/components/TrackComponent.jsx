@@ -1,5 +1,5 @@
-import axios from "axios";
 import React, { useState } from "react";
+import api from "../../config/api/api.jsx";
 import CheckBox from "../../ui/CheckBox.jsx";
 import { FileUpload } from "../../ui/FileUpload.jsx";
 import { Span } from "../../ui/Span.jsx";
@@ -8,7 +8,6 @@ import { Div } from "../../ui/div/div.jsx";
 import Input from "../../ui/input/Input.jsx";
 import { TextArea } from "../../ui/input/TextArea.jsx";
 import SpinLoading from "../../ui/loading/spinLoading.jsx";
-
 const TrackComponent = () => {
   const [fileList, setFileList] = useState("");
   const [state, setState] = useState({
@@ -19,15 +18,15 @@ const TrackComponent = () => {
   const addCategory = async () => {
     try {
       setLoading(true);
-      const data = await axios.post(
-        "http://95.130.227.131:8080/api/v1/product",
+      const data = await api.post(
+        "/api/v1/product",
         {
           id: 0,
           name: "state.name",
           price: 10,
           canAgree: true,
           description: "asdasasd",
-          categoryId: 0,
+          categoryId: 1,
           districtId: 0,
           address: "dasdaweadasda",
           propertyValueForms: [

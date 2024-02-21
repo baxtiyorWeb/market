@@ -1,24 +1,29 @@
+import axios from "axios";
 import { useState } from "react";
+import { useMutation } from "react-query";
 import SpinLoading from "../../ui/loading/spinLoading";
 
 export default function Confirm() {
   const [confirm, setConfirm] = useState("");
-  let data = "";
   const { mutate, isLoading } = useMutation({
     mutationFn: () => {
-      return axios.post(
+      return axios(
         `http://95.130.227.131:8080/api/v1/authority/code-confirm`,
-        null,
+
         {
-          params: { code: confirm },
           headers: {
-            Authorization: "Bearer " + localStorage.getItem("token"),
-            "Content-Type": "application/x-www-form-urlencoded",
             "Access-Control-Allow-Origin": "*",
             Accept: "application/json, text/plain, */*",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
-          credentials: "same-origin",
-          data: data,
+          xsrfHeaderName: "JSESSIONID",
+          maxBodyLength: Infinity,
+          maxContentLength: Infinity,
+          adapter: ["xhr", "http"],
+          method: "POST",
+          data: {
+            code: confirm,
+          },
         },
       );
     },
