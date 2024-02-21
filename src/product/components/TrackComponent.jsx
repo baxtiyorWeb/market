@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import api from "../../config/api/api.jsx";
+import useData from "../../hooks/useData.js";
 import CheckBox from "../../ui/CheckBox.jsx";
 import { FileUpload } from "../../ui/FileUpload.jsx";
 import { Span } from "../../ui/Span.jsx";
@@ -10,24 +11,29 @@ import { TextArea } from "../../ui/input/TextArea.jsx";
 import SpinLoading from "../../ui/loading/spinLoading.jsx";
 const TrackComponent = () => {
   const [fileList, setFileList] = useState("");
+  const { getCategoryData } = useData();
   const [state, setState] = useState({
     name: "",
   });
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    getCategoryData();
+  }, []);
+
   const addCategory = async () => {
     try {
       setLoading(true);
       const data = await api.post(
-        "/api/v1/product",
-        {
-          id: 0,
+        "/product",
+        JSON.stringify({
+          id: 10,
           name: "state.name",
           price: 10,
           canAgree: true,
           description: "asdasasd",
           categoryId: 1,
-          districtId: 0,
+          districtId: 1,
           address: "dasdaweadasda",
           propertyValueForms: [
             {
@@ -45,10 +51,11 @@ const TrackComponent = () => {
               mainImage: true,
             },
           ],
-        },
+        }),
         {
           headers: {
             "Content-Type": "application/json",
+
             Accept: "application/json, text/plain, */*",
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
