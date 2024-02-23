@@ -8,7 +8,7 @@ export default function useData() {
       setIsLoading(true);
       const data = await api
         .get("/category/all")
-        .then((data) => console.log(data.data));
+        .then((data) => setGetCategory(data.data));
 
       setIsLoading(false);
     } catch (error) {
@@ -16,5 +16,5 @@ export default function useData() {
     }
   };
 
-  return { getCategoryData };
+  return { getCategoryData, getCategory, isLoading, navigators };
 }

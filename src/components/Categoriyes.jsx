@@ -4,6 +4,7 @@ import furniture from "../assets/furniture.svg";
 import materials from "../assets/materials.svg";
 import servicesIcon from "../assets/services.svg";
 import transportIcon from "../assets/transport.svg";
+
 export default function Categoriyes() {
   return (
     <div>

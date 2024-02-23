@@ -11,7 +11,7 @@ import { TextArea } from "../../ui/input/TextArea.jsx";
 import SpinLoading from "../../ui/loading/spinLoading.jsx";
 const TrackComponent = () => {
   const [fileList, setFileList] = useState("");
-  const { getCategoryData } = useData();
+  const { getCategoryData, getCategory, isLoading } = useData();
   const [state, setState] = useState({
     name: "",
   });
@@ -20,6 +20,7 @@ const TrackComponent = () => {
   useEffect(() => {
     getCategoryData();
   }, []);
+  console.log(getCategory);
 
   const addCategory = async () => {
     try {
@@ -27,22 +28,22 @@ const TrackComponent = () => {
       const data = await api.post(
         "/product",
         JSON.stringify({
-          id: 10,
+          id: 1,
           name: "state.name",
-          price: 10,
+          price: 100,
           canAgree: true,
           description: "asdasasd",
-          categoryId: 1,
+          categoryId: 10,
           districtId: 1,
           address: "dasdaweadasda",
           propertyValueForms: [
             {
-              propertyId: 0,
-              intValue: 0,
+              propertyId: 1,
+              intValue: 1,
               stringValue: "dasdasasd",
               booleanValue: true,
-              doubleValue: 0,
-              dateValue: "2024-02-20T08:28:32.755Z",
+              doubleValue: 1,
+              dateValue: Date.now(),
             },
           ],
           productImageForms: [

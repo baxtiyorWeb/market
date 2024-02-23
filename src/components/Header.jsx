@@ -1,17 +1,17 @@
 /* eslint-disable react/prop-types */
-import Container from "../shared/Container"
+import Container from "../shared/Container";
 
 // svg  icons
 
-import { useEffect, useState } from "react"
-import { MdClose } from "react-icons/md"
-import { Link } from "react-router-dom"
-import menuIcon from "../assets/menuIcon.svg"
-import plusIcon from "../assets/plusIcon.svg"
-import searchIcon from "../assets/searchIcon.svg"
-import Categoriyes from "../ui/Categoriyes"
-import MyListbox from "../ui/ListBox"
-import Navigation from "./logo/Navigation"
+import { useEffect, useState } from "react";
+import { MdClose } from "react-icons/md";
+import { Link } from "react-router-dom";
+import menuIcon from "../assets/menuIcon.svg";
+import plusIcon from "../assets/plusIcon.svg";
+import searchIcon from "../assets/searchIcon.svg";
+import Categoriyes from "../ui/Categoriyes";
+import MyListbox from "../ui/ListBox";
+import Navigation from "./logo/Navigation";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -37,7 +37,7 @@ export default function Header() {
         window.removeEventListener("scroll", updateScrollDirection); // clean up
       };
     }
-  }, [scroll]);
+  }, []);
 
   return (
     <div
@@ -62,8 +62,8 @@ export default function Header() {
             </span>
           </button>
           <Categoriyes open={open} setOpen={setOpen} scroll={scroll} />
-          <div onClick={() => setOpen(false)} className="w-auto h-auto p-0  ">
-          <MyListbox opens={open} setOpens={setOpen} />
+          <div onClick={() => setOpen(false)} className="h-auto w-auto p-0  ">
+            <MyListbox opens={open} setOpens={setOpen} />
           </div>
 
           <div
