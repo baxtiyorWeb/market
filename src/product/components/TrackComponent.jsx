@@ -11,7 +11,7 @@ import { TextArea } from "../../ui/input/TextArea.jsx";
 import SpinLoading from "../../ui/loading/spinLoading.jsx";
 const TrackComponent = () => {
   const [fileList, setFileList] = useState("");
-  const { getCategoryData, getCategory, isLoading } = useData();
+  const { getCategoryData, getCategory } = useData();
   const [state, setState] = useState({
     name: "",
   });

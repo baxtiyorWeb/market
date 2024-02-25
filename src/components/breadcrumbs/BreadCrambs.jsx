@@ -12,7 +12,7 @@ export const BreadCrumbs = () => {
       <div>
         <Breadcrumb>
           {pathnames.length > 0 ? (
-            <Breadcrumb.Item>
+            <Breadcrumb.Item separator>
               <Link to="/">Home</Link>
             </Breadcrumb.Item>
           ) : (
