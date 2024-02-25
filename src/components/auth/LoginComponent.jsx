@@ -16,7 +16,10 @@ export default function LoginComponent() {
         },
       );
 
-      localStorage.setItem("token", data.data.accessToken);
+      localStorage.setItem("accessToken", data.data.accessToken);
+      localStorage.setItem("refreshToken", data.data.refreshToken);
+
+      navigate("/profile/dashboard");
     } catch (error) {
       console.log(error.message);
     }
