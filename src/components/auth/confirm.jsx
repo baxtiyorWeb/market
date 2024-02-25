@@ -16,13 +16,9 @@ export default function Confirm() {
             Accept: "application/json, text/plain, */*",
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
-          xsrfHeaderName: "JSESSIONID",
-          maxBodyLength: Infinity,
-          maxContentLength: Infinity,
-          adapter: ["xhr", "http"],
           method: "POST",
           data: {
-            code: confirm,
+            code: confirm.toString(),
           },
         },
       );

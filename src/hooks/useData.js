@@ -16,5 +16,5 @@ export default function useData() {
     }
   };
 
-  return { getCategoryData, getCategory, isLoading, navigators };
+  return { getCategoryData, getCategory, isLoading };
 }
