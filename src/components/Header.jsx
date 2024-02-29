@@ -41,9 +41,8 @@ export default function Header() {
 
   return (
     <div
-      className={`sticky ${
-        scroll === "down" ? "top-[-180px]" : " top-0"
-      } transitiona-all left-0 top-0 z-[300]  flex h-[180px] w-full  flex-col items-center justify-center bg-white  duration-500`}
+      className={`sticky ${scroll === "down" ? "top-[-180px]" : " top-0"
+        } transitiona-all left-0 top-0 z-[300]  flex h-[180px] w-full  flex-col items-center justify-center bg-white  duration-500`}
     >
       <Navigation />
       <Container>

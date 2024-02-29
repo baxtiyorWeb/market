@@ -28,7 +28,7 @@ export default function Navigation() {
                 <FaKey className="mx-2" /> Register
               </div>
             </Link>
-            <Link to={"/profile/dashboard"}>
+            <Link to={"/profile/dashboard?tab=1"}>
               <div
                 className="ml-3 mr-3 flex cursor-pointer items-center 
               justify-center rounded-md border p-2 hover:bg-slate-200
