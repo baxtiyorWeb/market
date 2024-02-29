@@ -31,6 +31,7 @@ export default function MyListbox() {
     setText,
     open,
     text,
+    keyWithCloseElement,
   } = useToggle();
 
   // other states function elements
@@ -51,7 +52,11 @@ export default function MyListbox() {
           {text ? text : "surxondaryo "}
         </span>
       </button>
-      {open ? <Overlay closed={hideLocationMenu} /> : open}
+      {open ? (
+        <Overlay closed={hideLocationMenu} closeKey={keyWithCloseElement} />
+      ) : (
+        open
+      )}
       <ul
         className={
           open
