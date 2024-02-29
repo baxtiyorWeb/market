@@ -1,6 +1,7 @@
-import axios from "axios";
+import { message } from "antd";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import api from "../../config/api/api";
 
 export default function LoginComponent() {
   const [login, setLogin] = useState("");
@@ -8,16 +9,17 @@ export default function LoginComponent() {
   const navigate = useNavigate();
   const loginNameAndPassword = async () => {
     try {
-      const { data } = await axios.post(
-        "http://95.130.227.131:8080/api/v1/authority/sign-in",
-        {
-          username: login,
-          password: password,
-        },
-      );
+      const { data, status } = await api.post("/authority/sign-in", {
+        username: login,
+        password: password,
+      });
 
       localStorage.setItem("accessToken", data.data.accessToken);
       localStorage.setItem("refreshToken", data.data.refreshToken);
+
+      if (status === 200) {
+        message.success("login successfully");
+      }
 
       navigate("/profile/dashboard");
     } catch (error) {
@@ -26,19 +28,10 @@ export default function LoginComponent() {
   };
 
   useEffect(() => {
-    const config = {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    };
     const getData = async () => {
       try {
-        const data = await axios.get(
-          "http://95.130.227.131:8080/api/v1/authority/all",
-          config,
-        );
+        await api.get("/authority/all");
 
-        console.log(data);
         navigate("/");
       } catch (error) {
         console.log(error);
