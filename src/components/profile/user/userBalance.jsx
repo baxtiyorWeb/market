@@ -2,7 +2,7 @@ import React from "react";
 import Location from "./../../../assets/location.svg";
 export default function UserBalance() {
   return (
-    <>
+    <div className="px-[66px] py-5">
       <div className="user-title flex items-center justify-between">
         <div className="mr-6 flex h-[120px] w-[120px] cursor-pointer items-center justify-center rounded-full border p-1 hover:bg-slate-500/10">
           <img
@@ -75,6 +75,6 @@ export default function UserBalance() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

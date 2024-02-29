@@ -336,3 +336,23 @@
   background-color: white !important;
 }
 /* antd design add styles end*/
+
+/* tabs styled */
+
+.tabs-active {
+  @apply mt-6 block h-[40vh]  border;
+}
+.tabs-none {
+  @apply hidden;
+}
+
+.tab-el-active {
+  @apply flex h-[45px] w-[155px] cursor-pointer  select-none items-center justify-center rounded-md border bg-white duration-500;
+}
+.tab-icon {
+  @apply ml-1 mr-1 text-[22px];
+}
+
+.tab-el {
+  @apply flex h-[45px] w-[155px] cursor-pointer  select-none items-center justify-center rounded-md border bg-[#EBEBEB] text-[#545454] transition-all duration-500;
+}

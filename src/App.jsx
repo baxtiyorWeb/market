@@ -56,6 +56,9 @@ const App = () => {
               }
             />
           </Route>
+
+          {/* profile layout */}
+
           <Route
             path="/profile"
             element={
