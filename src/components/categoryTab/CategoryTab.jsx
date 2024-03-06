@@ -1,60 +1,78 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import api from "./../../config/api/api";
 const CategoryTab = () => {
   const [tab, setTab] = useState(1);
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(false);
 
+  const getCategory = async () => {
+    try {
+      setLoading(true);
+      const res = await api.get("/category/all");
+      setItems(res.data);
+      console.log(res.data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getCategory();
+  }, []);
   const tabKeys = (index) => {
     setTab(index);
   };
 
-  const items = [
-    {
-      tabKey: 1,
-      label: "Electronika ",
-    },
-    {
-      tabKey: 2,
-      label: "Mexanika",
-    },
-    {
-      tabKey: 3,
-      label: "Kiyimlar",
-    },
-    {
-      tabKey: 4,
-      label: "Akksesuarlar",
-    },
-    {
-      tabKey: 5,
-      label: "Qurilish",
-    },
-    {
-      tabKey: 6,
-      label: "Avtotovarlar",
-    },
-    {
-      tabKey: 7,
-      label: "o'yinchoqlar",
-    },
-    {
-      tabKey: 8,
-      label: "Xobbi ",
-    },
-    {
-      tabKey: 9,
-      label: "sport",
-    },
-    {
-      tabKey: 10,
-      label: "Poyabzallar",
-    },
-    {
-      tabKey: 11,
-      label: "Texnika",
-    },
-  ];
- 
+  // const items = [
+  //   {
+  //     tabKey: 1,
+  //     label: "Electronika ",
+  //   },
+  //   {
+  //     tabKey: 2,
+  //     label: "Mexanika",
+  //   },
+  //   {
+  //     tabKey: 3,
+  //     label: "Kiyimlar",
+  //   },
+  //   {
+  //     tabKey: 4,
+  //     label: "Akksesuarlar",
+  //   },
+  //   {
+  //     tabKey: 5,
+  //     label: "Qurilish",
+  //   },
+  //   {
+  //     tabKey: 6,
+  //     label: "Avtotovarlar",
+  //   },
+  //   {
+  //     tabKey: 7,
+  //     label: "o'yinchoqlar",
+  //   },
+  //   {
+  //     tabKey: 8,
+  //     label: "Xobbi ",
+  //   },
+  //   {
+  //     tabKey: 9,
+  //     label: "sport",
+  //   },
+  //   {
+  //     tabKey: 10,
+  //     label: "Poyabzallar",
+  //   },
+  //   {
+  //     tabKey: 11,
+  //     label: "Texnika",
+  //   },
+  // ];
+
   return (
     <div className="ml-3 h-[100%] w-full p-5">
       <div className="tab-wrapper h-full w-full ">
@@ -62,18 +80,18 @@ const CategoryTab = () => {
           <input type="text" className="p-2  mb-5 w-[400px] border outline-none rounded-md "  placeholder="kategoriya ichidan qidiring"/>
         </div>  */}
         <div className="tab-panel flex h-[50px] w-full items-center">
-          {items.map((item, index) => {
+          {items.data?.map((item, index) => {
             return (
               <div
                 key={index}
                 className={
-                  tab === item.tabKey
-                    ? `tab-key select-none  flex h-full w-auto cursor-pointer items-center justify-center  border-b-2 border-[#1D828E] transition-all duration-500`
-                    : "tab-key select-none flex h-full w-auto cursor-pointer items-center justify-center border-b-2 border-transparent "
+                  tab === index + 1
+                    ? `tab-key flex  h-full w-auto cursor-pointer select-none items-center justify-center  border-b-2 border-[#1D828E] transition-all duration-500`
+                    : "tab-key flex h-full w-auto cursor-pointer select-none items-center justify-center border-b-2 border-transparent "
                 }
-                onClick={() => tabKeys(item.tabKey)}
+                onClick={() => tabKeys(index + 1)}
               >
-                {item.label}
+                {item.name}
               </div>
             );
           })}
@@ -88,16 +106,16 @@ const CategoryTab = () => {
                 <li className="mt-5 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-700">
                   <Link>Akkumulyatorlar uchun zaryadlovchi qurilmalari</Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Oʻt oldirish simlari </Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link> Avtomobil akkumulyatori aksessuarlari </Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Akkumulyator klemmalari</Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Elektrmobillar uchun zaryadlash stantsiyalari</Link>{" "}
                 </li>
               </ul>
@@ -110,16 +128,16 @@ const CategoryTab = () => {
                 <li className="mt-5 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-700">
                   <Link>Akkumulyatorlar uchun zaryadlovchi qurilmalari</Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Oʻt oldirish simlari </Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link> Avtomobil akkumulyatori aksessuarlari </Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Akkumulyator klemmalari</Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Elektrmobillar uchun zaryadlash stantsiyalari</Link>{" "}
                 </li>
               </ul>
@@ -132,16 +150,16 @@ const CategoryTab = () => {
                 <li className="mt-5 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-700">
                   <Link>Akkumulyatorlar uchun zaryadlovchi qurilmalari</Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Oʻt oldirish simlari </Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link> Avtomobil akkumulyatori aksessuarlari </Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Akkumulyator klemmalari</Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Elektrmobillar uchun zaryadlash stantsiyalari</Link>{" "}
                 </li>
               </ul>
@@ -154,16 +172,16 @@ const CategoryTab = () => {
                 <li className="mt-5 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-700">
                   <Link>Akkumulyatorlar uchun zaryadlovchi qurilmalari</Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Oʻt oldirish simlari </Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link> Avtomobil akkumulyatori aksessuarlari </Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Akkumulyator klemmalari</Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Elektrmobillar uchun zaryadlash stantsiyalari</Link>{" "}
                 </li>
               </ul>
@@ -176,16 +194,16 @@ const CategoryTab = () => {
                 <li className="mt-5 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-700">
                   <Link>Akkumulyatorlar uchun zaryadlovchi qurilmalari</Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Oʻt oldirish simlari </Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link> Avtomobil akkumulyatori aksessuarlari </Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Akkumulyator klemmalari</Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Elektrmobillar uchun zaryadlash stantsiyalari</Link>{" "}
                 </li>
               </ul>
@@ -200,16 +218,16 @@ const CategoryTab = () => {
                 <li className="mt-5 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-700">
                   <Link>Akkumulyatorlar uchun zaryadlovchi qurilmalari</Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Oʻt oldirish simlari </Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link> Avtomobil akkumulyatori aksessuarlari </Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Akkumulyator klemmalari</Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Elektrmobillar uchun zaryadlash stantsiyalari</Link>{" "}
                 </li>
               </ul>
@@ -222,16 +240,16 @@ const CategoryTab = () => {
                 <li className="mt-5 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-700">
                   <Link>Akkumulyatorlar uchun zaryadlovchi qurilmalari</Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Oʻt oldirish simlari </Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link> Avtomobil akkumulyatori aksessuarlari </Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Akkumulyator klemmalari</Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Elektrmobillar uchun zaryadlash stantsiyalari</Link>{" "}
                 </li>
               </ul>
@@ -244,16 +262,16 @@ const CategoryTab = () => {
                 <li className="mt-5 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-700">
                   <Link>Akkumulyatorlar uchun zaryadlovchi qurilmalari</Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Oʻt oldirish simlari </Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link> Avtomobil akkumulyatori aksessuarlari </Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Akkumulyator klemmalari</Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Elektrmobillar uchun zaryadlash stantsiyalari</Link>{" "}
                 </li>
               </ul>
@@ -266,16 +284,16 @@ const CategoryTab = () => {
                 <li className="mt-5 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-700">
                   <Link>Akkumulyatorlar uchun zaryadlovchi qurilmalari</Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Oʻt oldirish simlari </Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link> Avtomobil akkumulyatori aksessuarlari </Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Akkumulyator klemmalari</Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Elektrmobillar uchun zaryadlash stantsiyalari</Link>{" "}
                 </li>
               </ul>
@@ -288,16 +306,16 @@ const CategoryTab = () => {
                 <li className="mt-5 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-700">
                   <Link>Akkumulyatorlar uchun zaryadlovchi qurilmalari</Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Oʻt oldirish simlari </Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link> Avtomobil akkumulyatori aksessuarlari </Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Akkumulyator klemmalari</Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Elektrmobillar uchun zaryadlash stantsiyalari</Link>{" "}
                 </li>
               </ul>
@@ -310,16 +328,16 @@ const CategoryTab = () => {
                 <li className="mt-5 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-700">
                   <Link>Akkumulyatorlar uchun zaryadlovchi qurilmalari</Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Oʻt oldirish simlari </Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link> Avtomobil akkumulyatori aksessuarlari </Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Akkumulyator klemmalari</Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Elektrmobillar uchun zaryadlash stantsiyalari</Link>{" "}
                 </li>
               </ul>
@@ -332,16 +350,16 @@ const CategoryTab = () => {
                 <li className="mt-5 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-700">
                   <Link>Akkumulyatorlar uchun zaryadlovchi qurilmalari</Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Oʻt oldirish simlari </Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link> Avtomobil akkumulyatori aksessuarlari </Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Akkumulyator klemmalari</Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Elektrmobillar uchun zaryadlash stantsiyalari</Link>{" "}
                 </li>
               </ul>
@@ -354,16 +372,16 @@ const CategoryTab = () => {
                 <li className="mt-5 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-700">
                   <Link>Akkumulyatorlar uchun zaryadlovchi qurilmalari</Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Oʻt oldirish simlari </Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link> Avtomobil akkumulyatori aksessuarlari </Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Akkumulyator klemmalari</Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Elektrmobillar uchun zaryadlash stantsiyalari</Link>{" "}
                 </li>
               </ul>
@@ -376,16 +394,16 @@ const CategoryTab = () => {
                 <li className="mt-5 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-700">
                   <Link>Akkumulyatorlar uchun zaryadlovchi qurilmalari</Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Oʻt oldirish simlari </Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link> Avtomobil akkumulyatori aksessuarlari </Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Akkumulyator klemmalari</Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Elektrmobillar uchun zaryadlash stantsiyalari</Link>{" "}
                 </li>
               </ul>
@@ -398,16 +416,16 @@ const CategoryTab = () => {
                 <li className="mt-5 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-700">
                   <Link>Akkumulyatorlar uchun zaryadlovchi qurilmalari</Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Oʻt oldirish simlari </Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link> Avtomobil akkumulyatori aksessuarlari </Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Akkumulyator klemmalari</Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Elektrmobillar uchun zaryadlash stantsiyalari</Link>{" "}
                 </li>
               </ul>
@@ -422,16 +440,16 @@ const CategoryTab = () => {
                 <li className="mt-5 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-700">
                   <Link>Akkumulyatorlar uchun zaryadlovchi qurilmalari</Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Oʻt oldirish simlari </Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link> Avtomobil akkumulyatori aksessuarlari </Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Akkumulyator klemmalari</Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Elektrmobillar uchun zaryadlash stantsiyalari</Link>{" "}
                 </li>
               </ul>
@@ -446,16 +464,16 @@ const CategoryTab = () => {
                 <li className="mt-5 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-700">
                   <Link>Akkumulyatorlar uchun zaryadlovchi qurilmalari</Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Oʻt oldirish simlari </Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link> Avtomobil akkumulyatori aksessuarlari </Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Akkumulyator klemmalari</Link>{" "}
                 </li>
-                <li className="mt-3 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500 inline-block">
+                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
                   <Link>Elektrmobillar uchun zaryadlash stantsiyalari</Link>{" "}
                 </li>
               </ul>

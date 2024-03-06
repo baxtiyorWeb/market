@@ -8,7 +8,7 @@ export default function Confirm() {
   const { mutate, isLoading } = useMutation({
     mutationFn: () => {
       return axios(
-        `http://95.130.227.131:8080/api/v1/authority/code-confirm`,
+        `http://kelishamiz.uz/api/v1/authority/code-confirm`,
 
         {
           headers: {

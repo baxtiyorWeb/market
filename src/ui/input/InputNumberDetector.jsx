@@ -13,7 +13,7 @@ export default function InputNumberDetector() {
     try {
       setLoading(true);
       const data = await axios.post(
-        `http://95.130.227.131:8080/api/v1/authority/register-by-phone`,
+        `http://kelishamiz.uz/api/v1/authority/register-by-phone`,
         null,
         {
           params: {
