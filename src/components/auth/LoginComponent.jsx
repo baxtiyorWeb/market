@@ -1,7 +1,7 @@
-import { message } from "antd";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import api from "../../config/api/api";
+import { message } from "antd"
+import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
+import api from "../../config/api/api"
 
 export default function LoginComponent() {
   const [login, setLogin] = useState("");

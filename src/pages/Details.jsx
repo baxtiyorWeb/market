@@ -19,7 +19,9 @@ export default function Details() {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await axios.get(`https://ecb611a2cbdacfd0.mokky.dev/tests/${id}`);
+        const response = await axios.get(
+          `https://ecb611a2cbdacfd0.mokky.dev/tests/${id}`,
+        );
         setData(response.data);
       } catch (error) {
         console.error("Error fetching history:", error);
@@ -28,13 +30,15 @@ export default function Details() {
     getData();
     setIsLoading(false);
   }, []);
-  return (<Container>
+  return (
+    <Container>
       <BreadCrumbs />
       <div className={"flex justify-between"}>
+        <h1>data</h1>
         <div className="mb-[150px] mt-[56px] h-auto w-[790px] flex-shrink-0 border bg-[#fff] p-[30px]">
-          <divc className="mb-10">
+          <div className="mb-10">
             <ProductImage data={data} isLoading={isLoading} />
-          </divc>
+          </div>
           <hr className="mb-6" />
           <ProductAbout data={data} isLoading={isLoading} />
         </div>
@@ -56,8 +60,7 @@ export default function Details() {
             </p>
           </div>
           <div className="flex items-center justify-center gap-x-3 rounded-sm">
-            <div
-              className="flex h-[35px] w-[35px] cursor-pointer items-center justify-center rounded-full border border-[#FEAD5E] bg-[#FEAD5E] text-white">
+            <div className="flex h-[35px] w-[35px] cursor-pointer items-center justify-center rounded-full border border-[#FEAD5E] bg-[#FEAD5E] text-white">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
@@ -74,8 +77,7 @@ export default function Details() {
                 <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
               </svg>
             </div>
-            <div
-              className="flex h-[35px] w-[35px] cursor-pointer items-center justify-center rounded-full border border-[#FEAD5E] bg-[#FEAD5E] text-white">
+            <div className="flex h-[35px] w-[35px] cursor-pointer items-center justify-center rounded-full border border-[#FEAD5E] bg-[#FEAD5E] text-white">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
@@ -88,8 +90,7 @@ export default function Details() {
                 strokeLinejoin="round"
                 className="lucide lucide-heart"
               >
-                <path
-                  d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
               </svg>
             </div>
           </div>
@@ -106,8 +107,7 @@ export default function Details() {
               strokeLinejoin="round"
               className="lucide lucide-phone"
             >
-              <path
-                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
             </svg>
             <span className="text-[14px] font-medium text-white">
               Raqamni ko’rish
@@ -115,5 +115,6 @@ export default function Details() {
           </div>
         </aside>
       </div>
-    </Container>);
+    </Container>
+  );
 }
