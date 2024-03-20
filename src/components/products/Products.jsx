@@ -1,19 +1,15 @@
 import { useEffect, useState } from "react";
-import { FaEye, FaHeart } from "react-icons/fa";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import { Carousel } from "react-responsive-carousel";
-import { Link } from "react-router-dom";
 
 const Products = () => {
   const [data, setData] = useState([]);
   const getProducts = async () => {
-    await fetch("https://ecb611a2cbdacfd0.mokky.dev/tests/")
+    await fetch("https://ecb611a2cbdacfd0.mokky.dev/tests")
       .then((res) => res.json())
       .then((data) => setData(data));
   };
 
   useEffect(() => {
-    let promise = getProducts();
+    getProducts();
   }, []);
   return (
     <div className="mt-[40px] h-full w-full">
@@ -23,7 +19,7 @@ const Products = () => {
         </h1>
       </div>
       <div className="response_product_category grid grid-cols-4 gap-[29px]  ">
-        {data.map((item, index) => (
+        {/* {data.map((item, index) => (
           <div
             className="h-[400px] w-[270px] flex-shrink-0 overflow-hidden  rounded-md shadow-md"
             key={index}
@@ -93,7 +89,7 @@ const Products = () => {
               </div>
             </div>
           </div>
-        ))}
+        ))} */}
       </div>
       <div className="mb-[50px] mt-[50px] flex items-center justify-center">
         <button className="flex h-[50px] w-[328px] flex-shrink-0 items-center justify-center rounded-[5px] bg-[#1D828E] text-[#fff] ">

@@ -14,7 +14,6 @@ const UserCreate = () => {
     districtId: 0,
     address: "",
   });
-  const getDistrict = () => {};
   const createUser = async () => {
     console.log({ ...create });
     const { data } = await api.post("/user/create", {

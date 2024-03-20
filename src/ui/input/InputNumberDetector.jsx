@@ -46,7 +46,7 @@ export default function InputNumberDetector() {
       <div>
         <h1 className="text relative bottom-[80px] text-[30px] text-teal-700">
           <span className="text text-[40px] text-teal-600">Kelishamiz.uz</span>{" "}
-          saytiga hush kelibsiz{" "}
+          saytiga hush kelibsiz
         </h1>
       </div>
       <div className="input-container">

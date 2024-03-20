@@ -1,29 +1,31 @@
-import axios from "axios";
 import { useState } from "react";
-import { useMutation } from "react-query";
 import SpinLoading from "../../ui/loading/spinLoading";
 
 export default function Confirm() {
   const [confirm, setConfirm] = useState("");
-  const { mutate, isLoading } = useMutation({
-    mutationFn: () => {
-      return axios(
-        `http://kelishamiz.uz/api/v1/authority/code-confirm`,
-
-        {
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            Accept: "application/json, text/plain, */*",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-          method: "POST",
-          data: {
-            code: confirm.toString(),
-          },
+  const [isLoading, setIsLoading] = useState(false);
+  const confimCodeSMS = async () => {
+    setIsLoading(true);
+    const data = await fetch(
+      `http://kelishamiz.uz/api/v1/authority/code-confirm`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
         },
-      );
-    },
-  });
+        body: JSON.stringify({
+          code: confirm,
+        }),
+      },
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+    setIsLoading(false);
+  };
+
   return (
     <div>
       <div className="flex h-[600px] flex-col items-center justify-center rounded-md">
@@ -42,7 +44,7 @@ export default function Confirm() {
           <button
             disabled={confirm === "" ? true : confirm.length < 4}
             className="mb-5 mt-5 h-[50px] w-[328px] rounded-md bg-[#1D828E] text-white disabled:cursor-not-allowed disabled:bg-[#1d838eb4]"
-            onClick={() => mutate()}
+            onClick={() => confimCodeSMS()}
           >
             {isLoading ? <SpinLoading /> : "kodni tekshirish"}
           </button>
