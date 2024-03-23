@@ -7,6 +7,9 @@ export default function Layout() {
   return (
     <div className="bg-[#FAFAFA]">
       <Header />
+
+      <input type="file" name="" id="" />
+
       <div className=" min-h-screen w-full flex-grow">
         <Outlet />
       </div>

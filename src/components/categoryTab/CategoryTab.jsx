@@ -96,410 +96,50 @@ const CategoryTab = () => {
             );
           })}
         </div>
-        <div>
-          <div className={tab === 1 ? "active" : "tabs"}>
-            <div className="tab-elements">
-              <h1 className="text-2xl font-medium not-italic text-teal-700">
-                Aksesuarlar
-              </h1>
-              <ul>
-                <li className="mt-5 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-700">
-                  <Link>Akkumulyatorlar uchun zaryadlovchi qurilmalari</Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Oʻt oldirish simlari </Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link> Avtomobil akkumulyatori aksessuarlari </Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Akkumulyator klemmalari</Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Elektrmobillar uchun zaryadlash stantsiyalari</Link>{" "}
-                </li>
-              </ul>
-            </div>
-            <div className="tab-elements">
-              <h1 className="text-2xl font-medium not-italic text-teal-700">
-                kompyuter jihozlar
-              </h1>
-              <ul>
-                <li className="mt-5 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-700">
-                  <Link>Akkumulyatorlar uchun zaryadlovchi qurilmalari</Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Oʻt oldirish simlari </Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link> Avtomobil akkumulyatori aksessuarlari </Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Akkumulyator klemmalari</Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Elektrmobillar uchun zaryadlash stantsiyalari</Link>{" "}
-                </li>
-              </ul>
-            </div>
-            <div className="tab-elements">
-              <h1 className="text-2xl font-medium not-italic text-teal-700">
-                Akkumlayotlar
-              </h1>
-              <ul>
-                <li className="mt-5 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-700">
-                  <Link>Akkumulyatorlar uchun zaryadlovchi qurilmalari</Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Oʻt oldirish simlari </Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link> Avtomobil akkumulyatori aksessuarlari </Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Akkumulyator klemmalari</Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Elektrmobillar uchun zaryadlash stantsiyalari</Link>{" "}
-                </li>
-              </ul>
-            </div>
-            <div className="tab-elements">
-              <h1 className="text-2xl font-medium not-italic text-teal-700">
-                Qurilish mollari
-              </h1>
-              <ul>
-                <li className="mt-5 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-700">
-                  <Link>Akkumulyatorlar uchun zaryadlovchi qurilmalari</Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Oʻt oldirish simlari </Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link> Avtomobil akkumulyatori aksessuarlari </Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Akkumulyator klemmalari</Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Elektrmobillar uchun zaryadlash stantsiyalari</Link>{" "}
-                </li>
-              </ul>
-            </div>
-            <div className="tab-elements">
-              <h1 className="text-2xl font-medium not-italic text-teal-700">
-                Electromobillar
-              </h1>
-              <ul>
-                <li className="mt-5 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-700">
-                  <Link>Akkumulyatorlar uchun zaryadlovchi qurilmalari</Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Oʻt oldirish simlari </Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link> Avtomobil akkumulyatori aksessuarlari </Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Akkumulyator klemmalari</Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Elektrmobillar uchun zaryadlash stantsiyalari</Link>{" "}
-                </li>
-              </ul>
-            </div>
+        <div className="blocked">
+          <div className="tab-elements">
+            <h1 className="text-2xl font-medium not-italic text-teal-700">
+              Aksesuarlar
+            </h1>
+            <ul>
+              <li className="mt-5 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-700">
+                <Link>Akkumulyatorlar uchun zaryadlovchi qurilmalari</Link>{" "}
+              </li>
+              <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
+                <Link>Oʻt oldirish simlari </Link>{" "}
+              </li>
+              <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
+                <Link> Avtomobil akkumulyatori aksessuarlari </Link>{" "}
+              </li>
+              <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
+                <Link>Akkumulyator klemmalari</Link>{" "}
+              </li>
+              <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
+                <Link>Elektrmobillar uchun zaryadlash stantsiyalari</Link>{" "}
+              </li>
+            </ul>
           </div>
-          <div className={tab === 2 ? "active" : "tabs"}>
-            <div className="tab-elements">
-              <h1 className="text-2xl font-medium not-italic text-teal-700">
-                kompyuter jihozlari
-              </h1>
-              <ul>
-                <li className="mt-5 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-700">
-                  <Link>Akkumulyatorlar uchun zaryadlovchi qurilmalari</Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Oʻt oldirish simlari </Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link> Avtomobil akkumulyatori aksessuarlari </Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Akkumulyator klemmalari</Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Elektrmobillar uchun zaryadlash stantsiyalari</Link>{" "}
-                </li>
-              </ul>
-            </div>
-            <div className="tab-elements">
-              <h1 className="text-2xl font-medium not-italic text-teal-700">
-                akkumulyator
-              </h1>
-              <ul>
-                <li className="mt-5 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-700">
-                  <Link>Akkumulyatorlar uchun zaryadlovchi qurilmalari</Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Oʻt oldirish simlari </Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link> Avtomobil akkumulyatori aksessuarlari </Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Akkumulyator klemmalari</Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Elektrmobillar uchun zaryadlash stantsiyalari</Link>{" "}
-                </li>
-              </ul>
-            </div>
-            <div className="tab-elements">
-              <h1 className="text-2xl font-medium not-italic text-teal-700">
-                akkumulyator
-              </h1>
-              <ul>
-                <li className="mt-5 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-700">
-                  <Link>Akkumulyatorlar uchun zaryadlovchi qurilmalari</Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Oʻt oldirish simlari </Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link> Avtomobil akkumulyatori aksessuarlari </Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Akkumulyator klemmalari</Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Elektrmobillar uchun zaryadlash stantsiyalari</Link>{" "}
-                </li>
-              </ul>
-            </div>
-            <div className="tab-elements">
-              <h1 className="text-2xl font-medium not-italic text-teal-700">
-                akkumulyator
-              </h1>
-              <ul>
-                <li className="mt-5 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-700">
-                  <Link>Akkumulyatorlar uchun zaryadlovchi qurilmalari</Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Oʻt oldirish simlari </Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link> Avtomobil akkumulyatori aksessuarlari </Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Akkumulyator klemmalari</Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Elektrmobillar uchun zaryadlash stantsiyalari</Link>{" "}
-                </li>
-              </ul>
-            </div>
-            <div className="tab-elements">
-              <h1 className="text-2xl font-medium not-italic text-teal-700">
-                akkumulyator
-              </h1>
-              <ul>
-                <li className="mt-5 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-700">
-                  <Link>Akkumulyatorlar uchun zaryadlovchi qurilmalari</Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Oʻt oldirish simlari </Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link> Avtomobil akkumulyatori aksessuarlari </Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Akkumulyator klemmalari</Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Elektrmobillar uchun zaryadlash stantsiyalari</Link>{" "}
-                </li>
-              </ul>
-            </div>
-            <div className="tab-elements">
-              <h1 className="text-2xl font-medium not-italic text-teal-700">
-                Akkumlayotlar
-              </h1>
-              <ul>
-                <li className="mt-5 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-700">
-                  <Link>Akkumulyatorlar uchun zaryadlovchi qurilmalari</Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Oʻt oldirish simlari </Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link> Avtomobil akkumulyatori aksessuarlari </Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Akkumulyator klemmalari</Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Elektrmobillar uchun zaryadlash stantsiyalari</Link>{" "}
-                </li>
-              </ul>
-            </div>
-            <div className="tab-elements">
-              <h1 className="text-2xl font-medium not-italic text-teal-700">
-                Electromobillar
-              </h1>
-              <ul>
-                <li className="mt-5 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-700">
-                  <Link>Akkumulyatorlar uchun zaryadlovchi qurilmalari</Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Oʻt oldirish simlari </Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link> Avtomobil akkumulyatori aksessuarlari </Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Akkumulyator klemmalari</Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Elektrmobillar uchun zaryadlash stantsiyalari</Link>{" "}
-                </li>
-              </ul>
-            </div>
-            <div className="tab-elements">
-              <h1 className="text-2xl font-medium not-italic text-teal-700">
-                Qurilish mollari
-              </h1>
-              <ul>
-                <li className="mt-5 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-700">
-                  <Link>Akkumulyatorlar uchun zaryadlovchi qurilmalari</Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Oʻt oldirish simlari </Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link> Avtomobil akkumulyatori aksessuarlari </Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Akkumulyator klemmalari</Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Elektrmobillar uchun zaryadlash stantsiyalari</Link>{" "}
-                </li>
-              </ul>
-            </div>
-            <div className="tab-elements">
-              <h1 className="text-2xl font-medium not-italic text-teal-700">
-                Qurilish mollari
-              </h1>
-              <ul>
-                <li className="mt-5 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-700">
-                  <Link>Akkumulyatorlar uchun zaryadlovchi qurilmalari</Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Oʻt oldirish simlari </Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link> Avtomobil akkumulyatori aksessuarlari </Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Akkumulyator klemmalari</Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Elektrmobillar uchun zaryadlash stantsiyalari</Link>{" "}
-                </li>
-              </ul>
-            </div>
-            <div className="tab-elements">
-              <h1 className="text-2xl font-medium not-italic text-teal-700">
-                Qurilish mollari
-              </h1>
-              <ul>
-                <li className="mt-5 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-700">
-                  <Link>Akkumulyatorlar uchun zaryadlovchi qurilmalari</Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Oʻt oldirish simlari </Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link> Avtomobil akkumulyatori aksessuarlari </Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Akkumulyator klemmalari</Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Elektrmobillar uchun zaryadlash stantsiyalari</Link>{" "}
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className={tab === 3 ? "active" : "tabs"}>
-            <div className="tab-elements">
-              <h1 className="text-2xl font-medium not-italic text-teal-700">
-                kiyimlar
-              </h1>
-              <ul>
-                <li className="mt-5 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-700">
-                  <Link>Akkumulyatorlar uchun zaryadlovchi qurilmalari</Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Oʻt oldirish simlari </Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link> Avtomobil akkumulyatori aksessuarlari </Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Akkumulyator klemmalari</Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Elektrmobillar uchun zaryadlash stantsiyalari</Link>{" "}
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className={tab === 4 ? "active" : "tabs"}>
-            <div className="tab-elements">
-              <h1 className="text-2xl font-medium not-italic text-teal-700">
-                Aksesuarlar
-              </h1>
-              <ul>
-                <li className="mt-5 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-700">
-                  <Link>Akkumulyatorlar uchun zaryadlovchi qurilmalari</Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Oʻt oldirish simlari </Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link> Avtomobil akkumulyatori aksessuarlari </Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Akkumulyator klemmalari</Link>{" "}
-                </li>
-                <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                  <Link>Elektrmobillar uchun zaryadlash stantsiyalari</Link>{" "}
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className={tab === 5 ? "active" : "tabs"}>
-            <h1>Qurilish</h1>
-          </div>
-
-          <div className={tab === 6 ? "active" : "tabs"}>
-            <h1>Avtotovarlar</h1>
-          </div>
-          <div className={tab === 7 ? "active" : "tabs"}>
-            <h1>Bolalar Tovarlari</h1>
-          </div>
-          <div className={tab === 8 ? "active" : "tabs"}>
-            <h1>Xobbi va ijod</h1>
-          </div>
-          <div className={tab === 9 ? "active" : "tabs"}>
-            <h1>sport va xordiq</h1>
-          </div>
-          <div className={tab === 10 ? "active" : "tabs"}>
-            <h1>Poyabzallar</h1>
-          </div>
-          <div className={tab === 11 ? "active" : "tabs"}>
-            <h1>Texnika</h1>
+          <div className="tab-elements">
+            <h1 className="text-2xl font-medium not-italic text-teal-700">
+              kompyuter jihozlar
+            </h1>
+            <ul>
+              <li className="mt-5 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-700">
+                <Link>Akkumulyatorlar uchun zaryadlovchi qurilmalari</Link>{" "}
+              </li>
+              <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
+                <Link>Oʻt oldirish simlari </Link>{" "}
+              </li>
+              <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
+                <Link> Avtomobil akkumulyatori aksessuarlari </Link>{" "}
+              </li>
+              <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
+                <Link>Akkumulyator klemmalari</Link>{" "}
+              </li>
+              <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
+                <Link>Elektrmobillar uchun zaryadlash stantsiyalari</Link>{" "}
+              </li>
+            </ul>
           </div>
         </div>
       </div>
