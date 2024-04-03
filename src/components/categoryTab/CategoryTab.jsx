@@ -160,7 +160,6 @@ const CategoryTab = () => {
                         alt="rasm"
                         className="mr-3 flex h-[50px] w-[50px]  items-center justify-center rounded-full bg-white p-2 shadow-md "
                       />
-                      sss
                       <DropdownMenu
                         key={index}
                         items={items}
