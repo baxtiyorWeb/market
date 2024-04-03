@@ -36,9 +36,9 @@ const useMainProducts = () => {
       const res = await api.post("/products", { product });
 
       if (res.status === 200) {
-        message.success("created form");
+        message.success("created product");
       } else {
-        message.error("eror");
+        message.error("error");
       }
     } catch (error) {
       throw new Error(`Error: ${error.message}`);

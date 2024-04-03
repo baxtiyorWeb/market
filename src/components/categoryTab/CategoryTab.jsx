@@ -60,54 +60,6 @@ const CategoryTab = () => {
   const tabKeys = (index) => {
     setTab(index);
   };
-
-  // const items = [
-  //   {
-  //     tabKey: 1,
-  //     label: "Electronika ",
-  //   },
-  //   {
-  //     tabKey: 2,
-  //     label: "Mexanika",
-  //   },
-  //   {
-  //     tabKey: 3,
-  //     label: "Kiyimlar",
-  //   },
-  //   {
-  //     tabKey: 4,
-  //     label: "Akksesuarlar",
-  //   },
-  //   {
-  //     tabKey: 5,
-  //     label: "Qurilish",
-  //   },
-  //   {
-  //     tabKey: 6,
-  //     label: "Avtotovarlar",
-  //   },
-  //   {
-  //     tabKey: 7,
-  //     label: "o'yinchoqlar",
-  //   },
-  //   {
-  //     tabKey: 8,
-  //     label: "Xobbi ",
-  //   },
-  //   {
-  //     tabKey: 9,
-  //     label: "sport",
-  //   },
-  //   {
-  //     tabKey: 10,
-  //     label: "Poyabzallar",
-  //   },
-  //   {
-  //     tabKey: 11,
-  //     label: "Texnika",
-  //   },
-  // ];
-
   const [selectedCategory, setSelectedCategory] = useState([]);
   const findCategoryById = (categoryId, data) => {
     for (let item of data) {
@@ -129,7 +81,6 @@ const CategoryTab = () => {
       setOpen(!open);
     }
   };
-  console.log(selectedCategory);
   return (
     <div>
       <ul className="relative flex h-[100%] w-[295px]  flex-col items-start justify-center">
@@ -177,29 +128,3 @@ const CategoryTab = () => {
 };
 
 export default CategoryTab;
-
-{
-  /* <div className="realtive h-full w-full p-1">
-        {items.map((item) => (
-          <div className="relative">
-            <div
-              className="flex h-[68px] cursor-pointer  items-center justify-between rounded-md p-1 hover:bg-[#F5F5F5] hover:text-teal-500"
-              key={item.id}
-            >
-              <div className="flex items-center">
-                <div className="mr-3 flex h-[50px] w-[50px]  items-center justify-center rounded-full bg-white p-2 shadow-md ">
-                  <img src={electronicIcon} alt="rasm" />
-                </div>
-                <span className="text-lg">{item?.name}</span>
-              </div>
-              <span>{">"}</span>
-            </div>
-            <div className="absolute left-[10%] top-[100px] h-[68px] border">
-              {item.childCategories.map((item) => (
-                <div>{item.name}</div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div> */
-}

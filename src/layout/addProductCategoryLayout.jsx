@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Outlet, useSearchParams } from "react-router-dom";
-import { catalog } from "../data/data";
+import useCategories from "../hooks/categories/useCategories";
 import useToggle from "../hooks/useToggle";
 import Container from "../shared/Container";
 import Overlay from "../ui/Overlay";
 export default function AddProductCategory() {
   const { hideLocationMenu, open, showLocationMenu } = useToggle();
+  const { categories, isLoading } = useCategories();
   const [params, setParams] = useSearchParams();
   const [query, setQuery] = useState(params.get("q") || "");
   const addParams = (value) => {
@@ -39,32 +40,23 @@ export default function AddProductCategory() {
         {open ? (
           <div className="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] fixed left-[50%] top-[50%]  z-[302] grid w-full max-w-5xl translate-x-[-50%] translate-y-[-50%] gap-4 border bg-[#FFFFFF] p-6 py-10 shadow-lg duration-200 sm:rounded-lg md:w-full">
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
-              {catalog.map((item, index) => {
+              {categories.map((item, index) => {
                 return (
                   <div className="h-fit" key={index}>
                     <h1 className="mb-5 text-xl font-medium text-[#1D828E] ">
-                      {item.title}
+                      {item?.name}
                     </h1>
                     <ul className="flex flex-col gap-y-3">
-                      {item.children.map((item, index) => (
+                      {item?.childCategories.map((item, index) => (
                         <li key={index} className="w-fit text-sm ">
                           <span
                             onClick={() =>
-                              addParams(item.value) != hideLocationMenu()
+                              addParams(item?.name) != hideLocationMenu()
                             }
                             className="cursor-pointer hover:underline"
                           >
-                            {item.title}
+                            {item?.name}
                           </span>
-                          {item.status ? (
-                            <span className="ml-3 mr-1 cursor-auto text-teal-500">
-                              - tugatilgan
-                            </span>
-                          ) : (
-                            <span className="ml-3 mr-1 cursor-auto text-red-500">
-                              - bajarilmoqda ... 
-                            </span>
-                          )}
                         </li>
                       ))}
                     </ul>
