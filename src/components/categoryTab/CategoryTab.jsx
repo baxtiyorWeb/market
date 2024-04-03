@@ -1,16 +1,51 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import electronicIcon from "../../assets/electronic.svg";
 import api from "./../../config/api/api";
+
+const DropdownMenu = ({ items, toggleMenu }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <ul>
+      <li onClick={() => toggleMenu(items.id)}>
+        <span>{items.name}</span>
+        {isOpen && items.childCategories.length > 0 && (
+          <ul>
+            {items.childCategories.map((child, index) => (
+              <li
+                className='hover:text-teal-500" flex h-[68px] w-full cursor-pointer items-center justify-between rounded-md p-1 hover:bg-[#F5F5F5]'
+                key={items.id}
+              >
+                <div>
+                  <img
+                    src={electronicIcon}
+                    alt="rasm"
+                    className="mr-3 flex h-[50px] w-[50px]  items-center justify-center rounded-full bg-white p-2 shadow-md "
+                  />
+                </div>
+                <DropdownMenu
+                  key={index}
+                  items={item}
+                  toggleMenu={toggleMenu}
+                />
+              </li>
+            ))}
+          </ul>
+        )}
+      </li>
+    </ul>
+  );
+};
 const CategoryTab = () => {
   const [tab, setTab] = useState(1);
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  const [open, setOpen] = useState(false);
   const getCategory = async () => {
     try {
       setLoading(true);
       const res = await api.get("/category/all");
-      setItems(res.data);
+      setItems(res.data.data);
       console.log(res.data);
     } catch (error) {
       console.log(error);
@@ -73,78 +108,98 @@ const CategoryTab = () => {
   //   },
   // ];
 
+  const [selectedCategory, setSelectedCategory] = useState([]);
+  const findCategoryById = (categoryId, data) => {
+    for (let item of data) {
+      if (item.id === categoryId) {
+        return item;
+      }
+      if (item.childCategories.length > 0) {
+        const found = findCategoryById(categoryId, item.childCategories);
+        if (found) return found;
+      }
+    }
+    return null;
+  };
+
+  const toggleMenu = (categoryId) => {
+    const category = findCategoryById(categoryId, items);
+    if (category) {
+      setSelectedCategory(category);
+      setOpen(!open);
+    }
+  };
+  console.log(selectedCategory);
   return (
-    <div className="ml-3 h-[100%] w-full p-5">
-      <div className="tab-wrapper h-full w-full ">
-        {/* <div className="flex justify-center items-center ">
-          <input type="text" className="p-2  mb-5 w-[400px] border outline-none rounded-md "  placeholder="kategoriya ichidan qidiring"/>
-        </div>  */}
-        <div className="tab-panel flex h-[50px] w-full items-center">
-          {items.data?.map((item, index) => {
-            return (
-              <div
-                key={index}
-                className={
-                  tab === index + 1
-                    ? `tab-key flex  h-full w-auto cursor-pointer select-none items-center justify-center  border-b-2 border-[#1D828E] transition-all duration-500`
-                    : "tab-key flex h-full w-auto cursor-pointer select-none items-center justify-center border-b-2 border-transparent "
-                }
-                onClick={() => tabKeys(index + 1)}
-              >
-                {item.name}
-              </div>
-            );
-          })}
-        </div>
-        <div className="blocked">
-          <div className="tab-elements">
-            <h1 className="text-2xl font-medium not-italic text-teal-700">
-              Aksesuarlar
-            </h1>
-            <ul>
-              <li className="mt-5 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-700">
-                <Link>Akkumulyatorlar uchun zaryadlovchi qurilmalari</Link>{" "}
-              </li>
-              <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                <Link>Oʻt oldirish simlari </Link>{" "}
-              </li>
-              <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                <Link> Avtomobil akkumulyatori aksessuarlari </Link>{" "}
-              </li>
-              <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                <Link>Akkumulyator klemmalari</Link>{" "}
-              </li>
-              <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                <Link>Elektrmobillar uchun zaryadlash stantsiyalari</Link>{" "}
-              </li>
+    <div>
+      <ul className="relative flex h-[100%] w-[295px]  flex-col items-start justify-center">
+        {items.map((item, index) => (
+          <li
+            className='hover:text-teal-500" flex h-[68px] w-full cursor-pointer items-center justify-between rounded-md p-1 hover:bg-[#F5F5F5]'
+            key={item.id}
+          >
+            <div className="flex items-center justify-center">
+              <img
+                src={electronicIcon}
+                alt="rasm"
+                className="mr-3 flex h-[50px] w-[50px]  items-center justify-center rounded-full bg-white p-2 shadow-md "
+              />
+              <DropdownMenu key={index} items={item} toggleMenu={toggleMenu} />
+            </div>
+
+            <ul className="absolute right-[-150px] top-[-30px] w-[295px]">
+              {open &&
+                selectedCategory?.childCategories?.map((items, index) => (
+                  <li
+                    className='hover:text-teal-500" flex h-[68px] w-full cursor-pointer items-center justify-between rounded-md p-1 hover:bg-[#F5F5F5]'
+                    key={items.id}
+                  >
+                    <div className="flex items-center justify-center">
+                      <img
+                        src={electronicIcon}
+                        alt="rasm"
+                        className="mr-3 flex h-[50px] w-[50px]  items-center justify-center rounded-full bg-white p-2 shadow-md "
+                      />
+                      <DropdownMenu
+                        key={index}
+                        items={items}
+                        toggleMenu={toggleMenu}
+                      />
+                    </div>
+                  </li>
+                ))}
             </ul>
-          </div>
-          <div className="tab-elements">
-            <h1 className="text-2xl font-medium not-italic text-teal-700">
-              kompyuter jihozlar
-            </h1>
-            <ul>
-              <li className="mt-5 text-[16px] font-normal not-italic text-gray-900 hover:text-teal-700">
-                <Link>Akkumulyatorlar uchun zaryadlovchi qurilmalari</Link>{" "}
-              </li>
-              <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                <Link>Oʻt oldirish simlari </Link>{" "}
-              </li>
-              <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                <Link> Avtomobil akkumulyatori aksessuarlari </Link>{" "}
-              </li>
-              <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                <Link>Akkumulyator klemmalari</Link>{" "}
-              </li>
-              <li className="mt-3 inline-block text-[16px] font-normal not-italic text-gray-900 hover:text-teal-500">
-                <Link>Elektrmobillar uchun zaryadlash stantsiyalari</Link>{" "}
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
 
 export default CategoryTab;
+
+{
+  /* <div className="realtive h-full w-full p-1">
+        {items.map((item) => (
+          <div className="relative">
+            <div
+              className="flex h-[68px] cursor-pointer  items-center justify-between rounded-md p-1 hover:bg-[#F5F5F5] hover:text-teal-500"
+              key={item.id}
+            >
+              <div className="flex items-center">
+                <div className="mr-3 flex h-[50px] w-[50px]  items-center justify-center rounded-full bg-white p-2 shadow-md ">
+                  <img src={electronicIcon} alt="rasm" />
+                </div>
+                <span className="text-lg">{item?.name}</span>
+              </div>
+              <span>{">"}</span>
+            </div>
+            <div className="absolute left-[10%] top-[100px] h-[68px] border">
+              {item.childCategories.map((item) => (
+                <div>{item.name}</div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div> */
+}

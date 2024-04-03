@@ -1,16 +1,19 @@
 /* eslint-disable react/no-unescaped-entities */
 import { FaEye } from "react-icons/fa";
+import useMainProducts from "../../hooks/products/useMainProducts";
 export default function ProductAbout({ data }) {
+  const { productgetWithId } = useMainProducts();
   return (
     <div className="">
       <div className="my-6 flex items-center justify-between">
         <div className="flex items-center gap-x-4">
           <span className="text-xs font-normal text-[#959EA7]">
-            {data.productTitle}
+            {productgetWithId.districtDto?.name} |{" "}
+            {productgetWithId.districtDto?.regionDto?.name}
           </span>
           <div className="h-1 w-1 rounded-full bg-[#959EA7]"></div>
           <span className="text-xs font-normal text-[#959EA7]">
-            {data.productTimeStamps}
+            {productgetWithId.productTimeStamps}
           </span>
         </div>
         <div className="relative flex items-center gap-x-4">
@@ -53,11 +56,13 @@ export default function ProductAbout({ data }) {
         </div>
       </div>
       <div className="mb-6 flex w-full flex-col gap-y-5">
-        <h1 className="text-2xl font-normal text-black">{data.productTitle}</h1>
+        <h1 className="text-2xl font-normal text-black">
+          {productgetWithId.name}
+        </h1>
         <h5 className="text-xl font-semibold text-black">
-          {data.productPrice}
+          {productgetWithId.price}
           <span className="text-xs font-normal text-[#959EA7]">
-            bo'lib to'lashga{" "}
+            bo'lib to'lashga
           </span>
         </h5>
       </div>
@@ -165,18 +170,15 @@ export default function ProductAbout({ data }) {
           Qisqacha ma’lumot
         </h3>
         <p className="text-foreground font-poppins text-[16px] font-normal leading-[30px]">
-          A14 Bionic - 5nm texnologiyasida ishlab chiqarilgan birinchi iPhone
-          protsessori. Uning rivojlangan ichki qismlari atomlarning kattaligiga
-          teng. Unda 40% ko'proq tranzistor mavjud, shuning uchun protsessor
-          tezroq ishlaydi va shu bilan birga batareyaning quvvatini yanada
-          tejamkor saqlaydi. Va yangi signal
+          {productgetWithId.description}
         </p>
       </div>
       <div className="mb-5 mt-10 h-[1px] w-full bg-[#DFE2E5]"></div>
       <div className="text text-[#959EA7 ] text flex justify-between font-poppins text-[14px] font-normal leading-[100%] text-[#959EA7]">
-        <span>E'lon raqami 6239</span>
+        <span>E'lon raqami </span>
         <span className="flex items-center justify-center">
-          Ko’rganlar: <FaEye className="ml-2 mr-2" /> 412
+          Ko’rganlar: <FaEye className="ml-2 mr-2" />{" "}
+          {productgetWithId.viewCount}
         </span>
       </div>
     </div>

@@ -1,35 +1,19 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect } from "react";
 import { BreadCrumbs } from "../components/breadcrumbs/BreadCrambs";
 import ProductAbout from "../components/details/ProductAbout";
 import ProductImage from "../components/details/ProductImage";
+import useMainProducts from "../hooks/products/useMainProducts";
 import Container from "../shared/Container";
 
 export default function Details() {
-  const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const { productgetWithId, isLoading } = useMainProducts();
   const scrollToTop = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
   useEffect(() => {
     scrollToTop();
   }, []);
-  const { id } = useParams();
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await axios.get(
-          `https://ecb611a2cbdacfd0.mokky.dev/tests/${id}`,
-        );
-        setData(response.data);
-      } catch (error) {
-        console.error("Error fetching history:", error);
-      }
-    };
-    getData();
-    setIsLoading(false);
-  }, []);
+
   return (
     <Container>
       <BreadCrumbs />
@@ -37,10 +21,10 @@ export default function Details() {
         <h1>data</h1>
         <div className="mb-[150px] mt-[56px] h-auto w-[790px] flex-shrink-0 border bg-[#fff] p-[30px]">
           <div className="mb-10">
-            <ProductImage data={data} isLoading={isLoading} />
+            <ProductImage data={productgetWithId} isLoading={isLoading} />
           </div>
           <hr className="mb-6" />
-          <ProductAbout data={data} isLoading={isLoading} />
+          <ProductAbout />
         </div>
         <aside className="ml-[30px] mt-[6rem] flex h-[262px] w-[350px] flex-col  gap-y-4 rounded-[5px] bg-[#F5F5F5]">
           <div className="flex flex-col items-center py-4">

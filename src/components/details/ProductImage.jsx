@@ -68,7 +68,7 @@ export default function ProductImage({ data }) {
               </button>
             </div>
             <div>
-              {data.productImg?.map((item, index) => (
+              {data?.productImg?.map((item, index) => (
                 <div
                   key={index}
                   className="h-[400px] w-[726px] "
@@ -106,7 +106,7 @@ export default function ProductImage({ data }) {
         ref={sliderRef}
         className="slide-scroll slider-imgs mb-3 mt-3 flex  items-center justify-center"
       >
-        {data.productImg?.map((item, index) => (
+        {data?.productImg?.map((item, index) => (
           <div
             key={index}
             className={`m-3 flex h-[121px] w-[153px]  items-center justify-center rounded-[10px] border border-[#C7C7C7]  p-3 px-3 py-3 hover:border-2 hover:border-[#90c049] ${

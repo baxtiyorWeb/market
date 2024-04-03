@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import { MdClose } from "react-icons/md";
 import CategoryTab from "../components/categoryTab/CategoryTab";
-import Container from "../shared/Container";
 
 export default function Categoriyes({ open, setOpen }) {
   const backgroundHidden = () => {
@@ -16,8 +15,8 @@ export default function Categoriyes({ open, setOpen }) {
       <div
         className={
           open
-            ? `scroll-wrapper fixed left-[10%] top-[21%] z-50 h-[100%] w-[80%] overflow-scroll bg-[#FAFAFA]  opacity-100 transition-all duration-100`
-            : "fixed left-[10%]  top-[150px] z-[-100] h-[0%]  w-[80%]  opacity-0 transition-all duration-300"
+            ? `scroll-wrapper absolute left-[-5%] top-[100%] z-50 h-[400px] w-[300px]  rounded-md bg-[#FFF]  opacity-100 shadow-xl transition-all duration-100`
+            : "absolute left-[-5%] top-[100%] z-[-100] h-[0%]  w-[300px]  opacity-0 transition-all duration-300"
         }
       >
         <div className="mb-10">
@@ -28,15 +27,9 @@ export default function Categoriyes({ open, setOpen }) {
             />
           )}
         </div>
-        <Container>
-          {open
-            ? backgroundHidden() || (
-                <div className="h-full w-full">
-                  <CategoryTab open={open} />
-                </div>
-              )
-            : setOpen(false) || backgroundUnset()}
-        </Container>
+        {open
+          ? backgroundHidden() || <CategoryTab open={open} />
+          : setOpen(false) || backgroundUnset()}
       </div>
     </div>
   );
