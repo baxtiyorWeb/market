@@ -1,7 +1,7 @@
 import "./loading.css";
 export default function Loading() {
   return (
-    <div className="w-full h-[100vh] z-[999999] fixed bg-[#FAFAFA] flex justify-center items-center top-0 left-0">
+    <div className="fixed left-0 top-0 z-[999999] flex h-[100vh] w-full items-center justify-center bg-[#fafafa5b]">
       <div className="loader"></div>
     </div>
   );

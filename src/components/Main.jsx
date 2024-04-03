@@ -1,31 +1,12 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
-import Loading from "../ui/loading/Loading";
 import Categoriyes from "./Categoriyes";
 import Slider from "./Slider";
 import Products from "./products/Products";
 
 // eslint-disable-next-line react/prop-types
 export default function Main({ scroll }) {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    setIsLoading(true);
-    axios
-      .get("https://mokky.dev/dashboard/projects/ecb611a2cbdacfd0")
-      .then((data) => {
-        console.log("ok");
-      });
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 500);
-  }, []);
-
   return (
     <div>
-      {isLoading ? <Loading /> : ""}
-
       <Categoriyes scroll={scroll} />
       <Slider />
       <div>

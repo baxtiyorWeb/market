@@ -1,6 +1,6 @@
-import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import api from "../../config/api/api";
 import SpinLoading from "../loading/spinLoading";
 
 export default function InputNumberDetector() {
@@ -12,28 +12,13 @@ export default function InputNumberDetector() {
   const registerPhoneOrPhone = async () => {
     try {
       setLoading(true);
-      const data = await axios.post(
-        `http://kelishamiz.uz/api/v1/authority/register-by-phone`,
-        null,
-        {
-          params: {
-            phone: phone,
-          },
-        },
-        {
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-            Cookie: "JSESSIONID=82B87CECDB8A7F72E042C79E8F0CC784",
-          },
-
-          method: "post",
-          maxBodyLength: Infinity,
-        },
+      const data = await api.post(
+        `http://95.130.227.131:8080/api/v1/authority/register-by-phone?phone=${phone}`,
       );
+      console.log(data);
       setPhone("");
       navigate("/auth/confirm");
-      localStorage.setItem("phone", phone);
-      console.log(data);
+      sessionStorage.setItem("phone", phone);
     } catch (error) {
       console.log(error.message);
     } finally {
@@ -58,9 +43,9 @@ export default function InputNumberDetector() {
               <input
                 type="text"
                 className="h-[50px] w-[80%] rounded-md p-3 outline-none"
-                placeholder="tel 99 999 99 99"
+                placeholder="tel 99 999 99 9s9"
                 onChange={(e) => setPhone(e.target.value)}
-                maxLength={9}
+                maxLength={35}
                 value={phone}
               />
             </div>

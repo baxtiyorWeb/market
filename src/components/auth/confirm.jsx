@@ -1,4 +1,6 @@
 import { useState } from "react";
+
+import axios from "axios";
 import SpinLoading from "../../ui/loading/spinLoading";
 
 export default function Confirm() {
@@ -6,23 +8,32 @@ export default function Confirm() {
   const [isLoading, setIsLoading] = useState(false);
   const confimCodeSMS = async () => {
     setIsLoading(true);
-    const data = await fetch(
-      `http://kelishamiz.uz/api/v1/authority/code-confirm`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          code: confirm,
-        }),
+    let data = JSON.stringify({
+      code: confirm,
+    });
+
+    let config = {
+      method: "post",
+      maxBodyLength: Infinity,
+      url: "http://95.130.227.131:8080/api/v1/authority/code-confirm",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMmM1MWZjYy00ZDM3LTQwMDEtYjAxMy1jNDczZjgyMTdiNzEiLCJleHAiOjE3MTIxNTI1Mjl9.I8qZu9pboj20ex2C8Q04BPxNxxU8uBi9FvfBdqEKB8E",
+        Cookie: "JSESSIONID=288E57C0AE789328333E3E16C6868BDB",
       },
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      });
+      data: data,
+    };
+
+    async function makeRequest() {
+      try {
+        const response = await axios.request(config);
+        console.log(JSON.stringify(response.data));
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    makeRequest();
     setIsLoading(false);
   };
 

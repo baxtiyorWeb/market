@@ -1,10 +1,12 @@
 /* eslint-disable react/no-unescaped-entities */
 import { FaEye } from "react-icons/fa";
 import useMainProducts from "../../hooks/products/useMainProducts";
+import Loading from "../../ui/loading/Loading";
 export default function ProductAbout({ data }) {
-  const { productgetWithId } = useMainProducts();
+  const { productgetWithId, isLoading } = useMainProducts();
   return (
-    <div className="">
+    <div>
+      {isLoading ? <Loading /> : ""}
       <div className="my-6 flex items-center justify-between">
         <div className="flex items-center gap-x-4">
           <span className="text-xs font-normal text-[#959EA7]">
