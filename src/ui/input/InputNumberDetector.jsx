@@ -13,9 +13,9 @@ export default function InputNumberDetector() {
     try {
       setLoading(true);
       const data = await api.post(
-        `http://95.130.227.131:8080/api/v1/authority/register-by-phone?phone=${phone}`,
+        `http://95.130.227.131:8080/api/v1/authority/register-by-gmail?email=${phone}`,
       );
-      console.log(data);
+      console.log(data.data);
       setPhone("");
       navigate("/auth/confirm");
       sessionStorage.setItem("phone", phone);

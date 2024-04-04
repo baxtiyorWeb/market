@@ -1,40 +1,41 @@
 import { useState } from "react";
 
-import axios from "axios";
 import SpinLoading from "../../ui/loading/spinLoading";
-
 export default function Confirm() {
   const [confirm, setConfirm] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const confimCodeSMS = async () => {
     setIsLoading(true);
-    let data = JSON.stringify({
-      code: confirm,
-    });
+    try {
+      const res = await fetch(
+        "http://95.130.227.131:8080/api/v1/authority/code-confirm",
+        {
+          headers: {
+            accept: "*/*",
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            "content-type": "application/json",
+            headers: {
+              Cookie: "JSESSIONID",
+            },
+            "Access-Control-Allow-Origin": "*",
+          },
+          referrer: "http://95.130.227.131:8080/api/v1/",
+          referrerPolicy: "strict-origin-when-cross-origin",
 
-    let config = {
-      method: "post",
-      maxBodyLength: Infinity,
-      url: "http://95.130.227.131:8080/api/v1/authority/code-confirm",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMmM1MWZjYy00ZDM3LTQwMDEtYjAxMy1jNDczZjgyMTdiNzEiLCJleHAiOjE3MTIxNTI1Mjl9.I8qZu9pboj20ex2C8Q04BPxNxxU8uBi9FvfBdqEKB8E",
-        Cookie: "JSESSIONID=288E57C0AE789328333E3E16C6868BDB",
-      },
-      data: data,
-    };
+          body: JSON.stringify({
+            code: confirm,
+          }),
+          method: "POST",
+        },
+      );
 
-    async function makeRequest() {
-      try {
-        const response = await axios.request(config);
-        console.log(JSON.stringify(response.data));
-      } catch (error) {
-        console.log(error);
-      }
+      const Headers = res.headers.getSetCookie("JSESSIONID");
+      console.log(Headers);
+    } catch (error) {
+      throw new Error(`Error: ${error}`);
+    } finally {
+      setIsLoading(false);
     }
-    makeRequest();
-    setIsLoading(false);
   };
 
   return (
