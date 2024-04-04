@@ -1,6 +1,5 @@
-import { PlusOutlined } from "@ant-design/icons";
-import { Modal, Upload } from "antd";
 import React, { useState } from "react";
+import useFileUpload from "../hooks/products/useFileUpload";
 const getBase64 = (file) =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -8,67 +7,39 @@ const getBase64 = (file) =>
     reader.onload = () => resolve(reader.result);
     reader.onerror = (error) => reject(error);
   });
-export const FileUpload = ({ fileList, setFileList, fileUploadData }) => {
+export const FileUpload = ({ fileList, setFileList }) => {
+  const { fileUploadData, file, img } = useFileUpload();
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
   const [previewTitle, setPreviewTitle] = useState("");
-
-  const handleCancel = () => setPreviewOpen(false);
-  const handlePreview = async (file) => {
-    if (!file.url && !file.preview) {
-      file.preview = await getBase64(file.originFileObj);
-    }
-    setPreviewImage(file.url || file.preview);
-    setPreviewOpen(true);
-    setPreviewTitle(
-      file.name || file.url.substring(file.url.lastIndexOf("/") + 1),
-    );
+  const handleChange = (file) => {
+    fileUploadData(file);
+    const url = URL.createObjectURL(file);
+    setPreviewImage(url);
+    console.log(file);
   };
-  const handleChange = ({ fileList: newFileList }) =>
-    fileUploadData(newFileList);
-  const uploadButton = (
-    <button
-      style={{
-        border: 0,
-        width: "100%",
-        background: "none",
-      }}
-      type="button"
-    >
-      <PlusOutlined />
-      <div
-        style={{
-          marginTop: 8,
-        }}
-      >
-        Upload
-      </div>
-    </button>
-  );
+
   return (
     <>
-      <Upload
-        listType="picture-card"
-        onPreview={handlePreview}
-        onChange={handleChange}
-      >
-        {fileList.length >= 4 ? null : uploadButton}
-      </Upload>
-
-      <Modal
+      <input type="file" onChange={(e) => handleChange(e.target.files[0])} />
+      <img
+        alt="example"
+        style={{
+          width: "100%",
+        }}
+        src={`${previewImage}`}
+      />
+      {/* <button onClick={() => } className="h-[50px] w-[200px] border bg-blue-500" type="button">
+        upload
+      </button> */}
+      {/* <Modal
         open={previewOpen}
         title={previewTitle}
         footer={null}
         onCancel={handleCancel}
       >
-        <img
-          alt="example"
-          style={{
-            width: "100%",
-          }}
-          src={previewImage}
-        />
-      </Modal>
+        
+      </Modal> */}
     </>
   );
 };
