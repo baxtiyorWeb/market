@@ -1,5 +1,4 @@
 import api from "./../config/api/api";
-
 // get categories
 export const getCategories = async () => {
   const res = await api.get("/category/all");
@@ -23,5 +22,15 @@ export const registerLoginAndPassword = async (data) => {
       secretKey: secretKey,
     },
   });
+
+  localStorage.setItem("accessToken", res.data?.data?.tokenData?.accessToken);
+  localStorage.setItem("refreshToken", res.data?.data?.tokenData?.refreshToken);
+  window.location.href = "/profile";
+  return res.data;
+};
+
+export const getDistrict = async () => {
+  const res = await api.get("/district/all");
+  console.log(res.data);
   return res.data;
 };

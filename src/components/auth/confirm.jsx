@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/auth";
 import SpinLoading from "../../ui/loading/spinLoading";
 export default function Confirm() {
@@ -9,7 +8,6 @@ export default function Confirm() {
   const [open, setOpen] = useState(false);
   const { registerLoginAndPassword, setAuth, auth } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
   const data = {
     ...auth,
   };
