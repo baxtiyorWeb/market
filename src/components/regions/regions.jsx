@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import locationIcon from "../assets/location.svg";
-import useToggle from "../hooks/useToggle";
-import Overlay from "./Overlay";
+import locationIcon from "../../assets/location.svg";
+import useToggle from "../../hooks/useToggle";
+import Overlay from "./../../ui/Overlay";
 const options = [
   { label: "Surxondaryo" },
   { label: "Angor tumani" },
@@ -22,20 +22,11 @@ const options = [
   { label: "Uzun tumani" },
 ];
 
-export default function MyListbox() {
-  // const useToggle
-  const {
-    hideLocationMenu,
-    showLocationMenu,
-    handleCloseLocationMenu,
-    setText,
-    open,
-    text,
-    keyWithCloseElement,
-  } = useToggle();
-
+const Regions = () => {
   // other states function elements
   const [value, setValue] = useState("");
+
+  const { handleToggle, keyWithCloseElement, isOpen } = useToggle();
 
   // end function
 
@@ -45,21 +36,21 @@ export default function MyListbox() {
         className={
           "flex h-[50px] w-40 flex-shrink-0 items-center justify-between rounded-md bg-[#F4F4F4] p-1 text-center text-[#1D828E]"
         }
-        onClick={showLocationMenu}
+        onClick={handleToggle}
       >
         <img src={locationIcon} alt="" />
         <span className="text line-clamp-1 font-poppins  text-[18px] font-normal not-italic leading-[100%]">
-          {text ? text : "surxondaryo "}
+          {/* {text ? text : "surxondaryo "} */}
         </span>
       </button>
-      {open ? (
-        <Overlay closed={hideLocationMenu} closeKey={keyWithCloseElement} />
+      {isOpen ? (
+        <Overlay closed={handleToggle} closeKey={keyWithCloseElement} />
       ) : (
-        open
+        isOpen
       )}
       <ul
         className={
-          open
+          isOpen
             ? "fixed bottom-[-10px] left-[35%] z-[301]  h-[90%] w-[640px]  transform items-center overflow-scroll rounded-[10px] border bg-[#FFF] px-6 py-3 shadow-xl transition-all duration-500"
             : "fixed bottom-[-600px] left-[35%] z-[-100] h-[601px] w-[640px]   transition-all duration-500"
         }
@@ -86,4 +77,6 @@ export default function MyListbox() {
       </ul>
     </div>
   );
-}
+};
+
+export default Regions;

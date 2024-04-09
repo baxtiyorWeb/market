@@ -1,6 +1,5 @@
 import { Checkbox, Select, Switch } from "antd";
 import { useEffect, useState } from "react";
-import { FileUpload } from "../../ui/FileUpload";
 
 export default function LightCar() {
   const [value, setValue] = useState(false);
@@ -193,7 +192,7 @@ export default function LightCar() {
       </div>
       <div className="flex w-full items-center justify-start ">
         <div className="mb-10 w-full">
-          <FileUpload fileList={fileList} setFileList={setFileList} />
+          {/* <FileUpload fileList={fileList} setFileList={setFileList} /> */}
           <p className="text-right">
             {fileList.length === 0 ? (
               "4 tagacha rasm tanlang"

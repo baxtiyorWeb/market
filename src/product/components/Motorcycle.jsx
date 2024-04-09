@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import CheckBox from "../../ui/CheckBox";
-import { FileUpload } from "../../ui/FileUpload";
+import { Span } from "../../ui/Span";
 import SwitchedMode from "../../ui/SwitchedMode";
 import Action from "../../ui/actions/Action";
 import { Div } from "../../ui/div/div";
-import { Span } from "../../ui/Span";
 import Input from "../../ui/input/Input";
 import { TextArea } from "../../ui/input/TextArea";
 
@@ -62,7 +61,7 @@ export default function Motorcycle() {
       </Div>
       <div className="flex items-center justify-between">
         <Div className={"w-full"}>
-          <FileUpload fileList={fileList} setFileList={setFileList} />
+          {/* <FileUpload fileList={fileList} setFileList={setFileList} /> */}
           <p className="text-right">
             {fileList.length === 0 ? (
               "4 tagacha rasm tanlang"

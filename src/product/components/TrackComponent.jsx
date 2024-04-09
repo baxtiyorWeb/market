@@ -1,56 +1,10 @@
-import React, { useEffect, useState } from "react";
-import useFileUpload from "../../hooks/products/useFileUpload.js";
-import useData from "../../hooks/useData.js";
 import CheckBox from "../../ui/CheckBox.jsx";
-import { FileUpload } from "../../ui/FileUpload.jsx";
 import { Span } from "../../ui/Span.jsx";
 import SwitchedMode from "../../ui/SwitchedMode.jsx";
 import { Div } from "../../ui/div/div.jsx";
 import Input from "../../ui/input/Input.jsx";
 import { TextArea } from "../../ui/input/TextArea.jsx";
 const TrackComponent = () => {
-  const [fileList, setFileList] = useState("");
-  const { getCategoryData } = useData();
-  const { file, fileUpload, fileUploadData, setFile } = useFileUpload();
-  const [createProduct, setcreateProduct] = useState({
-    id: 0,
-    name: "",
-    price: 0,
-    canAgree: true,
-    description: "",
-    categoryId: 0,
-    districtId: 0,
-    address: "",
-    propertyValueForm: [
-      {
-        id: 0,
-        propertyId: 0,
-        valueTypeId: 0,
-        intValue: 0,
-        stringValue: "",
-        booleanValue: true,
-        doubleValue: 0,
-        dateValue: "",
-      },
-    ],
-    imageForm: [
-      {
-        id: 0,
-        image: "",
-        mainImage: true,
-      },
-    ],
-  });
-  console.log(file);
-
-  const data = {
-    ...createProduct,
-  };
-
-  useEffect(() => {
-    getCategoryData();
-  }, []);
-
   return (
     <div>
       <div className="flex items-center justify-between">
@@ -104,11 +58,6 @@ const TrackComponent = () => {
       </Div>
       <div className="flex items-center justify-between">
         <Div className={"w-full"}>
-          <FileUpload
-            fileList={file}
-            setFileList={setFile}
-            fileUploadData={fileUploadData}
-          />
           <p className="text-right">
             {fileList.length === 0 ? (
               "4 tagacha rasm tanlang"

@@ -10,8 +10,8 @@ import menuIcon from "../assets/menuIcon.svg";
 import plusIcon from "../assets/plusIcon.svg";
 import searchIcon from "../assets/searchIcon.svg";
 import Categoriyes from "../ui/Categoriyes";
-import MyListbox from "../ui/ListBox";
 import Navigation from "./logo/Navigation";
+import Regions from "./regions/regions";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -63,7 +63,7 @@ export default function Header() {
           </button>
           <Categoriyes open={open} setOpen={setOpen} scroll={scroll} />
           <div onClick={() => setOpen(false)} className="h-auto w-auto p-0  ">
-            <MyListbox opens={open} setOpens={setOpen} />
+            <Regions opens={open} setOpens={setOpen} />
           </div>
 
           <div

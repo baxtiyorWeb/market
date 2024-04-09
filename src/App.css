@@ -347,12 +347,12 @@
 }
 
 .tab-el-active {
-  @apply flex h-[45px] w-[155px] cursor-pointer  select-none items-center justify-center rounded-md border bg-white duration-500;
+  @apply flex h-[45px] w-[150px] cursor-pointer  select-none items-center justify-center rounded-md border bg-white duration-500;
 }
 .tab-icon {
-  @apply ml-1 mr-1 text-[22px];
+  @apply ml-1 mr-1 text-[20px];
 }
 
 .tab-el {
-  @apply flex h-[45px] w-[155px] cursor-pointer  select-none items-center justify-center rounded-md border bg-[#EBEBEB] text-[#545454] transition-all duration-500;
+  @apply flex h-[45px] w-[150px] cursor-pointer  select-none items-center justify-center rounded-md border bg-[#EBEBEB] text-[#545454] transition-all duration-500 hover:bg-white;
 }

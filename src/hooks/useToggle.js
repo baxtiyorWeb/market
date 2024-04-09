@@ -1,52 +1,28 @@
 import { useState } from "react";
 
-export default function useToggle() {
-  const [open, setOpen] = useState(false);
-  const [text, setText] = useState("");
+const useToggle = () => {
+  const [isOpen, setisOpen] = useState(false);
 
-  window.addEventListener("DOMContentLoaded", () => {});
-
-  const keyWithCloseElement = (e) => {
-    console.log("Escape");
-    if (e.code === "Escape") {
-      hideLocationMenu();
-    }
-  };
-
-  const handleCloseLocationMenu = (e) => {
-    hideLocationMenu();
-  };
-
-  const hideLocationMenu = () => {
-    setOpen(false);
-    document.body.style.overflow = "unset";
-  };
-
-  const hiddenBackground = () => {
-    if (typeof window != "undefined" && window.document) {
+  const handleToggle = () => {
+    if (isOpen === false) {
       document.body.style.overflow = "hidden";
+      setisOpen(!isOpen);
+    } else {
+      document.body.style.overflow = "unset";
+      setisOpen(!isOpen);
     }
   };
 
-  const unsetBackground = () => {
-    document.body.style.overflow = "unset";
+  const keyWithCloseElement = () => {
+    setisOpen(false);
   };
-
-  const showLocationMenu = () => {
-    setOpen(true);
-    if (typeof window != "undefined" && window.document) {
-      document.body.style.overflow = "hidden";
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      keyWithCloseElement();
     }
-  };
-  return {
-    hideLocationMenu,
-    showLocationMenu,
-    handleCloseLocationMenu,
-    hiddenBackground,
-    unsetBackground,
-    keyWithCloseElement,
-    setText,
-    text,
-    open,
-  };
-}
+  });
+
+  return { handleToggle, keyWithCloseElement, isOpen };
+};
+
+export default useToggle;

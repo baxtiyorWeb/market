@@ -1,11 +1,4 @@
-import { FaEye, FaHeart } from "react-icons/fa";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import { Carousel } from "react-responsive-carousel";
-import { Link } from "react-router-dom";
-import useMainProducts from "../../hooks/products/useMainProducts";
-import Loading from "../../ui/loading/Loading";
 const Products = () => {
-  const { mainProductsgetList, isLoading } = useMainProducts();
   return (
     <div className="mt-[40px] h-full w-full">
       <div>
@@ -13,7 +6,7 @@ const Products = () => {
           barcha mahsulotlar
         </h1>
       </div>
-      <div className="response_product_category grid grid-cols-4 gap-[29px]  ">
+      {/* <div className="response_product_category grid grid-cols-4 gap-[29px]  ">
         {isLoading ? (
           <Loading />
         ) : (
@@ -92,7 +85,7 @@ const Products = () => {
             </div>
           ))
         )}
-      </div>
+      </div> */}
       <div className="mb-[50px] mt-[50px] flex items-center justify-center">
         <button className="flex h-[50px] w-[328px] flex-shrink-0 items-center justify-center rounded-[5px] bg-[#1D828E] text-[#fff] ">
           <span className="font-medium not-italic leading-[100%] tracking-[-0.30px] ">
