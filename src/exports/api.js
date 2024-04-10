@@ -1,3 +1,5 @@
+import { message } from "antd";
+import { useParams } from "react-router-dom";
 import api from "./../config/api/api";
 // get categories
 export const getCategories = async () => {
@@ -8,7 +10,10 @@ export const getCategories = async () => {
 // Create Read products
 
 export const createCategories = async (data) => {
-  const res = await api.post("/category", data);
+  console.log(data);
+  const res = await api.post("/category", data, {
+    headers: { "Content-Type": "application/json" },
+  });
   return res.data;
 };
 
@@ -29,8 +34,47 @@ export const registerLoginAndPassword = async (data) => {
   return res.data;
 };
 
-export const getDistrict = async () => {
-  const res = await api.get("/district/all");
-  console.log(res.data);
+export const getDistrict = async (id) => {
+  const res = await api.get(`/district/all/${id}`);
+  return res.data;
+};
+
+export const getCategoryPropertiesId = async (id) => {
+  const res = await api.get(`/category/properties/${id}`);
+  return res.data;
+};
+
+export const getProducts = async () => {
+  const res = await api.get("/product/list?page=0&size=50");
+  return res.data;
+};
+
+export const getProductId = async () => {
+  const { id } = useParams();
+  const res = await api.get(`/product/${id}`);
+  return res.data;
+};
+
+export const createProduct = async (data) => {
+  const res = await api.post("/product", data, {
+    headers: { "Content-Type": "application/json" },
+  });
+  console.log(res.data?.data);
+  message.success("product qo'shildi");
+  return res.data;
+};
+
+export const fileUplaodLoadedData = async (data) => {
+  const res = await api.post(
+    `/file/upload`,
+    {
+      file: data,
+    },
+    {
+      headers: { "Content-Type": "multipart/form-data" },
+    },
+  );
+  console.log(res.data?.data);
+  message.success("rasm yuklandi");
   return res.data;
 };

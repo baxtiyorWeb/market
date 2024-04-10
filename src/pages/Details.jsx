@@ -1,12 +1,9 @@
 import { useEffect } from "react";
 import { BreadCrumbs } from "../components/breadcrumbs/BreadCrambs";
 import ProductAbout from "../components/details/ProductAbout";
-import ProductImage from "../components/details/ProductImage";
-import useMainProducts from "../hooks/products/useMainProducts";
 import Container from "../shared/Container";
 
 export default function Details() {
-  const { productgetWithId, isLoading } = useMainProducts();
   const scrollToTop = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
@@ -20,9 +17,7 @@ export default function Details() {
       <div className={"flex justify-between"}>
         <h1>data</h1>
         <div className="mb-[150px] mt-[56px] h-auto w-[790px] flex-shrink-0 border bg-[#fff] p-[30px]">
-          <div className="mb-10">
-            <ProductImage data={productgetWithId} isLoading={isLoading} />
-          </div>
+          <div className="mb-10"></div>
           <hr className="mb-6" />
           <ProductAbout />
         </div>

@@ -8,6 +8,7 @@ const useCategories = () => {
   });
   const categories = data?.data;
   console.log(categories);
+
   return { categories, isLoading };
 };
 

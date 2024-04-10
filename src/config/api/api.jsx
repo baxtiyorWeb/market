@@ -5,6 +5,7 @@ export default axios.create({
   headers: {
     "ngrok-skip-browser-warning": true,
     Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+    SecretKey: `${localStorage.getItem("secretKey")}`,
   },
 });
 
