@@ -1,49 +1,27 @@
 // Import Swiper styles
 import { Image } from "antd";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 export default function ProductImage({ data }) {
   const [sliderIndex, setSliderIndex] = useState(1);
-  const [width, setWidth] = useState(0);
-  const [start, setStart] = useState(0);
-  const [change, setChange] = useState(0);
 
   const plusSlider = (n) => {
-    setSliderIndex((prev) => prev + n);
-    slideShow(sliderIndex + n);
-  };
-
-  useEffect(() => {
-    if (!sliderRef.current) return;
-    const scrollWidth = sliderRef.current.scrollWidth;
-    const childrenElementCount = sliderRef.current.childElementCount;
-    const width = scrollWidth / childrenElementCount;
-    setWidth(width);
-    console.log({ scrollWidth, childrenElementCount, width });
-  }, []);
-
-  const slideShow = (n) => {
-    if (n > data.productImg.length) {
+    const newIndex = sliderIndex + n;
+    if (newIndex > data?.files?.length) {
       setSliderIndex(1);
-      console.log(n);
+    } else if (newIndex < 1) {
+      setSliderIndex(data?.files?.length);
+    } else {
+      setSliderIndex(newIndex);
+      // Animatsiya davomiyligi (0.5 s)
     }
-    if (n < 1) {
-      setSliderIndex(data.productImg.length);
-    }
-  };
-
-  const sliderRef = useRef();
-
-  const dragStart = (e) => {
-    setStart(e.clientX);
-  };
-  const dragOver = (e) => {
-    let touch = e.clientX;
-    setChange(start - touch);
-  };
-  const dragEnd = (e) => {
-    if (change > 0) {
-      sliderRef.current.scrollLeft += width;
-      console.log(width);
+    // Scroll to the active image
+    const activeElement = document.querySelector(".active-img");
+    if (activeElement) {
+      activeElement.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "start",
+      });
     }
   };
 
@@ -68,22 +46,24 @@ export default function ProductImage({ data }) {
               </button>
             </div>
             <div>
-              {data?.productImg?.map((item, index) => (
+              {data?.files?.map((item, index) => (
                 <div
                   key={index}
-                  className="h-[400px] w-[726px] "
+                  className={`slide-item h-[400px] w-[726px] ${
+                    index + 1 === sliderIndex ? "animate-slide" : ""
+                  }`}
                   style={{
-                    display: index + 1 === sliderIndex ? `flex` : `none`,
+                    display: index + 1 === sliderIndex ? "flex" : "none",
                     justifyContent: "center",
                     alignItems: "center",
                   }}
                 >
                   <Image
-                    src={item}
+                    src={`data:image/png;base64,${item.file?.fileBase64}`}
                     loading="lazy"
-                    width={"100%"}
-                    height={"400px"}
-                    className={"img-product border bg-center  "}
+                    width="100%"
+                    height="400px"
+                    className="img-product border bg-center"
                   />
                 </div>
               ))}
@@ -98,26 +78,19 @@ export default function ProductImage({ data }) {
     <div className="products-slide product-details overflow-hidden rounded-[10px] border">
       <SliderProduct />
 
-      <div
-        draggable={true}
-        onDragStart={dragStart}
-        onDragOver={dragOver}
-        onDragEnd={dragEnd}
-        ref={sliderRef}
-        className="slide-scroll slider-imgs mb-3 mt-3 flex  items-center justify-center"
-      >
-        {data?.productImg?.map((item, index) => (
+      <div className="col-span-1 mb-3 mt-3  grid grid-cols-10 gap-x-52 overflow-x-scroll">
+        {data?.files?.map((item, index) => (
           <div
             key={index}
-            className={`m-3 flex h-[121px] w-[153px]  items-center justify-center rounded-[10px] border border-[#C7C7C7]  p-3 px-3 py-3 hover:border-2 hover:border-[#90c049] ${
+            className={`m-3 ml-10 flex h-[180px] w-[200px] items-center justify-center rounded-[10px] border border-[#C7C7C7] p-3 hover:border-2 hover:border-[#90c049] ${
               index + 1 === sliderIndex && "active-img "
             }`}
             onClick={() => setSliderIndex(index + 1)}
           >
             <img
-              src={item}
+              src={`data:image/png;base64,${item.file?.fileBase64}`}
               alt=""
-              className={`h-[100%] w-[100%] cursor-pointer select-none  object-cover`}
+              className={`h-[160px] w-[200px] cursor-pointer select-none  object-cover`}
             />
           </div>
         ))}

@@ -1,5 +1,4 @@
 import { message } from "antd";
-import { useParams } from "react-router-dom";
 import api from "./../config/api/api";
 // get categories
 export const getCategories = async () => {
@@ -45,13 +44,7 @@ export const getCategoryPropertiesId = async (id) => {
 };
 
 export const getProducts = async () => {
-  const res = await api.get("/product/list?page=0&size=50");
-  return res.data;
-};
-
-export const getProductId = async () => {
-  const { id } = useParams();
-  const res = await api.get(`/product/${id}`);
+  const res = await api.get("/product/list?page=0&size=100");
   return res.data;
 };
 

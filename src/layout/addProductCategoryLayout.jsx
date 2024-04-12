@@ -1,9 +1,10 @@
 import { Checkbox, Switch } from "antd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Outlet, useSearchParams } from "react-router-dom";
 import {
   createProduct,
   fileUplaodLoadedData,
+  getCategories,
   getCategoryPropertiesId,
 } from "../exports/API";
 import useCategories from "../hooks/useCategories";
@@ -13,27 +14,11 @@ import Overlay from "../ui/Overlay";
 
 export default function AddProductCategory() {
   const [params, setParams] = useSearchParams();
-  const [fileList, setFileList] = useState();
+
+  const [fileList, setFileList] = useState([]);
+  const [propertiesData, setPropertiesData] = useState([]);
   const [queryName, setQueryName] = useState(params.get("categoryName") || "");
   const [queryId, setQueryId] = useState(params.get("categoryId") || "");
-  const [selectCategoryId, setSelectCategoryId] = useState([]);
-
-  const fielUplaod = (file) => {
-    const imgFile = new FormData();
-
-    imgFile.append("img", file);
-
-    const data = fileUplaodLoadedData(file);
-
-    data.then((res) => {
-      setProductInitData({
-        ...productInitData,
-        files: [
-          { id: 0, fileItemId: res?.data?.id, mainFile: true, deleted: false },
-        ],
-      });
-    });
-  };
 
   const [productInitData, setProductInitData] = useState({
     id: 0,
@@ -49,87 +34,138 @@ export default function AddProductCategory() {
     propertyValues: null,
     files: null,
   });
+  const [nextProductData, setNextProductData] = useState([{}]);
 
   const { handleToggle, isOpen } = useToggle();
   const { categories } = useCategories();
+
   const handleChoosen = async (name, id) => {
     try {
       const res = await getCategoryPropertiesId(id);
-      const categoryPropertyForms = res?.data?.map((item) => ({
-        id: 0,
-        propertyId: item.id,
-        valueTypeId: 3,
-        intValue: 0,
-        stringValue: "string",
-        booleanValue: true,
-        doubleValue: 0,
-        dateValue: "2024-04-10T10:34:22.917Z",
-      }));
-
       setParams({ categoryName: name, categoryId: id });
       setQueryName(name);
       setQueryId(id);
+      setNextProductData("");
+      // Combine the fetched properties with nextProductData
+      const combinedData = [...res?.data];
 
-      setSelectCategoryId(categoryPropertyForms);
-      console.log(categoryPropertyForms);
-      setProductInitData((prevData) => ({
-        ...prevData,
-        categoryId: id,
-        propertyValues: categoryPropertyForms,
-      }));
+      // Set propertiesData state
+      setPropertiesData(combinedData);
     } catch (error) {
       console.error("Xatolik sodir bo'ldi:", error);
     }
   };
-  function ChildCategories({ childrens }) {
-    return (
-      <div className="ml-3 border">
-        {childrens?.name}
-        <div className="border">
-          {childrens?.childCategories?.map((item) => (
-            <ul key={item.id}>
-              <li>
-                <ChildCategories
-                  onClick={() => handleChoosen(item?.name, item?.id)}
-                  childrens={item}
-                />
-              </li>
-            </ul>
-          ))}
-        </div>
-      </div>
-    );
-  }
-
-  function Category({ category }) {
-    return (
-      <div>
-        <p className="mb-5 text-xl font-medium text-[#1D828E]">
-          {category.name}
-        </p>
-        <div className="ml-3">
-          {category.childCategories.length > 0 && (
-            <ul>
-              {category.childCategories.map((child) => (
-                <li
-                  key={child.id}
-                  className="w-fit cursor-pointer text-sm text-gray-500 hover:underline"
-                  onClick={() => handleChoosen(child?.name, child?.id)}
-                >
-                  <ChildCategories childrens={child} />
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-      </div>
-    );
-  }
 
   const ProductFileUplaod = () => {
     return (
       <>
-        <input type="file" onChange={(e) => fielUplaod(e.target.files[0])} />
+        <input
+          type="file"
+          onChange={(e) => fielUplaod(e.target.files[0])}
+          multiple
+        />
+      </>
+    );
+  };
+
+  const fielUplaod = (file) => {
+    // Yangi FormData obyekti yaratiladi
+    const imgFile = new FormData();
+    // Tanlangan fayl img kalitiga joylashtiriladi
+    imgFile.append("img", file);
+
+    // Fayllarni array obyektiga o'zlashtirish
+    const data = fileUplaodLoadedData(file);
+    data.then((res) => {
+      // Fayl identifikatorini olish
+      const fileId = res?.data?.id;
+
+      // fileList ni yangilash
+      setFileList((prevFileList) => [
+        ...prevFileList,
+        {
+          id: 0, // Hozirgi faylning indeksi
+          fileItemId: fileId, // Fayl identifikatori
+          mainFile: prevFileList.length === 0, // Agar bu birinchi fayl bo'lsa
+          deleted: false,
+        },
+      ]);
+    });
+  };
+
+  const handleSubmit = async () => {
+    // Category tanlanganini olish
+    createProduct({
+      ...productInitData,
+      categoryId: queryId,
+      propertyValues: nextProductData,
+      files: fileList, // `fileList` yuborgan fayllar ro'yxati
+    });
+
+    // State yangilanadi
+    setProductInitData({
+      ...productInitData,
+      propertyValues: nextProductData,
+      files: fileList, // `fileList` yuborgan fayllar ro'yxati
+    });
+  };
+
+  const ChildCategories = ({ child }) => {
+    return (
+      <>
+        {child?.childCategories?.map((item, index) => (
+          <div key={index} className={`ml-${index * 10}`}>
+            <button
+              className={` w-fit cursor-pointer text-sm hover:underline`}
+              onClick={() => handleChoosen(item?.name, item?.id)}
+            >
+              {item?.name}
+            </button>
+
+            <ChildCategories child={item} />
+          </div>
+        ))}
+      </>
+    );
+  };
+
+  const SelectCategory = () => {
+    const [items, setItems] = useState([]);
+    const getCategoriesParentAndChildren = async () => {
+      const category = getCategories();
+      category.then((res) => {
+        setItems(res?.data);
+      });
+    };
+    useEffect(() => {
+      getCategoriesParentAndChildren();
+    }, []);
+
+    function childCategories(child) {
+      console.log(child?.childCategories);
+    }
+
+    return (
+      <>
+        {items?.map((item, index) => (
+          <div key={index}>
+            <button
+              onClick={() =>
+                item?.childCategories.length > 0
+                  ? childCategories(item)
+                  : handleChoosen(item?.name, item?.id)
+              }
+              className={
+                item?.childCategories?.length > 0
+                  ? ` mb-5 text-xl font-medium text-teal-600`
+                  : `w-fit cursor-pointer text-sm hover:underline`
+              }
+            >
+              {item?.name}
+            </button>
+            <ChildCategories child={item} />
+          </div>
+        ))}
       </>
     );
   };
@@ -159,9 +195,7 @@ export default function AddProductCategory() {
         {isOpen ? (
           <div className="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] fixed left-[50%] top-[50%]  z-[302] grid w-full max-w-5xl translate-x-[-50%] translate-y-[-50%] gap-4 border bg-[#FFFFFF] p-6 py-10 shadow-lg duration-200 sm:rounded-lg md:w-full">
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
-              {categories.map((category, index) => (
-                <Category key={index} category={category} />
-              ))}
+              <SelectCategory />
             </div>
           </div>
         ) : (
@@ -214,70 +248,69 @@ export default function AddProductCategory() {
         </div>
 
         <div className="grid grid-cols-3">
-          {selectCategoryId.map((item, index) => {
-            let inputComponent;
-
-            // Qiymat turiga qarab mos komponentni aniqlash
-            switch (item.valueTypeDto?.typeName.toLowerCase()) {
-              case "string":
-                inputComponent = (
-                  <input
-                    type="text"
-                    className="focus:border-[1px_solid_rgb(59 130 246)] mt-2 h-[50px] w-[334px] shrink-0 rounded-[5px] border border-[#E2E2E2] bg-[#FAFAFA] p-3 font-poppins text-[16px] outline-none"
-                    placeholder={item.name}
-                    value={item.stringValue} // Qiymatni massivdan olish
-                    onChange={(e) => {
-                      const value = e.target.value;
-                      const updatedProperties = [...selectCategoryId];
-                      updatedProperties[index].stringValue = value;
-                      setSelectCategoryId(updatedProperties);
-                    }}
-                  />
-                );
-                break;
-              case "boolean":
-                inputComponent = (
-                  <input
-                    type="checkbox"
-                    className="focus:border-[1px_solid_rgb(59 130 246)] mt-2 h-[50px] w-[334px] shrink-0 rounded-[5px] border border-[#E2E2E2] bg-[#FAFAFA] p-3 font-poppins text-[16px] outline-none"
-                    checked={item.booleanValue} // Qiymatni massivdan olish
-                    onChange={(e) => {
-                      const checked = e.target.checked;
-                      const updatedProperties = [...selectCategoryId];
-                      updatedProperties[index].booleanValue = checked;
-                      setSelectCategoryId(updatedProperties);
-                    }}
-                  />
-                );
-                break;
-              // Boshqa turdagi qiymatlar uchun kerakli komponentlarni qo'shing
-              default:
-                inputComponent = (
-                  <input
-                    type="text"
-                    className="focus:border-[1px_solid_rgb(59 130 246)] mt-2 h-[50px] w-[334px] shrink-0 rounded-[5px] border border-[#E2E2E2] bg-[#FAFAFA] p-3 font-poppins text-[16px] outline-none"
-                    placeholder={item.name}
-                    value={item.stringValue} // Qiymatni massivdan olish
-                    onChange={(e) => {
-                      const value = e.target.value;
-                      const updatedProperties = [...selectCategoryId];
-                      updatedProperties[index].stringValue = value;
-                      setSelectCategoryId(updatedProperties);
-                    }}
-                  />
-                );
-                break;
-            }
-
-            // Aniqlangan komponentni qaytarish
+          {propertiesData?.map((item, index) => {
             return (
-              <div className="mb-10 w-[334px]" key={index}>
-                <span className="text font-poppins text-[14px] font-normal leading-[22px] text-black">
-                  {item.name}
-                </span>
-                {inputComponent}
+              <div>
+                <div className="mb-10 w-[334px]">
+                  <span className="text font-poppins text-[14px] font-normal leading-[22px] text-black">
+                    {item?.name}
+                  </span>
+                  <input
+                    type="text"
+                    className="focus:border-[1px_solid_rgb(59 130 246)] mt-2 h-[50px] w-[334px] shrink-0 rounded-[5px] border border-[#E2E2E2] bg-[#FAFAFA] p-3 font-poppins text-[16px] outline-none"
+                    placeholder={item.name}
+                    value={
+                      nextProductData[index]?.stringValue ||
+                      "" ||
+                      nextProductData[index]?.intValue ||
+                      "" ||
+                      nextProductData[index]?.booleanValue ||
+                      "" ||
+                      nextProductData[index]?.dateValue ||
+                      ""
+                    } // Ensure stringValue exists and provide default value
+                    onChange={(e) => {
+                      const stringValue = e.target.value;
+                      let intValue = ""; // Odatiy qiymatlar
+                      let booleanValue = "";
+                      let doubleValue = "";
+                      let dateValue = "";
+
+                      // Propertyning value type'ini aniqlash
+                      const valueType =
+                        item?.propertyDto?.valueTypeDto?.name.toLowerCase();
+
+                      // Qiymat turiga qarab mos parametrlarni sozlash
+                      if (valueType === "number") {
+                        intValue = stringValue;
+                      } else if (valueType === "boolean") {
+                        booleanValue = stringValue.toLowerCase() === "true";
+                      } else if (valueType === "date") {
+                        dateValue = stringValue;
+                      } else if (valueType === "double") {
+                        doubleValue = stringValue;
+                      }
+
+                      const updatedData = [...nextProductData]; // Arrayni ko'chirib olish
+                      updatedData[index] = {
+                        ...updatedData[index],
+                        id: 0,
+                        propertyId: item.id,
+                        valueTypeId: item?.propertyDto?.valueTypeDto?.id || 3,
+                        stringValue,
+                        intValue,
+                        booleanValue,
+                        doubleValue,
+                        dateValue,
+                      }; // Massivdagi ma'lumotni yangilash
+                      setNextProductData(updatedData); // Holatni yangilash
+                    }}
+                  />
+                </div>
               </div>
             );
+
+            // Return the input component with its label
           })}
         </div>
 
@@ -380,7 +413,7 @@ export default function AddProductCategory() {
           <button
             className="ring-offset-background inline-flex h-11 items-center justify-center rounded-md bg-[#1d828e] px-8 text-[15px] font-medium text-white transition-colors duration-200 ease-in-out hover:bg-emerald-600 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
             type="submit"
-            onClick={() => createProduct(productInitData)}
+            onClick={() => handleSubmit()}
           >
             E’lonni yuklash
           </button>

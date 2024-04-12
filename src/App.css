@@ -1,113 +1,25 @@
-.slider-home .thumbs {
-  display: none !important;
-}
-.products-slide .thumb {
-  border: 2px solid #c7c7c7 !important ;
-  width: 152px !important;
-  height: 121px !important;
-  display: flex !important;
-  justify-content: space-between !important;
-  align-items: center;
-  position: relative !important;
-  border-radius: 10px;
-}
-.products-slide .thumb img {
-  border-radius: 0 !important;
-  width: 100%;
-  height: 100%;
+/* slider style  */
+@keyframes slideAnimation {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-.products-slide img {
-  border-radius: 10px !important;
+.slide-item {
+  animation: slideAnimation 0.5s ease; /* Animatsiya davomiyligi va uslubi */
 }
-.products-slide .thumbs {
-  position: relative;
-  display: flex !important;
-  justify-content: space-around !important;
-}
-.products-slide .thumbs-wrapper {
-  width: 100%;
-  position: relative;
-  right: 13px;
-}
-.products-slide .carousel-root {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-.products-slide .control-dots {
+.slide-imgs {
   width: 100% !important;
-  position: relative !important   ;
-  left: 0px;
-  top: 360px;
-}
-
-.products-slide .slide {
-  width: 300px !important;
-  height: 100% !important;
-}
-.products-slide .carousel {
-  width: 670px;
-}
-
-.products-slide .carousel-slider {
-  height: 400px;
-}
-.products-slide .slider {
-  position: absolute !important;
-  bottom: 10px;
-}
-
-.products-slide .thumb.selected {
-  border: 2px solid #a06f70 !important;
-}
-
-.control-arrow,
-.control-next {
-  width: 50px;
-  height: 50px;
-  border-radius: 100%;
-  position: absolute !important;
-  top: 45% !important;
-  background-color: rgba(128, 128, 128, 0.505) !important;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.slide-next-1 .control-arrow,
-.control-next {
-  width: 50px;
-  height: 50px;
-  border-radius: 100%;
-  position: absolute !important;
-  top: 45% !important;
-  background-color: rgba(128, 128, 128, 0.505) !important;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.slide-next-1 .thumbs {
-  display: none !important;
-}
-.cart-slider .css-1u9des2-indicatorSeparator {
-  display: none;
-}
-.css-17ekpuy-control {
-  outline: none;
-}
-
-.css-1nmdiq5-menu {
-  background: transparent !important;
-  border: none;
-  cursor: pointer !important;
-}
-
-.react-select__option {
-  background-color: transparent !important;
-  padding: 10px !important;
+  overflow: scroll;
+  transition: 0.3s ease;
+  background: blue;
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 2fr)); /* 10 ustunlik */
+  grid-auto-flow: column; /* Har bir elementni bir-biriga joylashtirish */
+  grid-gap: 10px;
 }
 
 /* antd design  */
@@ -166,8 +78,19 @@
   height: 194px !important;
 }
 .cart-slider .carousel {
-  width: 100%;
+  width: 100% !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: blue !important;
+}
+.cart-slider .carousel {
+  width: 100% !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: blue !important;
+  overflow: scroll !important;
 }
 .cart-slider .slider-wrapper {
   height: 194px !important  ;
@@ -289,7 +212,13 @@
 
 .slide-scroll {
   overflow-x: scroll;
+  transition: 0.3s ease;
   user-select: none;
+  background: blue;
+}
+
+.anticon {
+  z-index: 1000;
 }
 
 .slide-scroll::-webkit-scrollbar {
@@ -303,9 +232,9 @@
 .img-product {
   width: 100%;
   height: 400px;
+  transition: transform 0.3s ease-in-out;
   object-fit: contain;
   object-position: bottom;
-  user-select: none;
 }
 
 /* antd design add styles */

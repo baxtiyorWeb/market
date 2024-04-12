@@ -5,6 +5,7 @@ import Confirm from "./components/auth/confirm";
 import AddProductCategoryLayout from "./layout/addProductCategoryLayout";
 import AuthLayout from "./layout/authLayout";
 import Layout from "./layout/layout";
+import NotFound from "./pages/not-found";
 import Profile from "./pages/profile/Profile";
 import "./response.css";
 import Loading from "./ui/loading/Loading";
@@ -34,6 +35,14 @@ const App = () => {
             element={
               <React.Suspense fallback={<Loading />}>
                 <Home scroll={scroll} setScroll={setScroll} />
+              </React.Suspense>
+            }
+          />
+          <Route
+            path="*"
+            element={
+              <React.Suspense fallback={<Loading />}>
+                <NotFound scroll={scroll} setScroll={setScroll} />
               </React.Suspense>
             }
           />

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { FaEye, FaHeart } from "react-icons/fa";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
@@ -6,24 +6,12 @@ import { getProducts } from "../../exports/API";
 import Loading from "../../ui/loading/Loading";
 
 const Products = () => {
-  const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const productsList = getProducts();
-  const getProductList = () => {
-    try {
-      setIsLoading(true);
-      productsList.then((data) => setProducts(data?.data?.content));
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const { isLoading, error, data } = useQuery({
+    queryKey: ["product"],
+    queryFn: () => getProducts(),
+  });
 
-  useEffect(() => {
-    getProductList();
-  }, []);
-  console.log(products);
+  if (error) return "An error has occurred: " + error.message;
   return (
     <div className="mt-[40px] h-full w-full">
       <div>
@@ -35,7 +23,7 @@ const Products = () => {
         {isLoading ? (
           <Loading />
         ) : (
-          products?.map((item, index) => (
+          data?.data?.content?.map((item, index) => (
             <div
               className="h-[400px] w-[270px] flex-shrink-0 overflow-hidden  rounded-md shadow-md"
               key={index}

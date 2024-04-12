@@ -1,9 +1,15 @@
 import { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { BreadCrumbs } from "../components/breadcrumbs/BreadCrambs";
 import ProductAbout from "../components/details/ProductAbout";
 import Container from "../shared/Container";
 
 export default function Details() {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  if (id === null) {
+    navigate("/");
+  }
   const scrollToTop = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };

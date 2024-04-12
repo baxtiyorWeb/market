@@ -1,56 +1,29 @@
 /* eslint-disable react/no-unescaped-entities */
-import { Carousel } from "antd";
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { FaEye } from "react-icons/fa";
-import { getProductId } from "../../exports/API";
+import { useParams } from "react-router-dom";
+import api from "../../config/api/api";
 import Loading from "./../../ui/loading/Loading";
+import ProductImage from "./ProductImage";
 export default function ProductAbout() {
-  const [productgetIdData, setProductgetIdData] = useState();
-  const [isLoading, setIsLoading] = useState(false);
+  const { id } = useParams();
 
-  const data = getProductId();
-  const getProducts = () => {
-    try {
-      setIsLoading(true);
-      data.then((data) => setProductgetIdData(data?.data));
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-  console.log(productgetIdData);
-  useEffect(() => {
-    getProducts();
-  }, []);
+  const { isLoading, error, data } = useQuery({
+    queryKey: ["product"],
+    queryFn: () => api.get(`/product/${id}`),
+  });
+
   return (
-    <div>
+    <div className="w-full">
       {isLoading ? (
         <Loading />
       ) : (
         <>
-          <Carousel
-            emulateTouch
-            autoFocus
-            autoPlay
-            transitionTime={300}
-            infiniteLoop
-            swipeable
-            showIndicators={true}
-            showStatus={false}
-          >
-            <div className="h-[400px] w-[100%] flex-shrink-0 rounded-[10px]">
-              <img
-                src={`data:image/png;base64,${productgetIdData?.category?.file?.fileBase64}`}
-                alt=""
-                className="h-[400px] w-full object-fill"
-              />
-            </div>
-          </Carousel>
+          <ProductImage data={data?.data?.data} />
           <div className="my-6 flex items-center justify-between">
             <div className="flex items-center gap-x-4">
               <span className="text-xs font-normal text-[#959EA7]">
-                {productgetIdData?.address}
+                {data?.data?.data?.address}
               </span>
               <div className="h-1 w-1 rounded-full bg-[#959EA7]"></div>
               <span className="text-xs font-normal text-[#959EA7]">
@@ -98,10 +71,10 @@ export default function ProductAbout() {
           </div>
           <div className="mb-6 flex w-full flex-col gap-y-5">
             <h1 className="text-2xl font-normal text-black">
-              {productgetIdData?.name}
+              {data?.data?.data?.name}
             </h1>
             <h5 className="text-xl font-semibold text-black">
-              {productgetIdData?.price}
+              {data?.data?.data?.price}
               <span className="text-xs font-normal text-[#959EA7]">
                 bo'lib to'lashga
               </span>
@@ -110,105 +83,24 @@ export default function ProductAbout() {
           <div className="mt-[27px] h-[1px] w-full bg-[#DFE2E5]"></div>
 
           <div className="mb-10 mt-8 flex flex-col gap-y-8">
-            <div className="flex items-center justify-between gap-x-3">
-              <span className="w-full">Holati</span>
+            {data?.data?.data?.propertyValues?.map((item, index) => (
               <div
-                data-orientation="horizontal"
-                role="none"
-                className="h-[1px] w-[430px] shrink-0 border border-dashed border-black/10 bg-transparent"
-              ></div>
-              <span className="w-full text-base font-medium text-black">
-                Zapchast uchun
-              </span>
-            </div>
-            <div className="flex items-center justify-between gap-x-3">
-              <span className="w-full">Xabarnomadan</span>
-              <div
-                data-orientation="horizontal"
-                role="none"
-                className="h-[1px] w-[430px] shrink-0 border border-dashed border-black/10 bg-transparent"
-              ></div>
-              <span className="w-full text-base font-medium text-black">
-                Jismoniy shaxs
-              </span>
-            </div>
-            <div className="flex items-center justify-between gap-x-3">
-              <span className="w-full">Hujjati</span>
-              <div
-                data-orientation="horizontal"
-                role="none"
-                className="h-[1px] w-[430px] shrink-0 border border-dashed border-black/10 bg-transparent"
-              ></div>
-              <span className="w-full text-base font-medium text-black">
-                512 GB
-              </span>
-            </div>
-            <div className="flex items-center justify-between gap-x-3">
-              <span className="w-full">Hujati bor</span>
-              <div
-                data-orientation="horizontal"
-                role="none"
-                className="h-[1px] w-[430px] shrink-0 border border-dashed border-black/10 bg-transparent"
-              ></div>
-              <span className="w-full text-base font-medium text-black">
-                512 GB
-              </span>
-            </div>
-            <div className="flex items-center justify-between gap-x-3">
-              <span className="w-full">Operatsion tizim</span>
-              <div
-                data-orientation="horizontal"
-                role="none"
-                className="h-[1px] w-[430px] shrink-0 border border-dashed border-black/10 bg-transparent"
-              ></div>
-              <span className="w-full text-base font-medium uppercase text-black">
-                IOS
-              </span>
-            </div>
-            <div className="flex items-center justify-between gap-x-3">
-              <span className="w-full">Xotira kartasi uyasi</span>
-              <div
-                data-orientation="horizontal"
-                role="none"
-                className="h-[1px] w-[430px] shrink-0 border border-dashed border-black/10 bg-transparent"
-              ></div>
-              <span className="w-full text-base font-medium text-black">
-                Bor
-              </span>
-            </div>
-            <div className="flex items-center justify-between gap-x-3">
-              <span className="w-full">SIM-karta soni</span>
-              <div
-                data-orientation="horizontal"
-                role="none"
-                className="h-[1px] w-[430px] shrink-0 border border-dashed border-black/10 bg-transparent"
-              ></div>
-              <span className="w-full text-base font-medium text-black">
-                2 SIM kartali
-              </span>
-            </div>
-            <div className="flex items-center justify-between gap-x-3">
-              <span className="w-full">IMEI kodini ro’yxatdan o’tqazish</span>
-              <div
-                data-orientation="horizontal"
-                role="none"
-                className="h-[1px] w-[430px] shrink-0 border border-dashed border-black/10 bg-transparent"
-              ></div>
-              <span className="w-full text-base font-medium text-black">
-                Ro’yxatdan o’tgan
-              </span>
-            </div>
-            <div className="flex items-center justify-between gap-x-3">
-              <span className="w-full">Batareya xolati %</span>
-              <div
-                data-orientation="horizontal"
-                role="none"
-                className="h-[1px] w-[430px] shrink-0 border border-dashed border-black/10 bg-transparent"
-              ></div>
-              <span className="w-full text-base font-medium text-black">
-                99%
-              </span>
-            </div>
+                className="flex items-center justify-between gap-x-3"
+                key={index}
+              >
+                <span className="w-full text-sm">
+                  {item?.propertyDto?.name}
+                </span>
+                <div
+                  data-orientation="horizontal"
+                  role="none"
+                  className="h-[1px] w-[430px] shrink-0 border border-dashed border-black/10 bg-transparent"
+                ></div>
+                <span className="w-full text-sm font-medium text-black">
+                  {item?.stringValue}
+                </span>
+              </div>
+            ))}
           </div>
           <div className="mt-10 flex w-full flex-col gap-y-5">
             <h3 className="text-[20px] font-semibold text-black">
