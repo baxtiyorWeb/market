@@ -1,12 +1,7 @@
 import React from "react";
 import { FaCog, FaRegHeart } from "react-icons/fa";
 import { IoSearchOutline } from "react-icons/io5";
-import { LuPackagePlus } from "react-icons/lu";
-import {
-  MdOutlineDashboard,
-  MdOutlineMail,
-  MdProductionQuantityLimits,
-} from "react-icons/md";
+import { MdOutlineDashboard, MdOutlineMail } from "react-icons/md";
 import { useSearchParams } from "react-router-dom";
 export default function UserTabs() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -26,20 +21,11 @@ export default function UserTabs() {
           <i className="tab-icon">
             <MdOutlineDashboard />
           </i>
-          <span>Dashboard</span>
-        </div>
-        <div
-          className={tab == 2 ? "tab-el-active" : "tab-el"}
-          onClick={() => tabs(2)}
-        >
-          <i className="tab-icon">
-            <LuPackagePlus />
-          </i>
-          <span>Reklamalarim</span>
+          <span>Productlarim</span>
         </div>
         <div
           className={tab == 3 ? "tab-el-active" : "tab-el"}
-          onClick={() => tabs(3)}
+          onClick={() => tabs(2)}
         >
           <i className="tab-icon">
             <IoSearchOutline />
@@ -48,7 +34,7 @@ export default function UserTabs() {
         </div>
         <div
           className={tab == 4 ? "tab-el-active" : "tab-el"}
-          onClick={() => tabs(4)}
+          onClick={() => tabs(3)}
         >
           <i className="tab-icon">
             <FaRegHeart />{" "}
@@ -56,17 +42,8 @@ export default function UserTabs() {
           <span>yoqtirganlarim</span>
         </div>
         <div
-          className={tab == 5 ? "tab-el-active" : "tab-el"}
-          onClick={() => tabs(5)}
-        >
-          <i className="tab-icon">
-            <MdProductionQuantityLimits />{" "}
-          </i>
-          <span>E&apos;lonlarim</span>
-        </div>
-        <div
           className={tab == 6 ? "tab-el-active" : "tab-el"}
-          onClick={() => tabs(6)}
+          onClick={() => tabs(4)}
         >
           <i className="tab-icon">
             {" "}
@@ -76,7 +53,7 @@ export default function UserTabs() {
         </div>
         <div
           className={tab == 7 ? "tab-el-active" : "tab-el"}
-          onClick={() => tabs(7)}
+          onClick={() => tabs(5)}
         >
           <i className="tab-icon">
             <FaCog />
@@ -87,24 +64,18 @@ export default function UserTabs() {
 
       <div>
         <div className={tab == 1 ? `tabs-active` : `tabs-none`}>
-          <h1>dashboard</h1>
+          <h1>Elonlarim</h1>
         </div>
         <div className={tab == 2 ? `tabs-active` : `tabs-none`}>
-          <h1>My Ads</h1>
-        </div>
-        <div className={tab == 3 ? `tabs-active` : `tabs-none`}>
           <h1>My Searches</h1>
         </div>
-        <div className={tab == 4 ? `tabs-active` : `tabs-none`}>
+        <div className={tab == 3 ? `tabs-active` : `tabs-none`}>
           <h1>My Favourites</h1>
         </div>
-        <div className={tab == 5 ? `tabs-active` : `tabs-none`}>
-          <h1>My Products</h1>
-        </div>
-        <div className={tab == 6 ? `tabs-active` : `tabs-none`}>
+        <div className={tab == 4 ? `tabs-active` : `tabs-none`}>
           <h1>Messages</h1>
         </div>
-        <div className={tab == 7 ? `tabs-active` : `tabs-none`}>
+        <div className={tab == 5 ? `tabs-active` : `tabs-none`}>
           <h1>Settings</h1>
         </div>
       </div>

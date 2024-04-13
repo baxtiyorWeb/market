@@ -1,16 +1,15 @@
-import { useQuery } from "@tanstack/react-query";
 import { FaEye, FaHeart } from "react-icons/fa";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
-import { getProducts } from "../../exports/API";
+import useProducts from "../../hooks/useProducts";
 import Loading from "../../ui/loading/Loading";
 
 const Products = () => {
-  const { isLoading, error, data } = useQuery({
-    queryKey: ["product"],
-    queryFn: () => getProducts(),
-  });
-
+  const { data, error, isLoading, setPage, page, size } = useProducts();
+  const numbers = Array.from(
+    { length: data?.data?.data?.totalElements / size },
+    (_, index) => index + 1,
+  );
   if (error) return "An error has occurred: " + error.message;
   return (
     <div className="mt-[40px] h-full w-full">
@@ -23,7 +22,7 @@ const Products = () => {
         {isLoading ? (
           <Loading />
         ) : (
-          data?.data?.content?.map((item, index) => (
+          data?.data?.data?.content?.map((item, index) => (
             <div
               className="h-[400px] w-[270px] flex-shrink-0 overflow-hidden  rounded-md shadow-md"
               key={index}
@@ -85,6 +84,43 @@ const Products = () => {
             </div>
           ))
         )}
+      </div>
+      <div className="flex items-center justify-center">
+        <button
+          onClick={() => {
+            setPage((index) => index - 1);
+          }}
+          disabled={page === 0}
+        >
+          prev
+        </button>
+        {/* {data?.data?.data?.content?.map((item, index = 1) => (
+          
+        ))} */}
+
+        {numbers.map((item, index) => (
+          <span
+            onClick={() => setPage(index)}
+            className={
+              page === index
+                ? "m-1 cursor-pointer border px-5 py-3 text-teal-500"
+                : "m-1 cursor-pointer border px-5 py-3 text-red-500" ||
+                    page > index
+                  ? "m-1 cursor-pointer border px-5 py-3 text-red-500"
+                  : "text-500-500 m-1 cursor-pointer border px-5 py-3"
+            }
+          >
+            {index}
+          </span>
+        ))}
+        <button
+          onClick={() => {
+            setPage((index) => index);
+          }}
+          disabled={page === numbers.length}
+        >
+          next
+        </button>
       </div>
       <div className="mb-[50px] mt-[50px] flex items-center justify-center">
         <button className="flex h-[50px] w-[328px] flex-shrink-0 items-center justify-center rounded-[5px] bg-[#1D828E] text-[#fff] ">

@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import { MdClose } from "react-icons/md";
 import { Link } from "react-router-dom";
 import menuIcon from "../assets/menuIcon.svg";
-import plusIcon from "../assets/plusIcon.svg";
 import searchIcon from "../assets/searchIcon.svg";
 import Categoriyes from "../ui/Categoriyes";
 import Navigation from "./logo/Navigation";
@@ -80,13 +79,13 @@ export default function Header() {
             </button>
           </div>
           <Link
-            to="/product-form/add-product"
-            className="flex h-[50px] w-[160px] flex-shrink-0 items-center justify-between rounded-[5px] border border-[#1D828E] p-[30px] py-4 text-[#1D828E]"
+            to="/auth/login"
+            className="flex h-[50px] w-[160px] flex-shrink-0 items-center justify-around rounded-[5px] border border-[#1D828E] p-[30px] py-4 text-[#1D828E]"
             onClick={() => setOpen(false)}
           >
-            <img src={plusIcon} alt="" />
+            {/* <img src={plusIcon} alt="" /> */}
             <span className="font-poppins text-[18px] font-normal not-italic leading-[100%]">
-              Qo’shish
+              Kirish
             </span>
           </Link>
         </div>

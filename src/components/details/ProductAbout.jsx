@@ -115,7 +115,7 @@ export default function ProductAbout() {
             <span>E'lon raqami </span>
             <span className="flex items-center justify-center">
               Ko’rganlar: <FaEye className="ml-2 mr-2" />{" "}
-              {/* {productgetWithId.viewCount} */}s
+              {/* {productgetWithId?.viewCount} */}
             </span>
           </div>
         </>

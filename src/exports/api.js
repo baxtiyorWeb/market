@@ -18,7 +18,6 @@ export const createCategories = async (data) => {
 
 export const registerLoginAndPassword = async (data) => {
   const secretKey = localStorage.getItem("secretKey");
-  console.log(secretKey);
   const res = await api.post("/authority/register-login-password", data, {
     headers: {
       "Content-Type": "application/json",
@@ -29,7 +28,6 @@ export const registerLoginAndPassword = async (data) => {
 
   localStorage.setItem("accessToken", res.data?.data?.tokenData?.accessToken);
   localStorage.setItem("refreshToken", res.data?.data?.tokenData?.refreshToken);
-  window.location.href = "/profile";
   return res.data;
 };
 
@@ -43,8 +41,9 @@ export const getCategoryPropertiesId = async (id) => {
   return res.data;
 };
 
-export const getProducts = async () => {
-  const res = await api.get("/product/list?page=0&size=100");
+export const getProducts = async (page, size) => {
+  const res = await api.get(`/product/list?page=${page}&size=${size}`);
+  console.log(page, size);
   return res.data;
 };
 

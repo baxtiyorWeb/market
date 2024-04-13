@@ -6,6 +6,25 @@
   font-family: "Poppins", sans-serif;
 }
 
-html{
-  background: #FAFAFA;
+html {
+  background: #fafafa;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.ant-input:hover {
+  box-shadow: 0 0 0 0 !important;
+  border: 1px solid gray !important;
+}
+.ant-input:focus {
+  box-shadow: none !important;
+  border: 1px solid gray !important;
+}
+.ant-input:focus-within {
+  box-shadow: 0 0 0 0 !important;
+  border: 1px solid gray !important;
 }

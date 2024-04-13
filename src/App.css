@@ -285,3 +285,8 @@
 .tab-el {
   @apply flex h-[45px] w-[150px] cursor-pointer  select-none items-center justify-center rounded-md border bg-[#EBEBEB] text-[#545454] transition-all duration-500 hover:bg-white;
 }
+
+.adjust_button_hover_drawer.ant-btn:hover {
+  border-color: white !important;
+  background: #fff !important;
+}

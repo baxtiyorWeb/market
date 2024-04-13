@@ -113,7 +113,7 @@ export default function AddProductCategory() {
   const ChildCategories = ({ child }) => {
     return (
       <>
-        {child?.childCategories?.map((item, index) => (
+        {child?.childCategories?.map((item, index = 1) => (
           <div key={index} className={`ml-${index * 10}`}>
             <button
               className={` w-fit cursor-pointer text-sm hover:underline`}
@@ -193,7 +193,7 @@ export default function AddProductCategory() {
         </div>
         {isOpen ? <Overlay closed={handleToggle} /> : isOpen}
         {isOpen ? (
-          <div className="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] fixed left-[50%] top-[50%]  z-[302] grid w-full max-w-5xl translate-x-[-50%] translate-y-[-50%] gap-4 border bg-[#FFFFFF] p-6 py-10 shadow-lg duration-200 sm:rounded-lg md:w-full">
+          <div className="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] fixed left-[50%] top-[50%] z-[302] grid w-full max-w-5xl translate-x-[-50%] translate-y-[-50%] gap-4 border bg-[#FFFFFF] p-6 py-10 shadow-lg duration-200 sm:rounded-lg md:w-full">
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
               <SelectCategory />
             </div>
