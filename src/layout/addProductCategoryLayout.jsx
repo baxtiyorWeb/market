@@ -50,7 +50,7 @@ export default function AddProductCategory() {
       // Set propertiesData state
       setPropertiesData(combinedData);
     } catch (error) {
-      console.error("Xatolik sodir bo'ldi:", error);
+      console.error("Xatolik sodir  bo'ldi:", error);
     }
   };
 
