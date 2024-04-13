@@ -6,8 +6,7 @@ import {
   fileUplaodLoadedData,
   getCategories,
   getCategoryPropertiesId,
-} from "../exports/API";
-import useCategories from "../hooks/useCategories";
+} from "../exports/api";
 import useToggle from "../hooks/useToggle";
 import Container from "../shared/Container";
 import Overlay from "../ui/Overlay";
@@ -37,7 +36,6 @@ export default function AddProductCategory() {
   const [nextProductData, setNextProductData] = useState([{}]);
 
   const { handleToggle, isOpen } = useToggle();
-  const { categories } = useCategories();
 
   const handleChoosen = async (name, id) => {
     try {
