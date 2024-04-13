@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { registerLoginAndPassword } from "../exports/API";
+import { registerLoginAndPassword } from "../exports/api";
 
 const useAuth = () => {
   const navigate = useNavigate();
