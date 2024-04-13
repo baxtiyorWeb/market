@@ -9,9 +9,11 @@ export default function ProductAbout() {
   const { id } = useParams();
 
   const { isLoading, error, data } = useQuery({
-    queryKey: ["product"],
+    queryKey: ["product", id],
     queryFn: () => api.get(`/product/${id}`),
   });
+
+  if (error) return "error: " + error;
 
   return (
     <div className="w-full">
@@ -20,7 +22,7 @@ export default function ProductAbout() {
       ) : (
         <>
           <ProductImage data={data?.data?.data} />
-          <div className="my-6 flex items-center justify-between">
+          <div className="my-6 flex  items-center justify-between">
             <div className="flex items-center gap-x-4">
               <span className="text-xs font-normal text-[#959EA7]">
                 {data?.data?.data?.address}

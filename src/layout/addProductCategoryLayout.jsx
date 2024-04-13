@@ -275,7 +275,7 @@ export default function AddProductCategory() {
                       ""
                     } // Ensure stringValue exists and provide default value
                     onChange={(e) => {
-                      const stringValue = e.target.value;
+                      let stringValue = e.target.value;
                       let intValue = ""; // Odatiy qiymatlar
                       let booleanValue = "";
                       let doubleValue = "";

@@ -1,105 +1,48 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { getCategories } from "../../exports/api";
+const CategoryTab = () => {
+  const [category, setCategory] = useState([]);
 
-const Category = ({ category }) => {
-  const [selectedCategory, setSelectedCategory] = useState(null);
-
-  const handleCategorySelect = (selectedCategoryId) => {
-    setSelectedCategory(selectedCategoryId);
+  const res = getCategories();
+  const getCateg = async () => {
+    const data = await res.then((item) => item);
+    setCategory(data?.data);
   };
 
-  const renderChildCategories = (categories) => {
+  useEffect(() => {
+    getCateg();
+  }, []);
+  // Bu sizning ma'lumotlaringiz
+  const Menu = ({ data }) => {
     return (
-      <ul>
-        {categories.map((childCategory) => (
-          <li
-            key={childCategory.id}
-            onClick={() => handleCategorySelect(childCategory.id)}
-          >
-            {childCategory.name}
-            {selectedCategory === childCategory.id &&
-              childCategory.childCategories &&
-              childCategory.childCategories.length > 0 &&
-              renderChildCategories(childCategory.childCategories)}
-          </li>
+      <ul className="menu">
+        {data?.map((category) => (
+          <MenuItem key={category.id} category={category} />
         ))}
       </ul>
     );
   };
 
-  return (
-    <div>
-      <h2>Parent Categories:</h2>
-      <ul>
-        {category.map((parentCategory) => (
-          <li
-            key={parentCategory.id}
-            onClick={() => handleCategorySelect(parentCategory.id)}
-          >
-            {parentCategory.name}
-            {selectedCategory === parentCategory.id &&
-              parentCategory.childCategories &&
-              parentCategory.childCategories.length > 0 &&
-              renderChildCategories(parentCategory.childCategories)}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-};
-
-const CategoryTab = () => {
-  // Bu sizning ma'lumotlaringiz
-  const data = [
-    {
-      id: 10,
-      name: "Transport",
-      childCategories: [
-        {
-          id: 12,
-          name: "Car",
-          childCategories: [
-            {
-              id: 20,
-              name: "Electric Car",
-              childCategories: [],
-            },
-            {
-              id: 21,
-              name: "Hybrid Car",
-              childCategories: [
-                {
-                  id: 30,
-                  name: "Plug-in Hybrid",
-                  childCategories: [],
-                },
-              ],
-            },
-          ],
-        },
-        {
-          id: 13,
-          name: "Bike",
-          childCategories: [],
-        },
-      ],
-    },
-    {
-      id: 14,
-      name: "Truck",
-      childCategories: [
-        {
-          id: 15,
-          name: "Kamaz",
-          childCategories: [],
-        },
-      ],
-    },
-  ];
+  const MenuItem = ({ category }) => {
+    return (
+      <li>
+        <span className="category-name">{category.name}</span>
+        {category?.childCategories.length > 0 && (
+          <ul>
+            {category.childCategories.map((childCategory) => (
+              <MenuItem key={childCategory.id} category={childCategory} />
+            ))}
+          </ul>
+        )}
+      </li>
+    );
+  };
 
   return (
     <div>
-      <h1>Category Tree</h1>
-      <Category category={data} />
+      <div>
+        <Menu data={category} />
+      </div>
     </div>
   );
 };
