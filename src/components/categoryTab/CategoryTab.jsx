@@ -1,86 +1,105 @@
-import { useEffect, useState } from "react";
-import api from "./../../config/api/api";
+import React, { useState } from "react";
 
-const CategoryTab = () => {
-  const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [open, setOpen] = useState(false);
-  const getCategory = async () => {
-    try {
-      setLoading(true);
-      const res = await api.get("/category/all");
-      const data = res.data;
-      setItems(data?.data);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
+const Category = ({ category }) => {
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
+  const handleCategorySelect = (selectedCategoryId) => {
+    setSelectedCategory(selectedCategoryId);
   };
 
-  useEffect(() => {
-    getCategory();
-  }, []);
-
-  const findCategoryById = (categoryId, data) => {
-    for (let item of data) {
-      if (item.id === categoryId) {
-        return item;
-      }
-      if (item.childCategories.length > 0) {
-        const found = findCategoryById(categoryId, item.childCategories);
-        if (found) return found;
-      }
-    }
-    return null;
+  const renderChildCategories = (categories) => {
+    return (
+      <ul>
+        {categories.map((childCategory) => (
+          <li
+            key={childCategory.id}
+            onClick={() => handleCategorySelect(childCategory.id)}
+          >
+            {childCategory.name}
+            {selectedCategory === childCategory.id &&
+              childCategory.childCategories &&
+              childCategory.childCategories.length > 0 &&
+              renderChildCategories(childCategory.childCategories)}
+          </li>
+        ))}
+      </ul>
+    );
   };
 
-  const toggleMenu = (categoryId) => {
-    const category = findCategoryById(categoryId, items);
-    if (category) {
-      setSelectedCategory(category);
-      setOpen(!open);
-    }
-  };
-};
-// Child component to render dropdown menu
-const CategoryDropdown = ({ category, onSelect }) => {
   return (
     <div>
-      <ul className="relative flex h-[100%] w-[295px]  flex-col items-start justify-center">
-        {/* {items.map((item, index) => (
+      <h2>Parent Categories:</h2>
+      <ul>
+        {category.map((parentCategory) => (
           <li
-            className='hover:text-teal-500" flex h-[68px] w-full cursor-pointer items-center justify-between rounded-md p-1 hover:bg-[#F5F5F5]'
-            key={item.id}
+            key={parentCategory.id}
+            onClick={() => handleCategorySelect(parentCategory.id)}
           >
-            <div className="flex items-center justify-center">
-              <img
-                src={electronicIcon}
-                alt="rasm"
-                className="mr-3 flex h-[50px] w-[50px]  items-center justify-center rounded-full bg-white p-2 shadow-md "
-              />
-            </div>
-
-            <ul className="absolute right-[-150px] top-[-30px] w-[295px]">
-              {open &&
-                selectedCategory?.childCategories?.map((items, index) => (
-                  <li
-                    className='hover:text-teal-500" flex h-[68px] w-full cursor-pointer items-center justify-between rounded-md p-1 hover:bg-[#F5F5F5]'
-                    key={items.id}
-                  >
-                    <div className="flex items-center justify-center">
-                      <img
-                        src={electronicIcon}
-                        alt="rasm"
-                        className="mr-3 flex h-[50px] w-[50px]  items-center justify-center rounded-full bg-white p-2 shadow-md "
-                      />
-                    </div>
-                  </li>
-                ))}
-            </ul>
+            {parentCategory.name}
+            {selectedCategory === parentCategory.id &&
+              parentCategory.childCategories &&
+              parentCategory.childCategories.length > 0 &&
+              renderChildCategories(parentCategory.childCategories)}
           </li>
-        ))} */}
+        ))}
       </ul>
+    </div>
+  );
+};
+
+const CategoryTab = () => {
+  // Bu sizning ma'lumotlaringiz
+  const data = [
+    {
+      id: 10,
+      name: "Transport",
+      childCategories: [
+        {
+          id: 12,
+          name: "Car",
+          childCategories: [
+            {
+              id: 20,
+              name: "Electric Car",
+              childCategories: [],
+            },
+            {
+              id: 21,
+              name: "Hybrid Car",
+              childCategories: [
+                {
+                  id: 30,
+                  name: "Plug-in Hybrid",
+                  childCategories: [],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          id: 13,
+          name: "Bike",
+          childCategories: [],
+        },
+      ],
+    },
+    {
+      id: 14,
+      name: "Truck",
+      childCategories: [
+        {
+          id: 15,
+          name: "Kamaz",
+          childCategories: [],
+        },
+      ],
+    },
+  ];
+
+  return (
+    <div>
+      <h1>Category Tree</h1>
+      <Category category={data} />
     </div>
   );
 };

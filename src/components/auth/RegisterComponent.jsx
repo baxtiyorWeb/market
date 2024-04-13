@@ -49,14 +49,17 @@ export default function RegisterComponent() {
       <div></div>
       <div className="mt-10 flex h-full w-full flex-col items-center justify-center ">
         <span className="mb-3 w-full text-left">tel raqamingizni kiriting</span>
-        <Input
-          type="number"
-          placeholder="99 999 99 99"
-          onChange={(e) => setPhone(e.target.value)}
-          maxLength={9}
-          value={phone}
-          className="h-14 w-[328px] rounded-md p-3 text-xl outline-none"
-        />
+        <div className="w-full">
+          <span className="text-xl">+998</span>
+          <Input
+            type="number"
+            placeholder="99 999 99 99"
+            onChange={(e) => setPhone(e.target.value)}
+            maxLength={9}
+            value={phone}
+            className="h-14 w-[328px] rounded-md p-3 text-xl outline-none"
+          />
+        </div>
         {phone.length >= 10 ? (
           <span className="text-red-300">
             raqam {phone.length === 9 ? phone.length : 9} dan oshib ketdi

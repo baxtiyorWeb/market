@@ -3,7 +3,7 @@ import { Image } from "antd";
 import { useState } from "react";
 export default function ProductImage({ data }) {
   const [sliderIndex, setSliderIndex] = useState(1);
-
+  console.log(data);
   const plusSlider = (n) => {
     const newIndex = sliderIndex + n;
     if (newIndex > data?.files?.length) {
@@ -73,12 +73,13 @@ export default function ProductImage({ data }) {
       </>
     );
   };
-
   return (
     <div className="products-slide product-details overflow-hidden rounded-[10px] border">
       <SliderProduct />
 
-      <div className="col-span-1 mb-3 mt-3  grid grid-cols-10 gap-x-52 overflow-x-scroll">
+      <div
+        className={`col-span-1 mb-3 mt-3 grid grid-cols-${data?.files?.length} gap-x-52  overflow-x-scroll`}
+      >
         {data?.files?.map((item, index) => (
           <div
             key={index}

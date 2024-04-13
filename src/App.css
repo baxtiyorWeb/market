@@ -269,7 +269,7 @@
 /* tabs styled */
 
 .tabs-active {
-  @apply mt-6 block h-[40vh]  border;
+  @apply mt-6 block h-[100%] overflow-scroll  border;
 }
 .tabs-none {
   @apply hidden;

@@ -14,7 +14,6 @@ const Home = lazy(() => import("./pages/Home"));
 const Details = lazy(() => import("./pages/Details"));
 const AddProduct = lazy(() => import("./pages/AddProduct"));
 const Register = lazy(() => import("./pages/auth/Register"));
-const UserCreate = lazy(() => import("./components/auth/createUser/Register"));
 const Login = lazy(() => import("./pages/auth/Login"));
 const ProfileLayout = lazy(() => import("./layout/profileLayout"));
 
@@ -86,14 +85,6 @@ const App = () => {
             element={
               <React.Suspense fallback={<Loading />}>
                 <Register />
-              </React.Suspense>
-            }
-          ></Route>
-          <Route
-            path="/auth/create"
-            element={
-              <React.Suspense fallback={<Loading />}>
-                <UserCreate />
               </React.Suspense>
             }
           ></Route>

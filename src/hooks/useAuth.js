@@ -14,7 +14,7 @@ const useAuth = () => {
     try {
       setisLoading(true);
       registerLoginAndPassword(auth);
-      navigate("/profile/dashboard");
+      navigate("/auth/login");
     } catch (error) {
       console.log(error);
     } finally {

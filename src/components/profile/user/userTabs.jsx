@@ -3,6 +3,7 @@ import { FaCog, FaRegHeart } from "react-icons/fa";
 import { IoSearchOutline } from "react-icons/io5";
 import { MdOutlineDashboard, MdOutlineMail } from "react-icons/md";
 import { useSearchParams } from "react-router-dom";
+import Products from "../profile-details/products";
 export default function UserTabs() {
   const [searchParams, setSearchParams] = useSearchParams();
   const tab = searchParams.get("tab");
@@ -13,7 +14,7 @@ export default function UserTabs() {
 
   return (
     <div>
-      <div className="flex w-full items-center justify-evenly p-1">
+      <div className="flex w-full items-center justify-evenly  p-1">
         <div
           className={tab == 1 ? "tab-el-active" : "tab-el"}
           onClick={() => tabs(1)}
@@ -24,7 +25,7 @@ export default function UserTabs() {
           <span>Productlarim</span>
         </div>
         <div
-          className={tab == 3 ? "tab-el-active" : "tab-el"}
+          className={tab == 2 ? "tab-el-active" : "tab-el"}
           onClick={() => tabs(2)}
         >
           <i className="tab-icon">
@@ -33,7 +34,7 @@ export default function UserTabs() {
           <span>Qidiruvlarim</span>
         </div>
         <div
-          className={tab == 4 ? "tab-el-active" : "tab-el"}
+          className={tab == 3 ? "tab-el-active" : "tab-el"}
           onClick={() => tabs(3)}
         >
           <i className="tab-icon">
@@ -42,7 +43,7 @@ export default function UserTabs() {
           <span>yoqtirganlarim</span>
         </div>
         <div
-          className={tab == 6 ? "tab-el-active" : "tab-el"}
+          className={tab == 4 ? "tab-el-active" : "tab-el"}
           onClick={() => tabs(4)}
         >
           <i className="tab-icon">
@@ -52,7 +53,7 @@ export default function UserTabs() {
           <span>xabarlarim</span>
         </div>
         <div
-          className={tab == 7 ? "tab-el-active" : "tab-el"}
+          className={tab == 5 ? "tab-el-active" : "tab-el"}
           onClick={() => tabs(5)}
         >
           <i className="tab-icon">
@@ -64,7 +65,7 @@ export default function UserTabs() {
 
       <div>
         <div className={tab == 1 ? `tabs-active` : `tabs-none`}>
-          <h1>Elonlarim</h1>
+          <Products />
         </div>
         <div className={tab == 2 ? `tabs-active` : `tabs-none`}>
           <h1>My Searches</h1>

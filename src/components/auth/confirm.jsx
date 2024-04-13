@@ -6,7 +6,7 @@ export default function Confirm() {
 
   return (
     <div>
-      {!open ? <CreateLoginAndPassword /> : <CreateOtp setOpen={setOpen} />}
+      {open ? <CreateLoginAndPassword /> : <CreateOtp setOpen={setOpen} />}
     </div>
   );
 }

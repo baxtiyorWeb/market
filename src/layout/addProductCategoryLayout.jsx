@@ -24,12 +24,13 @@ export default function AddProductCategory() {
     name: "Mashinalar",
     price: 3400000000,
     canAgree: true,
+    regionId: 7,
     description: "bu mashinalar",
     categoryId: queryId,
-    districtId: 13,
+    districtId: 1,
     address: "Surkhandarya",
-    sellTypeId: 3,
-    paymentTypeId: 3,
+    sellTypeId: 1,
+    paymentTypeId: 1,
     propertyValues: null,
     files: null,
   });
@@ -44,6 +45,8 @@ export default function AddProductCategory() {
       setQueryName(name);
       setQueryId(id);
       setNextProductData("");
+      console.log(res?.data);
+
       // Combine the fetched properties with nextProductData
       const combinedData = [...res?.data];
 
@@ -85,7 +88,6 @@ export default function AddProductCategory() {
           id: 0, // Hozirgi faylning indeksi
           fileItemId: fileId, // Fayl identifikatori
           mainFile: prevFileList.length === 0, // Agar bu birinchi fayl bo'lsa
-          deleted: false,
         },
       ]);
     });
@@ -109,6 +111,7 @@ export default function AddProductCategory() {
   };
 
   const ChildCategories = ({ child }) => {
+    console.log(child);
     return (
       <>
         {child?.childCategories?.map((item, index = 1) => (
@@ -150,7 +153,7 @@ export default function AddProductCategory() {
             <button
               onClick={() =>
                 item?.childCategories.length > 0
-                  ? childCategories(item)
+                  ? childCategories(item?.name, item?.id)
                   : handleChoosen(item?.name, item?.id)
               }
               className={
@@ -254,7 +257,11 @@ export default function AddProductCategory() {
                     {item?.name}
                   </span>
                   <input
-                    type="text"
+                    type={
+                      (item?.valueTypeDto?.typeName === "INTEGER" &&
+                        "number") ||
+                      (item?.valueTypeDto?.typeName === "STRING" && "text")
+                    }
                     className="focus:border-[1px_solid_rgb(59 130 246)] mt-2 h-[50px] w-[334px] shrink-0 rounded-[5px] border border-[#E2E2E2] bg-[#FAFAFA] p-3 font-poppins text-[16px] outline-none"
                     placeholder={item.name}
                     value={
@@ -276,11 +283,13 @@ export default function AddProductCategory() {
 
                       // Propertyning value type'ini aniqlash
                       const valueType =
-                        item?.propertyDto?.valueTypeDto?.name.toLowerCase();
+                        item?.propertyDto?.valueTypeDto?.typeName;
 
                       // Qiymat turiga qarab mos parametrlarni sozlash
-                      if (valueType === "number") {
+                      if (valueType === "INTEGER") {
                         intValue = stringValue;
+                      } else if (valueType === "STRING") {
+                        stringValue = stringValue;
                       } else if (valueType === "boolean") {
                         booleanValue = stringValue.toLowerCase() === "true";
                       } else if (valueType === "date") {
