@@ -1,48 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { getCategories } from "../../exports/api";
+import MenuItems from "./MenuItems";
+import "./category.css";
 const CategoryTab = () => {
-  const [category, setCategory] = useState([]);
+  // Bu sizning ma'lumotlaringiz
+  const [items, setItems] = useState([]);
 
-  const res = getCategories();
+  const data = getCategories();
+
   const getCateg = async () => {
-    const data = await res.then((item) => item);
-    setCategory(data?.data);
+    const res = await data.then((data) => data);
+    setItems(res?.data);
   };
 
   useEffect(() => {
     getCateg();
   }, []);
-  // Bu sizning ma'lumotlaringiz
-  const Menu = ({ data }) => {
-    return (
-      <ul className="menu">
-        {data?.map((category) => (
-          <MenuItem key={category.id} category={category} />
-        ))}
-      </ul>
-    );
-  };
-
-  const MenuItem = ({ category }) => {
-    return (
-      <li>
-        <span className="category-name">{category.name}</span>
-        {category?.childCategories.length > 0 && (
-          <ul>
-            {category.childCategories.map((childCategory) => (
-              <MenuItem key={childCategory.id} category={childCategory} />
-            ))}
-          </ul>
-        )}
-      </li>
-    );
-  };
 
   return (
-    <div>
-      <div>
-        <Menu data={category} />
-      </div>
+    <div className="relative">
+      {/* className={`dropdown ${dropdownClass} ${dropdown ? "show" : ""}`} */}
+      <ul className="flex items-center justify-center">
+        {items?.map((submenu, index) => {
+          const depthLevel = 0;
+          return (
+            <MenuItems items={submenu} depthLevel={depthLevel} key={index} />
+          );
+        })}
+      </ul>
     </div>
   );
 };

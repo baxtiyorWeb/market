@@ -15,7 +15,7 @@ export default function Categoriyes({ open, setOpen }) {
       <div
         className={
           open
-            ? `scroll-wrapper absolute left-0 top-24 z-50 h-[780px] w-full  rounded-md bg-[#FFFFFF]  opacity-100 shadow-xl transition-all duration-100`
+            ? `scroll-wrapper absolute left-0 top-24 z-50 h-[780px]  w-full  rounded-md bg-[#FFFFFF]  opacity-100 shadow-xl transition-all duration-100`
             : "absolute  left-0 top-24 z-[-100] h-[0]  opacity-0 transition-all duration-300"
         }
       >
