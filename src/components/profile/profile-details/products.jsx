@@ -15,7 +15,7 @@ const Products = () => {
           className="flex h-[50px]  items-center justify-center rounded-md bg-[#1D828E] p-5 text-white"
           to={"/product-form/add-product"}
         >
-          Product qo&apos;shish
+          Mahsulot qo&apos;shish
         </Link>
       </div>
       <table className="h-full w-full">

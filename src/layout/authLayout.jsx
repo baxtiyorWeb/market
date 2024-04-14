@@ -8,7 +8,7 @@ export default function AuthLayout() {
         <span className="text-teal-500">Kelishamiz.uz</span> saytiga hush
         kelibsiz
       </h1>
-      <div className="flex h-[629px] w-[600px] items-center justify-center bg-white shadow-lg">
+      <div className="flex h-[780px] w-[650px] items-center justify-center bg-white shadow-lg">
         <Outlet />
       </div>
     </div>

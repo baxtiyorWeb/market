@@ -16,7 +16,7 @@ const CreateLoginAndPassword = () => {
         />
       </div>
       <div className="flex flex-col items-center justify-center">
-        <span className="mb-3 w-full text-left">password kiriting</span>
+        <span className="mb-3 w-full text-left">parol kiriting</span>
         <Input
           className="mb-5 h-14 w-[328px] rounded-md border p-3 text-xl outline-none"
           placeholder="password"
@@ -24,7 +24,7 @@ const CreateLoginAndPassword = () => {
         />
       </div>
       <div className="flex flex-col items-center justify-center">
-        <span className="mb-3 w-full text-left">passwordni tasdiqlang</span>
+        <span className="mb-3 w-full text-left">parolni qayta kiriting</span>
         <Input
           className="mb-5 h-14 w-[328px] rounded-md p-3 text-xl outline-none"
           onChange={(e) => setAuth({ ...auth, rePassword: e.target.value })}

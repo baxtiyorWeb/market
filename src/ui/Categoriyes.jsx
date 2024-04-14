@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { MdClose } from "react-icons/md";
-import CategoryTab from "../components/categoryTab/CategoryTab";
+import Catalogue from "../components/catalogue/CategoryTab";
 
 export default function Categoriyes({ open, setOpen }) {
   const backgroundHidden = () => {
@@ -28,7 +28,7 @@ export default function Categoriyes({ open, setOpen }) {
           )}
         </div>
         {open
-          ? backgroundHidden() || <CategoryTab open={open} />
+          ? backgroundHidden() || <Catalogue open={open} />
           : setOpen(false) || backgroundUnset()}
       </div>
     </div>

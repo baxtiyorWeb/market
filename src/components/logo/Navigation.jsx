@@ -1,4 +1,4 @@
-import { FaGlobe, FaKey, FaUser } from "react-icons/fa";
+import { FaGlobe } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import m_logo from "../../assets/m_logo.png";
 import Container from "../../shared/Container";
@@ -19,24 +19,6 @@ export default function Navigation() {
             >
               <FaGlobe className="mx-2" /> UZ
             </div>
-            <Link to={"/auth/register"}>
-              <div
-                className="ml-3 mr-3 flex cursor-pointer items-center 
-              justify-center rounded-md border p-2 hover:bg-slate-200
-            "
-              >
-                <FaKey className="mx-2" /> Register
-              </div>
-            </Link>
-            <Link to={"/profile/dashboard?tab=1"}>
-              <div
-                className="ml-3 mr-3 flex cursor-pointer items-center 
-              justify-center rounded-md border p-2 hover:bg-slate-200
-            "
-              >
-                <FaUser className="mx-2" /> Profil
-              </div>
-            </Link>
           </div>
         </div>
       </Container>

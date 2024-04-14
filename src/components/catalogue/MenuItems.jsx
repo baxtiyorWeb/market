@@ -1,12 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 
-import useToggle from "../../hooks/useToggle";
 import Dropdown from "./DropDown";
 
-const MenuItems = ({ items, depthLevel, handleChoosen }) => {
+const MenuItems = ({ items, depthLevel }) => {
   const [dropdown, setDropdown] = useState(false);
   let ref = useRef();
-  const { handleToggle } = useToggle();
 
   useEffect(() => {
     const handler = (event) => {
@@ -33,7 +31,7 @@ const MenuItems = ({ items, depthLevel, handleChoosen }) => {
 
   return (
     <li
-      className="menu-items relative flex w-full justify-start bg-white"
+      className="menu-items relative flex w-full justify-start"
       ref={ref}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
@@ -47,22 +45,17 @@ const MenuItems = ({ items, depthLevel, handleChoosen }) => {
             aria-expanded={dropdown ? "true" : "false"}
             onClick={() => {
               setDropdown((prev) => !prev);
-              items?.childCategories.length > 0
-                ? ""
-                : handleChoosen(items?.name, items?.id) && handleToggle();
+              items?.childCategories.length > 0;
             }}
           >
-            {items?.name}{" "}
+            {items?.name}
             {depthLevel > 0 ? (
-              <>{items?.childCategories.length ? <span> &raquo; </span> : ""}</>
+              <span> &raquo; </span>
             ) : (
-              <span>
-                {items?.childCategories.length ? <span> &raquo; </span> : ""}
-              </span>
+              <span className="arrow" />
             )}{" "}
           </button>{" "}
           <Dropdown
-            handleChoosen={handleChoosen}
             depthLevel={depthLevel}
             submenus={items?.childCategories}
             dropdown={dropdown}
@@ -70,7 +63,7 @@ const MenuItems = ({ items, depthLevel, handleChoosen }) => {
         </div>
       ) : (
         // <a href="/#"> {items?.name} </a>
-        <></>
+        <>{items?.name}</>
       )}{" "}
     </li>
   );

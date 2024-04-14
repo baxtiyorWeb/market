@@ -88,12 +88,12 @@ export default function LoginComponent() {
             className="mb-5 mt-5 h-[50px] w-[328px] rounded-md bg-[#1D828E] text-white hover:text-[#fff] disabled:cursor-not-allowed disabled:bg-[#1d838eb4]"
             onClick={() => loginNameAndPassword()}
           >
-            {isLoading ? <Spin /> : " yuborish"}
+            {isLoading ? <Spin /> : "Kirish"}
           </ButtonUI>
         </div>
         <Link to={"/auth/register"}>
           <span className="cursor-pointer text-sky-500 hover:underline">
-            ro&apos;yxatdan o&apos;tmaganmisiz
+            ro&apos;yxatdan o&apos;tish
           </span>
         </Link>
       </div>

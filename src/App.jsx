@@ -5,6 +5,7 @@ import Confirm from "./components/auth/confirm";
 import AddProductCategoryLayout from "./layout/addProductCategoryLayout";
 import AuthLayout from "./layout/authLayout";
 import Layout from "./layout/layout";
+import CreateUser from "./pages/auth/createUser";
 import NotFound from "./pages/not-found";
 import Profile from "./pages/profile/Profile";
 import "./response.css";
@@ -101,6 +102,14 @@ const App = () => {
             element={
               <React.Suspense fallback={<Loading />}>
                 <Confirm />
+              </React.Suspense>
+            }
+          ></Route>
+          <Route
+            path="/auth/create"
+            element={
+              <React.Suspense fallback={<Loading />}>
+                <CreateUser />
               </React.Suspense>
             }
           ></Route>

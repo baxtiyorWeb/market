@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getCategories } from "../../exports/api";
 import MenuItems from "./MenuItems";
 import "./category.css";
-const CategoryTab = ({ handleChoosen }) => {
+const Catalogue = ({ handleChoosen }) => {
   // Bu sizning ma'lumotlaringiz
   const [items, setItems] = useState([]);
 
@@ -18,18 +18,13 @@ const CategoryTab = ({ handleChoosen }) => {
   }, []);
 
   return (
-    <div className="relative w-full ">
+    <div className="relative">
       {/* className={`dropdown ${dropdownClass} ${dropdown ? "show" : ""}`} */}
-      <ul className="flex h-full w-[300px] flex-col items-start justify-start border ">
+      <ul className="flex h-[800px] w-[400px] flex-col items-start justify-start border">
         {items?.map((submenu, index) => {
           const depthLevel = 0;
           return (
-            <MenuItems
-              items={submenu}
-              depthLevel={depthLevel}
-              key={index}
-              handleChoosen={handleChoosen}
-            />
+            <MenuItems items={submenu} depthLevel={depthLevel} key={index} />
           );
         })}
       </ul>
@@ -37,4 +32,4 @@ const CategoryTab = ({ handleChoosen }) => {
   );
 };
 
-export default CategoryTab;
+export default Catalogue;

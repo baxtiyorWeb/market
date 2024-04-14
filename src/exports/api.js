@@ -70,3 +70,12 @@ export const fileUplaodLoadedData = async (data) => {
   message.success("rasm yuklandi");
   return res.data;
 };
+
+export const createUserData = async (data) => {
+  const res = await api.post(
+    "http://95.130.227.131:8080/api/v1/user/create",
+    data,
+  );
+  if (res.data) return (window.location.href = "/profile/dashboard");
+  return res.data;
+};
