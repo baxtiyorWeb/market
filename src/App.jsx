@@ -26,10 +26,7 @@ const App = () => {
     <>
       <div className="fixed z-[10000] ml-5 p-2"></div>
       <Routes>
-        <Route
-          path="/"
-          element={<Layout scroll={scroll} setScroll={setScroll} />}
-        >
+        <Route exact path="/" element={<Layout />}>
           <Route
             path="/"
             element={

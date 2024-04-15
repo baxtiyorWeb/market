@@ -21,7 +21,7 @@ const formItemLayout = {
   },
 };
 const CreateUser = () => {
-  const { createUser, error, isPending, name, setName } = useCreateUser();
+  const { createUser, isPending, name, setName } = useCreateUser();
 
   // if (error) return `error: ${error}`;
   return (
@@ -223,7 +223,7 @@ const CreateUser = () => {
           span: 16,
         }}
       >
-        <ButtonUI onClick={createUser}>
+        <ButtonUI onClick={() => createUser()}>
           {isPending ? <Spin /> : "tugatish"}
         </ButtonUI>
       </Form.Item>

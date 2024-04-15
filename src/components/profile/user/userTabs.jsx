@@ -3,14 +3,19 @@ import { FaCog, FaRegHeart } from "react-icons/fa";
 import { IoSearchOutline } from "react-icons/io5";
 import { MdOutlineDashboard, MdOutlineMail } from "react-icons/md";
 import { useSearchParams } from "react-router-dom";
+import Cookies from "universal-cookie";
 import Products from "../profile-details/products";
 export default function UserTabs() {
   const [searchParams, setSearchParams] = useSearchParams();
   const tab = searchParams.get("tab");
-  console.log(tab);
   const tabs = (n) => {
     setSearchParams({ tab: n });
   };
+
+  const Cookie = new Cookies();
+  const res = Cookie.getAll();
+
+  console.log(res);
 
   return (
     <div>

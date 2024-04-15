@@ -1,10 +1,12 @@
-import { useMutation } from "@tanstack/react-query";
+import { message } from "antd";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createUserData } from "../exports/api";
 
 const useCreateUser = () => {
   const navigate = useNavigate();
+  const [isPending, setIsPending] = useState(false);
+  const [error, setError] = useState("");
   const [name, setName] = useState({
     firstName: "",
     lastName: "",
@@ -17,18 +19,19 @@ const useCreateUser = () => {
     authorityId: 0,
     districtId: 0,
     address: "",
-    fileItemId: 30,
-  });
-
-  const { mutate, data, error, isPending } = useMutation({
-    mutationFn: createUserData,
+    fileItemId: 1,
   });
 
   const createUser = () => {
-    mutate({
-      ...name,
-    });
-    console.log(name);
+    try {
+      setIsPending(true);
+      const res = createUserData(name);
+      message.success("created user");
+    } catch (err) {
+      setError(err);
+    } finally {
+      setIsPending(false);
+    }
   };
 
   return {

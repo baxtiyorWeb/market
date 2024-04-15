@@ -72,10 +72,7 @@ export const fileUplaodLoadedData = async (data) => {
 };
 
 export const createUserData = async (data) => {
-  const res = await api.post(
-    "http://95.130.227.131:8080/api/v1/user/create",
-    data,
-  );
-  if (res.data) return (window.location.href = "/profile/dashboard");
+  const res = await api.put(`/user/5`, data);
+  if (res.data) console.log("ok");
   return res.data;
 };

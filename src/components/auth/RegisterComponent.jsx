@@ -44,18 +44,6 @@ export default function RegisterComponent() {
     }
   };
 
-  const phoneDetect = (e) => {
-    const inputPhoneNumber = e;
-
-    // Telefon raqamini xx-xxx-xx-xx formatga o'tkazish
-    const formattedPhoneNumber = inputPhoneNumber.replace(
-      /(\d{2})-?(\d{3})-?(\d{2})-?(\d{2})/,
-      `($1) $2-$3-$4`,
-    );
-    console.log(formattedPhoneNumber);
-    setPhone(formattedPhoneNumber);
-  };
-
   return (
     <div>
       <h1 className="mb-5 mt-3 text-center text-2xl">
@@ -82,7 +70,7 @@ export default function RegisterComponent() {
           <Input
             type="number"
             placeholder="99 999 99 99"
-            onChange={(e) => phoneDetect(e.target.value)}
+            onChange={(e) => setPhone(e.target.value)}
             maxLength={9}
             value={phone}
             className="h-14 w-[328px] rounded-md p-3 indent-10 text-xl outline-none"

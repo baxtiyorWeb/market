@@ -14,6 +14,7 @@ const useAuth = () => {
     try {
       setisLoading(true);
       registerLoginAndPassword(auth);
+
       navigate("/auth/create");
     } catch (error) {
       console.log(error);
