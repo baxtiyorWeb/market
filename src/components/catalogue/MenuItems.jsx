@@ -37,18 +37,17 @@ const MenuItems = ({ items, depthLevel }) => {
       onMouseLeave={onMouseLeave}
     >
       {items?.childCategories ? (
-        <div className="w-full">
+        <div className="w-full border ">
           <button
             className="relative w-full"
             type="button"
             aria-haspopup="menu"
-            aria-expanded={dropdown ? "true" : "false"}
             onClick={() => {
               setDropdown((prev) => !prev);
               items?.childCategories.length > 0;
             }}
           >
-            {items?.name}
+            <span className="text-red-500">{items?.name}</span>
             {depthLevel > 0 ? (
               <span> &raquo; </span>
             ) : (

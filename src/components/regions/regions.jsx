@@ -1,32 +1,26 @@
 /* eslint-disable react/prop-types */
+import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import locationIcon from "../../assets/location.svg";
+import { getRegions } from "../../exports/api";
 import useToggle from "../../hooks/useToggle";
+import Loading from "../../ui/loading/Loading";
 import Overlay from "./../../ui/Overlay";
-const options = [
-  { label: "Surxondaryo" },
-  { label: "Angor tumani" },
-  { label: "Bandixon tumani " },
-  { label: "Boysun tumani" },
-  { label: "Denov tumani" },
-  { label: "Jarqo'rg'on tumani" },
-  { label: "Muzrobot tumani " },
-  { label: "Oltinsoy tumani" },
-  { label: "Qiziriq tumani" },
-  { label: "Qumqo'rg'on tumani" },
-  { label: "Sariosiyo tumani" },
-  { label: "Sherobod tumani" },
-  { label: "Sho'rchi tumani" },
-  { label: "Termiz shahri" },
-  { label: "Termiz tumani" },
-  { label: "Uzun tumani" },
-];
 
 const Regions = () => {
   // other states function elements
   const [value, setValue] = useState("");
 
   const { handleToggle, keyWithCloseElement, isOpen } = useToggle();
+
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["regions"],
+    queryFn: () => getRegions(),
+  });
+
+  if (error) return `Error: ${error}`;
+
+  if (isLoading) return <Loading />;
 
   // end function
 
@@ -51,8 +45,8 @@ const Regions = () => {
       <ul
         className={
           isOpen
-            ? "fixed bottom-[-10px] left-[35%] z-[301]  h-[90%] w-[640px]  transform items-center overflow-scroll rounded-[10px] border bg-[#FFF] px-6 py-3 shadow-xl transition-all duration-500"
-            : "fixed bottom-[-600px] left-[35%] z-[-100] h-[601px] w-[640px]   transition-all duration-500"
+            ? "fixed bottom-[-10px] left-[35%] z-[901]  h-[90%] w-[640px]  transform items-center overflow-scroll rounded-[10px] border bg-[#FFF] px-6 py-3 shadow-xl transition-all duration-300"
+            : "fixed bottom-[-600px] left-[35%] z-[-100] h-[601px] w-[640px]   transition-all duration-300"
         }
       >
         <li className="flex items-center justify-center">
@@ -63,15 +57,15 @@ const Regions = () => {
             onChange={(e) => setValue(e.target.value)}
           />
         </li>
-        {options
-          .filter((item) => item.label.toLowerCase().includes(value))
+        {data?.data
+          ?.filter((item) => item?.name?.toLowerCase().includes(value))
           .map((item, index) => (
             <li
               key={index}
               className="cursor-pointer border-b border-t py-2  font-poppins text-[16px] font-normal not-italic leading-[100%] tracking-[-0.08px] text-[#747474] transition  hover:border-t hover:border-slate-500 hover:font-medium hover:text-[#000]"
               onClick={() => setText(item.label) || handleCloseLocationMenu()}
             >
-              {item.label.replace((match) => `<mark>${match}</mark>`)}
+              {item?.name?.replace((match) => `<mark>${match}</mark>`)}
             </li>
           ))}
       </ul>

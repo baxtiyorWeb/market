@@ -1,4 +1,5 @@
-import { FaEye, FaHeart } from "react-icons/fa";
+import { CiHeart } from "react-icons/ci";
+import { FaEye } from "react-icons/fa";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
 import useProducts from "../../hooks/useProducts";
@@ -11,6 +12,7 @@ const Products = () => {
     (_, index) => index + 1,
   );
   if (error) return "An error has occurred: " + error.message;
+
   return (
     <div className="mt-[40px] h-full w-full">
       <div>
@@ -24,7 +26,7 @@ const Products = () => {
         ) : (
           data?.data?.data?.content?.map((item, index) => (
             <div
-              className="h-[400px] w-[270px] flex-shrink-0 overflow-hidden  rounded-md shadow-md"
+              className="relative h-[400px] w-[270px] flex-shrink-0 overflow-hidden  rounded-md shadow-md"
               key={index}
             >
               <div className="relative h-[194px] w-[100%] overflow-hidden">
@@ -61,22 +63,21 @@ const Products = () => {
                   <p className="ml-1">so{"'"}m</p>
                 </div>
 
-                <div className="mt-3">
+                <div className="mt-14">
                   <hr className="border border-slate-400" />
                   <div className="text mt-[13px] flex items-center justify-between font-poppins text-[11px] font-normal leading-[100%] tracking-[-0.22px] text-[#959EA7]">
                     <span>
-                      {item?.districtDto?.name} |{" "}
-                      {item?.districtDto?.regionDto?.name}
+                      {item?.regionName} | {item?.districtName}
                     </span>
-                    <span>{80}</span>
+                    <span>{item?.address}</span>
                   </div>
                   <div className="text mt-[20px] flex items-center justify-between font-poppins text-[11px] font-normal leading-[100%] tracking-[-0.22px] text-[#959EA7]">
                     <span className="flex items-center justify-center">
                       <FaEye className="mr-3 text-[16px]" />
                       {item?.viewCount}
                     </span>
-                    <span>
-                      <FaHeart className="cursor-pointer text-[18px] hover:text-red-500" />
+                    <span className="absolute right-2 top-2 flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-full border bg-[#aeaead4b] text-white hover:bg-[#AEAEAD]">
+                      <CiHeart className="cursor-pointer text-[28px]" />
                     </span>
                   </div>
                 </div>
