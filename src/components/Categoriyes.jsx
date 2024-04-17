@@ -69,14 +69,7 @@ export default function Categoriyes() {
                 />
               </div>
               <span className="mt-3  text-center font-poppins text-[19px] font-normal not-italic leading-[100%] text-[#130F1E]">
-                <Menu mode="horizontal">
-                  <SubMenu
-                    title={item?.name}
-                    onMouseEnter={() => setChildCategoriesId(item?.id)}
-                  >
-                    <SubmenuComponent data={item} chilId={childCategoriesId} />
-                  </SubMenu>
-                </Menu>
+                {item?.name}
               </span>
             </div>
           </div>

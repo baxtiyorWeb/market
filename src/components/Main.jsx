@@ -11,9 +11,6 @@ export default function Main({ scroll }) {
       <div>
         <Products />
       </div>
-      <div>
-        <Products />
-      </div>
     </div>
   );
 }

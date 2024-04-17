@@ -1,16 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 
-import { Menu } from "antd";
-import DropDown from "./DropDown";
+import useToggle from "../../hooks/useToggle";
+import Dropdown from "./DropDown";
 
-const MenuItems = ({ items, depthLevel }) => {
+const MenuItems = ({ items, depthLevel, handleChoosen }) => {
   const [dropdown, setDropdown] = useState(false);
-  const SubMenu = Menu.SubMenu;
-  const MenuItemGroup = Menu.ItemGroup;
   let ref = useRef();
-  function handleClick(e) {
-    console.log("click", e);
-  }
+  const { handleToggle } = useToggle();
+
   useEffect(() => {
     const handler = (event) => {
       if (dropdown && ref.current && !ref.current.contains(event.target)) {
@@ -34,38 +31,44 @@ const MenuItems = ({ items, depthLevel }) => {
     window.innerWidth > 960 && setDropdown(false);
   };
 
-  const [tanlanganKategoriya, setTanlanganKategoriya] = useState(null);
-
-  const kategoriyaTanlash = (kategoriya) => {
-    setTanlanganKategoriya(kategoriya.key);
-  };
-
   return (
     <li
-      className="menu-items relative flex w-full justify-start"
+      className="menu-items relative flex w-full justify-start bg-white"
       ref={ref}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
-      <Menu onClick={handleClick} style={{ width: 320 }} mode="vertical">
-        <SubMenu
-          key="sub1"
-          title={
-            <span>
-              {/* <Icon type="mail" /> */}
-              <span>{items?.name}</span>
-            </span>
-          }
-        >
-          <Menu.ItemGroup className="" title={items?.name}>
-            <DropDown
-              depthLevel={depthLevel}
-              submenus={items?.childCategories}
-              dropdown={dropdown}
-            />
-          </Menu.ItemGroup>
-        </SubMenu>
-      </Menu>
+      {items?.childCategories ? (
+        <div className="w-full">
+          <button
+            className="relative w-full"
+            onClick={() => {
+              setDropdown((prev) => !prev);
+              items?.childCategories.length > 0
+                ? ""
+                : handleChoosen(items?.name, items?.id) && handleToggle();
+            }}
+          >
+            {items?.name}{" "}
+            {depthLevel > 1 ? (
+              <>{items?.childCategories.length ? <span> &raquo; </span> : ""}</>
+            ) : (
+              <span>
+                {items?.childCategories.length ? <span> &raquo; </span> : ""}
+              </span>
+            )}{" "}
+          </button>{" "}
+          <Dropdown
+            handleChoosen={handleChoosen}
+            depthLevel={depthLevel}
+            submenus={items?.childCategories}
+            dropdown={dropdown}
+          />{" "}
+        </div>
+      ) : (
+        // <a href="/#"> {items?.name} </a>
+        <></>
+      )}{" "}
     </li>
   );
 };
