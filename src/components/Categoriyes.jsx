@@ -3,10 +3,37 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 
-import { getCategoriesRootList } from "../exports/api";
+import { Menu } from "antd";
+import { useState } from "react";
+import { getCategoriesRootLisId, getCategoriesRootList } from "../exports/api";
 import Loading from "./../ui/loading/Loading";
 
+const { SubMenu, Item, ItemGroup } = Menu;
+
+const SubmenuComponent = ({ childCategories, chilId }) => {
+  console.log(chilId);
+  const { data } = useQuery({
+    queryKey: ["category"],
+    queryFn: () => getCategoriesRootLisId(chilId),
+  });
+
+  console.log(data?.content);
+  return (
+    <>
+      {data?.childCategories?.length &&
+        childCategories?.childCategories?.map((item) => (
+          <Menu mode="horizontal" key={index}>
+            <Menu.Item title={item?.name}>
+              <SubmenuComponent data={item} />
+            </Menu.Item>
+          </Menu>
+        ))}
+    </>
+  );
+};
+
 export default function Categoriyes() {
+  const [childCategoriesId, setChildCategoriesId] = useState("");
   const { data, isLoading, error } = useQuery({
     queryKey: ["category"],
     queryFn: () => getCategoriesRootList(),
@@ -32,7 +59,7 @@ export default function Categoriyes() {
         speed={500}
       >
         {data?.data?.content?.map((item, index) => (
-          <div className="">
+          <div className="" key={index}>
             <div className="flex h-[150px] w-[200px] flex-col items-center justify-center">
               <div className="flex h-[70px]  w-[70px] cursor-pointer items-center justify-center rounded-full bg-[#FFF] shadow-sm">
                 <img
@@ -42,7 +69,14 @@ export default function Categoriyes() {
                 />
               </div>
               <span className="mt-3  text-center font-poppins text-[19px] font-normal not-italic leading-[100%] text-[#130F1E]">
-                {item?.name}
+                <Menu mode="horizontal">
+                  <SubMenu
+                    title={item?.name}
+                    onMouseEnter={() => setChildCategoriesId(item?.id)}
+                  >
+                    <SubmenuComponent data={item} chilId={childCategoriesId} />
+                  </SubMenu>
+                </Menu>
               </span>
             </div>
           </div>

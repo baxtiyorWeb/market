@@ -83,6 +83,10 @@
 
 /* antd design  */
 
+.ant-menu-submenu {
+  box-shadow: 0 0 0 0 !important;
+}
+
 .ant-tabs-tab-btn {
   width: 100px;
   text-align: center;

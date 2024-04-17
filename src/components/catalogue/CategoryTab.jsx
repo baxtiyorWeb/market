@@ -20,7 +20,7 @@ const Catalogue = ({ handleChoosen }) => {
   return (
     <div className="relative">
       {/* className={`dropdown ${dropdownClass} ${dropdown ? "show" : ""}`} */}
-      <ul className="flex h-[800px] w-[400px] flex-col items-start justify-start border">
+      <ul className="flex h-[800px] w-[320px] flex-col items-start justify-start">
         {items?.map((submenu, index) => {
           const depthLevel = 0;
           return (

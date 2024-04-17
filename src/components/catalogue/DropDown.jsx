@@ -1,20 +1,13 @@
+import { Menu } from "antd";
 import MenuItems from "./MenuItems";
+const { Item } = Menu;
 const Dropdown = ({ submenus, dropdown, depthLevel }) => {
+  const SubMenu = Menu.SubMenu;
+  const MenuItemGroup = Menu.ItemGroup;
   depthLevel = depthLevel + 1;
-  const dropdownClass = depthLevel > 1 ? "dropdown-submenu" : "";
-  return (
-    <ul
-      className={`dropdown shadow-none ${dropdownClass} ${
-        dropdown ? "show" : "hide"
-      }`}
-    >
-      {submenus?.map((submenu, index) => (
-        <div className="border">
-          <MenuItems items={submenu} depthLevel={depthLevel} key={index} />
-        </div>
-      ))}
-    </ul>
-  );
+  return submenus?.map((submenu, index) => (
+    <MenuItems items={submenu} depthLevel={depthLevel} key={index} />
+  ));
 };
 
 export default Dropdown;
