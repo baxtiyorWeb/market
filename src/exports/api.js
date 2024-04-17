@@ -6,6 +6,14 @@ export const getCategories = async () => {
   return res.data;
 };
 
+export const getCategoriesRootList = async () => {
+  const res = await api.get("/category/list?page=0&size=10&parentId=");
+  return res.data;
+};
+export const getCategoriesRootLisId = async (id) => {
+  const res = await api.get(`/category/list?page=0&size=10&parentId=${id}`);
+  return res.data;
+};
 // Create Read products
 
 export const createCategories = async (data) => {
@@ -74,5 +82,10 @@ export const fileUplaodLoadedData = async (data) => {
 export const createUserData = async (data) => {
   const res = await api.put(`/user/5`, data);
   if (res.data) console.log("ok");
+  return res.data;
+};
+
+export const getRegions = async () => {
+  const res = await api.get("/region/all");
   return res.data;
 };

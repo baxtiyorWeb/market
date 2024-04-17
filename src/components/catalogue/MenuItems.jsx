@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 
+import useToggle from "../../hooks/useToggle";
 import Dropdown from "./DropDown";
 
-const MenuItems = ({ items, depthLevel }) => {
+const MenuItems = ({ items, depthLevel, handleChoosen }) => {
   const [dropdown, setDropdown] = useState(false);
   let ref = useRef();
+  const { handleToggle } = useToggle();
 
   useEffect(() => {
     const handler = (event) => {
@@ -31,7 +33,7 @@ const MenuItems = ({ items, depthLevel }) => {
 
   return (
     <li
-      className="menu-items relative flex w-full justify-start"
+      className="menu-items relative flex w-full justify-start bg-white"
       ref={ref}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
@@ -40,22 +42,24 @@ const MenuItems = ({ items, depthLevel }) => {
         <div className="w-full">
           <button
             className="relative w-full"
-            type="button"
-            aria-haspopup="menu"
-            aria-expanded={dropdown ? "true" : "false"}
             onClick={() => {
               setDropdown((prev) => !prev);
-              items?.childCategories.length > 0;
+              items?.childCategories.length > 0
+                ? ""
+                : handleChoosen(items?.name, items?.id) && handleToggle();
             }}
           >
-            {items?.name}
-            {depthLevel > 0 ? (
-              <span> &raquo; </span>
+            {items?.name}{" "}
+            {depthLevel > 1 ? (
+              <>{items?.childCategories.length ? <span> &raquo; </span> : ""}</>
             ) : (
-              <span className="arrow" />
+              <span>
+                {items?.childCategories.length ? <span> &raquo; </span> : ""}
+              </span>
             )}{" "}
           </button>{" "}
           <Dropdown
+            handleChoosen={handleChoosen}
             depthLevel={depthLevel}
             submenus={items?.childCategories}
             dropdown={dropdown}
@@ -63,7 +67,7 @@ const MenuItems = ({ items, depthLevel }) => {
         </div>
       ) : (
         // <a href="/#"> {items?.name} </a>
-        <>{items?.name}</>
+        <></>
       )}{" "}
     </li>
   );
