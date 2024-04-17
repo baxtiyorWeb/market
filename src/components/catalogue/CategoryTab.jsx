@@ -39,10 +39,6 @@ const Catalog = () => {
   );
 };
 
-// Category.js
-
-// Category.js
-
 const Catalogue = () => {
   return (
     <div>

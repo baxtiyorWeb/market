@@ -4,11 +4,8 @@ import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 
 import { Menu } from "antd";
-import { useState } from "react";
 import { getCategoriesRootLisId, getCategoriesRootList } from "../exports/api";
 import Loading from "./../ui/loading/Loading";
-
-const { SubMenu, Item, ItemGroup } = Menu;
 
 const SubmenuComponent = ({ childCategories, chilId }) => {
   console.log(chilId);
@@ -33,7 +30,6 @@ const SubmenuComponent = ({ childCategories, chilId }) => {
 };
 
 export default function Categoriyes() {
-  const [childCategoriesId, setChildCategoriesId] = useState("");
   const { data, isLoading, error } = useQuery({
     queryKey: ["category"],
     queryFn: () => getCategoriesRootList(),
@@ -50,7 +46,7 @@ export default function Categoriyes() {
     slidesToScroll: 5,
   };
   return (
-    <div className="relative my-10">
+    <div className="relative my-10 w-full">
       <Slider
         {...settings}
         centerMode
@@ -59,7 +55,7 @@ export default function Categoriyes() {
         speed={500}
       >
         {data?.data?.content?.map((item, index) => (
-          <div className="" key={index}>
+          <div className="w-[50%]" key={index}>
             <div className="flex h-[150px] w-[200px] flex-col items-center justify-center">
               <div className="flex h-[70px]  w-[70px] cursor-pointer items-center justify-center rounded-full bg-[#FFF] shadow-sm">
                 <img
