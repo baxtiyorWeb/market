@@ -80,9 +80,11 @@
   grid-auto-flow: column; /* Har bir elementni bir-biriga joylashtirish */
   grid-gap: 10px;
 }
-
 /* antd design  */
-
+.ant-menu-light,
+.css-dev-only-do-not-override-dkbvqv {
+  height: 500px !important;
+}
 .ant-menu-submenu {
   box-shadow: 0 0 0 0 !important;
 }

@@ -6,8 +6,10 @@ export const getCategories = async () => {
   return res.data;
 };
 
-export const getCategoriesRootList = async () => {
-  const res = await api.get("/category/list?page=0&size=10&parentId=");
+export const getCategoriesRootList = async (id) => {
+  const res = await api.get(
+    `/category/list?page=0&size=10&parentId=${id ? id : ""}`,
+  );
   return res.data;
 };
 export const getCategoriesRootLisId = async (id) => {
