@@ -98,7 +98,7 @@
 .ant-menu,
 .ant-menu-light {
   box-shadow: 0 0 0 0 transparent !important;
-  height: 800px !important;
+  height: auto !important;
 }
 
 .ant-menu::-webkit-scrollbar {

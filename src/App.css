@@ -81,14 +81,13 @@
   grid-gap: 10px;
 }
 /* antd design  */
-.ant-menu-light,
-.css-dev-only-do-not-override-dkbvqv {
-  height: 500px !important;
-}
+
 .ant-menu-submenu {
   box-shadow: 0 0 0 0 !important;
 }
-
+.ant-menu {
+  height: 300px !important;
+}
 .ant-tabs-tab-btn {
   width: 100px;
   text-align: center;
@@ -263,7 +262,6 @@
 .scroll-wrapper::-webkit-scrollbar {
   display: none !important;
 }
-
 .cart-slider .control-next,
 .control-arrow {
   margin: 10px;

@@ -15,6 +15,7 @@ import Regions from "./regions/regions";
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [scroll, setScroll] = useState(false);
+
   // scroll
 
   useEffect(() => {
@@ -37,6 +38,8 @@ export default function Header() {
       };
     }
   }, []);
+
+  const token = true;
 
   return (
     <div
@@ -79,13 +82,13 @@ export default function Header() {
             </button>
           </div>
           <Link
-            to="/auth/login"
+            to={token ? `/profile/dashboard?tab=1` : "/auth/login"}
             className="flex h-[50px] w-[160px] flex-shrink-0 items-center justify-around rounded-[5px] border border-[#1D828E] p-[30px] py-4 text-[#1D828E]"
             onClick={() => setOpen(false)}
           >
             {/* <img src={plusIcon} alt="" /> */}
             <span className="font-poppins text-[18px] font-normal not-italic leading-[100%]">
-              Kirish
+              {token ? "Kabinet" : " Kirish"}
             </span>
           </Link>
         </div>
