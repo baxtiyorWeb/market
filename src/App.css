@@ -75,7 +75,7 @@
   right: 35% !important;
   top: 15% !important;
   font-size: 25px !important;
-  color: teal !important;
+  color: rgb(118, 207, 207) !important;
 }
 .products-slide .slick-prev::before {
   content: "<" !important;
