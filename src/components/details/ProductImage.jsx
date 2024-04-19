@@ -1,6 +1,9 @@
 // Import Swiper styles
 import { Image } from "antd";
 import { useState } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
 export default function ProductImage({ data }) {
   const [sliderIndex, setSliderIndex] = useState(1);
   const [imgGetIndex, setImgGetIndex] = useState(0);
@@ -28,7 +31,40 @@ export default function ProductImage({ data }) {
   document.addEventListener("DOMContentLoaded", (e) => {
     setImgGetIndex(data?.files?.length);
   });
-
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
   const SliderProduct = () => {
     return (
       <>
@@ -78,16 +114,23 @@ export default function ProductImage({ data }) {
     );
   };
   return (
-    <div className="products-slide product-details overflow-hidden rounded-[10px] border">
+    <div className=" products-slide product-details relative  rounded-[10px] border">
       <SliderProduct />
-
-      <div
-        className={`col-span-1 mb-3 mt-3 grid grid-cols-${imgGetIndex} gap-x-52  overflow-x-scroll`}
+      <Slider
+        {...settings}
+        infinite={false}
+        draggable
+        speed={500}
+        lazyLoad="progressive"
+        arrows
       >
         {data?.files?.map((item, index) => (
           <div
+            style={{
+              width: 200,
+            }}
             key={index}
-            className={`m-3 ml-10 flex h-[180px] w-[200px] items-center justify-center rounded-[10px] border border-[#C7C7C7] p-3 hover:border-2 hover:border-[#90c049] ${
+            className={`mt-10 rounded-md border border-[#C7C7C7] p-3 hover:border-2 hover:border-[#90c049] ${
               index + 1 === sliderIndex && "active-img "
             }`}
             onClick={() => setSliderIndex(index + 1)}
@@ -95,11 +138,11 @@ export default function ProductImage({ data }) {
             <img
               src={`data:image/png;base64,${item.file?.fileBase64}`}
               alt=""
-              className={`h-[160px] w-[200px] cursor-pointer select-none  object-cover`}
+              className={`h-[160px] cursor-pointer select-none  object-cover`}
             />
           </div>
         ))}
-      </div>
+      </Slider>
     </div>
   );
 }
