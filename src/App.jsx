@@ -16,7 +16,11 @@ const Details = lazy(() => import("./pages/Details"));
 const AddProduct = lazy(() => import("./pages/AddProduct"));
 const Register = lazy(() => import("./pages/auth/Register"));
 const Login = lazy(() => import("./pages/auth/Login"));
+const ChildCategories = lazy(
+  () => import("./pages/categories/childCategories"),
+);
 const ProfileLayout = lazy(() => import("./layout/profileLayout"));
+const CategoriesLayout = lazy(() => import("./layout/categoriesLayout"));
 
 // routes
 
@@ -75,6 +79,25 @@ const App = () => {
             }
           >
             <Route path="/profile/dashboard" element={<Profile />}></Route>
+          </Route>
+
+          <Route
+            loader={<Loading />}
+            path="/category"
+            element={
+              <React.Suspense fallback={<Loading />}>
+                <CategoriesLayout />
+              </React.Suspense>
+            }
+          >
+            <Route
+              path="/category/:id"
+              element={
+                <React.Suspense fallback={<Loading />}>
+                  <ChildCategories />
+                </React.Suspense>
+              }
+            />
           </Route>
         </Route>
         <Route path="/auth" element={<AuthLayout />}>

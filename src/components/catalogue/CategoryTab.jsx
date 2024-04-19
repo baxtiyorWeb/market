@@ -12,12 +12,16 @@ const MenuList = ({ categories }) => {
         </SubMenu>
       );
     } else {
-      return <Menu.Item key={category.id}>{category.name}</Menu.Item>;
+      return (
+        <Menu.Item key={category.id} className="menu-item">
+          {category.name}
+        </Menu.Item>
+      );
     }
   };
 
   return (
-    <Menu mode="vertical" style={{ width: 300, height: 400 }}>
+    <Menu mode="vertical" theme="light">
       {categories.map((category) => renderSubMenu(category))}
     </Menu>
   );
@@ -37,7 +41,7 @@ const Catalogue = () => {
   }, []);
 
   return (
-    <div>
+    <div className="max-h-max bg-white">
       <MenuList categories={items} />
     </div>
   );
