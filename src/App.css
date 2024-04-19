@@ -19,7 +19,7 @@
 /* slider style end */
 
 /* react slick style */
-.slick-next {
+.slick-slider-animation .slick-next {
   position: absolute !important;
   top: 43% !important;
   font-size: 30px !important;
@@ -30,7 +30,7 @@
   background-color: rgba(233, 233, 233, 0.258) !important;
   box-shadow: 3px 3px 3px 3px rgba(195, 195, 195, 0.334);
 }
-.slick-next::before {
+.slick-slider-animation .slick-next::before {
   content: ">" !important;
   position: absolute !important;
   right: 38% !important;
@@ -38,7 +38,7 @@
   font-size: 20px !important;
   color: #123 !important;
 }
-.slick-prev::before {
+.slick-slider-animation .slick-prev::before {
   content: "<" !important;
   position: absolute !important;
   right: 38% !important;
@@ -46,7 +46,7 @@
   font-size: 20px !important;
   color: #123 !important;
 }
-.slick-prev {
+.slick-slider-animation .slick-prev {
   position: absolute !important;
   top: 43% !important;
   font-size: 30px !important;
@@ -56,6 +56,46 @@
   border-radius: 100%;
   background-color: rgba(233, 233, 233, 0.258) !important;
   box-shadow: 3px 3px 3px 3px rgba(195, 195, 195, 0.334);
+}
+.products-slide .slick-next {
+  position: absolute !important;
+  top: 53% !important;
+  font-size: 30px !important;
+  right: -10px !important;
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 100%;
+  background-color: rgb(255, 255, 255) !important;
+  box-shadow: 3px 3px 3px 3px rgba(195, 195, 195, 0.334);
+  z-index: 100;
+}
+.products-slide .slick-next::before {
+  content: ">" !important;
+  position: absolute !important;
+  right: 35% !important;
+  top: 15% !important;
+  font-size: 25px !important;
+  color: teal !important;
+}
+.products-slide .slick-prev::before {
+  content: "<" !important;
+  position: absolute !important;
+  right: 35% !important;
+  top: 15% !important;
+  font-size: 25px !important;
+  color: teal !important;
+}
+.products-slide .slick-prev {
+  position: absolute !important;
+  top: 53% !important;
+  font-size: 30px !important;
+  left: -10px !important;
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 100%;
+  background-color: rgb(255, 255, 255) !important;
+  box-shadow: 3px 3px 3px 3px rgba(195, 195, 195, 0.334);
+  z-index: 100;
 }
 
 @keyframes slideAnimation {

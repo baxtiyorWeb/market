@@ -45,37 +45,38 @@ export default function Categoriyes() {
     slidesToScroll: 1,
   };
   return (
-    <div className="relative my-10 w-full">
-      <Slider {...settings} draggable speed={500} lazyLoad="progressive" arrows>
-        {data?.data?.content?.map(
-          (item, index) =>
-            item?.hasChildren && (
-              <div
-                className="mx-5  h-[150px] w-[100px]  rounded-3xl "
-                key={index}
-              >
-                <div className="flex flex-col items-center justify-center">
-                  <div className="flex h-[70px]  w-[70px] cursor-pointer items-center justify-center rounded-full bg-[#FFF] shadow-sm">
-                    <img
-                      className="h-[30px] w-[30px]"
-                      src={`data:image/png;base64,${item?.file?.fileBase64}`}
-                      alt=""
-                    />
-                  </div>
-                  <Link
-                    to={`/category/${item?.id}?category-name=${item?.name
-                      .split(", ")
-                      .join("-")}`}
-                    className="text-center "
-                  >
-                    <span className="mt-3 text-center  font-poppins text-[19px] font-normal not-italic leading-[100%] text-[#130F1E] hover:text-[#218490]">
-                      {item?.name}
-                    </span>
-                  </Link>
-                </div>
+    <div className="slick-slider-animation">
+      <Slider
+        {...settings}
+        draggable
+        speed={500}
+        lazyLoad="progressive"
+        className="relative"
+        arrows
+      >
+        {data?.data?.content?.map((item, index) => (
+          <div className="mx-5  h-[150px] w-[100px]  rounded-3xl " key={index}>
+            <div className="flex flex-col items-center justify-center">
+              <div className="flex h-[70px]  w-[70px] cursor-pointer items-center justify-center rounded-full bg-[#FFF] shadow-sm">
+                <img
+                  className="h-[30px] w-[30px]"
+                  src={`data:image/png;base64,${item?.file?.fileBase64}`}
+                  alt=""
+                />
               </div>
-            ),
-        )}
+              <Link
+                to={`/category/${item?.id}?category-name=${item?.name
+                  .split(", ")
+                  .join("-")}`}
+                className="text-center "
+              >
+                <span className="mt-3 text-center  font-poppins text-[19px] font-normal not-italic leading-[100%] text-[#130F1E] hover:text-[#218490]">
+                  {item?.name}
+                </span>
+              </Link>
+            </div>
+          </div>
+        ))}
       </Slider>
     </div>
   );
