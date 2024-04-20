@@ -26,7 +26,7 @@ const Products = () => {
         ) : (
           data?.data?.data?.content?.map((item, index) => (
             <div
-              className="relative h-[400px] w-[270px] flex-shrink-0 overflow-hidden  rounded-md shadow-md"
+              className="relative h-[400px] w-[270px] flex-shrink-0 overflow-hidden  rounded-md bg-white shadow-md"
               key={index}
             >
               <div className="relative h-[194px] w-[100%] overflow-hidden">

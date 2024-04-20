@@ -73,11 +73,16 @@ export default function ProductAbout() {
           {data?.data?.data?.name}
         </h1>
         <h5 className="text-xl font-semibold text-black">
-          {data?.data?.data?.price}
+          <span className="mr-5">{data?.data?.data?.price}</span>
           <span className="text-xs font-normal text-[#959EA7]">
             bo'lib to'lashga
           </span>
         </h5>
+        <h4>
+          <span className="mr-5">
+            {data?.data?.data?.canAgree ? "kelishiladi" : ""}
+          </span>
+        </h4>
       </div>
       <div className="mt-[27px] h-[1px] w-full bg-[#DFE2E5]"></div>
 
@@ -109,9 +114,10 @@ export default function ProductAbout() {
       </div>
       <div className="mb-5 mt-10 h-[1px] w-full bg-[#DFE2E5]"></div>
       <div className="text text-[#959EA7 ] text flex justify-between font-poppins text-[14px] font-normal leading-[100%] text-[#959EA7]">
-        <span>E'lon raqami </span>
+        <span>E'lon raqami: {data?.data?.data?.id}</span>
         <span className="flex items-center justify-center">
           Ko’rganlar: <FaEye className="ml-2 mr-2" />{" "}
+          {data?.data?.data?.viewCount}
           {/* {productgetWithId?.viewCount} */}
         </span>
       </div>

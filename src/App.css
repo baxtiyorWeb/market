@@ -339,6 +339,13 @@
   object-fit: contain;
   object-position: bottom;
 }
+.img-product-thumb {
+  width: 200px !important;
+  height: 200px !important;
+  transition: transform 0.3s ease-in-out;
+  object-fit: fill;
+  object-position: center;
+}
 
 /* antd design add styles */
 .ant-select-item {

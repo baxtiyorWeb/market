@@ -1,0 +1,22 @@
+.product-section::-webkit-scrollbar {
+  display: none;
+}
+.ant-input-search-button {
+  background: #1d828e;
+}
+.ant-input-search-button:hover {
+  background: #1d828e !important;
+}
+
+.ant-btn:hover {
+  background-color: #1d828e !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: white !important;
+}
+.ant-btn:disabled {
+  background-color: #1d828e !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: white !important;
+}
