@@ -12,7 +12,7 @@ const Products = () => {
     (_, index) => index + 1,
   );
   if (error) return "An error has occurred: " + error.message;
-
+  console.log(data?.data);
   return (
     <div className="mt-[40px] h-full w-full">
       <div>

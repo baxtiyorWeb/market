@@ -60,8 +60,9 @@ export const getProducts = async ({ pageParam }) => {
   return res.data;
 };
 
-export const getProductWithCategory = async (id) => {
-  const res = await api.get(`http://95.130.227.131:8080/api/v1/category/${id}`);
+export const getProductWithCategoryId = async (id) => {
+  const res = await api.get(`http://95.130.227.131:8080/api/v1/product/${id}`);
+  console.log(res?.data);
   return res.data;
 };
 

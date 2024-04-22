@@ -99,7 +99,7 @@ export default function ProductAbout() {
               className="h-[1px] w-[430px] shrink-0 border border-dashed border-black/10 bg-transparent"
             ></div>
             <span className="w-full text-sm font-medium text-black">
-              {item?.stringValue}
+              {item?.stringValue || item?.intValue}
             </span>
           </div>
         ))}
