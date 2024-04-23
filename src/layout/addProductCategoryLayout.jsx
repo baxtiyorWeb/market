@@ -37,7 +37,6 @@ export default function AddProductCategory() {
     files: null,
   });
   const [nextProductData, setNextProductData] = useState([{}]);
-
   const { handleToggle, isOpen } = useToggle();
 
   const handleChoosen = async (name, id) => {
@@ -202,58 +201,42 @@ export default function AddProductCategory() {
                     placeholder={item.name}
                     value={
                       nextProductData[index]?.stringValue ||
-                      "" ||
                       nextProductData[index]?.intValue ||
-                      "" ||
                       nextProductData[index]?.booleanValue ||
-                      "" ||
                       nextProductData[index]?.dateValue ||
                       ""
-                    } // Ensure stringValue exists and provide default value
+                    }
                     onChange={(e) => {
-                      let stringValue = e.target.value;
-                      let intValue = ""; // Odatiy qiymatlar
-                      let booleanValue = "";
-                      let doubleValue = "";
-                      let dateValue = "";
+                      const value = e.target.value;
+                      let stringValue =
+                        nextProductData[index]?.stringValue || "";
+                      let intValue = nextProductData[index]?.intValue || "";
 
-                      // Propertyning value type'ini aniqlash
-                      const valueType =
-                        item?.propertyDto?.valueTypeDto?.typeName;
+                      // Property's value type detection
+                      const valueType = item?.valueTypeDto?.typeName;
 
-                      // Qiymat turiga qarab mos parametrlarni sozlash
+                      // Set values based on value type
                       if (valueType === "INTEGER") {
-                        intValue = stringValue;
+                        intValue = value;
                       } else if (valueType === "STRING") {
-                        stringValue = stringValue;
-                      } else if (valueType === "boolean") {
-                        booleanValue = stringValue.toLowerCase() === "true";
-                      } else if (valueType === "date") {
-                        dateValue = stringValue;
-                      } else if (valueType === "double") {
-                        doubleValue = stringValue;
+                        stringValue = value;
                       }
 
-                      const updatedData = [...nextProductData]; // Arrayni ko'chirib olish
+                      const updatedData = [...nextProductData]; // Copy the array
                       updatedData[index] = {
                         ...updatedData[index],
                         id: 0,
                         propertyId: item.id,
-                        valueTypeId: item?.propertyDto?.valueTypeDto?.id || 3,
+                        valueTypeId: item?.valueTypeDto?.id || 3,
                         stringValue,
                         intValue,
-                        booleanValue,
-                        doubleValue,
-                        dateValue,
-                      }; // Massivdagi ma'lumotni yangilash
-                      setNextProductData(updatedData); // Holatni yangilash
+                      }; // Update the data in the array
+                      setNextProductData(updatedData); // Update the state
                     }}
                   />
                 </div>
               </div>
             );
-
-            // Return the input component with its label
           })}
         </div>
 

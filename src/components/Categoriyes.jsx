@@ -6,6 +6,13 @@ import { Link } from "react-router-dom";
 import { getCategoriesRootLisId, getCategoriesRootList } from "../exports/api";
 import Loading from "./../ui/loading/Loading";
 
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+// import required modules
+import { useState } from "react";
+
 const SubmenuComponent = ({ childCategories, chilId }) => {
   console.log(chilId);
   const { data } = useQuery({
@@ -31,11 +38,14 @@ export default function Categoriyes() {
     queryKey: ["category"],
     queryFn: () => getCategoriesRootList(),
   });
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   if (error) return `Error: ${error}`;
 
   if (isLoading) return <Loading />;
+  const dataImages = data?.data?.content?.map((item) => item?.file);
 
+  console.log(dataImages);
   const settings = {
     dots: true,
     infinite: false,

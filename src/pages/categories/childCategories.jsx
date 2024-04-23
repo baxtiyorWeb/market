@@ -45,7 +45,7 @@ const ChildCategories = () => {
       <div className="grid h-full grid-flow-col grid-rows-3 gap-4">
         <div className="row-span-3 flex h-[600px] w-[290px] flex-col rounded-2xl bg-white p-5  shadow-lg  ">
           <div className="my-5 border-b border-b-gray-500 text-left text-[15px] font-bold">
-            {formatParamName}
+            Bo&apos;limlar
           </div>
           <div className="flex  flex-col items-start justify-center">
             {categories?.data?.content?.map((item) => (
@@ -69,7 +69,9 @@ const ChildCategories = () => {
         </div>
         <div className="product-section col-span-12 row-span-3 h-full w-full    p-3">
           <div className="my-5 flex items-center justify-between  rounded-md bg-white p-2 text-left text-[15px]  shadow-md">
-            <div className="flex items-center justify-center border"></div>
+            <div className="flex items-center justify-center">
+              {formatParamName}
+            </div>
             <div className="">
               <Select
                 className="w-[60px]"
