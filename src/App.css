@@ -395,6 +395,9 @@
 .ant-spin-dot-item {
   background-color: white !important;
 }
+.ant-breadcrumb-link a:hover {
+  color: #1d828e !important;
+}
 /* antd design add styles end*/
 
 /* tabs styled */

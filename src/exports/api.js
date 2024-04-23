@@ -62,7 +62,13 @@ export const getProducts = async ({ pageParam }) => {
 
 export const getProductWithCategoryId = async (id) => {
   const res = await api.get(`http://95.130.227.131:8080/api/v1/product/${id}`);
-  console.log(res?.data);
+  return res.data;
+};
+
+export const getproductgetFileterSearch = async (searchValue) => {
+  const res = await api.get(
+    `product/list?page=0&size=10&search=${searchValue}`,
+  );
   return res.data;
 };
 

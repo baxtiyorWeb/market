@@ -1,12 +1,12 @@
 import { Breadcrumb } from "antd";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
-const Breadcrumbs = ({ categoryId, categories }) => {
-  const categ = categories;
+const ProductDetailBreadCrumbs = ({ data }) => {
+  const { id } = useParams();
+  const categ = data?.category;
   const breadcrumbsArr = [];
   let currentData = categ;
-  console.log(currentData);
   while (currentData) {
     breadcrumbsArr.unshift(
       <Breadcrumb
@@ -14,7 +14,7 @@ const Breadcrumbs = ({ categoryId, categories }) => {
         fontSize="sm"
         key={currentData.id}
         prefixCls="/"
-        params={categoryId}
+        params={id}
       >
         <Breadcrumb.Item separator={">"}>
           <Link
@@ -45,4 +45,4 @@ const Breadcrumbs = ({ categoryId, categories }) => {
   );
 };
 
-export default Breadcrumbs;
+export default ProductDetailBreadCrumbs;

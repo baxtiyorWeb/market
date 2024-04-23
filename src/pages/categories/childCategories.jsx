@@ -7,6 +7,7 @@ import { getCategoriesRootLisId } from "../../exports/api";
 import Loading from "../../ui/loading/spinLoading";
 import BreadCrumbs from "./../../ui/breadcrumbs/BreadCrumbs";
 import "./categories.css";
+import ProductFilter from "./productFilter/ProductFilter";
 import ProductGetList from "./productGetList";
 const ChildCategories = () => {
   const { id } = useParams();
@@ -43,28 +44,36 @@ const ChildCategories = () => {
         <BreadCrumbs categories={getCategId} categoryId={id} />
       </div>
       <div className="grid h-full grid-flow-col grid-rows-3 gap-4">
-        <div className="row-span-3 flex h-[600px] w-[290px] flex-col rounded-2xl bg-white p-5  shadow-lg  ">
-          <div className="my-5 border-b border-b-gray-500 text-left text-[15px] font-bold">
-            Bo&apos;limlar
+        <div className="flex flex-col">
+          <div className="row-span-3  flex h-[600px] w-[290px] flex-col rounded-2xl bg-white p-5  shadow-lg  ">
+            <div className="my-5 border-b border-b-gray-500 text-left text-[15px] font-bold">
+              Bo&apos;limlar
+            </div>
+            <div className="flex  flex-col items-start justify-center">
+              {categories?.data?.content?.map((item) => (
+                <Link
+                  className="my-1 h-16 w-full flex-1 rounded  py-1 font-medium hover:text-[#1D828E]"
+                  to={
+                    !item?.hasChildren
+                      ? `/category/${item?.id}?category-name=${item?.name
+                          .split(", ")
+                          .join("-")}`
+                      : `/category/${item?.id}?category-name=${item?.name
+                          .split(", ")
+                          .join("-")}`
+                  }
+                  key={item?.id}
+                >
+                  <span>{item?.name}</span>
+                </Link>
+              ))}
+            </div>
           </div>
-          <div className="flex  flex-col items-start justify-center">
-            {categories?.data?.content?.map((item) => (
-              <Link
-                className="my-1 h-16 w-full flex-1 rounded  py-1 font-medium hover:text-[#1D828E]"
-                to={
-                  !item?.hasChildren
-                    ? `/category/${item?.id}?category-name=${item?.name
-                        .split(", ")
-                        .join("-")}`
-                    : `/category/${item?.id}?category-name=${item?.name
-                        .split(", ")
-                        .join("-")}`
-                }
-                key={item?.id}
-              >
-                <span>{item?.name}</span>
-              </Link>
-            ))}
+          <div className="row-span-3 my-2 flex h-[600px] w-[290px] flex-col rounded-2xl bg-white p-5  shadow-lg  ">
+            <div className="my-5 border-b border-b-gray-500 text-left text-[15px] font-bold">
+              Saralash
+            </div>
+            <ProductFilter />
           </div>
         </div>
         <div className="product-section col-span-12 row-span-3 h-full w-full    p-3">

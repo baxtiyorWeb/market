@@ -18,30 +18,6 @@ const ProductGetList = () => {
 
   if (isLoading) return <Loading />;
 
-<<<<<<< HEAD
-  const content = data?.pages?.map((page) =>
-    page.data.content.map((item, index) => (
-      <div
-        className="relative h-[400px] flex-shrink-0 overflow-hidden rounded-md bg-white shadow-md"
-        key={index}
-      >
-        <div className="relative h-[194px] w-[100%] overflow-hidden">
-          <div className="cart-slider flex h-full w-full items-center justify-center border">
-            <Link to={`/details/${item.id}?infoTab=1`} key={index}>
-              <div className="h-full w-full">
-                <LazyLoadImage
-                  alt={"avatar"}
-                  src={`data:image/png;base64,${item.file?.fileBase64}`}
-                  effect="opacity"
-                  width={"100%"}
-                  delayTime={1500}
-                  loading="lazy"
-                  className="h-[194px]"
-                />
-              </div>
-            </Link>
-          </div>
-=======
   const content = (
     <div className="relative h-[400px] flex-shrink-0 overflow-hidden rounded-md bg-white shadow-md">
       <div className="relative h-[180px] w-[100%] overflow-hidden">
@@ -84,7 +60,6 @@ const ProductGetList = () => {
             {data?.data?.price}
           </span>{" "}
           <p className="ml-1">so{"'"}m</p>
->>>>>>> 02e2401346f073616fa3a7e093726ff7878ab5ba
         </div>
 
         <div className="mt-14">

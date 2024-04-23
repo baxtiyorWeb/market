@@ -8,6 +8,7 @@ import { MdClose } from "react-icons/md";
 import { Link } from "react-router-dom";
 import menuIcon from "../assets/menuIcon.svg";
 import searchIcon from "../assets/searchIcon.svg";
+import useProductSearch from "../hooks/product/useProductSearch";
 import Categoriyes from "../ui/Categoriyes";
 import Navigation from "./logo/Navigation";
 import Regions from "./regions/regions";
@@ -15,6 +16,7 @@ import Regions from "./regions/regions";
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [scroll, setScroll] = useState(false);
+  const { handleInputChange, handleButtonClick } = useProductSearch();
 
   // scroll
 
@@ -73,11 +75,15 @@ export default function Header() {
             onClick={() => setOpen(false)}
           >
             <input
+              onChange={handleInputChange}
               type="text"
               placeholder="Qidiruv"
               className="h-[50px] w-[540px] rounded-md border border-[#F4F4F4] bg-[#F9F9F9] pl-[19px] text-[#959EA7] outline-none"
             />
-            <button className="flex h-[50px] w-[50px] items-center justify-center rounded-[5px] bg-[#1D828E] ">
+            <button
+              onClick={handleButtonClick}
+              className="flex h-[50px] w-[50px] items-center justify-center rounded-[5px] bg-[#1D828E] "
+            >
               <img src={searchIcon} alt="" />
             </button>
           </div>

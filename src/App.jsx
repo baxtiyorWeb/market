@@ -6,6 +6,7 @@ import AddProductCategoryLayout from "./layout/addProductCategoryLayout";
 import AuthLayout from "./layout/authLayout";
 import Layout from "./layout/layout";
 import CreateUser from "./pages/auth/createUser";
+import FilterPage from "./pages/filter/FilterPage";
 import NotFound from "./pages/not-found";
 import Profile from "./pages/profile/Profile";
 import "./response.css";
@@ -53,6 +54,14 @@ const App = () => {
             element={
               <React.Suspense fallback={<Loading />}>
                 <Details scroll={scroll} />
+              </React.Suspense>
+            }
+          />
+          <Route
+            path="/product/search_result/:name"
+            element={
+              <React.Suspense fallback={<Loading />}>
+                <FilterPage scroll={scroll} />
               </React.Suspense>
             }
           />
