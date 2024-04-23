@@ -1,18 +1,35 @@
+import { message } from "antd";
 import { CiHeart } from "react-icons/ci";
 import { FaEye } from "react-icons/fa";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
+import api from "../../config/api/api";
 import useProducts from "../../hooks/useProducts";
 import Loading from "../../ui/loading/Loading";
 
 const Products = () => {
   const { data, error, isLoading, setPage, page, size } = useProducts();
+  const [searchParams, setSearchParams] = useSearchParams();
   const numbers = Array.from(
     { length: data?.data?.data?.totalElements / size },
     (_, index) => index + 1,
   );
+  const parentId = searchParams.get("productId");
+  const addLikeFavoriteProduct = async () => {
+    const data = await api.post(`/favorite-product/add?productId=${parentId}`);
+    if (data.status === 200) {
+      message.success("sevimlilarga qo'shildi");
+    }
+  };
+
+  const setQueryParams = (id) => {
+    addLikeFavoriteProduct(id);
+  };
+
+  if (isLoading) return <div>Loading...</div>;
+
   if (error) return "An error has occurred: " + error.message;
-  console.log(data?.data);
+
   return (
     <div className="mt-[40px] h-full w-full">
       <div>
@@ -76,7 +93,10 @@ const Products = () => {
                       <FaEye className="mr-3 text-[16px]" />
                       {item?.viewCount}
                     </span>
-                    <span className="absolute right-2 top-2 flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-full border bg-[#aeaead4b] text-white hover:bg-[#AEAEAD]">
+                    <span
+                      onClick={() => setQueryParams(item?.id)}
+                      className="absolute right-2 top-2 flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-full border bg-[#aeaead4b] text-white hover:bg-[#AEAEAD]"
+                    >
                       <CiHeart className="cursor-pointer text-[28px]" />
                     </span>
                   </div>

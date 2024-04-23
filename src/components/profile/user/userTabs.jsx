@@ -4,6 +4,7 @@ import { IoSearchOutline } from "react-icons/io5";
 import { MdOutlineDashboard, MdOutlineMail } from "react-icons/md";
 import { useSearchParams } from "react-router-dom";
 import Cookies from "universal-cookie";
+import MyFavourites from "../profile-details/MyFavourites";
 import Products from "../profile-details/products";
 export default function UserTabs() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -29,23 +30,24 @@ export default function UserTabs() {
           </i>
           <span>Productlarim</span>
         </div>
+
         <div
           className={tab == 2 ? "tab-el-active" : "tab-el"}
           onClick={() => tabs(2)}
         >
           <i className="tab-icon">
-            <IoSearchOutline />
+            <FaRegHeart />{" "}
           </i>
-          <span>Qidiruvlarim</span>
+          <span>yoqtirganlarim</span>
         </div>
         <div
           className={tab == 3 ? "tab-el-active" : "tab-el"}
           onClick={() => tabs(3)}
         >
           <i className="tab-icon">
-            <FaRegHeart />{" "}
+            <IoSearchOutline />
           </i>
-          <span>yoqtirganlarim</span>
+          <span>Qidiruvlarim</span>
         </div>
         <div
           className={tab == 4 ? "tab-el-active" : "tab-el"}
@@ -72,11 +74,14 @@ export default function UserTabs() {
         <div className={tab == 1 ? `tabs-active` : `tabs-none`}>
           <Products />
         </div>
+
         <div className={tab == 2 ? `tabs-active` : `tabs-none`}>
-          <h1>My Searches</h1>
+          <h1>
+            <MyFavourites />
+          </h1>
         </div>
         <div className={tab == 3 ? `tabs-active` : `tabs-none`}>
-          <h1>My Favourites</h1>
+          <h1>My Searches</h1>
         </div>
         <div className={tab == 4 ? `tabs-active` : `tabs-none`}>
           <h1>Messages</h1>
