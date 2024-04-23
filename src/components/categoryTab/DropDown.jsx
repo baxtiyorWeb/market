@@ -1,17 +1,19 @@
 import MenuItems from "./MenuItems";
+
 const Dropdown = ({ submenus, dropdown, depthLevel, handleChoosen }) => {
   depthLevel = depthLevel + 1;
-  const dropdownClass = depthLevel > 1 ? "dropdown-submenu" : "";
+  const dropdownClass = depthLevel > 1 ? "dropdown-submenus" : "";
   return (
-    <ul className={`dropdown ${dropdownClass} ${dropdown ? "show" : ""}`}>
-      {submenus?.map((submenu, index) => (
+    <ul className={`dropdowns ${dropdownClass} ${dropdown ? "show" : ""}`}>
+      {" "}
+      {submenus.map((submenu, index) => (
         <MenuItems
           items={submenu}
-          depthLevel={depthLevel}
           key={index}
+          depthLevel={depthLevel}
           handleChoosen={handleChoosen}
         />
-      ))}
+      ))}{" "}
     </ul>
   );
 };

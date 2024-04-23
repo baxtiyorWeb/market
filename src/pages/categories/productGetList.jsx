@@ -37,7 +37,7 @@ const ProductGetList = () => {
       >
         <div className="relative h-[194px] w-[100%] overflow-hidden">
           <div className="cart-slider flex h-full w-full items-center justify-center border">
-            <Link to={`/details/${item.id}`} key={index}>
+            <Link to={`/details/${item.id}?infoTab=1`} key={index}>
               <div className="h-full w-full">
                 <LazyLoadImage
                   alt={"avatar"}

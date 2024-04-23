@@ -18,6 +18,27 @@
 }
 /* slider style end */
 
+/* style carousel */
+.rec-pagination {
+  display: none !important;
+}
+.rec-arrow-right,
+.rec-arrow-left {
+  background: rgba(186, 186, 186, 0.575) !important;
+  color: #fff !important;
+  font-size: 18px !important;
+}
+
+.rec-arrow-right:hover {
+  background: #1d828e !important;
+  color: #fff !important;
+}
+.rec-arrow-left:hover {
+  background: #1d828e !important;
+  color: #fff !important;
+}
+/* styled  corousel  end */
+
 /* react slick style */
 .slick-slider-animation .slick-next {
   position: absolute !important;

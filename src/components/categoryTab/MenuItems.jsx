@@ -5,8 +5,8 @@ import Dropdown from "./DropDown";
 
 const MenuItems = ({ items, depthLevel, handleChoosen }) => {
   const [dropdown, setDropdown] = useState(false);
-  let ref = useRef();
   const { handleToggle } = useToggle();
+  let ref = useRef();
 
   useEffect(() => {
     const handler = (event) => {
@@ -33,20 +33,18 @@ const MenuItems = ({ items, depthLevel, handleChoosen }) => {
 
   return (
     <li
-      className="menu-items relative flex w-full justify-start bg-white"
+      className="menu-itemss"
       ref={ref}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
-      {items?.childCategories ? (
-        <div className="w-full">
+      {items.childCategories ? (
+        <>
           <button
-            className="relative w-full"
             type="button"
             aria-haspopup="menu"
             aria-expanded={dropdown ? "true" : "false"}
             onClick={() => {
-              setDropdown((prev) => !prev);
               items?.childCategories.length > 0
                 ? ""
                 : handleChoosen(items?.name, items?.id) && handleToggle();
@@ -62,12 +60,12 @@ const MenuItems = ({ items, depthLevel, handleChoosen }) => {
             )}{" "}
           </button>{" "}
           <Dropdown
-            handleChoosen={handleChoosen}
             depthLevel={depthLevel}
-            submenus={items?.childCategories}
+            submenus={items.childCategories}
             dropdown={dropdown}
+            handleChoosen={handleChoosen}
           />{" "}
-        </div>
+        </>
       ) : (
         // <a href="/#"> {items?.name} </a>
         <></>

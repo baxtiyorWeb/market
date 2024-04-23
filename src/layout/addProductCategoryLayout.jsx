@@ -10,7 +10,6 @@ import {
 } from "../exports/api";
 import useToggle from "../hooks/useToggle";
 import Container from "../shared/Container";
-import Overlay from "../ui/Overlay";
 
 export default function AddProductCategory() {
   const [params, setParams] = useSearchParams();
@@ -42,6 +41,7 @@ export default function AddProductCategory() {
   const { handleToggle, isOpen } = useToggle();
 
   const handleChoosen = async (name, id) => {
+    console.log(name, id);
     try {
       const res = await getCategoryPropertiesId(id);
       setParams({ categoryName: name, categoryId: id });
@@ -129,10 +129,9 @@ export default function AddProductCategory() {
           </div>
           <h1 className="text inline  font-poppins text-[33px] font-medium not-italic leading-normal tracking-[-0.33px] text-[#130F1E]"></h1>
         </div>
-        {isOpen ? <Overlay closed={handleToggle} /> : isOpen}
         {isOpen ? (
           <div className="relative">
-            <div className="absolute  -top-24 z-[309] grid w-[300px] grid-cols-1 gap-5  bg-[#FFFFFF] sm:grid-cols-2 md:grid-cols-3">
+            <div className="absolute  -top-24 z-[309] grid  grid-cols-1 gap-5 bg-[#FFFFFF] shadow-md ">
               <CategoryTab handleChoosen={handleChoosen} />
             </div>
           </div>

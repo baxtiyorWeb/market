@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getCategories } from "../../exports/api";
 import MenuItems from "./MenuItems";
-import "./category.css";
+import "./categ.css";
 const CategoryTab = ({ handleChoosen }) => {
-  // Bu sizning ma'lumotlaringiz
   const [items, setItems] = useState([]);
 
   const data = getCategories();
@@ -16,24 +15,21 @@ const CategoryTab = ({ handleChoosen }) => {
   useEffect(() => {
     getCateg();
   }, []);
-
   return (
-    <div className="relative w-full ">
-      {/* className={`dropdown ${dropdownClass} ${dropdown ? "show" : ""}`} */}
-      <ul className="flex h-full w-[300px] flex-col items-start justify-start border ">
-        {items?.map((submenu, index) => {
-          const depthLevel = 0;
-          return (
-            <MenuItems
-              items={submenu}
-              depthLevel={depthLevel}
-              key={index}
-              handleChoosen={handleChoosen}
-            />
-          );
-        })}
-      </ul>
-    </div>
+    <ul className="menuss ">
+      {" "}
+      {items.map((menu, index) => {
+        const depthLevel = 0;
+        return (
+          <MenuItems
+            items={menu}
+            key={index}
+            depthLevel={depthLevel}
+            handleChoosen={handleChoosen}
+          />
+        );
+      })}{" "}
+    </ul>
   );
 };
 
