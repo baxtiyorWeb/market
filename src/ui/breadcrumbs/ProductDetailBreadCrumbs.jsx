@@ -28,7 +28,9 @@ const ProductDetailBreadCrumbs = ({ data }) => {
             }
           >
             <div className="mr-3 flex  items-center justify-center ">
-              {currentData?.name} <span className="ml-3">/</span>
+              <span className="-skew-x-12 transform rounded-md  bg-slate-200 p-1 hover:text-slate-500">
+                {currentData?.name} {">"}
+              </span>
             </div>
           </Link>
         </Breadcrumb.Item>

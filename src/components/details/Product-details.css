@@ -1,0 +1,24 @@
+.product-page-img .carousel-root .carousel .thumbs-wrapper {
+  width: 100% !important;
+}
+.product-page-img .carousel-root .carousel .thumbs-wrapper .thumb {
+  width: 140px !important;
+  height: 140px !important;
+  border-radius: 10px !important;
+}
+.product-page-img .carousel-root .carousel .thumbs-wrapper .thumb:hover {
+  scale: 1.03;
+  outline: none !important;
+  border: none !important;
+}
+.product-page-img .carousel-root .carousel .thumbs-wrapper .thumb.selected {
+  scale: 1.03;
+  outline: none !important;
+  border: none !important;
+}
+.product-page-img .carousel-root .carousel .thumbs-wrapper .thumb img {
+  object-fit: cover;
+  height: 200px !important;
+  width: 200px !important;
+  border-radius: 10px;
+}

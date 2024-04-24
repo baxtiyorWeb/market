@@ -11,6 +11,13 @@ import "./index.css";
 axios.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem(
   "token",
 )}`;
+const ReactQueryDevtoolsProduction = React.lazy(() =>
+  import("@tanstack/react-query-devtools/build/lib/index.prod.js").then(
+    (d) => ({
+      default: d.ReactQueryDevtools,
+    }),
+  ),
+);
 
 const queryClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById("root")).render(

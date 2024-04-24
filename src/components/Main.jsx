@@ -1,7 +1,7 @@
+import {} from "@tanstack/react-query";
 import Categoriyes from "./Categoriyes";
 import Slider from "./Slider";
 import Products from "./products/Products";
-
 // eslint-disable-next-line react/prop-types
 export default function Main({ scroll }) {
   return (

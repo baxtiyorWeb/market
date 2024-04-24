@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import api from "../../config/api/api";
 import { getCategoriesRootLisId } from "../../exports/api";
-import Loading from "../../ui/loading/spinLoading";
+import Loading from "../../ui/loading/Loading";
 import BreadCrumbs from "./../../ui/breadcrumbs/BreadCrumbs";
 import "./categories.css";
 import ProductFilter from "./productFilter/ProductFilter";
@@ -15,7 +15,7 @@ const ChildCategories = () => {
   const [ids, setids] = useState([]);
   const searchParam = useSearchParams();
   const paramName = searchParam[0].get("category-name");
-  const formatParamName = paramName.split("-").join(" ");
+  const formatParamName = paramName?.split("-").join(" ");
 
   const {
     data: categories,
@@ -45,22 +45,22 @@ const ChildCategories = () => {
       </div>
       <div className="grid h-full grid-flow-col grid-rows-3 gap-4">
         <div className="flex flex-col">
-          <div className="row-span-3  flex h-[600px] w-[290px] flex-col rounded-2xl bg-white p-5  shadow-lg  ">
+          <div className="row-span-3  flex h-[600px] w-[330px] flex-col rounded-2xl bg-white p-5  shadow-lg  ">
             <div className="my-5 border-b border-b-gray-500 text-left text-[15px] font-bold">
               Bo&apos;limlar
             </div>
             <div className="flex  flex-col items-start justify-center">
               {categories?.data?.content?.map((item) => (
                 <Link
-                  className="my-1 h-16 w-full flex-1 rounded  py-1 font-medium hover:text-[#1D828E]"
+                  className="mb-3 h-16 w-full flex-1 rounded py-1 text-sm  font-normal hover:bg-slate-500/20 hover:text-gray-500 hover:underline "
                   to={
                     !item?.hasChildren
                       ? `/category/${item?.id}?category-name=${item?.name
-                          .split(", ")
-                          .join("-")}`
+                          ?.split(", ")
+                          ?.join("-")}`
                       : `/category/${item?.id}?category-name=${item?.name
-                          .split(", ")
-                          .join("-")}`
+                          ?.split(", ")
+                          ?.join("-")}`
                   }
                   key={item?.id}
                 >

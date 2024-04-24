@@ -81,10 +81,10 @@ export default function Categoriyes() {
     ],
   };
   return (
-    <div className="slider-container my-10">
+    <div className="slider-container mt-5">
       <Carousel
         enableAutoPlay
-        autoPlaySpeed={2000}
+        autoPlaySpeed={5000}
         itemsToShow={5}
         itemsToScroll={1}
         enableTilt
@@ -92,14 +92,14 @@ export default function Categoriyes() {
       >
         {data?.data?.content?.map((item, index) => (
           <div
-            className="mx-5 flex h-[160px] w-[200px]   items-center justify-center rounded-3xl "
+            className="mx-5 my-3 flex h-[100px] w-[200px] items-center   justify-center rounded-3xl "
             key={index}
           >
             <div>
               <div className="flex flex-col  items-center justify-center">
                 <div className="flex h-[70px]  w-[70px] cursor-pointer items-center justify-center rounded-full bg-[#FFF] shadow-sm">
                   <img
-                    className="h-[30px] w-[30px]"
+                    className="my-1 h-[30px] w-[30px]"
                     src={`data:image/png;base64,${item?.file?.fileBase64}`}
                     alt=""
                   />

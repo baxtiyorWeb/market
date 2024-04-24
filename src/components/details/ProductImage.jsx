@@ -1,9 +1,9 @@
 // Import Swiper styles
 import { Image } from "antd";
 import { useState } from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick-theme.css";
-import "slick-carousel/slick/slick.css";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "./Product-details.css";
 export default function ProductImage({ data }) {
   const [sliderIndex, setSliderIndex] = useState(1);
   const [imgGetIndex, setImgGetIndex] = useState(0);
@@ -66,48 +66,57 @@ export default function ProductImage({ data }) {
     ],
   };
 
+  const onClickThumb = (e) => {
+    console.log(e);
+  };
+  const onClickItem = (e) => {
+    console.log(e);
+  };
+
+  const onChange = (e) => {
+    console.log(e);
+  };
+
   const SliderProduct = () => {
     return (
       <>
         <div className="product-page-img relative">
           <div className="relative">
-            <div className="absolute top-[43%]  flex w-full justify-between">
-              <button
-                onClick={() => plusSlider(1)}
-                className="absolute right-0 z-20 ml-3 h-[50px] w-[50px] rounded-full text-[35px] text-slate-200 transition-all duration-200 hover:bg-slate-500/50 hover:text-slate-100"
+            <div className="absolute top-[43%]  flex w-full justify-between"></div>
+            <div className="h-full ">
+              <Carousel
+                verticalSwipe="natural"
+                showThumbs={true}
+                infiniteLoop
+                showStatus={false}
+                autoPlay
+                autoFocus
+                stopOnHover
+                emulateTouch
+                onChange={onChange}
+                onClickItem={onClickItem}
+                onClickThumb={onClickThumb}
+                renderThumbs={() =>
+                  data?.files?.map((item, index) => (
+                    <img
+                      key={index}
+                      src={`data:image/png;base64,${item.file?.fileBase64}`}
+                    />
+                  ))
+                }
               >
-                {">"}
-              </button>
-
-              <button
-                onClick={() => plusSlider(-1)}
-                className="right-0 z-20 mr-3 h-[50px] w-[50px] rounded-full text-[35px] text-slate-200 transition-all duration-200 hover:bg-slate-500/50 hover:text-slate-100"
-              >
-                {"<"}
-              </button>
-            </div>
-            <div>
-              {data?.files?.map((item, index) => (
-                <div
-                  key={index}
-                  className={`slide-item h-[400px] w-[726px] ${
-                    index + 1 === sliderIndex ? "animate-slide" : ""
-                  }`}
-                  style={{
-                    display: index + 1 === sliderIndex ? "flex" : "none",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  <Image
-                    src={`data:image/png;base64,${item.file?.fileBase64}`}
-                    loading="lazy"
-                    width="100%"
-                    height="400px"
-                    className="img-product border bg-center"
-                  />
-                </div>
-              ))}
+                {data?.files?.map((item, index) => (
+                  <div key={index} className={`slide-item h-[400px] w-[726px]`}>
+                    <Image
+                      src={`data:image/png;base64,${item.file?.fileBase64}`}
+                      loading="lazy"
+                      width="100%"
+                      height="400px"
+                      className="img-product border bg-center"
+                    />
+                  </div>
+                ))}
+              </Carousel>
             </div>
           </div>
         </div>
@@ -117,33 +126,6 @@ export default function ProductImage({ data }) {
   return (
     <div className=" products-slide product-details relative  rounded-[10px] border">
       <SliderProduct />
-      <Slider
-        {...settings}
-        infinite={false}
-        draggable
-        speed={500}
-        lazyLoad="progressive"
-        arrows
-      >
-        {data?.files?.map((item, index) => (
-          <div
-            style={{
-              width: 200,
-            }}
-            key={index}
-            className={`mt-10 rounded-md border border-[#C7C7C7] p-3 hover:border-2 hover:border-[#90c049] ${
-              index + 1 === sliderIndex && "active-img "
-            }`}
-            onClick={() => setSliderIndex(index + 1)}
-          >
-            <img
-              src={`data:image/png;base64,${item.file?.fileBase64}`}
-              alt=""
-              className={`h-[160px] cursor-pointer select-none  object-cover`}
-            />
-          </div>
-        ))}
-      </Slider>
     </div>
   );
 }

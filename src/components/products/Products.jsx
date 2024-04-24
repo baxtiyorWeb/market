@@ -2,21 +2,20 @@ import { message } from "antd";
 import { CiHeart } from "react-icons/ci";
 import { FaEye } from "react-icons/fa";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import api from "../../config/api/api";
 import useProducts from "../../hooks/useProducts";
 import Loading from "../../ui/loading/Loading";
 
 const Products = () => {
   const { data, error, isLoading, setPage, page, size } = useProducts();
-  const [searchParams, setSearchParams] = useSearchParams();
+
   const numbers = Array.from(
     { length: data?.data?.data?.totalElements / size },
     (_, index) => index + 1,
   );
-  const parentId = searchParams.get("productId");
-  const addLikeFavoriteProduct = async () => {
-    const data = await api.post(`/favorite-product/add?productId=${parentId}`);
+  const addLikeFavoriteProduct = async (id) => {
+    const data = await api.post(`/favorite-product/add?productId=${id}`);
     if (data.status === 200) {
       message.success("sevimlilarga qo'shildi");
     }
@@ -26,8 +25,7 @@ const Products = () => {
     addLikeFavoriteProduct(id);
   };
 
-  if (isLoading) return <div>Loading...</div>;
-
+  if (isLoading) return <Loading />;
   if (error) return "An error has occurred: " + error.message;
 
   return (

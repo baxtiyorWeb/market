@@ -21,9 +21,9 @@ export default function Details() {
     <Container>
       <div className={"flex justify-between"}>
         <div className="mb-[150px] mt-[56px] h-auto w-[790px] flex-shrink-0 border bg-[#fff] p-[30px]">
-          <div className="mb-10"></div>
-          <hr className="mb-6" />
           <ProductAbout />
+          <hr className="mb-6" />
+          <div className="mb-10"></div>
         </div>
         <ProductSideMenu />
       </div>
