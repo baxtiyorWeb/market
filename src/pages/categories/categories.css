@@ -2,7 +2,7 @@
   display: none;
 }
 .ant-input-search-button {
-  background: #1d828e;
+  background: #1d828e !important;
 }
 .ant-input-search-button:hover {
   background: #1d828e !important;

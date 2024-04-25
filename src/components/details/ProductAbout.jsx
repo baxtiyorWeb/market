@@ -16,7 +16,6 @@ export default function ProductAbout() {
 
   if (error) return "error: " + error;
   if (isLoading) return <Loading />;
-  console.log(data.data?.data);
   return (
     <div className="w-full">
       <ProductDetailBreadCrumbs data={data.data?.data} />

@@ -62,3 +62,9 @@
   left: 100%;
   top: -8;
 }
+.ant-cascader {
+  width: max-content !important;
+}
+.ant-cascader-menu {
+  height: max-content !important;
+}

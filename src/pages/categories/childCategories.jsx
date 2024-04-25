@@ -5,6 +5,7 @@ import { Link, useParams, useSearchParams } from "react-router-dom";
 import api from "../../config/api/api";
 import { getCategoriesRootLisId } from "../../exports/api";
 import Loading from "../../ui/loading/Loading";
+import SegmentedUi from "../../ui/segmented/Segmented";
 import BreadCrumbs from "./../../ui/breadcrumbs/BreadCrumbs";
 import "./categories.css";
 import ProductFilter from "./productFilter/ProductFilter";
@@ -12,7 +13,6 @@ import ProductGetList from "./productGetList";
 const ChildCategories = () => {
   const { id } = useParams();
   const [getCategId, setCateggetId] = useState([]);
-  const [ids, setids] = useState([]);
   const searchParam = useSearchParams();
   const paramName = searchParam[0].get("category-name");
   const formatParamName = paramName?.split("-").join(" ");
@@ -127,6 +127,7 @@ const ChildCategories = () => {
                 className="w-56 "
               />
             </div>
+            <SegmentedUi />
           </div>
           <ProductGetList />
         </div>
