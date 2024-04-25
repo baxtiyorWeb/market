@@ -1,4 +1,3 @@
-import {} from "@tanstack/react-query";
 import Categoriyes from "./Categoriyes";
 import Slider from "./Slider";
 import Products from "./products/Products";
