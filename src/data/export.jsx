@@ -1,4 +1,4 @@
-import { Checkbox, Collapse } from "antd";
+import { Checkbox, Collapse, Input } from "antd";
 import React from "react";
 import "./style.css";
 const Exports = () => {
@@ -8,47 +8,48 @@ const Exports = () => {
       label: "Kompaniya",
       children: (
         <>
-          <div className="w-full ">
-            <Checkbox className="mr-3" id="filter1" name="filter1" />
+          <Input.Search placeholder="qidirish" className="mb-5 mt-1" />
+          <div className="flex w-full items-center justify-start ">
+            <Checkbox className="mr-3 " id="filter1" name="filter1" />
             <label
               htmlFor="filter1"
-              className="text cursor-pointer text-pretty text-sm"
+              className="text cursor-pointer text-pretty text-lg"
             >
               Artel
             </label>
           </div>
-          <div className="w-full">
+          <div className="flex w-full items-center justify-start ">
             <Checkbox className="mr-3" id="filter1" name="filter1" />
             <label
               htmlFor="filter1"
-              className="text cursor-pointer text-pretty text-sm"
+              className="text cursor-pointer text-pretty text-lg"
             >
               Apple
             </label>
           </div>
-          <div className="w-full">
+          <div className="flex w-full items-center justify-start ">
             <Checkbox className="mr-3" id="filter1" name="filter1" />
             <label
               htmlFor="filter1"
-              className="text cursor-pointer text-pretty text-sm"
+              className="text cursor-pointer text-pretty text-lg"
             >
               Asus
             </label>
           </div>
-          <div className="w-full">
+          <div className="flex w-full items-center justify-start ">
             <Checkbox className="mr-3" id="filter1" name="filter1" />
             <label
               htmlFor="filter1"
-              className="text cursor-pointer text-pretty text-sm"
+              className="text cursor-pointer text-pretty text-lg"
             >
               Artel
             </label>
           </div>
-          <div className="w-full">
+          <div className="flex w-full items-center justify-start ">
             <Checkbox className="mr-3" id="filter1" name="filter1" />
             <label
               htmlFor="filter1"
-              className="text cursor-pointer text-pretty text-sm"
+              className="text cursor-pointer text-pretty text-lg"
             >
               Microsoft
             </label>
@@ -63,47 +64,47 @@ const Exports = () => {
         <p>
           {" "}
           <>
-            <div className="w-full">
+            <div className="flex w-full items-center justify-start ">
               <Checkbox className="mr-3" id="filter1" name="filter1" />
               <label
                 htmlFor="filter1"
-                className="text cursor-pointer text-pretty text-sm"
+                className="text cursor-pointer text-pretty text-lg"
               >
                 Artel
               </label>
             </div>
-            <div className="w-full">
+            <div className="flex w-full items-center justify-start ">
               <Checkbox className="mr-3" id="filter1" name="filter1" />
               <label
                 htmlFor="filter1"
-                className="text cursor-pointer text-pretty text-sm"
+                className="text cursor-pointer text-pretty text-lg"
               >
                 Macbook air
               </label>
             </div>
-            <div className="w-full">
+            <div className="flex w-full items-center justify-start ">
               <Checkbox className="mr-3" id="filter1" name="filter1" />
               <label
                 htmlFor="filter1"
-                className="text cursor-pointer text-pretty text-sm"
+                className="text cursor-pointer text-pretty text-lg"
               >
                 Macbook pro
               </label>
             </div>
-            <div className="w-full">
+            <div className="flex w-full items-center justify-start ">
               <Checkbox className="mr-3" id="filter1" name="filter1" />
               <label
                 htmlFor="filter1"
-                className="text cursor-pointer text-pretty text-sm"
+                className="text cursor-pointer text-pretty text-lg"
               >
                 Asus rog strix
               </label>
             </div>
-            <div className="w-full">
+            <div className="flex w-full items-center justify-start ">
               <Checkbox className="mr-3" id="filter1" name="filter1" />
               <label
                 htmlFor="filter1"
-                className="text cursor-pointer text-pretty text-sm"
+                className="text cursor-pointer text-pretty text-lg"
               >
                 hp pavilion gaming
               </label>
@@ -118,47 +119,47 @@ const Exports = () => {
       children: (
         <p>
           <>
-            <div className="w-full">
+            <div className="flex w-full items-center justify-start ">
               <Checkbox className="mr-3" id="filter1" name="filter1" />
               <label
                 htmlFor="filter1"
-                className="text cursor-pointer text-pretty text-sm"
+                className="text cursor-pointer text-pretty text-lg"
               >
                 400 0000
               </label>
             </div>
-            <div className="w-full">
+            <div className="flex w-full items-center justify-start ">
               <Checkbox className="mr-3" id="filter1" name="filter1" />
               <label
                 htmlFor="filter1"
-                className="text cursor-pointer text-pretty text-sm"
+                className="text cursor-pointer text-pretty text-lg"
               >
                 500 00000 00
               </label>
             </div>
-            <div className="w-full">
+            <div className="flex w-full items-center justify-start ">
               <Checkbox className="mr-3" id="filter1" name="filter1" />
               <label
                 htmlFor="filter1"
-                className="text cursor-pointer text-pretty text-sm"
+                className="text cursor-pointer text-pretty text-lg"
               >
                 Asus
               </label>
             </div>
-            <div className="w-full">
+            <div className="flex w-full items-center justify-start ">
               <Checkbox className="mr-3" id="filter1" name="filter1" />
               <label
                 htmlFor="filter1"
-                className="text cursor-pointer text-pretty text-sm"
+                className="text cursor-pointer text-pretty text-lg"
               >
                 Artel
               </label>
             </div>
-            <div className="w-full">
+            <div className="flex w-full items-center justify-start ">
               <Checkbox className="mr-3" id="filter1" name="filter1" />
               <label
                 htmlFor="filter1"
-                className="text cursor-pointer text-pretty text-sm"
+                className="text cursor-pointer text-pretty text-lg"
               >
                 Artel
               </label>
@@ -172,20 +173,20 @@ const Exports = () => {
       label: "Sotuv turi",
       children: (
         <>
-          <div className="w-full">
+          <div className="flex w-full items-center justify-start ">
             <Checkbox className="mr-3" id="filter1" name="filter1" />
             <label
               htmlFor="filter1"
-              className="text cursor-pointer text-pretty text-sm"
+              className="text cursor-pointer text-pretty text-lg"
             >
               Narx
             </label>
           </div>
-          <div className="w-full">
+          <div className="flex w-full items-center justify-start ">
             <Checkbox className="mr-3" id="filter1" name="filter1" />
             <label
               htmlFor="filter1"
-              className="text cursor-pointer text-pretty text-sm"
+              className="text cursor-pointer text-pretty text-lg"
             >
               Plastik
             </label>
