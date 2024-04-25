@@ -8,7 +8,7 @@ const Exports = () => {
       label: "Kompaniya",
       children: (
         <>
-          <div className="w-full">
+          <div className="w-full ">
             <Checkbox className="mr-3" id="filter1" name="filter1" />
             <label
               htmlFor="filter1"
