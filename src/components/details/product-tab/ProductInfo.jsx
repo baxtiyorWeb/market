@@ -69,7 +69,9 @@ const ProductInfo = ({ data }) => {
         </h5>
         <h4>
           <span className="mr-5">
-            {data?.data?.data?.canAgree ? "kelishiladi" : ""}
+            {data?.data?.data?.canAgree === true
+              ? "kelishiladi"
+              : "kelishilmaydi"}
           </span>
         </h4>
       </div>
@@ -88,7 +90,7 @@ const ProductInfo = ({ data }) => {
               className="h-[1px] w-[430px] shrink-0 border border-dashed border-black/10 bg-transparent"
             ></div>
             <span className="w-full text-sm font-medium text-black">
-              {item?.stringValue}
+              {item?.stringValue || item?.intValue}
             </span>
           </div>
         ))}

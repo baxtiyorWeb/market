@@ -5,7 +5,7 @@ import Container from "../shared/Container";
 
 import { useEffect, useState } from "react";
 import { MdClose } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import menuIcon from "../assets/menuIcon.svg";
 import searchIcon from "../assets/searchIcon.svg";
 import useProductSearch from "../hooks/product/useProductSearch";
@@ -17,7 +17,8 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const [scroll, setScroll] = useState(false);
   const { handleInputChange, handleButtonClick } = useProductSearch();
-
+  const searchable = useSearchParams();
+  const search = searchable[0].get("search");
   // scroll
 
   useEffect(() => {
@@ -28,7 +29,7 @@ export default function Header() {
         const direction = scrollY > lastScrollY ? "down" : "up";
         if (
           direction !== scroll &&
-          (scrollY - lastScrollY > 5 || scrollY - lastScrollY < -5)
+          (scrollY - lastScrollY > 1 || scrollY - lastScrollY < -5)
         ) {
           setScroll(direction);
         }
@@ -47,13 +48,13 @@ export default function Header() {
     <div
       className={`sticky ${
         scroll === "down" ? "top-[-180px]" : " top-0"
-      } transitiona-all left-0 top-0 z-[300]  flex h-[180px] w-full  flex-col items-center justify-center bg-white  duration-500`}
+      } transitiona-all left-0 top-0 z-[300]  flex h-[150px] w-full  flex-col items-center justify-center bg-white  duration-500`}
     >
       <Navigation />
       <Container>
         <div className="flex h-full w-full items-center justify-between ">
           <button
-            className="flex h-[50px] w-[130px] flex-shrink-0 items-center justify-between rounded-md bg-[#F4F4F4] p-2 text-center text-[#1D828E]"
+            className="flex h-[50px] w-[150px] flex-shrink-0 items-center justify-between rounded-md bg-[#F4F4F4] p-2 text-center text-[#1D828E]"
             onClick={() => setOpen(!open)}
           >
             {!open ? (
@@ -70,22 +71,25 @@ export default function Header() {
             <Regions opens={open} setOpens={setOpen} />
           </div>
 
-          <div
-            className="flex items-center justify-center"
-            onClick={() => setOpen(false)}
-          >
-            <input
-              onChange={handleInputChange}
-              type="text"
-              placeholder="Qidiruv"
-              className="h-[50px] w-[540px] rounded-md border border-[#F4F4F4] bg-[#F9F9F9] pl-[19px] text-[#959EA7] outline-none"
-            />
-            <button
-              onClick={handleButtonClick}
-              className="flex h-[50px] w-[50px] items-center justify-center rounded-[5px] bg-[#1D828E] "
+          <div onClick={() => setOpen(false)}>
+            <form
+              onSubmit={handleButtonClick}
+              className="flex items-center justify-center"
             >
-              <img src={searchIcon} alt="" />
-            </button>
+              <input
+                onChange={handleInputChange}
+                type="text"
+                placeholder="Qidiruv"
+                defaultValue={search}
+                className="h-[50px] w-[450px] rounded-md border border-[#F4F4F4] bg-[#F9F9F9] pl-[19px] text-[#959EA7] outline-none"
+              />
+              <button
+                type="submit"
+                className="flex h-[50px] w-[50px] items-center justify-center rounded-[5px] bg-[#1D828E] "
+              >
+                <img src={searchIcon} alt="" />
+              </button>
+            </form>
           </div>
           <Link
             to={token ? `/profile/dashboard?tab=1` : "/auth/login"}

@@ -4,13 +4,15 @@ import m_logo from "../../assets/m_logo.png";
 import Container from "../../shared/Container";
 export default function Navigation() {
   return (
-    <div className="mt-[2px] bg-[#FFF] ">
+    <div className=" bg-[#FFF]">
       <Container>
         <div className="flex h-full items-center justify-between">
-          <Link to={"/"}>
-            {" "}
-            <img src={m_logo} alt="" className="h-[70px] w-[230px]" />
-          </Link>
+          <div>
+            <Link to={"/"}>
+              {" "}
+              <img src={m_logo} alt="" className="h-[60px] w-[200px]" />
+            </Link>
+          </div>
           <div className="user-menu flex items-center justify-center">
             <div
               className="ml-3 mr-3 flex cursor-pointer items-center 

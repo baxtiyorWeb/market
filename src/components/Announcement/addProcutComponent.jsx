@@ -8,7 +8,7 @@ import useSelectAddCategory from "../../hooks/useSelectAddCategory";
 import ImgUpload from "../image-upload/ImgUpload";
 import { productOptions } from "./../../data/data";
 
-export default function AddProductComponent({ scroll }) {
+export default function AddProductComponent() {
   const [classActive, setClassActive] = useState(false);
   const { selectedCategory, value } = useSelectAddCategory();
 

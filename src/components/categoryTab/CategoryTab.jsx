@@ -1,34 +1,49 @@
+import { Cascader } from "antd";
 import { useEffect, useState } from "react";
 import { getCategories } from "../../exports/api";
-import MenuItems from "./MenuItems";
 import "./categ.css";
+
 const CategoryTab = ({ handleChoosen }) => {
-  const [items, setItems] = useState([]);
-
-  const data = getCategories();
-
-  const getCateg = async () => {
-    const res = await data.then((data) => data);
-    setItems(res?.data);
-  };
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    getCateg();
+    const fetchCategories = async () => {
+      const response = await getCategories();
+      setCategories(response.data);
+    };
+    fetchCategories();
   }, []);
+
+  const buildCategoryTree = (categories) => {
+    return categories.map((category) => {
+      const { id, name, childCategories } = category;
+      const children =
+        childCategories.length > 0 ? buildCategoryTree(childCategories) : [];
+      return { value: id, label: name, children };
+    });
+  };
+
+  const categoryOptions = buildCategoryTree(categories);
+  const handleCategoryChange = (value, selectedOptions) => {
+    if (selectedOptions && selectedOptions.length > 0) {
+      const selectedCategory = selectedOptions[selectedOptions.length - 1];
+      if (selectedCategory.children.length <= 0) {
+        handleChoosen(selectedCategory.label, selectedCategory.value);
+      }
+    }
+  };
   return (
     <ul className="menuss ">
       {" "}
-      {items.map((menu, index) => {
-        const depthLevel = 0;
-        return (
-          <MenuItems
-            items={menu}
-            key={index}
-            depthLevel={depthLevel}
-            handleChoosen={handleChoosen}
-          />
-        );
-      })}{" "}
+      <Cascader
+        rootClassName="categor-root-class-cascading"
+        popupClassName="categor-popup-class-cascading"
+        options={categoryOptions}
+        placeholder="Kategoriyani tanlang"
+        onChange={handleCategoryChange}
+        changeOnSelect
+        autoClearSearchValue
+      />
     </ul>
   );
 };
