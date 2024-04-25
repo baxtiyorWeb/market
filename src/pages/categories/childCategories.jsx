@@ -40,9 +40,8 @@ const ChildCategories = () => {
 
   return (
     <div className="mt-3 h-full flex-col items-start justify-center ">
-      <div className="flex items-center justify-center">
-        <BreadCrumbs categories={getCategId} categoryId={id} />
-      </div>
+      <BreadCrumbs categories={getCategId} categoryId={id} />
+      <div className="flex items-center justify-center"></div>
       <div className="grid h-full grid-flow-col grid-rows-3 gap-4">
         <div className="flex flex-col">
           <div className="row-span-3  flex h-[600px] w-[290px] flex-col rounded-2xl bg-white p-5  shadow-lg  ">

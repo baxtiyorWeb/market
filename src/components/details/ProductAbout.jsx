@@ -18,12 +18,15 @@ export default function ProductAbout() {
   if (isLoading) return <Loading />;
   console.log(data.data?.data);
   return (
-    <div className="w-full">
+    <>
       <ProductDetailBreadCrumbs data={data.data?.data} />
-      <ProductImage data={data?.data?.data} />
-      <div className="my-10">
-        <ProductTabs data={data} />
+      <div className="w-full">
+        <div className="m"></div>
+        <ProductImage data={data?.data?.data} />
+        <div className="my-10">
+          <ProductTabs data={data} />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
