@@ -17,7 +17,7 @@ const Breadcrumbs = ({ categoryId, categories }) => {
       >
         <Breadcrumb.Item separator={">"}>
           <Link
-            className=""
+            className={`${currentData.id == categoryId ? "text-blue-500" : ""}`}
             to={
               currentData.parent != null
                 ? `/category/${currentData.id}?category-name=${currentData?.name
@@ -27,7 +27,7 @@ const Breadcrumbs = ({ categoryId, categories }) => {
             }
           >
             <div className="mr-3 flex  items-center justify-center ">
-              <span className="-skew-x-12 transform rounded-md  bg-slate-200 p-1 hover:text-slate-500">
+              <span className="-skew-x-12 transform rounded-md hover:text-slate-500">
                 {currentData?.name} {">"}
               </span>
             </div>
@@ -40,7 +40,7 @@ const Breadcrumbs = ({ categoryId, categories }) => {
   }
 
   return (
-    <div className="my-5 flex h-auto w-full items-center justify-start">
+    <div className="my-5 flex h-auto w-[max-content] items-center justify-start rounded-md bg-slate-200 p-1">
       {breadcrumbsArr}
     </div>
   );

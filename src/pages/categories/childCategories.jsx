@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { Input, Select } from "antd";
+import { Input, Radio, Select, Space } from "antd";
 import React, { useEffect, useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import api from "../../config/api/api";
@@ -39,36 +39,35 @@ const ChildCategories = () => {
   if (error) return `Error: ${error}`;
 
   return (
-    <div className="mt-3 h-full flex-col items-start justify-center ">
+    <div className="h-full flex-col items-start justify-center ">
       <BreadCrumbs categories={getCategId} categoryId={id} />
       <div className="flex items-center justify-center"></div>
       <div className="grid h-full grid-flow-col grid-rows-3 gap-4">
         <div className="flex flex-col">
-          <div className="row-span-3  flex h-[600px] w-[330px] flex-col rounded-2xl bg-white p-5  shadow-lg  ">
+          <div className="row-span-3  flex h-auto w-[330px] flex-col rounded-2xl bg-white p-5  shadow-lg  ">
             <div className="my-5 border-b border-b-gray-500 text-left text-[15px] font-bold">
               Bo&apos;limlar
             </div>
             <div className="flex  flex-col items-start justify-center">
-              {categories?.data?.content?.map((item) => (
-                <Link
-                  className="mb-3 h-16 w-full flex-1 rounded py-1 text-sm  font-normal hover:bg-slate-500/20 hover:text-gray-500 hover:underline "
-                  to={
-                    !item?.hasChildren
-                      ? `/category/${item?.id}?category-name=${item?.name
-                          ?.split(", ")
-                          ?.join("-")}`
-                      : `/category/${item?.id}?category-name=${item?.name
-                          ?.split(", ")
-                          ?.join("-")}`
-                  }
-                  key={item?.id}
-                >
-                  <span>{item?.name}</span>
-                </Link>
-              ))}
+              <Radio.Group>
+                <Space direction="vertical">
+                  {categories?.data?.content?.map((item, index) => (
+                    <Link
+                      to={`/category/${item?.id}?category-name=${item?.name
+                        ?.split(", ")
+                        ?.join("-")}`}
+                    >
+                      {" "}
+                      <Radio value={item?.id} key={index}>
+                        {item?.name}
+                      </Radio>
+                    </Link>
+                  ))}
+                </Space>
+              </Radio.Group>
             </div>
           </div>
-          <div className="row-span-3 my-2 flex h-[600px] w-[290px] flex-col rounded-2xl bg-white p-5  shadow-lg  ">
+          <div className="row-span-3 my-2 flex h-[600px] w-[330px] flex-col rounded-2xl bg-white p-5  shadow-lg">
             <div className="my-5 border-b border-b-gray-500 text-left text-[15px] font-bold">
               Saralash
             </div>

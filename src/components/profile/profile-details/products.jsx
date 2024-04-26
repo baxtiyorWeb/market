@@ -5,7 +5,7 @@ import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 const Products = () => {
   return (
-    <div className=" p-3">
+    <div className="p-3">
       <div className="mb-3 flex h-[80px] w-full items-center justify-between">
         <Input
           placeholder="mahsulotni qidiring"

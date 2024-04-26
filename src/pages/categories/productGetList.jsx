@@ -39,30 +39,26 @@ const ProductGetList = () => {
     <>
       {productFilter?.map((item, index) => (
         <div
-          className="mb-10 mt-5 h-auto w-[280px] rounded-xl bg-white  shadow-md"
+          className="mb-10 mt-5 h-auto w-[280px] rounded-xl bg-white  p-3   shadow-md"
           key={index}
         >
-          <div className="flex w-full flex-col justify-center p-1">
+          <div className="flex w-full flex-col justify-center ">
             <div>
-              <img
-                className="h-[180px] w-full rounded-md  object-cover"
-                src={`data:image/png;base64,${item?.file?.fileBase64}`}
-                alt=""
-              />
+              <Link to={`/details/${item?.id}?infoTab=1`} className="">
+                <img
+                  className="h-[180px] w-full rounded-md  object-cover"
+                  src={`data:image/png;base64,${item?.file?.fileBase64}`}
+                  alt=""
+                />
+              </Link>
             </div>
-            <div className="relative  mt-10 h-auto w-full">
+            <div className="relative  mt-3 h-auto w-full">
               <div>
                 <div className="flex items-center justify-between p-1">
                   <h1 className="text-lg font-medium ">{item?.name}</h1>
-                  <Link
-                    to={`/details/${item?.id}?infoTab=1`}
-                    className="absolute -top-10 right-3 rounded-md p-2 hover:underline"
-                  >
-                    Ko&apos;proq ma&apos;lumot olish
-                  </Link>
                 </div>
                 <div className="inline-block items-center justify-center">
-                  <span className="mr-1 text-base font-medium">
+                  <span className="mr-1  text-xl font-medium text-teal-700">
                     ${item?.price}
                   </span>
                   <span className="text-sm text-[#A7A7A7]">
@@ -70,16 +66,16 @@ const ProductGetList = () => {
                   </span>
                   <div className="mt-2 flex items-center justify-start border-t pt-3">
                     <div className="mx-1 flex h-14 w-14 flex-col items-center justify-center rounded-md border px-1">
+                      <span className="mr-1">10</span>
                       <FaRegComments className="mr-1" />
-                      <span className="mr-1">10</span>
                     </div>
                     <div className="mx-1 flex h-14 w-14 flex-col items-center justify-center rounded-md border px-1">
-                      <FaEye className="mr-1" />
                       <span className="mr-1">{item?.viewCount}</span>
+                      <FaEye className="mr-1" />
                     </div>
                     <div className="mx-1 flex h-14 w-14 flex-col items-center justify-center rounded-md border px-1">
-                      <FaQuestionCircle className="mr-1" />
                       <span className="mr-1">10</span>
+                      <FaQuestionCircle className="mr-1" />
                     </div>
                   </div>
                   <div className="mx-1 my-3">
@@ -88,14 +84,14 @@ const ProductGetList = () => {
                 </div>
 
                 <div className="my-3 flex items-center justify-start">
-                  <span className="mx-1 flex cursor-pointer items-center justify-center rounded-md border p-[2px]">
-                    <FaRegHeart className="mr-1" /> <span>saqlash</span>
+                  <span className="mx-1 flex cursor-pointer items-center justify-center rounded-md border-b p-[2px]">
+                    <FaRegHeart className="" /> <span>saqlash</span>
                   </span>
-                  <span className="mx-1 flex cursor-pointer items-center justify-center rounded-md border p-[2px]">
-                    <FaQuestionCircle className="mr-1" /> <span>savol</span>
+                  <span className="mx-1 flex cursor-pointer items-center justify-center rounded-md border-b p-[2px]">
+                    <FaQuestionCircle className="" /> <span>savol</span>
                   </span>
-                  <span className="mx-1 flex cursor-pointer items-center justify-center rounded-md border p-[2px]">
-                    <FaShare className="mr-1" /> <span>ulashish</span>
+                  <span className="mx-1 flex cursor-pointer items-center justify-center rounded-md border-b p-[2px]">
+                    <FaShare className="" /> <span>ulashish</span>
                   </span>
                 </div>
               </div>
@@ -110,7 +106,7 @@ const ProductGetList = () => {
 
   return (
     <>
-      <div className=" grid w-full grid-cols-3 gap-1">{content}</div>
+      <div className="grid grid-cols-3 gap-3">{content}</div>
       <div className="my-3 flex items-center justify-center">
         {/* <Button
           disabled={!hasNextPage || isFetchingNextPage}

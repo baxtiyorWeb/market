@@ -80,17 +80,6 @@ const App = () => {
           {/* profile layout */}
 
           <Route
-            path="/profile"
-            element={
-              <React.Suspense fallback={<Loading />}>
-                <ProfileLayout />
-              </React.Suspense>
-            }
-          >
-            <Route path="/profile/dashboard" element={<Profile />}></Route>
-          </Route>
-
-          <Route
             loader={<Loading />}
             path="/category"
             element={
@@ -142,6 +131,16 @@ const App = () => {
               </React.Suspense>
             }
           ></Route>
+        </Route>
+        <Route
+          path="/profile"
+          element={
+            <React.Suspense fallback={<Loading />}>
+              <ProfileLayout />
+            </React.Suspense>
+          }
+        >
+          <Route path="/profile/dashboard" element={<Profile />}></Route>
         </Route>
       </Routes>
     </>

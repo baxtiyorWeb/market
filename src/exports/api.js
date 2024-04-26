@@ -8,8 +8,12 @@ export const getCategories = async () => {
 
 export const getCategoriesRootList = async (id) => {
   const res = await api.get(
-    `/category/list?page=0&size=10&parentId=${id ? id : ""}`,
+    `/category/list?page=0&size=10&parentId=${id != "" ? id : ""}`,
   );
+  return res.data;
+};
+export const getCategoriesRootListSticky = async () => {
+  const res = await api.get(`/category/list?page=0&size=8&parentId=`);
   return res.data;
 };
 export const getCategoriesRootLisId = async (id) => {

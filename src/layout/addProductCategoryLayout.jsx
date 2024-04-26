@@ -174,7 +174,6 @@ export default function AddProductCategory() {
     getSellType();
     getPaymenType();
   }, []);
-  console.log(selltype);
 
   return (
     <div className="product-layout">
@@ -258,7 +257,7 @@ export default function AddProductCategory() {
             </div>
             <div className="mb-10 mr-[122px] w-[334px]">
               <span className="text font-poppins text-[14px] font-normal leading-[22px] text-black">
-                To'lov turi
+                To&apos;lov turi
               </span>
               <Select
                 type="text"
@@ -296,9 +295,12 @@ export default function AddProductCategory() {
               return (
                 <div key={index}>
                   <div className="mb-10 w-[334px]">
-                    <span className="text font-poppins text-[14px] font-normal leading-[22px] text-black">
-                      {item?.name}
-                    </span>
+                    <div className="flex items-center justify-start">
+                      <span className="mr-3 text-red-500">{"*"}</span>
+                      <span className="text font-poppins text-[14px] font-normal leading-[22px] text-black">
+                        {item?.name}
+                      </span>
+                    </div>
                     <input
                       type={
                         (item?.valueTypeDto?.typeName === "INTEGER" &&

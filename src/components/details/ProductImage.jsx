@@ -82,7 +82,6 @@ export default function ProductImage({ data }) {
       <>
         <div className="product-page-img relative">
           <div className="relative">
-            <div className="absolute top-[43%]  flex w-full justify-between"></div>
             <div className="h-full ">
               <Carousel
                 verticalSwipe="natural"
@@ -110,9 +109,9 @@ export default function ProductImage({ data }) {
                     <Image
                       src={`data:image/png;base64,${item.file?.fileBase64}`}
                       loading="lazy"
-                      width="100%"
+                      width={"100%"}
                       height="400px"
-                      className="img-product border bg-center"
+                      className="img-product border  "
                     />
                   </div>
                 ))}

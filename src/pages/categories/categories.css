@@ -20,3 +20,15 @@
   box-shadow: none !important;
   color: white !important;
 }
+
+.ant-radio-checked .ant-radio-inner {
+  border-color: red !important ;
+}
+
+.ant-radio-checked .ant-radio-inner:after {
+  background-color: red;
+}
+
+.ant-radio:hover .ant-radio-inner {
+  border-color: red;
+}

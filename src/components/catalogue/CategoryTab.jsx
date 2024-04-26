@@ -1,20 +1,35 @@
 import { Menu } from "antd";
 import SubMenu from "antd/es/menu/SubMenu";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { getCategories } from "../../exports/api";
 import "./category.css";
 const MenuList = ({ categories }) => {
   const renderSubMenu = (category) => {
     if (category.childCategories.length > 0) {
       return (
-        <SubMenu key={category.id} title={category.name}>
+        <SubMenu
+          key={category.id}
+          title={
+            <Link
+              to={`/category/${category?.id}?category-name=${category?.name}`}
+            >
+              {category.name}
+            </Link>
+          }
+        >
           {category.childCategories.map((child) => renderSubMenu(child))}
         </SubMenu>
       );
     } else {
       return (
         <Menu.Item key={category.id} className="menu-item">
-          {category.name}
+          <Link
+            to={`/category/${category?.id}?category-name=${category?.name}`}
+          >
+            {" "}
+            {category.name}
+          </Link>
         </Menu.Item>
       );
     }

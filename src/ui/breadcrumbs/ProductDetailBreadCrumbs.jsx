@@ -18,7 +18,9 @@ const ProductDetailBreadCrumbs = ({ data }) => {
       >
         <Breadcrumb.Item separator={">"}>
           <Link
-            className=""
+            className={`${
+              currentData.id == data?.category.id ? "text-blue-500" : ""
+            }`}
             to={
               currentData.parent != null
                 ? `/category/${currentData.id}?category-name=${currentData?.name

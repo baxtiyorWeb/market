@@ -25,6 +25,7 @@
     "js-cookie": "^3.0.5",
     "js-cookie-jar": "^1.0.1",
     "json-server": "^1.0.0-alpha.19",
+    "nextjs-toploader": "^1.6.12",
     "npm": "^10.4.0",
     "primeicons": "^7.0.0",
     "primereact": "^10.6.3",

@@ -20,9 +20,8 @@ export default function ProductAbout() {
     <>
       <ProductDetailBreadCrumbs data={data.data?.data} />
       <div className="w-full">
-        <div className="m"></div>
         <ProductImage data={data?.data?.data} />
-        <div className="my-10">
+        <div className="">
           <ProductTabs data={data} />
         </div>
       </div>

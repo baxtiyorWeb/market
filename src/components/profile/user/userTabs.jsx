@@ -5,7 +5,9 @@ import { MdOutlineDashboard, MdOutlineMail } from "react-icons/md";
 import { useSearchParams } from "react-router-dom";
 import Cookies from "universal-cookie";
 import MyFavourites from "../profile-details/MyFavourites";
-import Products from "../profile-details/products";
+import Pricing from "../profile-details/Pricing";
+import Products from "../profile-details/Products";
+import "./../profile-details/product-details.css";
 export default function UserTabs() {
   const [searchParams, setSearchParams] = useSearchParams();
   const tab = searchParams.get("tab");
@@ -64,6 +66,16 @@ export default function UserTabs() {
           onClick={() => tabs(5)}
         >
           <i className="tab-icon">
+            {" "}
+            <MdOutlineMail />
+          </i>
+          <span>Narxlar</span>
+        </div>
+        <div
+          className={tab == 6 ? "tab-el-active" : "tab-el"}
+          onClick={() => tabs(6)}
+        >
+          <i className="tab-icon">
             <FaCog />
           </i>
           <span>sozlamalar</span>
@@ -84,9 +96,12 @@ export default function UserTabs() {
           <h1>My Searches</h1>
         </div>
         <div className={tab == 4 ? `tabs-active` : `tabs-none`}>
-          <h1>Messages</h1>
+          <h1>Xabarlar</h1>
         </div>
         <div className={tab == 5 ? `tabs-active` : `tabs-none`}>
+          <Pricing />
+        </div>
+        <div className={tab == 6 ? `tabs-active` : `tabs-none`}>
           <h1>Settings</h1>
         </div>
       </div>

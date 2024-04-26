@@ -63,17 +63,12 @@ const ProductInfo = ({ data }) => {
         </h1>
         <h5 className="text-xl font-semibold text-black">
           <span className="mr-5">{data?.data?.data?.price}</span>
-          <span className="text-xs font-normal text-[#959EA7]">
-            bo'lib to'lashga
-          </span>
-        </h5>
-        <h4>
-          <span className="mr-5">
+          <span className="mr-5 text-xs font-normal text-[#959EA7]">
             {data?.data?.data?.canAgree === true
               ? "kelishiladi"
               : "kelishilmaydi"}
           </span>
-        </h4>
+        </h5>
       </div>
       <div className="mt-[27px] h-[1px] w-full bg-[#DFE2E5]"></div>
 
@@ -99,7 +94,7 @@ const ProductInfo = ({ data }) => {
         <h3 className="text-[20px] font-semibold text-black">
           Qisqacha ma’lumot
         </h3>
-        <p className="text-foreground font-poppins text-[16px] font-normal leading-[30px]">
+        <p className="text-foreground break-all font-poppins text-[16px] font-normal leading-[30px]">
           {data?.data?.data?.description}
         </p>
       </div>
@@ -109,7 +104,6 @@ const ProductInfo = ({ data }) => {
         <span className="flex items-center justify-center">
           Ko’rganlar: <FaEye className="ml-2 mr-2" />{" "}
           {data?.data?.data?.viewCount}
-          {/* {productgetWithId?.viewCount} */}
         </span>
       </div>
     </div>
