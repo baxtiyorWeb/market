@@ -43,47 +43,11 @@ export default function AddProductCategory() {
     files: null,
   });
   const [nextProductData, setNextProductData] = useState([{}]);
-  const { handleToggle, isOpen } = useToggle();
-  const [selectedCategories, setSelectedCategories] = useState([]);
+  const { isOpen } = useToggle();
 
-  const onChanges = (value, selectedOptions) => {
-    setSelectedCategories(selectedOptions.map((option) => option.label));
-  };
-  const categories = [
-    {
-      value: "fruits",
-      label: "Mevalar",
-      children: [
-        {
-          value: "citrus",
-          label: "Gilos",
-          children: [
-            { value: "orange", label: "Apelsin" },
-            { value: "lemon", label: "Limon" },
-          ],
-        },
-        {
-          value: "berries",
-          label: "Sabzavotlar",
-          childCategories: [
-            { value: "strawberry", label: "Qulupnay" },
-            { value: "blueberry", label: "Oq sochiq" },
-          ],
-        },
-      ],
-    },
-    {
-      value: "vegetables",
-      label: "Sabzavotlar",
-      childCategories: [
-        { value: "carrot", label: "Sabzi" },
-        { value: "potato", label: "Kartoshka" },
-      ],
-    },
-  ];
-  const onChange = (value) => {
-    console.log(value);
-  };
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   const getSellType = async () => {
     const res = await api.get("/sell-type/all");
@@ -186,7 +150,9 @@ export default function AddProductCategory() {
           <div className="mb-16">
             <CategoryTab handleChoosen={handleChoosen} />
           </div>
-          <h1 className="text inline  font-poppins text-[33px] font-medium not-italic leading-normal tracking-[-0.33px] text-[#130F1E]"></h1>
+          <h1 className="text-center font-poppins text-[33px] font-medium not-italic leading-normal tracking-[-0.33px] text-[#130F1E]">
+            {queryName}
+          </h1>
         </div>
         {isOpen ? (
           <div className="relative">
