@@ -25,7 +25,7 @@ const Products = () => {
     addLikeFavoriteProduct(id);
   };
 
-  if (isLoading) return <Loading />;
+  // if (isLoading) return <Loading />;
   if (error) return "An error has occurred: " + error.message;
 
   return (
@@ -41,12 +41,12 @@ const Products = () => {
         ) : (
           data?.data?.data?.content?.map((item, index) => (
             <div
-              className="relative h-[400px] w-[270px] flex-shrink-0 overflow-hidden  rounded-md bg-white shadow-md"
+              className="relative h-[400px] w-[270px] flex-shrink-0 overflow-hidden rounded-md border  bg-white p-1"
               key={index}
             >
               <div className="relative h-[194px] w-[100%] overflow-hidden">
                 <div
-                  className="cart-slider flex h-full w-full items-center justify-center border"
+                  className="cart-slider flex h-full w-full items-center justify-center"
                   key={index}
                 >
                   <Link to={`/details/${item.id}?infoTab=1`} key={index}>
@@ -68,9 +68,6 @@ const Products = () => {
                 <span className="text line-clamp-1 font-poppins text-[16px] font-medium not-italic leading-[120%] tracking-[-0.32px] text-[#130F1E]">
                   {item?.name}
                 </span>
-                <p className="text line-clamp-1 text-[16px] font-normal not-italic leading-[120%] tracking-[-0.32px] text-[#130F1E]">
-                  {item?.description}
-                </p>
                 <div className="mt-[12px] flex items-center  justify-start">
                   <span className="text font-poppins text-[19px] font-semibold not-italic leading-[100%] text-[#130F1E]">
                     {item?.price}

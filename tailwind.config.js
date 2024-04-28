@@ -6,6 +6,13 @@ export default {
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
       },
+      colors: {
+        btnColor: "#1D828E",
+        spinLoadingColor: "#1D828E",
+        hoverTextColor: "#1D828E",
+        textColor: "#130F1E",
+        spanColor: "#959EA7",
+      },
     },
   },
   plugins: [],

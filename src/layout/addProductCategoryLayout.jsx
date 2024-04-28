@@ -61,14 +61,12 @@ export default function AddProductCategory() {
   };
 
   const handleChoosen = async (name, id) => {
-    console.log(name, id);
     try {
       const res = await getCategoryPropertiesId(id);
       setParams({ categoryName: name, categoryId: id });
       setQueryName(name);
       setQueryId(id);
       setNextProductData("");
-      console.log(res?.data);
 
       // Combine the fetched properties with nextProductData
       const combinedData = [...res?.data];
@@ -94,7 +92,6 @@ export default function AddProductCategory() {
     });
 
     imgList.readAsDataURL(file);
-    console.log(fileListView);
 
     // Fayllarni array obyektiga o'zlashtirish
     const data = fileUplaodLoadedData(file);

@@ -17,7 +17,7 @@ const ProductGetList = () => {
   const search = searchable[0].get("search");
   const getproductgetFileterSearch = async (value) => {
     const res = await api.get(
-      `/product/list?page=${0}&size=${10}&search=${value}`,
+      `/product/list?page=${0}&size=${10}&search=${value}&categoryId=${120}`,
     );
     return res.data?.data?.content;
   };

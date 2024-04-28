@@ -71,7 +71,7 @@ const ProductInfo = ({ data }) => {
         </h5>
       </div>
       <div className="mt-[27px] h-[1px] w-full bg-[#DFE2E5]"></div>
-
+      <h1 className="mt-10 text-2xl font-medium">Xusuiyatlari</h1>
       <div className="mb-10 mt-8 flex flex-col gap-y-8">
         {data?.data?.data?.propertyValues?.map((item, index) => (
           <div

@@ -98,6 +98,7 @@ export default function ProductImage({ data }) {
                 renderThumbs={() =>
                   data?.files?.map((item, index) => (
                     <img
+                      className="img-thumbs"
                       key={index}
                       src={`data:image/png;base64,${item.file?.fileBase64}`}
                     />

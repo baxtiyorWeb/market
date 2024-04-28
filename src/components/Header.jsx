@@ -85,7 +85,7 @@ export default function Header() {
               />
               <button
                 type="submit"
-                className="flex h-[50px] w-[50px] items-center justify-center rounded-[5px] bg-[#1D828E] "
+                className="flex h-[50px] w-[50px] items-center justify-center rounded-[5px] bg-btnColor "
               >
                 <img src={searchIcon} alt="" />
               </button>
