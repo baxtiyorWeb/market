@@ -1,12 +1,12 @@
 import { useState } from "react";
+import Confirm from "../../pages/auth/confirm";
 import CreateLoginAndPassword from "./createLoginAndPassword";
-import CreateOtp from "./createOtp";
-export default function Confirm() {
+export default function OtpCodeConfirmComponent() {
   const [open, setOpen] = useState(false);
 
   return (
     <div>
-      {open ? <CreateLoginAndPassword /> : <CreateOtp setOpen={setOpen} />}
+      {open ? <CreateLoginAndPassword /> : <Confirm setOpen={setOpen} />}
     </div>
   );
 }

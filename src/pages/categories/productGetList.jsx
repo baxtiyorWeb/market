@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useEffect } from "react";
+import React from "react";
 import {
   FaEye,
   FaQuestionCircle,
@@ -7,37 +7,29 @@ import {
   FaRegHeart,
   FaShare,
 } from "react-icons/fa";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import api from "../../config/api/api";
 import Loading from "../../ui/loading/Loading";
 import "./categories.css";
 
 const ProductGetList = () => {
   const searchable = useSearchParams();
-  const search = searchable[0].get("search");
-  const getproductgetFileterSearch = async (value) => {
+  const { id } = useParams();
+  const search = searchable[0].get("search_result");
+  const productFilterWithCategoryId = async () => {
     const res = await api.get(
-      `/product/list?page=${0}&size=${10}&search=${value}&categoryId=${120}`,
+      `/product/list?page=0&size=10&search=${search || ""}&categoryId=${id}`,
     );
-    return res.data?.data?.content;
+    return res.data;
   };
-  const {
-    data: productFilter,
-    isLoading,
-    refetch,
-  } = useQuery({
-    queryKey: ["products", search],
-    queryFn: () => getproductgetFileterSearch(search),
+  const { data: productFilter, isLoading } = useQuery({
+    queryKey: ["product", id],
+    queryFn: productFilterWithCategoryId,
   }); // fetchData funksiyasiga tanlangan qidiruvni yuborish
-
-  useEffect(() => {
-    // SearchQuery o'zgarishi bilan tarmoq so'rovi ni qayta ishga tushirish
-    refetch(); // refetch funksiyasini React-Query obyektiga ma'lumotlarni yangilash uchun yuborish
-  }, [search]);
   if (isLoading) return <Loading />;
   const content = (
     <>
-      {productFilter?.map((item, index) => (
+      {productFilter?.data?.content?.map((item, index) => (
         <div
           className="mb-10 mt-5 h-auto w-[280px] rounded-xl bg-white  p-3   shadow-md"
           key={index}

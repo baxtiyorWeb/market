@@ -1,34 +1,30 @@
-import axios from "axios";
 import React, { useState } from "react";
 import OTPInput from "react-otp-input";
+import api from "../../config/api/api";
 import ButtonUI from "../../ui/button/Button";
 import SpinLoading from "../../ui/loading/spinLoading";
 
-const CreateOtp = ({ setOpen }) => {
+const Confirm = ({ setOpen }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
   const [confirm, setConfirm] = useState("");
 
   const confimCodeSMS = async () => {
-    setIsLoading(false);
+    setIsLoading(true);
     try {
       const secretKey = localStorage.getItem("secretKey");
-      const confirmCode = await axios.post(
-        "http://95.130.227.131:8080/api/v1/authority/code-confirm",
-        null,
-        {
-          params: { code: confirm },
-          headers: {
-            secretKey: secretKey,
-          },
+      const confirmCode = await api.post("/authority/code-confirm", null, {
+        params: { code: confirm },
+        headers: {
+          secretKey: secretKey,
         },
-      );
+      });
       if (confirmCode.status === 200) {
         setConfirm("");
         setOpen(true);
       }
     } catch (error) {
-      console.log(error);
-      throw new Error(`Error: ${error}`);
+      setError(error.response?.data.errorResponse.message);
     } finally {
       setIsLoading(false);
     }
@@ -63,15 +59,17 @@ const CreateOtp = ({ setOpen }) => {
           }}
         />
       </div>
+      <span className="text-errorTextColor my-3">{error}</span>
       <ButtonUI
         disabled={(confirm.length === 0 < true) === confirm.length >= 4}
-        className=" mt-5 h-[50px] w-[328px] rounded-md bg-[#1D828E] text-white disabled:cursor-not-allowed disabled:bg-[#1d838eb4]"
+        className=" text-whiteTextColor disabled:bg-disableBtnColor mt-5 h-[50px] w-[328px] rounded-md bg-btnColor disabled:cursor-not-allowed"
         onClick={confimCodeSMS}
       >
         {isLoading ? <SpinLoading /> : "Davom etish"}
       </ButtonUI>
+      {error.errorResponse}
     </div>
   );
 };
 
-export default CreateOtp;
+export default Confirm;

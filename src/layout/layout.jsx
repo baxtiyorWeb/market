@@ -5,7 +5,7 @@ import Header from "../components/Header";
 
 export default function Layout() {
   return (
-    <div className="bg-[#FAFAFA]">
+    <div className="bg-[#F4F7FC]">
       <Header />
       <div className=" min-h-screen w-full flex-grow">
         <Outlet />

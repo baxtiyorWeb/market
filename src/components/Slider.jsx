@@ -9,7 +9,6 @@ export default function Slider() {
         autoPlay
         transitionTime={300}
         infiniteLoop
-        swipeable
         showIndicators={true}
         showStatus={false}
         className="select-none"

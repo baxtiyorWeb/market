@@ -13,6 +13,7 @@ import ProductGetList from "./productGetList";
 const ChildCategories = () => {
   const { id } = useParams();
   const [getCategId, setCateggetId] = useState([]);
+
   const searchParam = useSearchParams();
   const paramName = searchParam[0].get("category-name");
   const formatParamName = paramName?.split("-").join(" ");
@@ -24,7 +25,9 @@ const ChildCategories = () => {
   } = useQuery({
     queryKey: ["category", id],
     queryFn: () => getCategoriesRootLisId(id),
+    enabled: !id,
   });
+
   const getCategoryId = async () => {
     const getid = await api.get(`/category/${id}`);
     const res = getid.data;
@@ -36,8 +39,8 @@ const ChildCategories = () => {
   }, [id]);
 
   if (isLoading) return <Loading />;
-  if (error) return `Error: ${error}`;
 
+  if (error) return `Error: ${error}`;
   return (
     <div className="h-full flex-col items-start justify-center ">
       <BreadCrumbs categories={getCategId} categoryId={id} />

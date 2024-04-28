@@ -11,6 +11,7 @@ import {
 import { Link, useParams } from "react-router-dom";
 import api from "../../config/api/api";
 import Exports from "../../data/export";
+import ChildCategories from "../../pages/categories/childCategories";
 import Breadcrumbs from "../../ui/breadcrumbs/BreadCrumbs";
 import SpinLoading from "../../ui/loading/spinLoading";
 import { Container, SegmentedUi } from "./../../common/common";
@@ -32,7 +33,7 @@ const FilterComponent = () => {
   return (
     <Container>
       <Breadcrumbs />
-
+      <ChildCategories />
       <div className="grid grid-flow-col grid-rows-3 gap-4">
         <div className="row-span-3  flex h-[600px]  w-[330px] flex-col rounded-2xl border bg-white p-5  shadow-lg  ">
           <div className="my-5 border-b border-b-gray-500 text-left text-[15px] font-bold">

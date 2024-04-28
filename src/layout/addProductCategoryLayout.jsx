@@ -1,8 +1,20 @@
-import { Checkbox, Select, Switch } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
+import { Checkbox, Select, Switch, Upload } from "antd";
+import imageCompression from "browser-image-compression";
 import React, { useEffect, useState } from "react";
-import { FaPlus } from "react-icons/fa";
+import { registerPlugin } from "react-filepond";
 import { Outlet, useSearchParams } from "react-router-dom";
 import CategoryTab from "../components/categoryTab/CategoryTab";
+
+// Import FilePond styles
+import "filepond/dist/filepond.min.css";
+
+// Import the Image EXIF Orientation and Image Preview plugins
+// Note: These need to be installed separately
+// `npm i filepond-plugin-image-preview filepond-plugin-image-exif-orientation --save`
+import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orientation";
+import FilePondPluginImagePreview from "filepond-plugin-image-preview";
+import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 import api from "../config/api/api";
 import {
   createProduct,
@@ -13,12 +25,25 @@ import useToggle from "../hooks/useToggle";
 import Container from "../shared/Container";
 import AddProductLocation from "./addProductLocation";
 
+const getBase64 = (file) =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    console.log(reader.result);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = (error) => reject(error);
+  });
+
 export default function AddProductCategory() {
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const [previewImage, setPreviewImage] = useState("");
+
   const [params, setParams] = useSearchParams();
   const [regionId, setRegionId] = useState("");
   const [districtId, setDistrictId] = useState("");
 
   const [fileList, setFileList] = useState([]);
+  const [fileLisId, setFileListId] = useState([]);
 
   const [propertiesData, setPropertiesData] = useState([]);
   const [selltype, setSellType] = useState([]);
@@ -26,6 +51,7 @@ export default function AddProductCategory() {
   const [queryName, setQueryName] = useState(params.get("categoryName") || "");
   const [queryId, setQueryId] = useState(params.get("categoryId") || "");
   const [fileListView, setFileListView] = useState([]);
+  const [files, setFiles] = useState([]);
 
   const [productInitData, setProductInitData] = useState({
     id: 0,
@@ -48,6 +74,35 @@ export default function AddProductCategory() {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
+  const handlePreview = async (file) => {
+    if (!file.url && !file.preview) {
+      file.preview = await getBase64(file.originFileObj);
+    }
+    console.log(file);
+    setPreviewImage(file.url || file.preview);
+    setPreviewOpen(true);
+  };
+
+  const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
+
+  const uploadButton = (
+    <button
+      style={{
+        border: 0,
+        background: "none",
+      }}
+      type="button"
+    >
+      <PlusOutlined />
+      <div
+        style={{
+          marginTop: 8,
+        }}
+      >
+        Upload
+      </div>
+    </button>
+  );
 
   const getSellType = async () => {
     const res = await api.get("/sell-type/all");
@@ -78,6 +133,36 @@ export default function AddProductCategory() {
     }
   };
 
+  async function handleImageUpload(event) {
+    const imageFile = event.target.files[0];
+    console.log("originalFile instanceof Blob", imageFile instanceof Blob); // true
+    console.log(
+      `originalFile size ${Math.ceil(imageFile.size / 1024 / 1024)} MB`,
+    );
+
+    const options = {
+      maxSizeMB: 1,
+      maxWidthOrHeight: 1920,
+      useWebWorker: true,
+    };
+    try {
+      const compressedFile = await imageCompression(imageFile, options);
+      console.log(
+        "compressedFile instanceof Blob",
+        compressedFile instanceof Blob,
+      ); // true
+      console.log(
+        `compressedFile size ${Math.floor(
+          Math.ceil(compressedFile.size / 1024 / 1024),
+        )} MB`,
+      ); // smaller than maxSizeMB
+      console.log(compressedFile);
+      await uploadToServer(compressedFile); // write your own logic
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   const fielUplaod = (file) => {
     // Yangi FormData obyekti yaratiladi
 
@@ -92,24 +177,38 @@ export default function AddProductCategory() {
     });
 
     imgList.readAsDataURL(file);
-
     // Fayllarni array obyektiga o'zlashtirish
-    const data = fileUplaodLoadedData(file);
-    data.then((res) => {
-      // Fayl identifikatorini olish
-      const fileId = res?.data?.id;
-
-      // fileList ni yangilash
-      setFileList((prevFileList) => [
-        ...prevFileList,
-        {
-          id: 0, // Hozirgi faylning indeksi
-          fileItemId: fileId, // Fayl identifikatori
-          mainFile: prevFileList.length === 0, // Agar bu birinchi fayl bo'lsa
-        },
-      ]);
-    });
   };
+
+  const uploadImage = async (options) => {
+    const { onSuccess, onError, file, onProgress } = options;
+    const imgFile = new FormData();
+    imgFile.append("img", file);
+    const imgList = new FileReader();
+    imgList.readAsDataURL(file);
+    try {
+      const data = fileUplaodLoadedData(file);
+      data.then((res) => {
+        // Fayl identifikatorini olish
+        const fileId = res?.data?.id;
+
+        // fileList ni yangilash
+        setFileListId((prevFileList) => [
+          ...prevFileList,
+          {
+            id: 0, // Hozirgi faylning indeksi
+            fileItemId: fileId, // Fayl identifikatori
+            mainFile: prevFileList.length === 0, // Agar bu birinchi fayl bo'lsa
+          },
+        ]);
+      });
+      onSuccess("Ok");
+    } catch (err) {
+      console.log("Eroor: ", err);
+      onError({ err });
+    }
+  };
+
   const handleSubmit = async (e) => {
     // Category tanlanganini olish
     e.preventDefault();
@@ -120,7 +219,7 @@ export default function AddProductCategory() {
       canAgree: productInitData.canAgree ? true : false,
       districtId: districtId,
       propertyValues: nextProductData,
-      files: fileList, // `fileList` yuborgan fayllar ro'yxati
+      files: fileLisId, // `fileList` yuborgan fayllar ro'yxati
     });
 
     // State yangilanadi
@@ -135,6 +234,13 @@ export default function AddProductCategory() {
     getSellType();
     getPaymenType();
   }, []);
+
+  // Import React FilePond
+  // Register the plugins
+  registerPlugin(
+    FilePondPluginImageExifOrientation,
+    FilePondPluginImagePreview,
+  );
 
   return (
     <div className="product-layout">
@@ -369,33 +475,29 @@ export default function AddProductCategory() {
           </span>
           <div className="my-3 flex items-center justify-start">
             <div className="mb-10 w-auto">
-              <div className="flex items-center justify-center">
-                {fileListView?.map((item, index) => (
-                  <img
-                    src={`${item}`}
-                    className="m-3 h-[150px] w-[150px] rounded-xl border shadow-lg"
-                    key={index}
-                    alt=""
-                  />
-                ))}
-                <div class="flex w-full items-center justify-center">
-                  <label
-                    for="dropzone-file"
-                    class="dark:hover:bg-bray-800 ml-10 mr-5 flex h-[100px] w-[100px] cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-[#1D828E] "
-                  >
-                    <div class="flex flex-col items-center justify-center pb-6 pt-5 text-gray-300">
-                      <FaPlus />
-                    </div>
-                    <input
-                      id="dropzone-file"
-                      type="file"
-                      class="hidden"
-                      onChange={(e) => fielUplaod(e.target.files[0])}
-                      required
-                    />
-                  </label>
-                </div>
-              </div>
+              <Upload
+                listType="picture-card"
+                customRequest={uploadImage}
+                fileList={fileList}
+                onPreview={handlePreview}
+                onChange={handleChange}
+              >
+                {fileList.length >= 8 ? null : uploadButton}
+              </Upload>
+              {previewImage && (
+                <Image
+                  wrapperStyle={{
+                    display: "none",
+                  }}
+                  preview={{
+                    visible: previewOpen,
+                    onVisibleChange: (visible) => setPreviewOpen(visible),
+                    afterOpenChange: (visible) =>
+                      !visible && setPreviewImage(""),
+                  }}
+                  src={previewImage}
+                />
+              )}
             </div>
           </div>
           <div className="flex items-center justify-start">
