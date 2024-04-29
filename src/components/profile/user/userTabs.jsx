@@ -6,7 +6,7 @@ import { useSearchParams } from "react-router-dom";
 import MyFavourites from "../MyFavourites";
 import Pricing from "../Pricing";
 import Products from "../Products";
-import "../profile-details/Products/profile-detailsproduct-details.css";
+import "../product-details.css";
 export default function UserTabs() {
   const [searchParams, setSearchParams] = useSearchParams();
   const tab = searchParams.get("tab");
