@@ -1,20 +1,11 @@
 import { PlusOutlined } from "@ant-design/icons";
 import { Checkbox, Select, Switch, Upload } from "antd";
-import imageCompression from "browser-image-compression";
+
 import React, { useEffect, useState } from "react";
-import { registerPlugin } from "react-filepond";
+
 import { Outlet, useSearchParams } from "react-router-dom";
 import CategoryTab from "../components/categoryTab/CategoryTab";
 
-// Import FilePond styles
-import "filepond/dist/filepond.min.css";
-
-// Import the Image EXIF Orientation and Image Preview plugins
-// Note: These need to be installed separately
-// `npm i filepond-plugin-image-preview filepond-plugin-image-exif-orientation --save`
-import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orientation";
-import FilePondPluginImagePreview from "filepond-plugin-image-preview";
-import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 import api from "../config/api/api";
 import {
   createProduct,
@@ -50,8 +41,6 @@ export default function AddProductCategory() {
   const [paymenttype, setPaymentType] = useState([]);
   const [queryName, setQueryName] = useState(params.get("categoryName") || "");
   const [queryId, setQueryId] = useState(params.get("categoryId") || "");
-  const [fileListView, setFileListView] = useState([]);
-  const [files, setFiles] = useState([]);
 
   const [productInitData, setProductInitData] = useState({
     id: 0,
@@ -133,53 +122,6 @@ export default function AddProductCategory() {
     }
   };
 
-  async function handleImageUpload(event) {
-    const imageFile = event.target.files[0];
-    console.log("originalFile instanceof Blob", imageFile instanceof Blob); // true
-    console.log(
-      `originalFile size ${Math.ceil(imageFile.size / 1024 / 1024)} MB`,
-    );
-
-    const options = {
-      maxSizeMB: 1,
-      maxWidthOrHeight: 1920,
-      useWebWorker: true,
-    };
-    try {
-      const compressedFile = await imageCompression(imageFile, options);
-      console.log(
-        "compressedFile instanceof Blob",
-        compressedFile instanceof Blob,
-      ); // true
-      console.log(
-        `compressedFile size ${Math.floor(
-          Math.ceil(compressedFile.size / 1024 / 1024),
-        )} MB`,
-      ); // smaller than maxSizeMB
-      console.log(compressedFile);
-      await uploadToServer(compressedFile); // write your own logic
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  const fielUplaod = (file) => {
-    // Yangi FormData obyekti yaratiladi
-
-    const imgFile = new FormData();
-    // Tanlangan fayl img kalitiga joylashtiriladi
-    imgFile.append("img", file);
-
-    const imgList = new FileReader();
-
-    imgList.addEventListener("load", () => {
-      setFileListView([...fileListView, imgList?.result]);
-    });
-
-    imgList.readAsDataURL(file);
-    // Fayllarni array obyektiga o'zlashtirish
-  };
-
   const uploadImage = async (options) => {
     const { onSuccess, onError, file, onProgress } = options;
     const imgFile = new FormData();
@@ -234,14 +176,6 @@ export default function AddProductCategory() {
     getSellType();
     getPaymenType();
   }, []);
-
-  // Import React FilePond
-  // Register the plugins
-  registerPlugin(
-    FilePondPluginImageExifOrientation,
-    FilePondPluginImagePreview,
-  );
-
   return (
     <div className="product-layout">
       <Container>

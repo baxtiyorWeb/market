@@ -440,3 +440,72 @@
 .slider-container-styck .slick-slide {
   margin-right: 5px;
 }
+
+.slider-container-styck .slick-next {
+  position: absolute;
+  top: 22%;
+  right: -40px;
+  display: block;
+  width: 30px;
+  height: 30px;
+  margin-top: -10px;
+  padding: 0;
+  color: transparent;
+  font-size: 0;
+  line-height: 0;
+  border: 1px solid rgb(118, 207, 207) !important;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  border-radius: 10px 10px 10px 10px !important;
+}
+.slider-container-styck .slick-next::before {
+  content: ">" !important;
+  position: absolute !important;
+  right: 25% !important;
+  top: 53% !important;
+  font-size: 25px !important;
+  color: rgb(118, 207, 207) !important;
+}
+.slider-container-styck .slick-prev::before {
+  content: "<" !important;
+  position: absolute !important;
+  right: 25% !important;
+  top: 53% !important;
+  font-size: 25px !important;
+  color: rgb(118, 207, 207) !important;
+}
+.slider-container-styck .slick-prev {
+  position: absolute;
+  top: 22%;
+  left: -40px;
+  display: block;
+  width: 30px;
+  height: 30px;
+  margin-top: -10px;
+  padding: 0;
+  color: transparent;
+  font-size: 0;
+  border: 1px solid rgb(118, 207, 207) !important;
+  line-height: 0;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  border-radius: 10px 10px 10px 10px !important;
+}
+.slider-container-styck .slick-arrow:hover {
+  position: absolute;
+  top: 22%;
+  right: -40px;
+  display: block;
+  width: 30px;
+  height: 30px;
+  margin-top: -10px;
+  padding: 0;
+  color: transparent;
+  font-size: 0;
+  line-height: 0;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+}

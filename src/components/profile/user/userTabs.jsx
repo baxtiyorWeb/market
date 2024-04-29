@@ -3,7 +3,6 @@ import { FaCog, FaRegHeart } from "react-icons/fa";
 import { IoSearchOutline } from "react-icons/io5";
 import { MdOutlineDashboard, MdOutlineMail } from "react-icons/md";
 import { useSearchParams } from "react-router-dom";
-import Cookies from "universal-cookie";
 import MyFavourites from "../profile-details/MyFavourites";
 import Pricing from "../profile-details/Pricing";
 import Products from "../profile-details/Products";
@@ -14,12 +13,6 @@ export default function UserTabs() {
   const tabs = (n) => {
     setSearchParams({ tab: n });
   };
-
-  const Cookie = new Cookies();
-  const res = Cookie.getAll();
-
-  console.log(res);
-
   return (
     <div>
       <div className="flex w-full items-center justify-evenly  p-1">

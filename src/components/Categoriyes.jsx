@@ -1,18 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import Swiper from "react-id-swiper";
 import { Link } from "react-router-dom";
-import { Navigation, Pagination } from "swiper/modules";
+import Loading from "./../ui/loading/Loading";
 
-// import styles
-
-// import plugins if you need
 import { Carousel } from "antd";
-import { useRef, useState } from "react";
 import {
   getCategoriesRootLisId,
   getCategoriesRootListSticky,
 } from "../exports/api";
-import Loading from "./../ui/loading/Loading";
 const SubmenuComponent = ({ childCategories, chilId }) => {
   const { data } = useQuery({
     queryKey: ["category"],
@@ -34,47 +28,13 @@ const SubmenuComponent = ({ childCategories, chilId }) => {
 };
 
 export default function Categoriyes() {
-  const [swiper, setSwiper] = useState(null);
-
-  const ref = useRef(null);
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["category"],
     queryFn: () => getCategoriesRootListSticky(),
   });
 
-  if (error) return `Error: ${error}`;
-
   if (isLoading) return <Loading />;
-  const params = {
-    // Provide Swiper class as props
-    Swiper,
-    // Add modules you need
-    modules: [Navigation, Pagination],
-    pagination: {
-      el: ".swiper-pagination",
-      type: "bullets",
-      clickable: true,
-    },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-      clickable: true,
-    },
-    spaceBetween: 30,
-  };
 
-  const goNext = () => {
-    if (ref.current !== null && ref.current.swiper !== null) {
-      swiper.slideNext();
-    }
-  };
-
-  const goPrev = () => {
-    if (ref.current !== null && ref.current.swiper !== null) {
-      console.log(swiper);
-      swiper.slidePrev();
-    }
-  };
   return (
     <div className="slider-container-styck relative mt-5 ">
       <Carousel
@@ -84,6 +44,7 @@ export default function Categoriyes() {
         draggable
         infinite
         autoplay
+        arrows
         autoplaySpeed={1000}
       >
         {data?.data?.content?.map((item, index) => (
@@ -110,7 +71,6 @@ export default function Categoriyes() {
           </div>
         ))}
       </Carousel>
-      <button onClick={goPrev}>next</button>
     </div>
   );
 }

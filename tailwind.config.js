@@ -13,6 +13,7 @@ export default {
         hoverTextColor: "#1D828E",
         textColor: "#130F1E",
         spanColor: "#959EA7",
+        borderColor: "rgb(148, 163, 184)",
         errorTextColor: "#EF4444",
         whiteTextColor: "#fff",
       },
