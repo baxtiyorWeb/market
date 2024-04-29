@@ -4,8 +4,8 @@ import React from "react";
 import { FaEye } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
-import api from "../../../config/api/api";
-import Loading from "../../../ui/loading/Loading";
+import api from "../../config/api/api";
+import Loading from "../../ui/loading/Loading";
 const MyFavourites = () => {
   const myFavourites = async () => {
     const res = await api.get(
