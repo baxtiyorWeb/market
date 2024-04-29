@@ -39,7 +39,7 @@ const ChildCategories = () => {
   }, [id]);
 
   if (isLoading) return <Loading />;
-
+  console.log(categories);
   if (error) return `Error: ${error}`;
   return (
     <div className="h-full flex-col items-start justify-center ">

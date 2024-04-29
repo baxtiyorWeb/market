@@ -41,7 +41,7 @@ const Products = () => {
         ) : (
           data?.data?.data?.content?.map((item, index) => (
             <div
-              className="relative h-[430px] w-[270px] flex-shrink-0 overflow-hidden rounded-md border  bg-white p-1"
+              className="relative h-[430px] w-[260px] flex-shrink-0 overflow-hidden rounded-2xl border  bg-white "
               key={index}
             >
               <div className="relative h-[194px] w-[100%] overflow-hidden">
@@ -49,7 +49,11 @@ const Products = () => {
                   className="cart-slider flex h-full w-full items-center justify-center"
                   key={index}
                 >
-                  <Link to={`/details/${item.id}?infoTab=1`} key={index}>
+                  <Link
+                    to={`/details/${item.id}?infoTab=1`}
+                    key={index}
+                    className="w-full"
+                  >
                     <div className="h-full w-full">
                       <LazyLoadImage
                         alt={"avatar"}
@@ -57,8 +61,8 @@ const Products = () => {
                         effect="opacity"
                         width={"100%"}
                         delayTime={1500}
-                        loading="lazy"
-                        className="h-[194px]"
+                        loading="eager"
+                        className="h-[194px] object-contain"
                       />
                     </div>
                   </Link>

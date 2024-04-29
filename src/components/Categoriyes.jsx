@@ -76,23 +76,18 @@ export default function Categoriyes() {
     }
   };
   return (
-    <div className="slider-container relative mt-5 ">
+    <div className="slider-container-styck relative mt-5 ">
       <Carousel
-        dots
-        slidesToShow={4}
+        dots={false}
+        slidesToShow={5}
         slidesToScroll={1}
-        arrows
-        waitForAnimate
-        autoplay
         draggable
         infinite
-        autoplaySpeed={2000}
+        autoplay
+        autoplaySpeed={1000}
       >
         {data?.data?.content?.map((item, index) => (
-          <div
-            className=" my-3  w-full  rounded-md  bg-white shadow-sm "
-            key={index}
-          >
+          <div className="rounded-md  bg-white shadow-sm " key={index}>
             <div className="flex  flex-col items-center justify-evenly ">
               <div className="flex h-[70px]  w-[70px] cursor-pointer items-center justify-center rounded-full  ">
                 <img

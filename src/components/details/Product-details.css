@@ -34,4 +34,5 @@
 }
 .img-thumbs {
   object-fit: contain !important;
+  height: 400px !important;
 }

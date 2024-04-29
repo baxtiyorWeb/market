@@ -19,7 +19,7 @@ export default function ProductImage({ data }) {
               <Carousel
                 afterChange={handleSlideChange}
                 initialSlide={imgGetIndex}
-                className="w-[686px]"
+                // className="w-[686px]"
                 rootClassName="image-container"
                 draggable
                 effect="fade"

@@ -15,11 +15,13 @@ import "./categories.css";
 const ProductGetList = () => {
   const searchable = useSearchParams();
   const { id } = useParams();
-  const search = searchable[0].get("search_result");
+  const search = searchable[0].get("search");
   const productFilterWithCategoryId = async () => {
+    if (!search) return null;
     const res = await api.get(
-      `/product/list?page=0&size=10&search=${search || ""}&categoryId=${id}`,
+      `/product/list?page=0&size=10&search=${search}&categoryId=${id}`,
     );
+    console.log(res.data);
     return res.data;
   };
   const { data: productFilter, isLoading } = useQuery({
