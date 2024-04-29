@@ -3,9 +3,9 @@ import { FaCog, FaRegHeart } from "react-icons/fa";
 import { IoSearchOutline } from "react-icons/io5";
 import { MdOutlineDashboard, MdOutlineMail } from "react-icons/md";
 import { useSearchParams } from "react-router-dom";
-import Products from "./../profile-details/Products";
-import MyFavourites from "./../profile-details/Products/profile-detailsMyFavourites";
-import Pricing from "./../profile-details/Products/profile-detailsPricing";
+import MyFavourites from "../MyFavourites";
+import Pricing from "../Pricing";
+import Products from "../Products";
 import "./../profile-details/Products/profile-detailsproduct-details.css";
 export default function UserTabs() {
   const [searchParams, setSearchParams] = useSearchParams();
