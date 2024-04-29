@@ -37,6 +37,7 @@ export default function Categoriyes() {
 
   return (
     <div className="slider-container-styck relative mt-5 ">
+      <h1 className="my-5 text-2xl">top categoriyalar</h1>
       <Carousel
         dots={false}
         slidesToShow={5}

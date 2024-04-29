@@ -1,6 +1,7 @@
 import { Image, message } from "antd";
 import { CiHeart } from "react-icons/ci";
 import { FaArrowRight, FaEye } from "react-icons/fa";
+import { IoLocationOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import api from "../../config/api/api";
 import useProducts from "../../hooks/useProducts";
@@ -25,14 +26,16 @@ const Products = () => {
     addLikeFavoriteProduct(id);
   };
 
-  // if (isLoading) return <Loading />;
+  if (isLoading) return <Loading />;
   if (error) return "An error has occurred: " + error.message;
-
+  console.log(data?.data?.data?.content);
   return (
     <div className="mt-[40px] h-full w-full">
       <div>
-        <h1 className="mb-[20px] font-poppins text-[28px] font-medium not-italic leading-normal tracking-[-0.66px] text-textColor">
-          barcha mahsulotlar
+        <h1 className=" mb-10 font-poppins text-[28px] font-medium not-italic leading-normal tracking-[-0.66px] ">
+          <div className="flex items-center justify-between ">
+            <h1 className="my-5 text-2xl">top maxsulotlar</h1>
+          </div>
         </h1>
       </div>
       <div className="response_product_category grid grid-cols-4 gap-[29px]  ">
@@ -41,7 +44,7 @@ const Products = () => {
         ) : (
           data?.data?.data?.content?.map((item, index) => (
             <div
-              className="relative h-[430px] w-[280px] flex-shrink-0 overflow-hidden rounded-2xl  bg-white  shadow-xl transition-all hover:translate-y-2 hover:shadow-none "
+              className="relative h-[450px] w-[280px] flex-shrink-0 overflow-hidden rounded-2xl  bg-white  bg-gradient-to-r from-slate-200 drop-shadow transition-all "
               key={index}
             >
               <div className="relative h-[194px]  overflow-hidden">
@@ -60,7 +63,7 @@ const Products = () => {
                         src={`data:image/png;base64,${item.file?.fileBase64}`}
                         title={`${item?.name}`}
                         loading="eager"
-                        className="h-[194px] w-[280px] object-contain"
+                        className="h-[194px] w-[280px] object-contain "
                       />
                     </div>
                   </Link>
@@ -77,20 +80,18 @@ const Products = () => {
                   <p className="ml-1">so{"'"}m</p>
                 </div>
 
-                <div className="mt-14">
-                  <div className="border-borderColor h-0.5 border" />
+                <div className="mt-3">
+                  <div className="text-xs">
+                    <span>to&apos;lov turi</span> -{" "}
+                    <span>{item?.sellTypeName}</span>
+                  </div>
+                  <div className="text-xs">
+                    <span>sotuv turi</span> -{" "}
+                    <span>{item?.paymentTypeName}</span>
+                  </div>
+                  <div className="border-borderColor my-3 h-0.5 border" />
 
                   <div className="text mt-[20px] flex items-center justify-between font-poppins text-[11px] font-normal leading-[100%] tracking-[-0.22px] text-spanColor">
-                    <div className="flex w-full items-center justify-between">
-                      <span className="flex items-center justify-center">
-                        <FaEye className="mr-3 text-[16px]" />
-                        {item?.viewCount}
-                      </span>
-                      <span className="group/edit flex cursor-pointer items-center hover:underline">
-                        {item?.categoryName}{" "}
-                        <FaArrowRight className="ml-3 group-hover/edit:translate-x-0.5" />
-                      </span>
-                    </div>
                     <span
                       onClick={() => setQueryParams(item?.id)}
                       className="absolute right-2 top-2 flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-full border bg-[#aeaead4b] text-white hover:bg-[#AEAEAD]"
@@ -99,13 +100,28 @@ const Products = () => {
                     </span>
                   </div>
                 </div>
-                <div className="text mt-10 flex items-center justify-between font-poppins text-[11px] font-normal leading-[100%] tracking-[-0.22px] text-spanColor">
+                <div className="text mt-3 flex items-center justify-between font-poppins text-[11px] font-normal leading-[100%] tracking-[-0.22px] text-spanColor">
                   <div className="flex w-full items-center justify-between ">
-                    <span>
+                    <span className="flex items-center justify-center ">
+                      <IoLocationOutline className="mr-2" />
                       {item?.regionName}, {item?.districtName}
                     </span>
+                    <b>-</b>
                     <span>2024-04-28</span>
                   </div>
+                </div>
+                <span className="text mt-3 flex items-center justify-end font-poppins text-[11px] font-normal leading-[100%] tracking-[-0.22px] text-spanColor">
+                  <span>manzil </span> - {item?.address}
+                </span>
+                <div className="mt-5 flex w-full items-center justify-between text-sm text-spanColor">
+                  <span className="flex items-center justify-center">
+                    <FaEye className="mr-3 text-[16px]" />
+                    {item?.viewCount}
+                  </span>
+                  <span className="group/edit flex cursor-pointer items-center hover:underline">
+                    {item?.categoryName}{" "}
+                    <FaArrowRight className="ml-3 group-hover/edit:translate-x-0.5" />
+                  </span>
                 </div>
               </div>
             </div>

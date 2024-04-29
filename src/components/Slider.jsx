@@ -11,6 +11,8 @@ export default function Slider() {
         slidesToShow={1}
         slidesToScroll={1}
         infinite
+        autoplay
+        effect="fade"
         autoplaySpeed={1000}
       >
         <div className="overflow-hidden rounded-2xl">
