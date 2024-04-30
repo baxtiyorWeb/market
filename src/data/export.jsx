@@ -174,7 +174,11 @@ const Exports = () => {
       children: (
         <>
           <div className="flex w-full items-center justify-start ">
-            <Checkbox className="mr-3" id="filter1" name="filter1" />
+            <Checkbox
+              className="mr-3 w-[30px] rounded-none"
+              id="filter1"
+              name="filter1"
+            />
             <label
               htmlFor="filter1"
               className="text cursor-pointer text-pretty text-lg"
@@ -202,7 +206,14 @@ const Exports = () => {
   ];
   return (
     <div className="flex items-center justify-start">
-      <Collapse className="w-full" accordion items={items} />
+      <Collapse
+        expandIconPosition="end"
+        className="w-full"
+        accordion
+        ghost
+        activeKey={1}
+        items={items}
+      />
     </div>
   );
 };
