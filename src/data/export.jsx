@@ -211,7 +211,7 @@ const Exports = () => {
         className="w-full"
         accordion
         ghost
-        activeKey={1}
+        defaultActiveKey={1}
         items={items}
       />
     </div>

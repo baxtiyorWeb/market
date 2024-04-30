@@ -19,3 +19,12 @@
   top: 30% !important;
   left: 38% !important;
 }
+.ant-collapse-header {
+  border-radius: 10px;
+  transition: 0.1s ease !important;
+  user-select: none;
+}
+.ant-collapse-header:hover {
+  background-color: rgba(112, 128, 144, 0.111);
+  color: #5c5c5c !important;
+}

@@ -47,7 +47,7 @@ const ChildCategories = () => {
       <div className="flex items-center justify-center"></div>
       <div className="grid h-full grid-flow-col grid-rows-3 gap-4">
         <div className="flex flex-col">
-          <div className="row-span-3  flex h-auto w-[330px] flex-col rounded-2xl bg-white p-5  shadow-lg  ">
+          <div className="row-span-3 my-2 flex h-[max-content] w-[330px] flex-col rounded-2xl bg-white p-5  ">
             <div className="my-5 border-b border-b-gray-500 text-left text-[15px] font-bold">
               Bo&apos;limlar
             </div>
@@ -69,8 +69,6 @@ const ChildCategories = () => {
                 </Space>
               </Radio.Group>
             </div>
-          </div>
-          <div className="row-span-3 my-2 flex h-[600px] w-[330px] flex-col rounded-2xl bg-white p-5  shadow-lg">
             <div className="my-5 border-b border-b-gray-500 text-left text-[15px] font-bold">
               Saralash
             </div>
@@ -78,7 +76,7 @@ const ChildCategories = () => {
           </div>
         </div>
         <div className="product-section col-span-12 row-span-3 h-full w-full    p-3">
-          <div className="my-5 flex items-center justify-between  rounded-md bg-white p-2 text-left text-[15px]  shadow-md">
+          <div className="my-5 flex items-center justify-between  rounded-md bg-white p-2 text-left text-[15px]  ">
             <div className="flex items-center justify-center">
               {formatParamName}
             </div>
