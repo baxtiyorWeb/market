@@ -1,4 +1,5 @@
 import React, { lazy, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Confirm from "./components/auth/otpCodeConfirmComponent";
@@ -22,14 +23,18 @@ const ChildCategories = lazy(
 );
 const ProfileLayout = lazy(() => import("./layout/profileLayout"));
 const CategoriesLayout = lazy(() => import("./layout/categoriesLayout"));
-
 // routes
 
 const App = () => {
   const [scroll, setScroll] = useState(null);
   return (
     <>
+      <Helmet>
+        <title>Kelishamiz.uz saytiga hush kelibsiz</title>
+        <link rel="stylesheet" href="http://95.130.227.131" />
+      </Helmet>
       <div className="fixed z-[10000] ml-5 p-2"></div>
+
       <Routes>
         <Route exact path="/" element={<Layout />}>
           <Route

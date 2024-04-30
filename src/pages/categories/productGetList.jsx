@@ -8,7 +8,7 @@ import {
   FaShare,
 } from "react-icons/fa";
 import { Link, useParams, useSearchParams } from "react-router-dom";
-import api from "../../config/api/api";
+import { productWithCategoryFilter } from "../../exports/api";
 import Loading from "../../ui/loading/Loading";
 import "./categories.css";
 
@@ -16,22 +16,15 @@ const ProductGetList = () => {
   const searchable = useSearchParams();
   const { id } = useParams();
   const search = searchable[0].get("search");
-  const productFilterWithCategoryId = async () => {
-    if (!search) return null;
-    const res = await api.get(
-      `/product/list?page=0&size=10&search=${search}&categoryId=${id}`,
-    );
-    console.log(res.data);
-    return res.data;
-  };
-  const { data: productFilter, isLoading } = useQuery({
+  const { data: productFilters, isLoading } = useQuery({
     queryKey: ["product", id],
-    queryFn: productFilterWithCategoryId,
+    queryFn: () => productWithCategoryFilter(search, id),
   }); // fetchData funksiyasiga tanlangan qidiruvni yuborish
   if (isLoading) return <Loading />;
+  console.log(productFilters);
   const content = (
     <>
-      {productFilter?.data?.content?.map((item, index) => (
+      {productFilters?.data?.content?.map((item, index) => (
         <div
           className="mb-10 mt-5 h-auto w-[280px] rounded-xl bg-white  p-3   shadow-md"
           key={index}
@@ -95,8 +88,6 @@ const ProductGetList = () => {
       ))}
     </>
   );
-
-  if (status === "error") return <p>Error</p>;
 
   return (
     <>

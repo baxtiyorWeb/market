@@ -11,7 +11,7 @@ export const getCategoriesRootListSticky = async () => {
   return res.data;
 };
 export const getCategoriesRootLisId = async (id) => {
-  if (!id) return null;
+  if (id == undefined) return null;
   const res = await api.get(`/category/list?page=0&size=10&parentId=${id}`);
   return res.data;
 };
@@ -103,5 +103,21 @@ export const createUserData = async (data) => {
 
 export const getRegions = async () => {
   const res = await api.get("/region/all");
+  return res.data;
+};
+
+// filter product for api returns
+
+export const productWithCategoryFilter = async (search, id) => {
+  if (search === undefined) return null;
+  const res = await api.get(
+    `/product/list?page=0&size=10&${search}=&categoryId=${id}`,
+  );
+
+  return res.data;
+};
+export const getProductWithCategoryFilter = async (id) => {
+  if (id == undefined) return null;
+  const res = await api.get(`/category/list?page=0&size=20&parentId=${id}`);
   return res.data;
 };

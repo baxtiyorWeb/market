@@ -1,9 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import { Input, Radio, Select, Space } from "antd";
+import { Input, Select, Space } from "antd";
 import React, { useEffect, useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import api from "../../config/api/api";
-import { getCategoriesRootLisId } from "../../exports/api";
+import {
+  getCategoriesRootLisId,
+  getProductWithCategoryFilter,
+} from "../../exports/api";
 import Loading from "../../ui/loading/Loading";
 import SegmentedUi from "../../ui/segmented/Segmented";
 import BreadCrumbs from "./../../ui/breadcrumbs/BreadCrumbs";
@@ -25,7 +28,10 @@ const ChildCategories = () => {
   } = useQuery({
     queryKey: ["category", id],
     queryFn: () => getCategoriesRootLisId(id),
-    enabled: !id,
+  });
+  const { data: rootCategories } = useQuery({
+    queryKey: ["category"],
+    queryFn: getProductWithCategoryFilter,
   });
 
   const getCategoryId = async () => {
@@ -51,23 +57,42 @@ const ChildCategories = () => {
             <div className="my-5 border-b border-b-gray-500 text-left text-[15px] font-bold">
               Bo&apos;limlar
             </div>
+
             <div className="flex  flex-col items-start justify-center">
-              <Radio.Group>
-                <Space direction="vertical">
-                  {categories?.data?.content?.map((item, index) => (
-                    <Link
-                      to={`/category/${item?.id}?category-name=${item?.name
-                        ?.split(", ")
-                        ?.join("-")}`}
-                    >
-                      {" "}
-                      <Radio value={item?.id} key={index}>
-                        {item?.name}
-                      </Radio>
-                    </Link>
-                  ))}
-                </Space>
-              </Radio.Group>
+              <Space direction="vertical" className="w-full ">
+                {categories?.data?.content?.map((item, index) => (
+                  <Link
+                    to={`/category/${item?.id}?category-name=${item?.name
+                      ?.split(", ")
+                      ?.join("-")}`}
+                    className="flex w-full items-center justify-start rounded-xl p-3 transition-all hover:bg-[#EFF1F3]
+                    hover:text-[#5c5c5c]"
+                  >
+                    {" "}
+                    <span htmlFor={`${item?.id}`}>
+                      {item?.name} <span>{}</span>
+                    </span>
+                  </Link>
+                ))}
+              </Space>
+            </div>
+            <div className="my-5 border-b border-b-gray-500 text-left text-[15px] font-bold">
+              ommabop Kategoriyalar
+            </div>
+            <div className="flex  flex-col items-start justify-center">
+              <Space direction="vertical">
+                {rootCategories?.data?.content?.map((item, index) => (
+                  <Link
+                    to={`/category/${item?.id}?category-name=${item?.name
+                      ?.split(", ")
+                      ?.join("-")}`}
+                    className="hover:text-teal-500"
+                  >
+                    {" "}
+                    {item?.name}
+                  </Link>
+                ))}
+              </Space>
             </div>
             <div className="my-5 border-b border-b-gray-500 text-left text-[15px] font-bold">
               Saralash

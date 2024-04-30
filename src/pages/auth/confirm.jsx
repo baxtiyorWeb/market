@@ -59,10 +59,10 @@ const Confirm = ({ setOpen }) => {
           }}
         />
       </div>
-      <span className="text-errorTextColor my-3">{error}</span>
+      <span className="my-3 text-errorTextColor">{error}</span>
       <ButtonUI
         disabled={(confirm.length === 0 < true) === confirm.length >= 4}
-        className=" text-whiteTextColor disabled:bg-disableBtnColor mt-5 h-[50px] w-[328px] rounded-md bg-btnColor disabled:cursor-not-allowed"
+        className=" mt-5 h-[50px] w-[328px] rounded-md bg-btnColor text-whiteTextColor disabled:cursor-not-allowed disabled:bg-disableBtnColor"
         onClick={confimCodeSMS}
       >
         {isLoading ? <SpinLoading /> : "Davom etish"}

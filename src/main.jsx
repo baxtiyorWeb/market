@@ -5,6 +5,7 @@ import { PrimeReactProvider } from "primereact/api";
 import Tailwind from "primereact/passthrough/tailwind";
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { HelmetProvider } from "react-helmet-async";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App.jsx";
 import "./index.css";
@@ -17,12 +18,14 @@ const queryClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
-      <QueryClientProvider client={queryClient} contextSharing={true}>
-        <PrimeReactProvider value={{ unstyled: true, pt: Tailwind }}>
-          <NextTopLoader height={5} showSpinner={false} color="#1D828E" />
-          <App />
-        </PrimeReactProvider>
-      </QueryClientProvider>
+      <HelmetProvider>
+        <QueryClientProvider client={queryClient} contextSharing={true}>
+          <PrimeReactProvider value={{ unstyled: true, pt: Tailwind }}>
+            <NextTopLoader height={5} showSpinner={false} color="#1D828E" />
+            <App />
+          </PrimeReactProvider>
+        </QueryClientProvider>
+      </HelmetProvider>
     </BrowserRouter>
   </React.StrictMode>,
 );
