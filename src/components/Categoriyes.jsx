@@ -40,7 +40,7 @@ export default function Categoriyes() {
       <h1 className="my-5 text-2xl">top categoriyalar</h1>
       <Carousel
         dots={false}
-        slidesToShow={5}
+        slidesToShow={4}
         slidesToScroll={1}
         draggable
         infinite
