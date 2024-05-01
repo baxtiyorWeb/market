@@ -3,11 +3,12 @@ import Container from "../shared/Container";
 
 // svg  icons
 
+import { MenuOutlined, UserOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
+import { FaCartPlus, FaRegHeart, FaSearch } from "react-icons/fa";
 import { MdClose } from "react-icons/md";
 import { Link, useSearchParams } from "react-router-dom";
 import menuIcon from "../assets/menuIcon.svg";
-import searchIcon from "../assets/searchIcon.svg";
 import useProductSearch from "../hooks/product/useProductSearch";
 import Categoriyes from "../ui/Categoriyes";
 import Navigation from "./logo/Navigation";
@@ -54,11 +55,11 @@ export default function Header() {
       <Container>
         <div className="flex h-full w-full items-center justify-between ">
           <button
-            className="flex h-[50px] w-[150px] flex-shrink-0 items-center justify-between rounded-md bg-[#F4F4F4] p-2 text-center text-[#1D828E]"
+            className="flex h-[50px] w-[130px] flex-shrink-0 items-center justify-between rounded-md bg-[#F4F4F4] p-2 text-center text-textColor"
             onClick={() => setOpen(!open)}
           >
             {!open ? (
-              <img src={menuIcon} alt="" />
+              <MenuOutlined src={menuIcon} alt="" />
             ) : (
               <MdClose className=" text-[30px] " />
             )}
@@ -87,20 +88,48 @@ export default function Header() {
                 type="submit"
                 className="flex h-[50px] w-[50px] items-center justify-center rounded-[5px] bg-btnColor "
               >
-                <img src={searchIcon} alt="" />
+                <FaSearch className="text-white" />
               </button>
             </form>
           </div>
-          <Link
+          {/* <Link
             to={token ? `/profile/dashboard?tab=1` : "/auth/login"}
-            className="flex h-[50px] w-[160px] flex-shrink-0 items-center justify-around rounded-[5px] border border-[#1D828E] p-[30px] py-4 text-[#1D828E]"
+            className="hover:bg-bgColor flex h-[50px] w-[160px] flex-shrink-0 items-center justify-around rounded-[5px] border border-textColor p-[30px] py-4 text-textColor transition-all duration-100 hover:text-white"
             onClick={() => setOpen(false)}
           >
-            {/* <img src={plusIcon} alt="" /> */}
+            // {/* <img src={plusIcon} alt="" />
             <span className="font-poppins text-[18px] font-normal not-italic leading-[100%]">
               {token ? "Kabinet" : " Kirish"}
             </span>
-          </Link>
+          </Link> */}
+
+          <div>
+            <Link
+              to={"/"}
+              className="hover/heart flex flex-col items-center justify-center"
+            >
+              <FaRegHeart className="text text-2xl text-textColor hover/heart:text-bgColor" />
+              <span className="text text-spanColor">Sevimlilar</span>
+            </Link>
+          </div>
+          <div>
+            <Link
+              to={"/"}
+              className="flex flex-col items-center justify-center"
+            >
+              <FaCartPlus className="text text-2xl text-textColor " />
+              <span className="text text-spanColor">Savatcha</span>
+            </Link>
+          </div>
+          <div>
+            <Link
+              to={"/"}
+              className="flex flex-col items-center justify-center"
+            >
+              <UserOutlined className="text text-2xl text-textColor " />
+              <span className="text text-spanColor">kabinet</span>
+            </Link>
+          </div>
         </div>
       </Container>
     </div>

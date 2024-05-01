@@ -40,7 +40,7 @@
   margin-top: 5px;
   width: 28px !important;
   height: 28px !important;
-  border-radius: 40px !important;
+  border-radius: 10px !important;
 }
 .ant-checkbox-checked .ant-checkbox-inner {
   background: #1d828e !important;

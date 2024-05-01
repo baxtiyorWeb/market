@@ -5,8 +5,10 @@ import Products from "./products/Products";
 export default function Main({ scroll }) {
   return (
     <div>
-      <Categoriyes scroll={scroll} />
-      <Slider />
+      <div className="flex items-center justify-between">
+        <Categoriyes scroll={scroll} />
+        <Slider />
+      </div>
       <div>
         <Products />
       </div>

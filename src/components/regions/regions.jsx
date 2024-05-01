@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import locationIcon from "../../assets/location.svg";
+import { IoLocation } from "react-icons/io5";
 import { getRegions } from "../../exports/api";
 import useToggle from "../../hooks/useToggle";
 import Loading from "../../ui/loading/Loading";
@@ -32,7 +32,7 @@ const Regions = () => {
         }
         onClick={handleToggle}
       >
-        <img src={locationIcon} alt="" />
+        <IoLocation className="text-2xl text-textColor" />
         <span className="text line-clamp-1 font-poppins  text-[18px] font-normal not-italic leading-[100%]">
           {/* {text ? text : "surxondaryo "} */}
         </span>

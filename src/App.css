@@ -437,9 +437,6 @@
   border-color: white !important;
   background: #fff !important;
 }
-.slider-container-styck .slick-slide {
-  margin-right: 5px;
-}
 
 .slider-container-styck .slick-next {
   position: absolute;
@@ -458,6 +455,9 @@
   outline: none;
   cursor: pointer;
   border-radius: 10px 10px 10px 10px !important;
+}
+.slider-container-styck::-webkit-scrollbar {
+  display: none;
 }
 .slider-container-styck .slick-next::before {
   content: ">" !important;

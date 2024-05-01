@@ -9,7 +9,6 @@ import {
 } from "react-icons/fa";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import { productWithCategoryFilter } from "../../exports/api";
-import Loading from "../../ui/loading/Loading";
 import "./categories.css";
 
 const ProductGetList = () => {
@@ -20,7 +19,7 @@ const ProductGetList = () => {
     queryKey: ["product", id],
     queryFn: () => productWithCategoryFilter(search, id),
   }); // fetchData funksiyasiga tanlangan qidiruvni yuborish
-  if (isLoading) return <Loading />;
+  // if (isLoading) return <Loading />;
   console.log(productFilters);
   const content = (
     <>

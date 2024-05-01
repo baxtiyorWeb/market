@@ -7,9 +7,9 @@ import {
   getCategoriesRootLisId,
   getProductWithCategoryFilter,
 } from "../../exports/api";
-import Loading from "../../ui/loading/Loading";
 import SegmentedUi from "../../ui/segmented/Segmented";
 import BreadCrumbs from "./../../ui/breadcrumbs/BreadCrumbs";
+import Loading from "./../../ui/loading/Loading";
 import "./categories.css";
 import ProductFilter from "./productFilter/ProductFilter";
 import ProductGetList from "./productGetList";
@@ -44,9 +44,11 @@ const ChildCategories = () => {
     getCategoryId();
   }, [id]);
 
+  const categId = getCategId.id;
+
   if (isLoading) return <Loading />;
-  console.log(categories);
   if (error) return `Error: ${error}`;
+  console.log(categories);
   return (
     <div className="h-full flex-col items-start justify-center ">
       <BreadCrumbs categories={getCategId} categoryId={id} />
@@ -62,34 +64,21 @@ const ChildCategories = () => {
               <Space direction="vertical" className="w-full ">
                 {categories?.data?.content?.map((item, index) => (
                   <Link
+                    key={index}
                     to={`/category/${item?.id}?category-name=${item?.name
                       ?.split(", ")
                       ?.join("-")}`}
-                    className="flex w-full items-center justify-start rounded-xl p-3 transition-all hover:bg-[#EFF1F3]
-                    hover:text-[#5c5c5c]"
+                    className={
+                      paramName === item?.name
+                        ? "flex w-full items-center justify-start rounded-xl bg-[#EFF1F3] p-3 transition-all"
+                        : `flex w-full items-center justify-start rounded-xl p-3 transition-all hover:bg-[#EFF1F3]
+                    hover:text-[#5c5c5c]`
+                    }
                   >
                     {" "}
                     <span htmlFor={`${item?.id}`}>
                       {item?.name} <span>{}</span>
                     </span>
-                  </Link>
-                ))}
-              </Space>
-            </div>
-            <div className="my-5 border-b border-b-gray-500 text-left text-[15px] font-bold">
-              ommabop Kategoriyalar
-            </div>
-            <div className="flex  flex-col items-start justify-center">
-              <Space direction="vertical">
-                {rootCategories?.data?.content?.map((item, index) => (
-                  <Link
-                    to={`/category/${item?.id}?category-name=${item?.name
-                      ?.split(", ")
-                      ?.join("-")}`}
-                    className="hover:text-teal-500"
-                  >
-                    {" "}
-                    {item?.name}
                   </Link>
                 ))}
               </Space>
@@ -101,6 +90,28 @@ const ChildCategories = () => {
           </div>
         </div>
         <div className="product-section col-span-12 row-span-3 h-full w-full    p-3">
+          <div className="flex  w-full items-start justify-start">
+            <Space direction="horizontal">
+              {rootCategories?.data?.content?.map((item, index) => (
+                <div className="flex items-center justify-center" key={index}>
+                  <Link
+                    to={`/category/${item?.id}?category-name=${item?.name
+                      ?.split(", ")
+                      ?.join("-")}`}
+                    className={
+                      paramName == item?.name
+                        ? "rounded-md bg-slate-500/10 p-2  text-textColor"
+                        : `rounded-md p-2 hover:bg-slate-500/10  hover:text-slate-900`
+                    }
+                  >
+                    {" "}
+                    {item?.name}
+                  </Link>
+                  <span className="mx-3 text-spanColor">|</span>
+                </div>
+              ))}
+            </Space>
+          </div>
           <div className="my-5 flex items-center justify-between  rounded-md bg-white p-2 text-left text-[15px]  ">
             <div className="flex items-center justify-center">
               {formatParamName}

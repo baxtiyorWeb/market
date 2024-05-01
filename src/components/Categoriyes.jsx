@@ -2,7 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import Loading from "./../ui/loading/Loading";
 
-import { Carousel } from "antd";
 import {
   getCategoriesRootLisId,
   getCategoriesRootListSticky,
@@ -36,42 +35,41 @@ export default function Categoriyes() {
   if (isLoading) return <Loading />;
 
   return (
-    <div className="slider-container-styck relative mt-5 ">
-      <h1 className="my-5 text-2xl">top categoriyalar</h1>
-      <Carousel
-        dots={false}
-        slidesToShow={4}
-        slidesToScroll={1}
-        draggable
-        infinite
-        autoplay
-        arrows
-        autoplaySpeed={1000}
-      >
-        {data?.data?.content?.map((item, index) => (
-          <div className="rounded-md  bg-white shadow-sm " key={index}>
-            <div className="flex  flex-col items-center justify-evenly ">
-              <div className="flex h-[70px]  w-[70px] cursor-pointer items-center justify-center rounded-full  ">
-                <img
-                  className="my-1 h-[40px] w-[40px]"
-                  src={`data:image/png;base64,${item?.file?.fileBase64}`}
-                  alt=""
-                />
-              </div>
-              <Link
-                to={`/category/${item?.id}?category-name=${item?.name
-                  .split(", ")
-                  .join("-")}`}
-                className="text-center "
-              >
-                <span className="mt-3 text-center  font-poppins text-[19px] font-normal not-italic leading-[100%] text-[#130F1E] hover:text-[#218490]">
-                  {item?.name}
-                </span>
-              </Link>
-            </div>
+    <div className="slider-container-styck my-4  flex h-[280px] w-[25%] flex-col items-start justify-between overflow-scroll">
+      {data?.data?.content?.map((item, index) => (
+        <>
+          <div
+            key={index}
+            className="mt-3  flex w-full flex-col items-start justify-evenly"
+          >
+            <Link
+              to={`/category/${item?.id}?category-name=${item?.name
+                .split(", ")
+                .join("-")}`}
+              className=" w-full   rounded-md border p-2 text-start"
+            >
+              <span className="mt-3 text-center  font-poppins text-[19px] font-normal not-italic leading-[100%] ">
+                {item?.name}
+              </span>
+            </Link>
           </div>
-        ))}
-      </Carousel>
+          <div
+            key={index}
+            className="mt-3  flex w-full flex-col items-start justify-evenly"
+          >
+            <Link
+              to={`/category/${item?.id}?category-name=${item?.name
+                .split(", ")
+                .join("-")}`}
+              className=" w-full   rounded-md border p-2 text-start"
+            >
+              <span className="mt-3 text-center  font-poppins text-[19px] font-normal not-italic leading-[100%] ">
+                {item?.name}
+              </span>
+            </Link>
+          </div>
+        </>
+      ))}
     </div>
   );
 }
