@@ -1,4 +1,4 @@
-import { Carousel } from "antd";
+import { Carousel, Image } from "antd";
 import { useEffect, useRef, useState } from "react";
 import "react-medium-image-zoom/dist/styles.css";
 import "./Product-details.css";
@@ -47,11 +47,13 @@ export default function ProductImage({ data }) {
               arrows
             >
               {data?.files?.map((item, index) => (
-                <img
+                <Image
                   key={index}
                   src={`data:image/png;base64,${item.file?.fileBase64}`}
                   loading="eager"
-                  className="h-[450px] w-full select-none rounded-2xl bg-blue-500 object-cover"
+                  width={600}
+                  height={500}
+                  className="h-[350px] select-none rounded-2xl border bg-blue-500 object-fill  "
                 />
               ))}
             </Carousel>
@@ -61,7 +63,7 @@ export default function ProductImage({ data }) {
           </div>
           <div
             ref={refs}
-            className="flex h-full w-[700px] items-center justify-start overflow-x-scroll rounded-2xl"
+            className="flex h-full w-[600px] items-center justify-start overflow-x-scroll rounded-2xl"
           >
             {data?.files?.map((item, index) => (
               <img
@@ -71,7 +73,7 @@ export default function ProductImage({ data }) {
                 loading="eager"
                 className={`m-5 h-[150px] w-[150px] select-none rounded-2xl object-cover p-1 ${
                   imgGetIndex === index
-                    ? "border-bgColor scale-110 border-2 transition-all duration-150"
+                    ? "scale-110 border-2 border-bgColor transition-all duration-150"
                     : "border-2 "
                 }`}
               />

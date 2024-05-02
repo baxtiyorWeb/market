@@ -1,7 +1,11 @@
 import React from "react";
 import { FaEye } from "react-icons/fa";
+import useProductDetail from "../../../hooks/useProductDetail";
+import Loading from "../../../ui/loading/Loading";
 
-const ProductInfo = ({ data }) => {
+const ProductInfo = () => {
+  const { productDetail, isLoading } = useProductDetail();
+  if (isLoading) return <Loading />;
   return (
     <div>
       <h1 className="mb-8 mt-3 inline-block border-b text-2xl">
@@ -11,11 +15,11 @@ const ProductInfo = ({ data }) => {
       <div className="my-6 flex  items-center justify-between">
         <div className="flex items-center gap-x-4">
           <span className="text-xs font-normal text-[#959EA7]">
-            {data?.data?.data?.address}
+            {productDetail?.address}
           </span>
           <div className="h-1 w-1 rounded-full bg-[#959EA7]"></div>
           <span className="text-xs font-normal text-[#959EA7]">
-            {data?.data?.data?.district?.name}
+            {productDetail?.district?.name}
           </span>
         </div>
         <div className="relative flex items-center gap-x-4">
@@ -59,21 +63,19 @@ const ProductInfo = ({ data }) => {
       </div>
       <div className="mb-6 flex w-full flex-col gap-y-5">
         <h1 className="text-2xl font-normal text-black">
-          {data?.data?.data?.name}
+          {productDetail?.name}
         </h1>
         <h5 className="text-xl font-semibold text-black">
-          <span className="mr-5">{data?.data?.data?.price}</span>
+          <span className="mr-5">{productDetail?.price}</span>
           <span className="mr-5 text-xs font-normal text-[#959EA7]">
-            {data?.data?.data?.canAgree === true
-              ? "kelishiladi"
-              : "kelishilmaydi"}
+            {productDetail?.canAgree === true ? "kelishiladi" : "kelishilmaydi"}
           </span>
         </h5>
       </div>
       <div className="mt-[27px] h-[1px] w-full bg-[#DFE2E5]"></div>
       <h1 className="mt-10 text-2xl font-medium">Xusuiyatlari</h1>
       <div className="mb-10 mt-8 flex flex-col gap-y-8">
-        {data?.data?.data?.propertyValues?.map((item, index) => (
+        {productDetail?.propertyValues?.map((item, index) => (
           <div
             className="flex items-center justify-between gap-x-3"
             key={index}
@@ -95,15 +97,14 @@ const ProductInfo = ({ data }) => {
           Qisqacha ma’lumot
         </h3>
         <p className="text-foreground break-all font-poppins text-[16px] font-normal leading-[30px]">
-          {data?.data?.data?.description}
+          {productDetail?.description}
         </p>
       </div>
       <div className="mb-5 mt-10 h-[1px] w-full bg-[#DFE2E5]"></div>
       <div className="text text-[#959EA7 ] text flex justify-between font-poppins text-[14px] font-normal leading-[100%] text-[#959EA7]">
-        <span>E'lon raqami: {data?.data?.data?.id}</span>
+        <span>E'lon raqami: {productDetail?.id}</span>
         <span className="flex items-center justify-center">
-          Ko’rganlar: <FaEye className="ml-2 mr-2" />{" "}
-          {data?.data?.data?.viewCount}
+          Ko’rganlar: <FaEye className="ml-2 mr-2" /> {productDetail?.viewCount}
         </span>
       </div>
     </div>

@@ -4,10 +4,13 @@ import {
   FaRegQuestionCircle,
   FaRegShareSquare,
 } from "react-icons/fa";
+import ProductTabs from "../product-tab/ProductTabs";
 
 const ProductSideMenu = () => {
+  const data = [];
   return (
     <div>
+      <ProductTabs data={data} />
       <aside className="ml-[30px] mt-[6rem] flex h-[262px] w-[350px] flex-col  gap-y-4 rounded-[5px] bg-[#F5F5F5]">
         <div className="flex flex-col items-center py-4">
           <span className="relative mb-3 flex h-[60px] w-[60px] shrink-0 overflow-hidden rounded-full">

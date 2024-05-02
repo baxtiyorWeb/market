@@ -3,8 +3,9 @@ import { useSearchParams } from "react-router-dom";
 import ProductInfo from "./ProductInfo";
 import ProductQuestions from "./ProductQuestions";
 import ProductReviews from "./ProductReviews";
+import useProductDetail from "../../../hooks/useProductDetail.js";
 
-const ProductTabs = ({ data }) => {
+const ProductTabs = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const tabIndex = searchParams.get("infoTab");
@@ -14,7 +15,7 @@ const ProductTabs = ({ data }) => {
 
   return (
     <div className="w-full">
-      <div className="h-full w-full  ">
+      <div className="h-full w-full ">
         <div className="flex items-center justify-between border-b">
           <span
             className={`mx-1  flex cursor-pointer items-center justify-center ${
@@ -51,7 +52,7 @@ const ProductTabs = ({ data }) => {
         </div>
 
         <div>
-          {tabIndex == 1 ? <ProductInfo data={data} /> : ""}
+          {tabIndex == 1 ? <ProductInfo /> : ""}
           {tabIndex == 2 ? <ProductReviews /> : ""}
           {tabIndex == 3 ? <ProductQuestions /> : ""}
           {tabIndex === 4 ? <ProductInfo /> : ""}
