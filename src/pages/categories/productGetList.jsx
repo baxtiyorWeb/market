@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { Empty } from "antd";
 import React from "react";
 import {
   FaEye,
@@ -23,68 +24,74 @@ const ProductGetList = () => {
   console.log(productFilters);
   const content = (
     <>
-      {productFilters?.data?.content?.map((item, index) => (
-        <div
-          className="mb-10 mt-5 h-auto w-[280px] rounded-xl bg-white  p-3   shadow-md"
-          key={index}
-        >
-          <div className="flex w-full flex-col justify-center ">
-            <div>
-              <Link to={`/details/${item?.id}?infoTab=1`} className="">
-                <img
-                  className="h-[180px] w-full rounded-md  object-cover"
-                  src={`data:image/png;base64,${item?.file?.fileBase64}`}
-                  alt=""
-                />
-              </Link>
-            </div>
-            <div className="relative  mt-3 h-auto w-full">
+      {productFilters?.data?.content?.length === 0 ? (
+        <div className="flex h-[60vh] w-[880px] items-center justify-center">
+          <Empty description={"elon mavjud emas"} />
+        </div>
+      ) : (
+        productFilters?.data?.content?.map((item, index) => (
+          <div
+            className="mb-10 mt-5 h-auto w-[280px] rounded-xl bg-white  p-3   shadow-md"
+            key={index}
+          >
+            <div className="flex w-full flex-col justify-center ">
               <div>
-                <div className="flex items-center justify-between p-1">
-                  <h1 className="text-lg font-medium ">{item?.name}</h1>
-                </div>
-                <div className="inline-block items-center justify-center">
-                  <span className="mr-1  text-xl font-medium text-teal-700">
-                    ${item?.price}
-                  </span>
-                  <span className="text-sm text-[#A7A7A7]">
-                    <strike>$130.00</strike>
-                  </span>
-                  <div className="mt-2 flex items-center justify-start border-t pt-3">
-                    <div className="mx-1 flex h-14 w-14 flex-col items-center justify-center rounded-md border px-1">
-                      <span className="mr-1">10</span>
-                      <FaRegComments className="mr-1" />
+                <Link to={`/details/${item?.id}?infoTab=1`} className="">
+                  <img
+                    className="h-[180px] w-full rounded-md  object-cover"
+                    src={`data:image/png;base64,${item?.file?.fileBase64}`}
+                    alt=""
+                  />
+                </Link>
+              </div>
+              <div className="relative  mt-3 h-auto w-full">
+                <div>
+                  <div className="flex items-center justify-between p-1">
+                    <h1 className="text-lg font-medium ">{item?.name}</h1>
+                  </div>
+                  <div className="inline-block items-center justify-center">
+                    <span className="mr-1  text-xl font-medium text-teal-700">
+                      ${item?.price}
+                    </span>
+                    <span className="text-sm text-[#A7A7A7]">
+                      <strike>$130.00</strike>
+                    </span>
+                    <div className="mt-2 flex items-center justify-start border-t pt-3">
+                      <div className="mx-1 flex h-14 w-14 flex-col items-center justify-center rounded-md border px-1">
+                        <span className="mr-1">10</span>
+                        <FaRegComments className="mr-1" />
+                      </div>
+                      <div className="mx-1 flex h-14 w-14 flex-col items-center justify-center rounded-md border px-1">
+                        <span className="mr-1">{item?.viewCount}</span>
+                        <FaEye className="mr-1" />
+                      </div>
+                      <div className="mx-1 flex h-14 w-14 flex-col items-center justify-center rounded-md border px-1">
+                        <span className="mr-1">10</span>
+                        <FaQuestionCircle className="mr-1" />
+                      </div>
                     </div>
-                    <div className="mx-1 flex h-14 w-14 flex-col items-center justify-center rounded-md border px-1">
-                      <span className="mr-1">{item?.viewCount}</span>
-                      <FaEye className="mr-1" />
-                    </div>
-                    <div className="mx-1 flex h-14 w-14 flex-col items-center justify-center rounded-md border px-1">
-                      <span className="mr-1">10</span>
-                      <FaQuestionCircle className="mr-1" />
+                    <div className="mx-1 my-3">
+                      {item?.canAgree ? "kelishiladi" : "kelishilmaydi"}
                     </div>
                   </div>
-                  <div className="mx-1 my-3">
-                    {item?.canAgree ? "kelishiladi" : "kelishilmaydi"}
-                  </div>
-                </div>
 
-                <div className="my-3 flex items-center justify-start">
-                  <span className="mx-1 flex cursor-pointer items-center justify-center rounded-md border-b p-[2px]">
-                    <FaRegHeart className="" /> <span>saqlash</span>
-                  </span>
-                  <span className="mx-1 flex cursor-pointer items-center justify-center rounded-md border-b p-[2px]">
-                    <FaQuestionCircle className="" /> <span>savol</span>
-                  </span>
-                  <span className="mx-1 flex cursor-pointer items-center justify-center rounded-md border-b p-[2px]">
-                    <FaShare className="" /> <span>ulashish</span>
-                  </span>
+                  <div className="my-3 flex items-center justify-start">
+                    <span className="mx-1 flex cursor-pointer items-center justify-center rounded-md border-b p-[2px]">
+                      <FaRegHeart className="" /> <span>saqlash</span>
+                    </span>
+                    <span className="mx-1 flex cursor-pointer items-center justify-center rounded-md border-b p-[2px]">
+                      <FaQuestionCircle className="" /> <span>savol</span>
+                    </span>
+                    <span className="mx-1 flex cursor-pointer items-center justify-center rounded-md border-b p-[2px]">
+                      <FaShare className="" /> <span>ulashish</span>
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))
+      )}
     </>
   );
 
