@@ -3,7 +3,7 @@ import { FaEye } from "react-icons/fa";
 
 const ProductInfo = ({ productDetail }) => {
   return (
-    <div className="h-[530px] w-[600px] p-1">
+    <div className="mb-6 h-[max-content] w-[600px] p-1">
       <div className="mb-8 mt-3 flex border-b ">
         <div className="mb-6 flex w-full flex-col gap-y-5">
           <h1 className="text-3xl font-normal text-black">

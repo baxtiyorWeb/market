@@ -14,7 +14,8 @@ export default function Details() {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
   function scrollRefCurrent() {
-    if (window.scrollY >= window.innerHeight / 2) {
+    if (!ref.current) return;
+    if (window.scrollY >= window.innerHeight) {
       ref.current.style.display = "none";
     }
   }
