@@ -85,7 +85,7 @@ export default function LoginComponent() {
         <div className="send-details">
           <ButtonUI
             disabled={login != "" && password != "" ? false : true}
-            className="mb-5 mt-5 h-[50px] w-[328px] rounded-md bg-[#1D828E] text-white hover:text-[#fff] disabled:cursor-not-allowed disabled:bg-[#1d838eb4]"
+            className="mb-5 mt-5 h-[50px] w-[328px] rounded-md bg-bgColor text-white hover:text-[#fff] disabled:cursor-not-allowed disabled:bg-[#1d838eb4]"
             onClick={() => loginNameAndPassword()}
           >
             {isLoading ? <Spin /> : "Kirish"}
