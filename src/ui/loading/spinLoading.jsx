@@ -5,7 +5,7 @@ export default function SpinLoading() {
   return (
     <Spin
       delay={0}
-      className="text-white"
+      className="text-textColor"
       style={{
         color: "white !important",
       }}

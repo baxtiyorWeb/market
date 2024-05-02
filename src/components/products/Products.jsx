@@ -1,16 +1,21 @@
 import { Image, message } from "antd";
+import { useState } from "react";
 import { CiHeart } from "react-icons/ci";
 import { FaArrowRight, FaEye } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import api from "../../config/api/api";
 import useProducts from "../../hooks/useProducts";
+import useToggle from "../../hooks/useToggle";
 import Loading from "../../ui/loading/Loading";
+import Overlay from "./../../ui/Overlay";
+import FastDetailView from "./FastDetailView";
 import "./Product.css";
 
 const Products = () => {
   const { data, error, isLoading, setPage, page, size } = useProducts();
-
+  const { handleToggle, isOpen } = useToggle();
+  const [fastId, setFastId] = useState("");
   const numbers = Array.from(
     { length: data?.data?.data?.totalElements / size },
     (_, index) => index + 1,
@@ -26,12 +31,20 @@ const Products = () => {
     addLikeFavoriteProduct(id);
   };
 
+  const getFastid = (id) => {
+    if (id !== undefined) {
+      handleToggle();
+      setFastId(id);
+    }
+  };
+
   if (isLoading) return <Loading />;
   if (error) return "An error has occurred: " + error.message;
-  console.log(data?.data?.data?.content);
   return (
     <div className="mt-5 h-full w-full">
       <div>
+        {isOpen && <Overlay closed={handleToggle} />}
+        {isOpen && <FastDetailView id={fastId} />}
         <h1 className=" mb-5 font-poppins text-[28px] font-medium not-italic leading-normal tracking-[-0.66px] ">
           <div className="flex items-center justify-between ">
             <h1 className="text-2xl">top maxsulotlar</h1>
@@ -48,7 +61,13 @@ const Products = () => {
               key={index}
             >
               <div className="relative h-[194px]  overflow-hidden">
-                <div className="cart-slider flex h-full  items-center justify-center">
+                <div className="cart-slider group flex h-full  items-center justify-center">
+                  <button
+                    className="absolute right-[30%] top-[40%] z-50 hidden rounded-3xl bg-bgColor px-3 py-2 text-whiteTextColor hover:border hover:border-bgColor hover:bg-whiteTextColor hover:text-textColor group-hover:block"
+                    onClick={() => getFastid(item.id)}
+                  >
+                    Tezkor ko&apos;rish
+                  </button>
                   <Link
                     to={`/details/${item.id}?infoTab=1`}
                     className="w-[280px]"
@@ -59,7 +78,7 @@ const Products = () => {
                         src={`data:image/png;base64,${item.file?.fileBase64}`}
                         title={`${item?.name}`}
                         loading="eager"
-                        className="h-[194px] w-[280px] object-contain "
+                        className=" h-[194px] w-[280px] object-contain "
                       />
                     </div>
                   </Link>
