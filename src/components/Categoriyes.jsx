@@ -35,40 +35,23 @@ export default function Categoriyes() {
   if (isLoading) return <Loading />;
 
   return (
-    <div className="slider-container-styck my-4  flex h-[280px] w-[25%] flex-col items-start justify-between overflow-scroll">
+    <div className="slider-container-styck my-4 flex h-[280px]  w-[25%] flex-col items-start justify-start overflow-scroll  bg-white p-1">
       {data?.data?.content?.map((item, index) => (
-        <>
-          <div
-            key={index}
-            className="mt-3  flex w-full flex-col items-start justify-evenly"
+        <div
+          key={index}
+          className="mt-1  flex w-full flex-col items-start justify-start"
+        >
+          <Link
+            to={`/category/${item?.id}?category-name=${item?.name
+              .split(", ")
+              .join("-")}`}
+            className="w-full rounded-sm p-2   text-start text-sm hover:bg-slate-500/10"
           >
-            <Link
-              to={`/category/${item?.id}?category-name=${item?.name
-                .split(", ")
-                .join("-")}`}
-              className=" w-full   rounded-md border p-2 text-start"
-            >
-              <span className="mt-3 text-center  font-poppins text-[19px] font-normal not-italic leading-[100%] ">
-                {item?.name}
-              </span>
-            </Link>
-          </div>
-          <div
-            key={index}
-            className="mt-3  flex w-full flex-col items-start justify-evenly"
-          >
-            <Link
-              to={`/category/${item?.id}?category-name=${item?.name
-                .split(", ")
-                .join("-")}`}
-              className=" w-full   rounded-md border p-2 text-start"
-            >
-              <span className="mt-3 text-center  font-poppins text-[19px] font-normal not-italic leading-[100%] ">
-                {item?.name}
-              </span>
-            </Link>
-          </div>
-        </>
+            <span className="mt-3 text-center  font-poppins  font-normal not-italic leading-[100%] ">
+              {item?.name}
+            </span>
+          </Link>
+        </div>
       ))}
     </div>
   );

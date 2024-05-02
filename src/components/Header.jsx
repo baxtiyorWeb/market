@@ -93,7 +93,7 @@ export default function Header() {
             </form>
           </div>
           {/* <Link
-            to={token ? `/profile/dashboard?tab=1` : "/auth/login"}
+            
             className="hover:bg-bgColor flex h-[50px] w-[160px] flex-shrink-0 items-center justify-around rounded-[5px] border border-textColor p-[30px] py-4 text-textColor transition-all duration-100 hover:text-white"
             onClick={() => setOpen(false)}
           >
@@ -123,7 +123,7 @@ export default function Header() {
           </div>
           <div>
             <Link
-              to={"/"}
+              to={token ? `/profile/dashboard?tab=1` : "/auth/login"}
               className="flex flex-col items-center justify-center"
             >
               <UserOutlined className="text text-2xl text-textColor " />

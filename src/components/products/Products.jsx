@@ -30,11 +30,11 @@ const Products = () => {
   if (error) return "An error has occurred: " + error.message;
   console.log(data?.data?.data?.content);
   return (
-    <div className="mt-[40px] h-full w-full">
+    <div className="mt-5 h-full w-full">
       <div>
-        <h1 className=" mb-10 font-poppins text-[28px] font-medium not-italic leading-normal tracking-[-0.66px] ">
+        <h1 className=" mb-5 font-poppins text-[28px] font-medium not-italic leading-normal tracking-[-0.66px] ">
           <div className="flex items-center justify-between ">
-            <h1 className="my-5 text-2xl">top maxsulotlar</h1>
+            <h1 className="text-2xl">top maxsulotlar</h1>
           </div>
         </h1>
       </div>
@@ -44,7 +44,7 @@ const Products = () => {
         ) : (
           data?.data?.data?.content?.map((item, index) => (
             <div
-              className="relative h-[480px] w-[280px] flex-shrink-0 overflow-hidden rounded-2xl bg-white drop-shadow  transition-all  "
+              className="relative h-[480px] w-[280px] flex-shrink-0 overflow-hidden rounded-2xl bg-white/100 drop-shadow  transition-all  "
               key={index}
             >
               <div className="relative h-[194px]  overflow-hidden">
@@ -66,16 +66,16 @@ const Products = () => {
                 </div>
               </div>
               <div className="mt-4 px-[18px]">
-                <span className="text line-clamp-1 font-poppins text-[18px] font-medium not-italic leading-[120%] tracking-[-0.32px] text-spanColor">
+                <span className="text line-clamp-1 font-poppins text-[18px] font-medium not-italic leading-[120%] tracking-[-0.32px] text-textColor">
                   {item?.name}
                 </span>
                 <div className="mt-[12px] flex items-center  justify-start">
-                  <span className="text inline-flex items-center font-poppins text-[16px] font-semibold not-italic leading-[100%] text-textColor">
+                  <span className="text inline-flex items-center font-poppins text-[16px] font-semibold not-italic leading-[100%] ">
                     {item?.price}
                     <p className="ml-1">so{"'"}m</p>
                   </span>{" "}
                 </div>
-                <div className="mt-3 rounded-xl  p-2">
+                <div className="mt-3 rounded-xl  ">
                   <div className="text-xs">
                     <span>to&apos;lov turi</span> -{" "}
                     <span>{item?.sellTypeName}</span>
@@ -87,17 +87,14 @@ const Products = () => {
                       <div className="flex w-full items-center justify-start ">
                         <span className="flex items-center justify-start ">
                           <IoLocationOutline />
-                          {item?.regionName}, {item?.districtName}
+                          {item?.regionName} / {item?.districtName}
                         </span>
                       </div>
                     </div>
+                    <span className="text mt-3 flex items-center justify-between font-poppins text-[13px] font-normal leading-[100%] tracking-[-0.22px] text-spanColor">
+                      <span>2024-04-28</span>
+                    </span>
                   </div>
-                  <span className="text mt-3 flex items-center justify-between font-poppins text-[13px] font-normal leading-[100%] tracking-[-0.22px] text-spanColor">
-                    <div>
-                      <span>manzil </span> - {item?.address}{" "}
-                    </div>
-                    /<span>2024-04-28</span>
-                  </span>
                 </div>
                 <div className="mt-5 flex w-full items-center justify-between text-sm text-spanColor">
                   <span className="flex items-center justify-center">
