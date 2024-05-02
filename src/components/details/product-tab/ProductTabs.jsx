@@ -1,11 +1,11 @@
 import React from "react";
+import { FaArrowDown } from "react-icons/fa";
 import { useSearchParams } from "react-router-dom";
 import ProductInfo from "./ProductInfo";
 import ProductQuestions from "./ProductQuestions";
 import ProductReviews from "./ProductReviews";
-import useProductDetail from "../../../hooks/useProductDetail.js";
 
-const ProductTabs = () => {
+const ProductTabs = ({ productDetail }) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const tabIndex = searchParams.get("infoTab");
@@ -14,36 +14,36 @@ const ProductTabs = () => {
   };
 
   return (
-    <div className="w-full">
+    <div className=" mt-5 w-full bg-whiteTextColor p-3">
       <div className="h-full w-full ">
-        <div className="flex items-center justify-between border-b">
+        <div className="flex items-center justify-between border-b pb-3">
           <span
-            className={`mx-1  flex cursor-pointer items-center justify-center ${
-              tabIndex == 1 ? "border-b border-black" : ""
+            className={`mx-1 my-1  flex  cursor-pointer items-center justify-center rounded-3xl border border-bgColor px-3 py-2 text-textColor hover:bg-bgColor hover:text-whiteTextColor ${
+              tabIndex == 1 ? " bg-bgColor text-whiteTextColor" : ""
             } `}
             onClick={() => productTabgetIndex(1)}
           >
-            Product haqida ma&apos;lumot
+            ma&apos;lumot
           </span>
           <span
-            className={`mx-1  flex cursor-pointer items-center justify-center ${
-              tabIndex == 2 ? "border-b border-black" : ""
+            className={`mx-1 my-1  flex  cursor-pointer items-center justify-center rounded-3xl border border-bgColor px-3 py-2 text-textColor hover:bg-bgColor hover:text-whiteTextColor ${
+              tabIndex == 2 ? " bg-bgColor text-whiteTextColor" : ""
             } `}
             onClick={() => productTabgetIndex(2)}
           >
             Sharxlar
           </span>
           <span
-            className={`mx-1  flex cursor-pointer items-center justify-center ${
-              tabIndex == 3 ? "border-b border-black" : ""
+            className={`mx-1 my-1  flex  cursor-pointer items-center justify-center rounded-3xl border border-bgColor px-3 py-2 text-textColor hover:bg-bgColor hover:text-whiteTextColor ${
+              tabIndex == 3 ? " bg-bgColor text-whiteTextColor" : ""
             } `}
             onClick={() => productTabgetIndex(3)}
           >
             Savollar
           </span>
           <span
-            className={`mx-1  flex cursor-pointer items-center justify-center ${
-              tabIndex == 4 ? "border-b border-black" : ""
+            className={`mx-1 my-1  flex  cursor-pointer items-center justify-center rounded-3xl border border-bgColor px-3 py-2 text-textColor hover:bg-bgColor hover:text-whiteTextColor ${
+              tabIndex == 4 ? " bg-bgColor text-whiteTextColor" : ""
             } `}
             onClick={() => productTabgetIndex(4)}
           >
@@ -52,10 +52,18 @@ const ProductTabs = () => {
         </div>
 
         <div>
-          {tabIndex == 1 ? <ProductInfo /> : ""}
+          {tabIndex == 1 ? <ProductInfo productDetail={productDetail} /> : ""}
           {tabIndex == 2 ? <ProductReviews /> : ""}
           {tabIndex == 3 ? <ProductQuestions /> : ""}
           {tabIndex === 4 ? <ProductInfo /> : ""}
+        </div>
+        <div className="text cursor-pointer text-textColor">
+          <h1 className=" flex items-center justify-start">
+            foydalanuvchining boshqa elonlari <FaArrowDown className="mx-3" />
+          </h1>
+        </div>
+        <div className="gird my-3  h-[581px] w-[600px] grid-cols-1 border bg-whiteTextColor">
+          <div className="w-full"></div>
         </div>
       </div>
     </div>

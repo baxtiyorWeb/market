@@ -1,14 +1,10 @@
 /* eslint-disable react/no-unescaped-entities */
-import useProductDetail from "../../hooks/useProductDetail";
-import Loading from "../../ui/loading/Loading";
 import ProductImage from "./ProductImage";
-export default function ProductAbout() {
-  const { productDetail, isLoading } = useProductDetail();
-  if (isLoading) return <Loading />;
+export default function ProductAbout({ productDetail }) {
   return (
     <>
       <div className=" w-full ">
-        <ProductImage data={productDetail} />
+        <ProductImage productDetail={productDetail} />
         <div className=""></div>
       </div>
     </>

@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+import { FaArrowDown } from "react-icons/fa";
 import ProductAbout from "../components/details/ProductAbout";
 import ProductSideMenu from "../components/details/product-side-menu/ProductSideMenu";
 import useProductDetail from "../hooks/useProductDetail";
@@ -8,8 +9,22 @@ import ProductDetailBreadCrumbs from "./../ui/breadcrumbs/ProductDetailBreadCrum
 
 export default function Details() {
   const { isLoading, productDetail } = useProductDetail();
+  const ref = useRef();
   const scrollToTop = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  };
+  function scrollRefCurrent() {
+    if (window.scrollY >= window.innerHeight / 2) {
+      ref.current.style.display = "none";
+    }
+  }
+  useEffect(() => {
+    window.addEventListener("scroll", (e) => scrollRefCurrent(e));
+  }, []);
+
+  const scrollToBottom = () => {
+    window.scroll({ top: window.innerHeight, left: 0, behavior: "smooth" });
+    ref.current.style.display = "none";
   };
   useEffect(() => {
     scrollToTop();
@@ -20,11 +35,33 @@ export default function Details() {
   return (
     <Container>
       <ProductDetailBreadCrumbs data={productDetail} />
-      <div className={"flex items-start justify-between"}>
-        <div className="mb-32 mt-[40px] h-auto w-[680px] flex-shrink-0 border bg-white px-[30px] pb-[30px]">
-          <ProductAbout />
+      <div className={"mb-10 flex items-start justify-between"}>
+        <div className="mt-5 h-auto w-[680px] flex-shrink-0 bg-white px-[30px] py-5 pb-[30px]">
+          <ProductAbout productDetail={productDetail} />
+          <h1 className="my-10 text-2xl font-medium">Xusuiyatlari</h1>
+          <div className="mb-10 mt-3 flex w-full flex-col justify-center  gap-y-3 rounded-xl bg-whiteTextColor p-2">
+            {productDetail?.propertyValues?.map((item, index) => (
+              <div
+                className=" inline-flex w-full items-center justify-between rounded-md bg-slate-500/10 px-5 py-3"
+                key={index}
+              >
+                <span className=" text-sm">{item?.propertyDto?.name}</span>
+                <span className=" text-sm font-medium text-black">
+                  {item?.stringValue || item?.intValue}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
-        <ProductSideMenu />
+        <ProductSideMenu productDetail={productDetail} />
+
+        <div
+          className="fixed bottom-0 left-[50%] flex  h-[50px] w-[50px] animate-bounce cursor-pointer items-center justify-center rounded-full border bg-gray-500/40 text-whiteTextColor "
+          ref={ref}
+          onClick={scrollToBottom}
+        >
+          <FaArrowDown />
+        </div>
       </div>
     </Container>
   );

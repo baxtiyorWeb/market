@@ -3,8 +3,9 @@ import { useEffect, useRef, useState } from "react";
 import "react-medium-image-zoom/dist/styles.css";
 import "./Product-details.css";
 
-export default function ProductImage({ data }) {
+export default function ProductImage({ productDetail }) {
   const [imgGetIndex, setImgGetIndex] = useState(0);
+
   const [width, setWidth] = useState(0);
   const refs = useRef(null);
 
@@ -34,6 +35,25 @@ export default function ProductImage({ data }) {
       );
     }, [width, imgGetIndex]);
 
+    let startX = null;
+
+    const handleTouchStart = (e) => {
+      startX = e.touches[0].clientX;
+    };
+
+    const handleTouchMove = (e) => {
+      if (!startX) return;
+      const x = e.touches[0].clientX;
+      const delta = startX - x;
+      refs.current.scrollLeft += delta;
+      startX = x;
+      e.preventDefault(); // Bu hodisa uchun brauzer ta'sirini oldini oladi
+    };
+
+    const handleTouchEnd = () => {
+      startX = null;
+    };
+
     return (
       <div className="product-page-img relative">
         <div className="relative w-full">
@@ -46,26 +66,30 @@ export default function ProductImage({ data }) {
               waitForAnimate
               arrows
             >
-              {data?.files?.map((item, index) => (
+              {productDetail?.files?.map((item, index) => (
                 <Image
                   key={index}
                   src={`data:image/png;base64,${item.file?.fileBase64}`}
-                  loading="eager"
+                  loading="lazy"
                   width={600}
                   height={500}
-                  className="h-[350px] select-none rounded-2xl border bg-blue-500 object-fill  "
+                  className="h-[350px] select-none rounded-2xl  object-fill  "
                 />
               ))}
             </Carousel>
             <div className="absolute right-3 top-3 inline-block w-[100px] cursor-text select-none rounded-full border bg-whiteTextColor p-2 text-center text-textColor">
-              {data?.files?.length} | {imgGetIndex + 1}
+              {productDetail?.files?.length} | {imgGetIndex + 1}
             </div>
           </div>
           <div
             ref={refs}
             className="flex h-full w-[600px] items-center justify-start overflow-x-scroll rounded-2xl"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+            style={{ overflowX: "scroll", whiteSpace: "nowrap" }}
           >
-            {data?.files?.map((item, index) => (
+            {productDetail?.files?.map((item, index) => (
               <img
                 key={index}
                 onClick={() => handleThumbnailClick(index)}
@@ -85,7 +109,7 @@ export default function ProductImage({ data }) {
   };
 
   return (
-    <div className="products-slide product-details relative rounded-[10px]">
+    <div className="products-slide product-details relative w-full rounded-[10px]">
       <SliderProduct />
     </div>
   );

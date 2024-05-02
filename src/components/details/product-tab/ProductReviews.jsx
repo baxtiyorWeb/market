@@ -2,7 +2,7 @@ import React from "react";
 
 const ProductReviews = () => {
   return (
-    <div>
+    <div className="w-[600px]">
       <div className="flex items-center justify-between">
         <h1 className="mb-8 mt-3 inline-block border-b text-2xl">
           Barcha Sharxlar

@@ -30,7 +30,7 @@ const ProductDetailBreadCrumbs = ({ data }) => {
             }
           >
             <div className="mr-3 flex  items-center justify-center ">
-              <span className="-skew-x-12 transform rounded-md  bg-slate-200 p-1 hover:text-slate-500">
+              <span className="-skew-x-12 transform rounded-md hover:text-slate-500">
                 {currentData?.name} {">"}
               </span>
             </div>
@@ -43,7 +43,7 @@ const ProductDetailBreadCrumbs = ({ data }) => {
   }
 
   return (
-    <div className="my-5 flex h-auto w-full items-center justify-start">
+    <div className="my-5 flex h-auto w-[max-content] items-center justify-start rounded-md bg-slate-200 p-1">
       {breadcrumbsArr}
     </div>
   );

@@ -1,24 +1,34 @@
 import React from "react";
 import { FaEye } from "react-icons/fa";
-import useProductDetail from "../../../hooks/useProductDetail";
-import Loading from "../../../ui/loading/Loading";
 
-const ProductInfo = () => {
-  const { productDetail, isLoading } = useProductDetail();
-  if (isLoading) return <Loading />;
+const ProductInfo = ({ productDetail }) => {
   return (
-    <div>
-      <h1 className="mb-8 mt-3 inline-block border-b text-2xl">
-        Product haqida ma'lumot
-      </h1>
+    <div className="h-[530px] w-[600px] p-1">
+      <div className="mb-8 mt-3 flex border-b ">
+        <div className="mb-6 flex w-full flex-col gap-y-5">
+          <h1 className="text-3xl font-normal text-black">
+            {productDetail?.name}
+          </h1>
+          <h5 className="text-xl font-semibold text-black">
+            <span className="mr-5 text-3xl text-textColor">
+              {productDetail?.price}
+            </span>
+            <span className="mr-5 text-sm font-normal text-[#959EA7]">
+              {productDetail?.canAgree === true
+                ? "kelishiladi"
+                : "kelishilmaydi"}
+            </span>
+          </h5>
+        </div>
+      </div>
 
       <div className="my-6 flex  items-center justify-between">
         <div className="flex items-center gap-x-4">
-          <span className="text-xs font-normal text-[#959EA7]">
+          <span className="text-base font-normal text-[#959EA7]">
             {productDetail?.address}
           </span>
           <div className="h-1 w-1 rounded-full bg-[#959EA7]"></div>
-          <span className="text-xs font-normal text-[#959EA7]">
+          <span className="text-base font-normal text-[#959EA7]">
             {productDetail?.district?.name}
           </span>
         </div>
@@ -61,37 +71,7 @@ const ProductInfo = () => {
           </button>
         </div>
       </div>
-      <div className="mb-6 flex w-full flex-col gap-y-5">
-        <h1 className="text-2xl font-normal text-black">
-          {productDetail?.name}
-        </h1>
-        <h5 className="text-xl font-semibold text-black">
-          <span className="mr-5">{productDetail?.price}</span>
-          <span className="mr-5 text-xs font-normal text-[#959EA7]">
-            {productDetail?.canAgree === true ? "kelishiladi" : "kelishilmaydi"}
-          </span>
-        </h5>
-      </div>
-      <div className="mt-[27px] h-[1px] w-full bg-[#DFE2E5]"></div>
-      <h1 className="mt-10 text-2xl font-medium">Xusuiyatlari</h1>
-      <div className="mb-10 mt-8 flex flex-col gap-y-8">
-        {productDetail?.propertyValues?.map((item, index) => (
-          <div
-            className="flex items-center justify-between gap-x-3"
-            key={index}
-          >
-            <span className="w-full text-sm">{item?.propertyDto?.name}</span>
-            <div
-              data-orientation="horizontal"
-              role="none"
-              className="h-[1px] w-[430px] shrink-0 border border-dashed border-black/10 bg-transparent"
-            ></div>
-            <span className="w-full text-sm font-medium text-black">
-              {item?.stringValue || item?.intValue}
-            </span>
-          </div>
-        ))}
-      </div>
+
       <div className="mt-10 flex w-full flex-col gap-y-5">
         <h3 className="text-[20px] font-semibold text-black">
           Qisqacha ma’lumot
