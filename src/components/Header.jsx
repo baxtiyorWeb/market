@@ -92,16 +92,6 @@ export default function Header() {
               </button>
             </form>
           </div>
-          {/* <Link
-            
-            className="hover:bg-bgColor flex h-[50px] w-[160px] flex-shrink-0 items-center justify-around rounded-[5px] border border-textColor p-[30px] py-4 text-textColor transition-all duration-100 hover:text-white"
-            onClick={() => setOpen(false)}
-          >
-            // {/* <img src={plusIcon} alt="" />
-            <span className="font-poppins text-[18px] font-normal not-italic leading-[100%]">
-              {token ? "Kabinet" : " Kirish"}
-            </span>
-          </Link> */}
 
           <div>
             <Link

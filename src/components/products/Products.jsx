@@ -51,7 +51,7 @@ const Products = () => {
           </div>
         </h1>
       </div>
-      <div className="response_product_category grid grid-cols-4 gap-[29px]   md:grid md:grid-cols-4  ">
+      <div className="response_product_category 2xs:grid 2xs:grid-cols-2 grid grid-cols-4 gap-10 border">
         {isLoading ? (
           <Loading />
         ) : (

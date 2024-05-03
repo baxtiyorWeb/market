@@ -4,7 +4,7 @@ import m_logo from "../../assets/m_logo.png";
 import Container from "../../shared/Container";
 export default function Navigation() {
   return (
-    <div className=" bg-[#FFF]">
+    <div className=" bg-[#FFF] max-sm:w-full">
       <Container>
         <div className="flex h-full items-center justify-between">
           <div>
