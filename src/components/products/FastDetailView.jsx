@@ -46,7 +46,7 @@ const FastDetailView = ({ id }) => {
                     loading="lazy"
                     width={400}
                     height={400}
-                    className=" select-none rounded-2xl   object-fill  "
+                    className="scale-10 select-none overflow-clip rounded-2xl  border bg-gray-500/20 bg-center object-contain"
                   />
                 ))}
               </Carousel>
