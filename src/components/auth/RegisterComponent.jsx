@@ -98,13 +98,15 @@ export default function RegisterComponent() {
         <span className="my-3">
           ijtmoiy tarmoqlar orqali ro&apos;yxatdan o&apos;ting
         </span>
-        <div className="flex items-center justify-center">
-          <span className="m-5">
-            <FcGoogle className="h-8 w-8 cursor-pointer" />
-          </span>
-          <span className="m-5">
-            <FaTelegram className="h-8 w-8 cursor-pointer text-blue-500" />
-          </span>
+        <div className="flex flex-col items-center justify-center">
+          <button className="m-1 flex h-12 w-[180px] items-center justify-center rounded-md border px-1">
+            <FcGoogle className="mx-2 h-8 w-8 cursor-pointer" />
+            <span className="text-sm text-textColor">google +</span>
+          </button>
+          <button className="m-1 flex h-12 w-[180px] items-center justify-center rounded-md border px-1">
+            <FaTelegram className="mx-2 h-8 w-8 cursor-pointer text-blue-500" />
+            <span className="text-sm text-textColor">telegram</span>
+          </button>
         </div>
       </div>
     </div>

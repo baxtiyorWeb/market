@@ -1,5 +1,6 @@
 import React from "react";
-
+import { CgMailReply } from "react-icons/cg";
+import { FaRegComment } from "react-icons/fa";
 const ProductReviews = () => {
   return (
     <div className="w-[600px]">
@@ -29,6 +30,14 @@ const ProductReviews = () => {
           eveniet. Cupiditate repellendus numquam repellat doloribus ipsum natus
           iste vitae nesciunt laboriosam corrupti ducimus sunt dolorem laborum
           velit voluptas, nihil ipsam?
+        </div>
+        <div className="mt-3 flex w-full justify-end ">
+          <span className="mx-3 flex h-10 w-10 cursor-pointer items-center justify-center  rounded-md border border-bgColor p-1 text-xl text-textColor hover:bg-bgColor hover:text-whiteTextColor">
+            <CgMailReply />
+          </span>
+          <span className="mx-3 flex h-10 w-10 cursor-pointer items-center justify-center  rounded-md border border-bgColor p-1 text-xl text-textColor hover:bg-bgColor hover:text-whiteTextColor">
+            <FaRegComment />
+          </span>
         </div>
       </div>
       <div className="my-5 border-b pb-5 ">

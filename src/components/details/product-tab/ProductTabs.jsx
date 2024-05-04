@@ -4,6 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import ProductInfo from "./ProductInfo";
 import ProductQuestions from "./ProductQuestions";
 import ProductReviews from "./ProductReviews";
+import Seller from "./Seller";
 
 const ProductTabs = ({ productDetail }) => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -47,7 +48,7 @@ const ProductTabs = ({ productDetail }) => {
             } `}
             onClick={() => productTabgetIndex(4)}
           >
-            qo&apos;shimcha ma&apos;lumotlar
+            sotuvchi
           </span>
         </div>
 
@@ -55,7 +56,7 @@ const ProductTabs = ({ productDetail }) => {
           {tabIndex == 1 ? <ProductInfo productDetail={productDetail} /> : ""}
           {tabIndex == 2 ? <ProductReviews /> : ""}
           {tabIndex == 3 ? <ProductQuestions /> : ""}
-          {tabIndex === 4 ? <ProductInfo /> : ""}
+          {tabIndex == 4 ? <Seller /> : ""}
         </div>
         <div className="text cursor-pointer text-textColor">
           <h1 className=" flex items-center justify-start">

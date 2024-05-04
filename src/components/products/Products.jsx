@@ -1,5 +1,6 @@
 import { Image, message } from "antd";
 import { useState } from "react";
+import { BsCalendarDate } from "react-icons/bs";
 import { CiHeart } from "react-icons/ci";
 import { FaArrowRight, FaEye } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
@@ -47,8 +48,12 @@ const Products = () => {
         {isOpen && <Overlay closed={handleToggle} />}
         {isOpen && <FastDetailView id={fastId} />}
         <h1 className="mb-5 font-poppins text-[28px] font-medium not-italic leading-normal tracking-[-0.66px] ">
-          <div className="flex items-center justify-between ">
-            <h1 className="text-2xl">top maxsulotlar</h1>
+          <div className="relative flex items-center justify-between rounded-md  p-1">
+            <h1 className="text-2xl">top maxsulotlar </h1>
+            <Link className="text inline-flex items-center justify-center text-base text-blue-500 underline underline-offset-4">
+              <span className="mx-3"> Barchasini ko&apos;rish</span>{" "}
+              <FaArrowRight />
+            </Link>
           </div>
         </h1>
       </div>
@@ -58,9 +63,12 @@ const Products = () => {
         ) : (
           data?.data?.data?.content?.map((item, index) => (
             <div
-              className="relative h-[580px] w-[315px] flex-shrink-0 overflow-hidden rounded-md bg-white/100 pt-2   transition-all  "
+              className="relative h-[510px] w-[315px] flex-shrink-0 overflow-hidden rounded-md bg-white/100 pt-2   transition-all  "
               key={index}
             >
+              <span className="absolute left-3 top-5 z-50 bg-red-500 px-1 text-sm  text-white">
+                TOP
+              </span>
               <div className="relative h-[300px] overflow-hidden">
                 <div className="cart-slider group flex h-full  items-center justify-center">
                   <button
@@ -81,60 +89,48 @@ const Products = () => {
                         loading="eager"
                         width={290}
                         height={290}
-                        className=" w-full rounded-xl border border-red-500 bg-center object-cover align-middle"
+                        className=" w-full rounded-xl  bg-center object-cover align-middle"
                       />
                     </div>
                   </Link>
                 </div>
               </div>
               <div className="mt-4 px-[18px]">
-                <span className="text line-clamp-1 font-poppins text-[18px] font-medium not-italic leading-[120%] tracking-[-0.32px] text-textColor">
+                <span className="text line-clamp-1 font-poppins text-[18px] font-medium not-italic leading-[120%] tracking-[-0.32px] ">
                   {item?.name}
                 </span>
                 <div className="mt-[12px] flex items-center  justify-start">
-                  <span className="text inline-flex items-center font-poppins text-[16px] font-semibold not-italic leading-[100%] ">
+                  <span className="text inline-flex items-center rounded-md border border-borderColor px-3 py-2 font-poppins text-[16px] font-semibold not-italic leading-[100%] text-textColor ">
                     {item?.price}
                     <p className="ml-1">so{"'"}m</p>
                   </span>{" "}
                 </div>
                 <div className="mt-3 rounded-xl  ">
                   <div className="text-xs">
-                    <span>to&apos;lov turi</span> -{" "}
-                    <span>{item?.sellTypeName}</span>
-                  </div>
-                  <div className="text-xs">
-                    <span>sotuv turi</span> -{" "}
-                    <span>{item?.paymentTypeName}</span>
                     <div className="text mt-3 flex items-center justify-start font-poppins text-[14px] font-normal leading-[100%] tracking-[-0.22px] text-spanColor">
                       <div className="flex w-full items-center justify-start ">
                         <span className="flex items-center justify-start ">
-                          <IoLocationOutline />
+                          <IoLocationOutline className="mr-3" />
                           {item?.regionName} / {item?.districtName}
                         </span>
                       </div>
                     </div>
                     <span className="text mt-3 flex items-center justify-between font-poppins text-[13px] font-normal leading-[100%] tracking-[-0.22px] text-spanColor">
-                      <span>2024-04-28</span>
+                      <div className="flex items-center justify-center">
+                        <BsCalendarDate className="mr-3" />
+                        <span>2024-04-28</span>
+                      </div>
                     </span>
                   </div>
                 </div>
-                <div className="mt-5 flex w-full items-center justify-between text-sm text-spanColor">
+                <div className="text mt-5 flex items-center justify-between font-poppins  font-normal leading-[100%] tracking-[-0.22px] text-spanColor">
                   <span className="flex items-center justify-center">
                     <FaEye className="mr-3 text-[16px]" />
                     {item?.viewCount}
                   </span>
-                  <span className="group/edit flex cursor-pointer items-center hover:underline">
-                    {item?.categoryName}{" "}
-                    <FaArrowRight className="ml-3 group-hover/edit:translate-x-0.5" />
-                  </span>
-                </div>
-                <div className="text mt-[20px] flex items-center justify-between font-poppins  font-normal leading-[100%] tracking-[-0.22px] text-spanColor">
-                  <button className="rounded-md bg-btnColor px-2 py-3 text-whiteTextColor">
-                    Savatchaga qo&apos;shish
-                  </button>
                   <span
                     onClick={() => setQueryParams(item?.id)}
-                    className="flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-full border bg-[#aeaead4b] text-white hover:bg-[#AEAEAD]"
+                    className="flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-md border border-bgColor bg-bgColor text-whiteTextColor hover:bg-whiteTextColor hover:text-textColor"
                   >
                     <CiHeart className="cursor-pointer text-[28px]" />
                   </span>
