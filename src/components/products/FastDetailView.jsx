@@ -18,7 +18,7 @@ const FastDetailView = ({ id }) => {
   console.log(product);
 
   return (
-    <div className="fixed left-[20%] top-[20%] z-[310] h-[600px] w-[1000px] overflow-y-scroll rounded-2xl bg-whiteTextColor p-3 shadow-2xl">
+    <div className="fixed left-[10%] top-[10%] z-[310] h-[800px] w-[1300px] overflow-y-scroll rounded-2xl bg-whiteTextColor p-3 shadow-2xl">
       {isLoading ? (
         <div className="flex h-full w-full items-center justify-center text-5xl">
           <Spin
@@ -37,14 +37,14 @@ const FastDetailView = ({ id }) => {
             </Link>
           </div>
           <div className="flex h-full w-full items-start justify-between rounded-2xl">
-            <div className="fast-detail relative left-10 w-[30%]">
+            <div className="fast-detail relative left-10 w-[32%] ">
               <Carousel draggable effect="fade" waitForAnimate arrows>
                 {product?.files?.map((item, index) => (
                   <Image
                     key={index}
                     src={`data:image/png;base64,${item.file?.fileBase64}`}
                     loading="lazy"
-                    width={300}
+                    width={400}
                     height={400}
                     className=" select-none rounded-2xl   object-fill  "
                   />

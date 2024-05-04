@@ -100,7 +100,7 @@ const ChildCategories = () => {
                       ?.join("-")}`}
                     className={
                       paramName == item?.name
-                        ? "rounded-md bg-slate-500/10 p-2  text-textColor"
+                        ? "rounded-md bg-slate-500/10 p-2  text-textColor hover:text-textColor"
                         : `rounded-md p-2 hover:bg-slate-500/10  hover:text-slate-900`
                     }
                   >

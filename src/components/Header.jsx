@@ -5,7 +5,7 @@ import Container from "../shared/Container";
 
 import { MenuOutlined, UserOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
-import { FaCartPlus, FaRegHeart, FaSearch } from "react-icons/fa";
+import { FaPlusCircle, FaRegHeart, FaSearch } from "react-icons/fa";
 import { MdClose } from "react-icons/md";
 import { Link, useSearchParams } from "react-router-dom";
 import menuIcon from "../assets/menuIcon.svg";
@@ -95,7 +95,7 @@ export default function Header() {
 
           <div>
             <Link
-              to={"/"}
+              to={"/profile/dashboard?tab=2"}
               className="hover/heart flex flex-col items-center justify-center"
             >
               <FaRegHeart className="text text-2xl text-textColor hover/heart:text-bgColor" />
@@ -104,11 +104,13 @@ export default function Header() {
           </div>
           <div>
             <Link
-              to={"/"}
+              to={"/product-form/add-product"}
               className="flex flex-col items-center justify-center"
             >
-              <FaCartPlus className="text text-2xl text-textColor " />
-              <span className="text text-spanColor">Savatcha</span>
+              <FaPlusCircle className="text text-2xl text-textColor " />
+              <span className="text text-spanColor">
+                e&apos;lon qo&apos;shish
+              </span>
             </Link>
           </div>
           <div>

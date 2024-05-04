@@ -1,24 +1,29 @@
-import { useQuery } from "@tanstack/react-query";
-import { Space, Table } from "antd";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { Space, Table, message } from "antd";
 import React from "react";
 import { FaEye } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 import api from "../../config/api/api";
+import { deleteFavorite } from "../../exports/api";
 import Loading from "../../ui/loading/Loading";
 const MyFavourites = () => {
+  const queryClient = useQueryClient();
   const myFavourites = async () => {
     const res = await api.get(
       "/favorite-product/list?page=0&size=10&additionalProp3=string",
     );
     return res.data?.data?.content;
   };
-  const { data: myFavorite, isLoading } = useQuery({
+  const {
+    data: myFavorite,
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["favorite-product"],
     queryFn: myFavourites,
   });
 
-  console.log(myFavorite);
   const columns = [
     {
       title: "rasmi",
@@ -90,7 +95,10 @@ const MyFavourites = () => {
           <span>
             <Space size="middle" className="flex items-center justify-center">
               <span>
-                <MdDelete className="cursor-pointer text-center text-xl text-red-500" />
+                <MdDelete
+                  onClick={() => handleDelete(record)}
+                  className="cursor-pointer text-center text-xl text-red-500"
+                />
               </span>
               <Link to={`/details/${record}?infoTab=1`}>
                 <FaEye className="cursor-pointer text-center text-xl text-teal-800" />
@@ -101,6 +109,20 @@ const MyFavourites = () => {
       },
     },
   ];
+
+  const deleteMutation = useMutation({
+    mutationKey: ["favorite-product"],
+    mutationFn: deleteFavorite,
+    onSuccess: async () => {
+      message.success(`malumot o'chirildi `);
+      await queryClient.invalidateQueries(myFavorite);
+    },
+  });
+  const handleDelete = async (id) => {
+    await deleteMutation.mutateAsync(id);
+    refetch();
+  };
+
   if (isLoading) return <Loading />;
 
   return (

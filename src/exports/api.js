@@ -121,3 +121,7 @@ export const getProductWithCategoryFilter = async (id) => {
   const res = await api.get(`/category/list?page=0&size=20&parentId=${id}`);
   return res.data;
 };
+
+export const deleteFavorite = async (id) => {
+  return (await api.post(`favorite-product/remove?productId=${id}`)).data;
+};

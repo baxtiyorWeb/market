@@ -55,7 +55,6 @@ export default function Details() {
           </div>
         </div>
         <ProductSideMenu productDetail={productDetail} />
-
         <div
           className="fixed bottom-0 left-[50%] flex  h-[50px] w-[50px] animate-bounce cursor-pointer items-center justify-center rounded-full border bg-gray-500/40 text-whiteTextColor "
           ref={ref}

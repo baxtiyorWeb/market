@@ -16,6 +16,7 @@ const Products = () => {
   const { data, error, isLoading, setPage, page, size } = useProducts();
   const { handleToggle, isOpen } = useToggle();
   const [fastId, setFastId] = useState("");
+
   const numbers = Array.from(
     { length: data?.data?.data?.totalElements / size },
     (_, index) => index + 1,
@@ -45,22 +46,22 @@ const Products = () => {
       <div>
         {isOpen && <Overlay closed={handleToggle} />}
         {isOpen && <FastDetailView id={fastId} />}
-        <h1 className=" mb-5 font-poppins text-[28px] font-medium not-italic leading-normal tracking-[-0.66px] ">
+        <h1 className="mb-5 font-poppins text-[28px] font-medium not-italic leading-normal tracking-[-0.66px] ">
           <div className="flex items-center justify-between ">
             <h1 className="text-2xl">top maxsulotlar</h1>
           </div>
         </h1>
       </div>
-      <div className="response_product_category 2xs:grid 2xs:grid-cols-2 grid grid-cols-4 gap-10 border">
+      <div className="response_product_category grid grid-cols-4 gap-10  2xs:grid 2xs:grid-cols-2">
         {isLoading ? (
           <Loading />
         ) : (
           data?.data?.data?.content?.map((item, index) => (
             <div
-              className="relative h-[480px] w-[280px] flex-shrink-0 overflow-hidden rounded-2xl bg-white/100 drop-shadow  transition-all  "
+              className="relative h-[580px] w-[315px] flex-shrink-0 overflow-hidden rounded-md bg-white/100 pt-2   transition-all  "
               key={index}
             >
-              <div className="relative h-[194px]  overflow-hidden">
+              <div className="relative h-[300px] overflow-hidden">
                 <div className="cart-slider group flex h-full  items-center justify-center">
                   <button
                     className="absolute right-[30%] top-[40%] z-50 hidden rounded-3xl bg-bgColor px-3 py-2 text-whiteTextColor hover:border hover:border-bgColor hover:bg-whiteTextColor hover:text-textColor group-hover:block"
@@ -70,15 +71,17 @@ const Products = () => {
                   </button>
                   <Link
                     to={`/details/${item.id}?infoTab=1`}
-                    className="w-[280px]"
+                    className="w-[300px]"
                   >
-                    <div className="h-[194px] w-[280px] ">
+                    <div className="h-[290px]">
                       <Image
                         alt={"avatar"}
                         src={`data:image/png;base64,${item.file?.fileBase64}`}
                         title={`${item?.name}`}
                         loading="eager"
-                        className=" h-[194px] w-[280px] object-contain "
+                        width={290}
+                        height={290}
+                        className=" w-full rounded-xl border border-red-500 bg-center object-cover align-middle"
                       />
                     </div>
                   </Link>
@@ -140,43 +143,6 @@ const Products = () => {
             </div>
           ))
         )}
-      </div>
-      <div className="flex items-center justify-center">
-        <button
-          onClick={() => {
-            setPage((index) => index - 1);
-          }}
-          disabled={page === 0}
-        >
-          prev
-        </button>
-        {/* {data?.data?.data?.content?.map((item, index = 1) => (
-          
-        ))} */}
-
-        {numbers.map((item, index) => (
-          <span
-            onClick={() => setPage(index)}
-            className={
-              page === index
-                ? "m-1 cursor-pointer border px-5 py-3 text-teal-500"
-                : "m-1 cursor-pointer border px-5 py-3 text-red-500" ||
-                    page > index
-                  ? "m-1 cursor-pointer border px-5 py-3 text-red-500"
-                  : "text-500-500 m-1 cursor-pointer border px-5 py-3"
-            }
-          >
-            {index}
-          </span>
-        ))}
-        <button
-          onClick={() => {
-            setPage((index) => index);
-          }}
-          disabled={page === numbers.length}
-        >
-          next
-        </button>
       </div>
       <div className="mb-[50px] mt-[50px] flex items-center justify-center">
         <button className="flex h-[50px] w-[328px] flex-shrink-0 items-center justify-center rounded-[5px] bg-[#1D828E] text-[#fff] ">

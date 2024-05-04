@@ -513,3 +513,10 @@
 .ant-slider-handle {
   background-color: #1d828e !important;
 }
+.slick-dots li {
+  position: relative;
+  top: -50px !important;
+}
+.slick-dots li::before {
+  content: "";
+}

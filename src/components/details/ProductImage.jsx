@@ -73,12 +73,12 @@ export default function ProductImage({ productDetail }) {
                   loading="lazy"
                   width={600}
                   height={500}
-                  className="h-[350px] select-none rounded-2xl  object-fill  "
+                  className="scale-10 h-[350px] select-none overflow-clip rounded-2xl  border bg-gray-500/20 bg-center object-contain"
                 />
               ))}
             </Carousel>
             <div className="absolute right-3 top-3 inline-block w-[100px] cursor-text select-none rounded-full border bg-whiteTextColor p-2 text-center text-textColor">
-              {productDetail?.files?.length} | {imgGetIndex + 1}
+              {imgGetIndex + 1} | {productDetail?.files?.length}
             </div>
           </div>
           <div
