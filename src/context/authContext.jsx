@@ -10,6 +10,7 @@ export const AuthProvider = ({ children }) => {
   const login = (userData) => {
     // Foydalanuvchi kiritishni bajarish va foydalanuvchi ma'lumotlarini saqlash
     setUser(userData);
+    console.log(user);
   };
 
   const logout = () => {

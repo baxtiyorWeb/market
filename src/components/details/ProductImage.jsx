@@ -8,6 +8,7 @@ export default function ProductImage({ productDetail }) {
 
   const [width, setWidth] = useState(0);
   const refs = useRef(null);
+  const contextMenuImg = useRef(null);
 
   const handleThumbnailClick = (index) => {
     setImgGetIndex(index);

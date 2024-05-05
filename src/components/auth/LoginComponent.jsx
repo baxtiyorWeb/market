@@ -29,7 +29,7 @@ export default function LoginComponent() {
       }
 
       login({ username });
-      window.location.href = "/";
+      // window.location.href = "/";
     } catch (error) {
       console.log(error.message);
     } finally {
