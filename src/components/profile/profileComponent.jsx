@@ -1,12 +1,14 @@
 import { Button } from "antd";
 import { useAuth } from "../../context/AuthContext";
+import useCheckAuth from "../../hooks/useCheckAuth.js";
 import Container from "../../shared/Container";
 import UserBalance from "./user/userBalance";
 import UserTabs from "./user/userTabs";
 
 export default function ProfileComponent() {
+  const { authCheck } = useCheckAuth();
   const { user } = useAuth();
-  console.log(user);
+  console.log(authCheck);
   const backToLastPage = () => {
     window.location = "/";
   };

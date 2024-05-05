@@ -1,8 +1,7 @@
 import { Input, Spin } from "antd";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import api from "../../config/api/api";
 import { useAuth } from "../../context/AuthContext";
 import ButtonUI from "../../ui/button/Button";
 
@@ -28,20 +27,6 @@ export default function LoginComponent() {
       setisLoading(false);
     }
   };
-
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        await api.get("/authority/all");
-
-        navigate("/");
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    getData();
-  }, []);
 
   return (
     <>

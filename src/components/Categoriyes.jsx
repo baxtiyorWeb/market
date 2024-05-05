@@ -44,11 +44,13 @@ export default function Categoriyes() {
         dots={true}
         slidesToShow={5}
         slidesToScroll={1}
+        autoplay
+        infinite
       >
         {data?.data?.content?.map((item, index) => (
           <div
             key={index}
-            className="mt-1 flex h-[120px_!important] w-[120px_!important] flex-col items-center justify-center  rounded-full border  bg-whiteTextColor"
+            className="mt-1 flex h-[120px_!important] w-[120px_!important] flex-col items-center justify-center  "
           >
             <Link
               to={`/category/${item?.id}?category-name=${item?.name
@@ -58,7 +60,7 @@ export default function Categoriyes() {
             >
               <img
                 src={`data:image/png;base64,${item?.file?.fileBase64}`}
-                className="my-2 h-[40px] w-[40px] rounded-full object-cover"
+                className="my-2 h-[60px] w-[60px] rounded-full object-cover"
                 alt=""
               />
               <span className="mt-3 text-center  font-poppins  font-normal not-italic leading-[100%] ">

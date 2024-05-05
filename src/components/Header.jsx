@@ -7,11 +7,11 @@ import { MenuOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { MdClose } from "react-icons/md";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import menuIcon from "../assets/menuIcon.svg";
+import api from "../config/api/api";
 import useProductSearch from "../hooks/product/useProductSearch";
 import Categoriyes from "../ui/Categoriyes";
-import HeadUserLinks from "./header/HeadUserLinks";
 import Navigation from "./logo/Navigation";
 import Regions from "./regions/regions";
 
@@ -44,7 +44,19 @@ export default function Header() {
     }
   }, []);
 
-  const token = true;
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        await api.get("/authority/all");
+
+        navigate("/");
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getData();
+  }, []);
 
   return (
     <div
@@ -93,7 +105,14 @@ export default function Header() {
               </button>
             </form>
           </div>
-          <HeadUserLinks />
+          <div className="flex w-[25%] items-center justify-between">
+            <Link
+              to={"/auth/login"}
+              className="m-auto flex h-[50px]  w-[150px] items-center justify-center rounded-md border border-bgColor text-textColor hover:bg-bgColor hover:text-whiteTextColor"
+            >
+              Shaxsiy Kabinet
+            </Link>
+          </div>
         </div>
       </Container>
     </div>
