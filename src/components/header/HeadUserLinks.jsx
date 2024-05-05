@@ -2,11 +2,9 @@ import { UserOutlined } from "@ant-design/icons";
 import React from "react";
 import { FaPlusCircle, FaRegHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
 
 const HeadUserLinks = () => {
-  const { user } = useAuth();
-  console.log(user);
+  const user = true;
   return (
     <>
       <div>

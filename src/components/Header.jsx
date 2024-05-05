@@ -9,7 +9,6 @@ import { FaSearch } from "react-icons/fa";
 import { MdClose } from "react-icons/md";
 import { useSearchParams } from "react-router-dom";
 import menuIcon from "../assets/menuIcon.svg";
-import { useAuth } from "../context/AuthContext";
 import useProductSearch from "../hooks/product/useProductSearch";
 import Categoriyes from "../ui/Categoriyes";
 import HeadUserLinks from "./header/HeadUserLinks";
@@ -21,7 +20,6 @@ export default function Header() {
   const [scroll, setScroll] = useState(false);
   const { handleInputChange, handleButtonClick } = useProductSearch();
   const searchable = useSearchParams();
-  const { user } = useAuth();
   const search = searchable[0].get("search");
   // scroll
 

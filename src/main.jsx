@@ -8,7 +8,7 @@ import ReactDOM from "react-dom/client";
 import { HelmetProvider } from "react-helmet-async";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App.jsx";
-import { AuthProvider } from "./context/AuthContext.jsx";
+import AuthProvider from "./context/AuthContext.jsx";
 import "./index.css";
 
 axios.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem(

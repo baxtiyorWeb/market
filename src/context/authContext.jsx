@@ -1,50 +1,48 @@
-import React, { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import api from "../config/api/api";
 
-// Context yaratish
 const AuthContext = createContext();
 
-// Context Provider komponenti
-export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null); // Foydalanuvchi ma'lumotlarini saqlash
-
-  const login = (userData) => {
-    // Foydalanuvchi kiritishni bajarish va foydalanuvchi ma'lumotlarini saqlash
-    setUser(userData);
-    console.log(user);
+const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
+  const [token, setToken] = useState(localStorage.getItem("accessToken") || "");
+  const navigate = useNavigate();
+  const loginAction = async (data) => {
+    try {
+      const response = await api.post("/authority/sign-in", {
+        ...data,
+      });
+      const res = await response.data;
+      if (res.data) {
+        setUser(res.data);
+        setToken(res.data.accessToken);
+        localStorage.setItem("accessToken", res.data.accessToken);
+        navigate("/profile/dashboard?tab=1");
+        return;
+      }
+      throw new Error(res.message);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
-  const logout = () => {
-    // Foydalanuvchi chiqishni bajarish va foydalanuvchi ma'lumotlarini o'chirish
+  const logOut = () => {
     setUser(null);
+    setToken("");
+    localStorage.removeItem("site");
+    navigate("/login");
   };
 
-  // Context Provider qiymatlari
-  const values = {
-    user,
-    login,
-    logout,
-  };
-
-  // Context Provider ni qaytarish
-  return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ token, user, loginAction, logOut }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
-// Context ni olish uchun hook
-export const useAuth = () => useContext(AuthContext);
+export default AuthProvider;
 
-// Mijoz ma'lumotlariga kirishni tekshirish uchun maxsus funktsiya
-export const checkAuth = () => {
-  // Mijoz ma'lumotlari (masalan, token) tekshirishni bajarish
-  // Agar ma'lumotlar to'g'ri bo'lsa, true qaytarish
-  // Aks holda, false qaytarish
-};
-
-// Mijozni maxsus sahifaga yo'naltirish
-export const redirectToLogin = () => {
-  // Mijozni login sahifasiga yo'naltirish
-};
-
-// Mijoz ma'lumotlarini saqlash uchun funksiya
-export const saveUserData = (userData) => {
-  // Foydalanuvchi ma'lumotlarini istalgan joyda saqlash (masalan, localStorage)
+export const useAuth = () => {
+  return useContext(AuthContext);
 };
