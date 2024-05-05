@@ -3,10 +3,12 @@ import { useEffect, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../../config/api/api";
+import { useAuth } from "../../context/AuthContext";
 import ButtonUI from "../../ui/button/Button";
 
 export default function LoginComponent() {
-  const [login, setLogin] = useState("");
+  const { login } = useAuth();
+  const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setisLoading] = useState(false);
   const [inputType, setInputType] = useState("text");
@@ -15,7 +17,7 @@ export default function LoginComponent() {
     try {
       setisLoading(true);
       const { data, status } = await api.post("/authority/sign-in", {
-        username: login,
+        username: username,
         password: password,
       });
 
@@ -26,7 +28,8 @@ export default function LoginComponent() {
         message.success("login successfully");
       }
 
-      window.location.reload();
+      login({ username });
+      window.location.href = "/";
     } catch (error) {
       console.log(error.message);
     } finally {
@@ -58,7 +61,7 @@ export default function LoginComponent() {
             type="text"
             placeholder="login"
             className="mt-3 h-14  w-[328px] rounded-lg p-3  text-xl outline-none"
-            onChange={(e) => setLogin(e.target.value)}
+            onChange={(e) => setUserName(e.target.value)}
           />
         </div>
         <div className="relative flex flex-col items-center justify-center">

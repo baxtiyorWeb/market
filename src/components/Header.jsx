@@ -3,14 +3,15 @@ import Container from "../shared/Container";
 
 // svg  icons
 
-import { MenuOutlined, UserOutlined } from "@ant-design/icons";
+import { MenuOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
-import { FaPlusCircle, FaRegHeart, FaSearch } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 import { MdClose } from "react-icons/md";
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import menuIcon from "../assets/menuIcon.svg";
 import useProductSearch from "../hooks/product/useProductSearch";
 import Categoriyes from "../ui/Categoriyes";
+import HeadUserLinks from "./header/HeadUserLinks";
 import Navigation from "./logo/Navigation";
 import Regions from "./regions/regions";
 
@@ -92,36 +93,7 @@ export default function Header() {
               </button>
             </form>
           </div>
-
-          <div>
-            <Link
-              to={"/profile/dashboard?tab=2"}
-              className="hover/heart flex flex-col items-center justify-center"
-            >
-              <FaRegHeart className="text text-2xl text-textColor hover/heart:text-bgColor" />
-              <span className="text text-spanColor">Sevimlilar</span>
-            </Link>
-          </div>
-          <div>
-            <Link
-              to={"/product-form/add-product"}
-              className="flex flex-col items-center justify-center"
-            >
-              <FaPlusCircle className="text text-2xl text-textColor " />
-              <span className="text text-spanColor">
-                e&apos;lon qo&apos;shish
-              </span>
-            </Link>
-          </div>
-          <div>
-            <Link
-              to={token ? `/profile/dashboard?tab=1` : "/auth/login"}
-              className="flex flex-col items-center justify-center"
-            >
-              <UserOutlined className="text text-2xl text-textColor " />
-              <span className="text text-spanColor">kabinet</span>
-            </Link>
-          </div>
+          <HeadUserLinks />
         </div>
       </Container>
     </div>

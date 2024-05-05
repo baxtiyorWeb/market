@@ -8,6 +8,7 @@ import ReactDOM from "react-dom/client";
 import { HelmetProvider } from "react-helmet-async";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App.jsx";
+import { AuthProvider } from "./context/AuthContext.jsx";
 import "./index.css";
 
 axios.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem(
@@ -22,7 +23,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <QueryClientProvider client={queryClient} contextSharing={true}>
           <PrimeReactProvider value={{ unstyled: true, pt: Tailwind }}>
             <NextTopLoader height={5} showSpinner={false} color="#1D828E" />
-            <App />
+            <AuthProvider>
+              <App />
+            </AuthProvider>
           </PrimeReactProvider>
         </QueryClientProvider>
       </HelmetProvider>

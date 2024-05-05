@@ -1,46 +1,49 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import api from "./../config/api/api";
+import React, { createContext, useContext, useState } from "react";
+
+// Context yaratish
 const AuthContext = createContext();
 
+// Context Provider komponenti
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [isLoading, setisLoading] = useState(true);
+  const [user, setUser] = useState(null); // Foydalanuvchi ma'lumotlarini saqlash
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const res = await api.get("/user/1");
-        setUser(res.data);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setisLoading(false);
-      }
-    };
-
-    fetchUser();
-  }, []);
-
-  const login = async (username, password) => {
-    try {
-      const res = await api.post("/authority/sign-in", { username, password });
-      setUser(res.data);
-    } catch (error) {
-      console.log(error);
-    }
+  const login = (userData) => {
+    // Foydalanuvchi kiritishni bajarish va foydalanuvchi ma'lumotlarini saqlash
+    setUser(userData);
   };
 
-  const contextValue = {
+  const logout = () => {
+    // Foydalanuvchi chiqishni bajarish va foydalanuvchi ma'lumotlarini o'chirish
+    setUser(null);
+  };
+
+  // Context Provider qiymatlari
+  const values = {
     user,
     login,
-    isLoading,
+    logout,
   };
 
-  return (
-    <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
-  );
+  // Context Provider ni qaytarish
+  return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 };
 
-export const useAuth = () => {
-  return useContext(AuthContext);
+// Context ni olish uchun hook
+export const useAuth = () => useContext(AuthContext);
+
+// Mijoz ma'lumotlariga kirishni tekshirish uchun maxsus funktsiya
+export const checkAuth = () => {
+  // Mijoz ma'lumotlari (masalan, token) tekshirishni bajarish
+  // Agar ma'lumotlar to'g'ri bo'lsa, true qaytarish
+  // Aks holda, false qaytarish
+};
+
+// Mijozni maxsus sahifaga yo'naltirish
+export const redirectToLogin = () => {
+  // Mijozni login sahifasiga yo'naltirish
+};
+
+// Mijoz ma'lumotlarini saqlash uchun funksiya
+export const saveUserData = (userData) => {
+  // Foydalanuvchi ma'lumotlarini istalgan joyda saqlash (masalan, localStorage)
 };
