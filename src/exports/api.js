@@ -108,15 +108,13 @@ export const getRegions = async () => {
 // filter product for api returns
 
 export const productWithCategoryFilter = async (search, id) => {
-  if (search === undefined) return null;
   const res = await api.get(
-    `/product/list?page=0&size=10&${search}=&categoryId=${id}`,
+    `/product/list?page=0&size=10&search=&categoryId=${id}`,
   );
-
+  console.log(res.data.data.content);
   return res.data;
 };
 export const getProductWithCategoryFilter = async (id) => {
-  if (id == undefined) return null;
   const res = await api.get(`/category/list?page=0&size=20&parentId=${id}`);
   return res.data;
 };

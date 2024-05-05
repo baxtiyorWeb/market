@@ -1,7 +1,8 @@
 import { Input, Spin } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
+import api from "../../config/api/api";
 import { useAuth } from "../../context/AuthContext";
 import ButtonUI from "../../ui/button/Button";
 
@@ -27,6 +28,17 @@ export default function LoginComponent() {
       setisLoading(false);
     }
   };
+
+  const authCheck = async () => {
+    const res = await api.get("/user/1");
+    console.log(res.data);
+    if (res.data) {
+      navigate("/profile/dashboard?tab=1");
+    }
+  };
+  useEffect(() => {
+    authCheck();
+  }, []);
 
   return (
     <>

@@ -1,14 +1,9 @@
 import { Button } from "antd";
-import { useAuth } from "../../context/AuthContext";
-import useCheckAuth from "../../hooks/useCheckAuth.js";
 import Container from "../../shared/Container";
 import UserBalance from "./user/userBalance";
 import UserTabs from "./user/userTabs";
 
 export default function ProfileComponent() {
-  const { authCheck } = useCheckAuth();
-  const { user } = useAuth();
-  console.log(authCheck);
   const backToLastPage = () => {
     window.location = "/";
   };
@@ -19,7 +14,7 @@ export default function ProfileComponent() {
         to={"/"}
         className="relative top-5 h-10 w-[140px] rounded-md border p-2"
       >
-        {user?.username}
+        bosh sahifaga
       </Button>
       <div className="mt-11 h-full  w-full rounded-t-2xl  border bg-[#F5F5F5]">
         <div className="mb-[20px] ">

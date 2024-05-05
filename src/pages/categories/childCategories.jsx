@@ -5,7 +5,7 @@ import { Link, useParams, useSearchParams } from "react-router-dom";
 import api from "../../config/api/api";
 import {
   getCategoriesRootLisId,
-  getProductWithCategoryFilter,
+  getCategoriesRootListSticky,
 } from "../../exports/api";
 import SegmentedUi from "../../ui/segmented/Segmented";
 import BreadCrumbs from "./../../ui/breadcrumbs/BreadCrumbs";
@@ -31,7 +31,7 @@ const ChildCategories = () => {
   });
   const { data: rootCategories } = useQuery({
     queryKey: ["category"],
-    queryFn: getProductWithCategoryFilter,
+    queryFn: getCategoriesRootListSticky,
   });
 
   const getCategoryId = async () => {
@@ -52,7 +52,29 @@ const ChildCategories = () => {
   return (
     <div className="h-full flex-col items-start justify-center ">
       <BreadCrumbs categories={getCategId} categoryId={id} />
-      <div className="flex items-center justify-center"></div>
+
+      <div className="flex  w-full items-start justify-start rounded-md">
+        <Space direction="horizontal">
+          {rootCategories?.data?.content?.map((item, index) => (
+            <div className="flex items-center justify-center" key={index}>
+              <Link
+                to={`/category/${item?.id}?category-name=${item?.name
+                  ?.split(", ")
+                  ?.join("-")}`}
+                className={
+                  paramName == item?.name
+                    ? "rounded-md bg-slate-500/10 p-2  text-textColor hover:text-textColor"
+                    : `rounded-md p-2 hover:bg-slate-500/10  hover:text-slate-900`
+                }
+              >
+                {" "}
+                {item?.name}
+              </Link>
+              <span className="mx-3 text-spanColor">|</span>
+            </div>
+          ))}
+        </Space>
+      </div>
       <div className="grid h-full grid-flow-col grid-rows-3 gap-4">
         <div className="flex flex-col">
           <div className="row-span-3 my-2 flex h-[max-content] w-[330px] flex-col rounded-2xl bg-white p-5  ">
@@ -90,28 +112,6 @@ const ChildCategories = () => {
           </div>
         </div>
         <div className="product-section col-span-12 row-span-3 h-full w-full    p-3">
-          <div className="flex  w-full items-start justify-start">
-            <Space direction="horizontal">
-              {rootCategories?.data?.content?.map((item, index) => (
-                <div className="flex items-center justify-center" key={index}>
-                  <Link
-                    to={`/category/${item?.id}?category-name=${item?.name
-                      ?.split(", ")
-                      ?.join("-")}`}
-                    className={
-                      paramName == item?.name
-                        ? "rounded-md bg-slate-500/10 p-2  text-textColor hover:text-textColor"
-                        : `rounded-md p-2 hover:bg-slate-500/10  hover:text-slate-900`
-                    }
-                  >
-                    {" "}
-                    {item?.name}
-                  </Link>
-                  <span className="mx-3 text-spanColor">|</span>
-                </div>
-              ))}
-            </Space>
-          </div>
           <div className="my-5 flex items-center justify-between  rounded-md bg-white p-2 text-left text-[15px]  ">
             <div className="flex items-center justify-center">
               {formatParamName}

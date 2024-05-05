@@ -9,7 +9,6 @@ import { FaSearch } from "react-icons/fa";
 import { MdClose } from "react-icons/md";
 import { Link, useSearchParams } from "react-router-dom";
 import menuIcon from "../assets/menuIcon.svg";
-import api from "../config/api/api";
 import useProductSearch from "../hooks/product/useProductSearch";
 import Categoriyes from "../ui/Categoriyes";
 import Navigation from "./logo/Navigation";
@@ -42,20 +41,6 @@ export default function Header() {
         window.removeEventListener("scroll", updateScrollDirection); // clean up
       };
     }
-  }, []);
-
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        await api.get("/authority/all");
-
-        navigate("/");
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    getData();
   }, []);
 
   return (
