@@ -42,25 +42,23 @@ export default function Categoriyes() {
         className="flex select-none items-center justify-center"
         arrows
         dots={true}
-        slidesToShow={4}
+        slidesToShow={5}
         slidesToScroll={1}
-        infinite
-        autoplay
       >
         {data?.data?.content?.map((item, index) => (
           <div
             key={index}
-            className="mt-1 flex h-[130px_!important] w-[210px_!important] flex-col items-center justify-center  rounded-xl border border-bgColor bg-whiteTextColor"
+            className="mt-1 flex h-[120px_!important] w-[120px_!important] flex-col items-center justify-center  rounded-full border  bg-whiteTextColor"
           >
             <Link
               to={`/category/${item?.id}?category-name=${item?.name
                 .split(", ")
                 .join("-")}`}
-              className="flex w-full  flex-col items-center justify-center rounded-sm   text-center text-sm "
+              className="flex   flex-col items-center justify-center rounded-sm text-center   text-sm hover:text-textColor "
             >
               <img
                 src={`data:image/png;base64,${item?.file?.fileBase64}`}
-                className="my-2 h-[80px] w-[80px] rounded-full object-cover"
+                className="my-2 h-[40px] w-[40px] rounded-full object-cover"
                 alt=""
               />
               <span className="mt-3 text-center  font-poppins  font-normal not-italic leading-[100%] ">

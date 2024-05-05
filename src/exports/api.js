@@ -11,7 +11,6 @@ export const getCategoriesRootListSticky = async () => {
   return res.data;
 };
 export const getCategoriesRootLisId = async (id) => {
-  if (id == undefined) return null;
   const res = await api.get(`/category/list?page=0&size=10&parentId=${id}`);
   return res.data;
 };
