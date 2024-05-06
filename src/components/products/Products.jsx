@@ -18,10 +18,6 @@ const Products = () => {
   const { handleToggle, isOpen } = useToggle();
   const [fastId, setFastId] = useState("");
 
-  const numbers = Array.from(
-    { length: data?.data?.data?.totalElements / size },
-    (_, index) => index + 1,
-  );
   const addLikeFavoriteProduct = async (id) => {
     const data = await api.post(`/favorite-product/add?productId=${id}`);
     if (data.status === 200) {

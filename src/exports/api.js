@@ -1,32 +1,11 @@
 import { message } from "antd";
 import api from "./../config/api/api";
-// get categories
-export const getCategories = async () => {
-  const res = await api.get("/category/all");
-  return res.data;
-};
 
-export const getCategoriesRootListSticky = async () => {
-  const res = await api.get(`/category/list?page=0&size=8&parentId=`);
-  return res.data;
-};
-export const getCategoriesRootLisId = async (id) => {
-  const res = await api.get(`/category/list?page=0&size=10&parentId=${id}`);
-  return res.data;
-};
-export const getCategoriesWithId = async (id) => {
-  const res = await api.get(`/category/${id}`);
-  return res.data;
-};
-// Create Read products
+/* -------------------------------------------------------------------------- */
+/*                                REGISTRATION                                */
+/* -------------------------------------------------------------------------- */
 
-export const createCategories = async (data) => {
-  console.log(data);
-  const res = await api.post("/category", data, {
-    headers: { "Content-Type": "application/json" },
-  });
-  return res.data;
-};
+// LOGIN AND PASSWORD REGISTER
 
 export const registerLoginAndPassword = async (data) => {
   const secretKey = localStorage.getItem("secretKey");
@@ -42,6 +21,43 @@ export const registerLoginAndPassword = async (data) => {
   localStorage.setItem("refreshToken", res.data?.data?.tokenData?.refreshToken);
   return res.data;
 };
+
+/* -------------------------------------------------------------------------- */
+/*                           cateogires section api                           */
+/* -------------------------------------------------------------------------- */
+
+//  GET CATEGORY
+
+export const getCategories = async () => {
+  const res = await api.get("/category/all");
+  return res.data;
+};
+
+// GET CATEGORY LIST
+
+export const getCategoriesRootListSticky = async () => {
+  const res = await api.get(`/category/list?page=0&size=8&parentId=`);
+  return res.data;
+};
+
+// GET CATEGORY LIST PARENT ID
+
+export const getCategoriesRootLisId = async (id) => {
+  const res = await api.get(`/category/list?page=0&size=10&parentId=${id}`);
+  return res.data;
+};
+
+// GET CATEGORY ID
+export const getCategoriesWithId = async (id) => {
+  const res = await api.get(`/category/${id}`);
+  return res.data;
+};
+
+/* -------------------------------------------------------------------------- */
+/*                                   CATEGORY                                  */
+/* -------------------------------------------------------------------------- */
+
+// CREATE PRODUCT
 
 export const getDistrict = async (id) => {
   const res = await api.get(`/district/all/${id}`);

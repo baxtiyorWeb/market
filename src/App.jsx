@@ -3,19 +3,18 @@ import { Helmet } from "react-helmet-async";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Confirm from "./components/auth/otpCodeConfirmComponent";
-import AddProductCategoryLayout from "./layout/addProductCategoryLayout";
 import AuthLayout from "./layout/authLayout";
 import Layout from "./layout/layout";
 import CreateUser from "./pages/auth/createUser";
 import FilterPage from "./pages/filter/FilterPage";
 import NotFound from "./pages/not-found";
+import AddProductCategoryLayout from "./pages/product-form/productForm";
 import Profile from "./pages/profile/Profile";
 import "./response.css";
 import Loading from "./ui/loading/Loading";
 
 const Home = lazy(() => import("./pages/Home"));
 const Details = lazy(() => import("./pages/Details"));
-const AddProduct = lazy(() => import("./pages/AddProduct"));
 const Register = lazy(() => import("./pages/auth/Register"));
 const Login = lazy(() => import("./pages/auth/Login"));
 const ChildCategories = lazy(
@@ -71,16 +70,14 @@ const App = () => {
             }
           />
 
-          <Route path="/product-form" element={<AddProductCategoryLayout />}>
-            <Route
-              path="add-product"
-              element={
-                <React.Suspense fallback={<Loading />}>
-                  <AddProduct />
-                </React.Suspense>
-              }
-            />
-          </Route>
+          <Route
+            path="/product-form/add-product"
+            element={
+              <React.Suspense fallback={<Loading />}>
+                <AddProductCategoryLayout />
+              </React.Suspense>
+            }
+          ></Route>
 
           {/* profile layout */}
 

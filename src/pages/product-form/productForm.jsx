@@ -4,17 +4,17 @@ import { Checkbox, Select, Switch, Upload } from "antd";
 import React, { useEffect, useState } from "react";
 
 import { Outlet, useSearchParams } from "react-router-dom";
-import CategoryTab from "../components/categoryTab/CategoryTab";
+import CategoryTab from "../../components/categoryTab/CategoryTab";
 
-import api from "../config/api/api";
+import api from "../../config/api/api";
 import {
   createProduct,
   fileUplaodLoadedData,
   getCategoryPropertiesId,
-} from "../exports/api";
-import useToggle from "../hooks/useToggle";
-import Container from "../shared/Container";
-import AddProductLocation from "./addProductLocation";
+} from "../../exports/api";
+import useToggle from "../../hooks/useToggle";
+import AddProductLocation from "../../layout/addProductLocation";
+import Container from "../../shared/Container";
 
 const getBase64 = (file) =>
   new Promise((resolve, reject) => {
@@ -67,7 +67,6 @@ export default function AddProductCategory() {
     if (!file.url && !file.preview) {
       file.preview = await getBase64(file.originFileObj);
     }
-    console.log(file);
     setPreviewImage(file.url || file.preview);
     setPreviewOpen(true);
   };

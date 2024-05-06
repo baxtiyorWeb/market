@@ -62,9 +62,6 @@ export default function RegisterComponent() {
                 : "text-[#BFBFBF]"
             }`}
           >
-            {/* `absolute left-0 top-[15px] z-10 text-xl text-[${
-              phone.length > 10 || phone?.length > 0 ? "#FF4D4E" : "#BFBFBF"
-            }]` */}
             +998
           </span>
           <Input

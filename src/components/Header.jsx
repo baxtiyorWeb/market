@@ -1,8 +1,6 @@
 /* eslint-disable react/prop-types */
 import Container from "../shared/Container";
 
-// svg  icons
-
 import { MenuOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
