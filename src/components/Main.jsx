@@ -5,9 +5,9 @@ import Products from "./products/Products";
 export default function Main() {
   return (
     <div>
-      <div className="flex flex-col items-center justify-between">
-        <Categoriyes scroll={scroll} />
+      <div className="flex flex-col items-start justify-between ">
         <Slider />
+        <Categoriyes scroll={scroll} />
       </div>
       <div>
         <Products />

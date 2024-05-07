@@ -2,7 +2,7 @@ import { Image, message } from "antd";
 import { useState } from "react";
 import { BsCalendarDate } from "react-icons/bs";
 import { CiHeart } from "react-icons/ci";
-import { FaArrowRight, FaEye } from "react-icons/fa";
+import { FaEye } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import api from "../../config/api/api";
@@ -43,23 +43,15 @@ const Products = () => {
       <div>
         {isOpen && <Overlay closed={handleToggle} />}
         {isOpen && <FastDetailView id={fastId} />}
-        <h1 className="mb-5 font-poppins text-[28px] font-medium not-italic leading-normal tracking-[-0.66px] ">
-          <div className="relative flex items-center justify-between rounded-md  p-1">
-            <h1 className="text-2xl">top maxsulotlar </h1>
-            <Link className="text inline-flex items-center justify-center text-base text-blue-500 underline underline-offset-4">
-              <span className="mx-3"> Barchasini ko&apos;rish</span>{" "}
-              <FaArrowRight />
-            </Link>
-          </div>
-        </h1>
+        <h1 className="mb-5 font-poppins text-[28px] font-medium not-italic leading-normal tracking-[-0.66px] "></h1>
       </div>
-      <div className="response_product_category grid grid-cols-4 gap-10  2xs:grid 2xs:grid-cols-2">
+      <div className="response_product_category grid grid-cols-5 gap-2 2xs:grid 2xs:grid-cols-2">
         {isLoading ? (
           <Loading />
         ) : (
           data?.data?.data?.content?.map((item, index) => (
             <div
-              className="relative h-[510px] w-[315px] flex-shrink-0 overflow-hidden rounded-md bg-white/100 pt-2   transition-all  "
+              className="relative h-[510px] w-[288px] flex-shrink-0 overflow-hidden rounded-md  bg-white/100  px-2 pt-2 transition-all   hover:shadow-lg  "
               key={index}
             >
               <span className="absolute left-3 top-5 z-50 bg-red-500 px-1 text-sm  text-white">
