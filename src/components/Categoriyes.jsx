@@ -36,30 +36,31 @@ export default function Categoriyes() {
   if (isLoading) return <Loading />;
 
   return (
-    <div className="slider-container-styck my-4 h-[140px]    w-full  p-1">
+    <div className="slider-container-styck my-4 h-[140px] w-full  p-1">
       <Carousel
         draggable
         className="flex select-none items-center justify-center"
-        arrows
-        dots={true}
+        arrows={true}
+        dots={false}
         slidesToShow={6}
         slidesToScroll={1}
         infinite
+        autoplay
       >
         {data?.data?.content?.map((item, index) => (
           <div
             key={index}
-            className="mt-1 flex h-[120px_!important] w-[120px_!important] flex-col items-center justify-center  "
+            className="mt-1 flex h-[196px_!important] w-[120px_!important] flex-col items-center justify-center  "
           >
             <Link
               to={`/category/${item?.id}?category-name=${item?.name
                 .split(", ")
                 .join("-")}`}
-              className="flex   flex-col items-center justify-center rounded-sm text-center   text-sm hover:text-textColor "
+              className="flex   flex-col items-center justify-center  rounded-sm  text-center text-sm hover:text-textColor "
             >
               <img
                 src={`data:image/png;base64,${item?.file?.fileBase64}`}
-                className="my-2 h-[60px] w-[60px] rounded-full object-cover"
+                className="my-2 h-[80px] w-[80px] rounded-full border object-cover p-2"
                 alt=""
               />
               <span className="mt-3 text-center  font-poppins  font-normal not-italic leading-[100%] ">
