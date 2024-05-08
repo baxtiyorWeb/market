@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { Input, Select, Space } from "antd";
+import { Select, Space } from "antd";
 import React, { useEffect, useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import api from "../../config/api/api";
@@ -9,7 +9,6 @@ import {
 } from "../../exports/api";
 import SegmentedUi from "../../ui/segmented/Segmented";
 import BreadCrumbs from "./../../ui/breadcrumbs/BreadCrumbs";
-import Loading from "./../../ui/loading/Loading";
 import "./categories.css";
 import ProductFilter from "./productFilter/ProductFilter";
 import ProductGetList from "./productGetList";
@@ -46,13 +45,11 @@ const ChildCategories = () => {
 
   const categId = getCategId.id;
 
-  if (isLoading) return <Loading />;
-  if (error) return `Error: ${error}`;
-  console.log(categories);
+  // if (isLoading) return <Loading />;
+  // if (error) return `Error: ${error}`;
+  // console.log(categories);
   return (
     <div className="h-full flex-col items-start justify-center ">
-      <BreadCrumbs categories={getCategId} categoryId={id} />
-
       <div className="flex  w-full items-start justify-start rounded-md">
         <Space direction="horizontal">
           {rootCategories?.data?.content?.map((item, index) => (
@@ -61,16 +58,42 @@ const ChildCategories = () => {
                 to={`/category/${item?.id}?category-name=${item?.name
                   ?.split(", ")
                   ?.join("-")}`}
-                className={
+                className={`flex items-center justify-center rounded-md ${
                   paramName == item?.name
-                    ? "rounded-md bg-slate-500/10 p-2  text-textColor hover:text-textColor"
-                    : `rounded-md p-2 hover:bg-slate-500/10  hover:text-slate-900`
-                }
+                    ? "flex h-10  bg-[#FEECC1] p-2 text-sm hover:bg-[#FEECC1] hover:bg-slate-500/10  hover:text-slate-900 "
+                    : `h-10 rounded-md bg-[#F7F7F7] p-2 text-sm  hover:bg-slate-500/10  hover:text-slate-900`
+                }`}
               >
                 {" "}
                 {item?.name}
               </Link>
-              <span className="mx-3 text-spanColor">|</span>
+              <span className="mx-1 text-spanColor"></span>
+            </div>
+          ))}
+        </Space>
+      </div>
+      <BreadCrumbs categories={getCategId} categoryId={id} />
+      <div className="mb-5 mt-5 flex items-center justify-start text-2xl">
+        {formatParamName}
+      </div>
+      <div className="flex  w-full items-start justify-start rounded-md">
+        <Space direction="horizontal">
+          {categories?.data?.content?.map((item, index) => (
+            <div className="flex items-center justify-center" key={index}>
+              <Link
+                to={`/category/${item?.id}?category-name=${item?.name
+                  ?.split(", ")
+                  ?.join("-")}`}
+                className={`flex items-center justify-center rounded-md ${
+                  paramName == item?.name
+                    ? "flex h-10  bg-[#FEECC1] p-2 text-sm hover:bg-[#FEECC1] hover:bg-slate-500/10  hover:text-slate-900 "
+                    : `h-10 rounded-md bg-[#F7F7F7] p-2 text-sm  hover:bg-slate-500/10  hover:text-slate-900`
+                }`}
+              >
+                {" "}
+                {item?.name}
+              </Link>
+              <span className="mx-1 text-spanColor"></span>
             </div>
           ))}
         </Space>
@@ -79,33 +102,6 @@ const ChildCategories = () => {
         <div className="flex flex-col">
           <div className="row-span-3 my-2 flex h-[max-content] w-[330px] flex-col rounded-2xl bg-white p-5  ">
             <div className="my-5 border-b border-b-gray-500 text-left text-[15px] font-bold">
-              Bo&apos;limlar
-            </div>
-
-            <div className="flex  flex-col items-start justify-center">
-              <Space direction="vertical" className="w-full ">
-                {categories?.data?.content?.map((item, index) => (
-                  <Link
-                    key={index}
-                    to={`/category/${item?.id}?category-name=${item?.name
-                      ?.split(", ")
-                      ?.join("-")}`}
-                    className={
-                      paramName === item?.name
-                        ? "flex w-full items-center justify-start rounded-xl bg-[#EFF1F3] p-3 transition-all"
-                        : `flex w-full items-center justify-start rounded-xl p-3 transition-all hover:bg-[#EFF1F3]
-                    hover:text-[#5c5c5c]`
-                    }
-                  >
-                    {" "}
-                    <span htmlFor={`${item?.id}`}>
-                      {item?.name} <span>{}</span>
-                    </span>
-                  </Link>
-                ))}
-              </Space>
-            </div>
-            <div className="my-5 border-b border-b-gray-500 text-left text-[15px] font-bold">
               Saralash
             </div>
             <ProductFilter />
@@ -113,9 +109,6 @@ const ChildCategories = () => {
         </div>
         <div className="product-section col-span-12 row-span-3 h-full w-full    p-3">
           <div className="my-5 flex items-center justify-between  rounded-md bg-white p-2 text-left text-[15px]  ">
-            <div className="flex items-center justify-center">
-              {formatParamName}
-            </div>
             <div className="">
               <Select
                 className="w-[60px]"
@@ -152,14 +145,6 @@ const ChildCategories = () => {
                     value: "arzonlar ",
                   },
                 ]}
-              />
-
-              <Input.Search
-                loading={false}
-                enterButton
-                enterKeyHint="send"
-                placeholder="categoriya boyicha qidiring"
-                className="w-56 "
               />
             </div>
             <SegmentedUi />

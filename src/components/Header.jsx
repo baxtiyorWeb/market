@@ -6,10 +6,11 @@ import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { MdClose } from "react-icons/md";
 import { Link, useSearchParams } from "react-router-dom";
+import m_logo from "../assets/m_logo.png";
 import menuIcon from "../assets/menuIcon.svg";
+import HeadUserLinks from "../components/header/HeadUserLinks";
 import useProductSearch from "../hooks/product/useProductSearch";
 import Categoriyes from "../ui/Categoriyes";
-import Navigation from "./logo/Navigation";
 import Regions from "./regions/regions";
 
 export default function Header() {
@@ -28,7 +29,7 @@ export default function Header() {
         const direction = scrollY > lastScrollY ? "down" : "up";
         if (
           direction !== scroll &&
-          (scrollY - lastScrollY > 1 || scrollY - lastScrollY < -5)
+          (scrollY - lastScrollY > 1 || scrollY - lastScrollY < -10)
         ) {
           setScroll(direction);
         }
@@ -45,13 +46,18 @@ export default function Header() {
     <div
       className={`sticky ${
         scroll === "down" ? "top-[-180px]" : " top-0"
-      } transitiona-all left-0 top-0 z-[300]  flex h-[150px] w-full  flex-col items-center justify-center bg-white  duration-500`}
+      } transitiona-all left-0 top-0 z-[300]   flex h-[100px] w-full  flex-col items-center justify-center bg-white  duration-500`}
     >
-      <Navigation />
       <Container>
-        <div className="flex h-full w-full items-center justify-between ">
+        <div className="flex h-full w-full items-center justify-between">
+          <div className="mr-10">
+            <Link to={"/"}>
+              {" "}
+              <img src={m_logo} alt="" className="h-[80px] w-[240px]" />
+            </Link>
+          </div>
           <button
-            className="flex h-[50px] w-[130px] flex-shrink-0 items-center justify-between rounded-md bg-[#F4F4F4] p-2 text-center text-textColor"
+            className="flex h-[40px] w-[120px] flex-shrink-0 items-center justify-between rounded-md border border-bgColor bg-whiteTextColor p-2 text-center text-textColor"
             onClick={() => setOpen(!open)}
           >
             {!open ? (
@@ -78,7 +84,7 @@ export default function Header() {
                 type="text"
                 placeholder="Qidiruv"
                 defaultValue={search}
-                className="h-[50px] w-[450px] rounded-md border border-[#F4F4F4] bg-[#F9F9F9] pl-[19px] text-[#959EA7] outline-none"
+                className="h-[50px] w-[538px] rounded-md border border-[#F4F4F4] bg-[#F9F9F9] pl-[19px] text-[#959EA7] outline-none"
               />
               <button
                 type="submit"
@@ -88,13 +94,8 @@ export default function Header() {
               </button>
             </form>
           </div>
-          <div className="flex w-[25%] items-center justify-between">
-            <Link
-              to={"/auth/login"}
-              className="m-auto flex h-[50px]  w-[150px] items-center justify-center rounded-md border border-bgColor text-textColor hover:bg-bgColor hover:text-whiteTextColor"
-            >
-              Shaxsiy Kabinet
-            </Link>
+          <div className="flex w-[25%] items-center justify-end">
+            <HeadUserLinks />
           </div>
         </div>
       </Container>
