@@ -24,7 +24,7 @@ const Regions = () => {
     <div>
       <button
         className={
-          "mx-5 flex h-[40px] w-[140px] flex-shrink-0 items-center justify-between rounded-md border border-bgColor bg-whiteTextColor p-1 text-center text-[#1D828E]"
+          "mx-5 flex h-[40px] w-[140px] flex-shrink-0 items-center justify-between rounded-md border border-bgColor bg-bgColor p-1 text-center text-textColor"
         }
         onClick={handleToggle}
       >

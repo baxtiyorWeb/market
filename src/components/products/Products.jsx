@@ -52,7 +52,7 @@ const Products = () => {
         ) : (
           data?.data?.data?.content?.map((item, index) => (
             <div
-              className="relative h-[460px] w-[288px] flex-shrink-0 overflow-hidden rounded-md  bg-white/100   px-[10px] pt-2 transition-all   hover:shadow-lg  "
+              className="w-productWidth relative h-[460px] flex-shrink-0 overflow-hidden rounded-md      px-[10px] pt-2 transition-all   hover:shadow-lg  "
               key={index}
             >
               <span className="absolute left-3 top-5 z-50 bg-red-500 px-1 text-sm  text-white">
@@ -68,7 +68,7 @@ const Products = () => {
                   </button>
                   <Link
                     to={`/details/${item.id}?infoTab=1`}
-                    className="w-[300px]"
+                    className="w-full border"
                   >
                     <div className="h-[230px]">
                       <Image
@@ -76,9 +76,8 @@ const Products = () => {
                         src={`data:image/png;base64,${item.file?.fileBase64}`}
                         title={`${item?.name}`}
                         loading="eager"
-                        width={290}
                         height={230}
-                        className=" w-full rounded-xl  bg-center object-cover align-middle"
+                        className=" w-[250px_!important] rounded-xl  bg-center object-cover align-middle"
                       />
                     </div>
                   </Link>
@@ -86,7 +85,7 @@ const Products = () => {
               </div>
               <div className="mb-3 mt-4 h-[100px]  ">
                 <div className="h-10">
-                  <span className="text wrap line-clamp-2  font-poppins text-[20px] font-light not-italic leading-[120%] tracking-[-0.32px]">
+                  <span className="text wrap line-clamp-2  font-poppins text-[20px] font-light not-italic leading-[120%] tracking-[-0.32px] text-textColor">
                     {item?.name}
                   </span>
                 </div>

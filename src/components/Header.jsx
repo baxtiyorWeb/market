@@ -50,7 +50,7 @@ export default function Header() {
       <Container>
         <div className="flex h-full w-full items-center justify-between">
           <button
-            className="flex h-[40px] w-[120px] flex-shrink-0 items-center justify-between rounded-md border border-bgColor bg-whiteTextColor p-2 text-center text-textColor"
+            className="flex h-[40px] w-[120px] flex-shrink-0 items-center justify-between rounded-md border border-bgColor bg-bgColor p-2 text-center text-textColor"
             onClick={() => setOpen(!open)}
           >
             {!open ? (
@@ -77,11 +77,11 @@ export default function Header() {
                 type="text"
                 placeholder="Qidiruv"
                 defaultValue={search}
-                className="h-[50px] w-[650px] rounded-md border border-[#F4F4F4] bg-[#F9F9F9] pl-[19px] text-[#959EA7] outline-none"
+                className="h-[50px] w-[650px] rounded-bl-md rounded-tl-md border border-bgColor bg-[#F9F9F9] pl-[19px] text-[#959EA7] outline-none"
               />
               <button
                 type="submit"
-                className="flex h-[50px] w-[50px] items-center justify-center rounded-[5px] bg-btnColor "
+                className="flex h-[50px] w-[50px]  items-center justify-center rounded-br-md rounded-tr-md bg-btnColor "
               >
                 <FaSearch className="text-white" />
               </button>

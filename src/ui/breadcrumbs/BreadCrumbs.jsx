@@ -19,7 +19,7 @@ const Breadcrumbs = ({ categoryId, categories }) => {
           <Link
             className={` hover:text-[#212121] ${
               currentData.id == categoryId
-                ? "hover:text-[#212121] "
+                ? "text-red-500 hover:text-[#212121]"
                 : "hover:text-[#212121]"
             }`}
             to={
@@ -34,7 +34,10 @@ const Breadcrumbs = ({ categoryId, categories }) => {
           >
             <div className="mr-3 flex -skew-x-6 items-center  justify-center rounded-sm">
               <span className=" transform rounded-md p-1 text-[13px]  hover:text-[#212121]">
-                {currentData?.name} <span className="mx-5">/</span>
+                {currentData?.name}{" "}
+                <span className="mx-5">
+                  {currentData.id == categoryId ? "" : "/"}
+                </span>
               </span>
             </div>
           </Link>
@@ -47,9 +50,10 @@ const Breadcrumbs = ({ categoryId, categories }) => {
 
   return (
     <div className="">
-      <div className="mt-2 flex h-auto w-[max-content] items-center justify-start rounded-md   p-1">
+      <div className="mt-2 flex h-auto  items-center justify-start rounded-md    p-1">
         {breadcrumbsArr}
       </div>
+      <hr className="my-3 w-full" />
     </div>
   );
 };

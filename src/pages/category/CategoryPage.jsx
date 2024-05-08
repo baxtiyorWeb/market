@@ -109,7 +109,7 @@ const CategoryPage = () => {
                 alt=""
               />
             </div>
-            <div className="grid grid-cols-5 gap-4 ">
+            <div className="grid grid-cols-5 gap-5 ">
               <div className="mb-10 h-max w-[201px]">
                 <div className="h-[201px] w-[201px] overflow-hidden rounded-2xl  bg-red-500 ">
                   <img

@@ -52,7 +52,7 @@ const ChildCategories = () => {
   return (
     <div className="h-full flex-col items-start justify-center ">
       <BreadCrumbs categories={getCategId} categoryId={id} />
-      <hr className=" mb-3" />
+
       <div className="flex  w-full items-center justify-start rounded-md">
         <h1 className="text-1xl mr-5 flex items-center justify-center">
           bosh categoriyalar{" "}
@@ -86,7 +86,7 @@ const ChildCategories = () => {
           500 ta mahsulot
         </span>
       </div>
-      <div className="flex w-full items-start  justify-start rounded-md border-b pb-5">
+      <div className="flex w-full items-start  justify-start rounded-md pb-5">
         <Space direction="horizontal">
           {categories?.data?.content?.map((item, index) => (
             <div className="flex items-center justify-center" key={index}>

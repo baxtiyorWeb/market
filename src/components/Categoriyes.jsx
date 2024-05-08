@@ -56,14 +56,14 @@ export default function Categoriyes() {
               to={`/category/${item?.id}?category-name=${item?.name
                 .split(", ")
                 .join("-")}`}
-              className="flex   flex-col items-center justify-center  rounded-sm  text-center text-sm hover:text-textColor "
+              className="group  flex flex-col items-center  justify-center  rounded-sm text-center text-sm "
             >
               <img
                 src={`data:image/png;base64,${item?.file?.fileBase64}`}
                 className="my-2 h-[80px] w-[80px] rounded-full border object-cover p-2"
                 alt=""
               />
-              <span className="mt-3 text-center  font-poppins  font-normal not-italic leading-[100%] ">
+              <span className="mt-3 text-center font-poppins  font-normal  not-italic leading-[100%] text-textColor group-hover:text-bgColor">
                 {item?.name}
               </span>
             </Link>
