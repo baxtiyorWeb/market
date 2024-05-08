@@ -1,5 +1,6 @@
 :root {
   --checkboxBackground: #ffbe1e;
+  --checkboxBackgroundHover: #f3b519c0;
   --checkBoxBorder: #ffbe1e;
 }
 .product-section::-webkit-scrollbar {
@@ -44,17 +45,4 @@
   margin-top: 5px;
   width: 25px !important;
   height: 25px !important;
-}
-.ant-checkbox-checked .ant-checkbox-inner {
-  background: var(--checkboxBackground) !important;
-}
-.ant-checkbox-inner {
-  border: 1px solid var(--checkboxBackground) !important;
-}
-
-.ant-checkbox-inner::after {
-  transform: scale(1.5) rotate(45deg) !important;
-  position: relative !important;
-  top: 23% !important;
-  left: 38% !important;
 }

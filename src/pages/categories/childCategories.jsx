@@ -61,7 +61,7 @@ const ChildCategories = () => {
   // if (error) return `Error: ${error}`;
   // console.log(categories);
   return (
-    <div className="h-full flex-col items-start justify-center ">
+    <div className="child-categ h-full flex-col items-start justify-center ">
       <BreadCrumbs categories={getCategId} categoryId={id} />
 
       <div className="flex  w-full items-center justify-start rounded-md">

@@ -15,6 +15,7 @@ import {
 import useToggle from "../../hooks/useToggle";
 import AddProductLocation from "../../layout/addProductLocation";
 import Container from "../../shared/Container";
+import "./ProductForm.css";
 
 const getBase64 = (file) =>
   new Promise((resolve, reject) => {
@@ -200,38 +201,6 @@ export default function AddProductCategory() {
           open
         )}
         <form onSubmit={handleSubmit}>
-          <div className="flex items-center justify-between">
-            <div className="mb-10 w-[334px]">
-              <span className="text font-poppins text-[14px] font-normal leading-[22px] text-black">
-                To’liq ism
-              </span>
-              <input
-                type="text"
-                className="focus:border-[1px_solid_rgb(59 130 246)] mt-2 h-[50px] w-[334px] shrink-0 rounded-[5px] border border-[#E2E2E2] bg-[#FAFAFA] p-3 font-poppins text-[16px] outline-none "
-                placeholder="Imomova Mohizoda"
-              />
-            </div>
-            <div className="mb-10 w-[334px]">
-              <span className="text font-poppins text-[14px] font-normal leading-[22px] text-black">
-                E-mail
-              </span>
-              <input
-                type="text"
-                className="mt-2 h-[50px] w-[334px] shrink-0 rounded-[10px] border border-[#E2E2E2] bg-[#FAFAFA] p-3 font-poppins text-[16px] outline-none"
-                placeholder="imomovamohizoda@gmail.com"
-              />
-            </div>
-            <div className="mb-10 w-[334px]">
-              <span className="text font-poppins text-[14px] font-normal leading-[22px] text-black">
-                Telefon nomer
-              </span>
-              <input
-                type="text"
-                className="mt-2 h-[50px] w-[334px] shrink-0 rounded-[10px] border border-[#E2E2E2] bg-[#FAFAFA] p-3 font-poppins text-[16px] outline-none"
-                placeholder="+998900158502"
-              />
-            </div>
-          </div>
           <AddProductLocation
             setDistrictId={setDistrictId}
             regionId={regionId}
@@ -266,7 +235,10 @@ export default function AddProductCategory() {
                 className="focus:border-[1px_solid_rgb(59 130 246)] mt-2 h-[50px] w-[334px] shrink-0 rounded-[5px] border-[#E2E2E2] bg-[#FAFAFA]  font-poppins text-[16px] outline-none "
                 placeholder="to'lov turini tanlang"
                 onChange={(e) =>
-                  setProductInitData({ ...productInitData, paymentTypeId: e })
+                  setProductInitData({
+                    ...productInitData,
+                    paymentTypeId: e,
+                  })
                 } // Pass the function directly
               >
                 {paymenttype.map((item) => (
