@@ -9,26 +9,32 @@ const Breadcrumbs = ({ categoryId, categories }) => {
   while (currentData) {
     breadcrumbsArr.unshift(
       <Breadcrumb
-        fontWeight="medium"
+        fontWeight="light"
         fontSize="sm"
         key={currentData.id}
         prefixCls="/"
         params={categoryId}
       >
-        <Breadcrumb.Item separator={">"}>
+        <Breadcrumb.Item>
           <Link
-            className={`${currentData.id == categoryId ? "text-blue-500" : ""}`}
+            className={` hover:text-[#212121] ${
+              currentData.id == categoryId
+                ? "hover:text-[#212121] "
+                : "hover:text-[#212121]"
+            }`}
             to={
               currentData.parent != null
                 ? `/category/${currentData.id}?category-name=${currentData?.name
                     .split(", ")
                     .join("-")}`
-                : `/`
+                : `/category/${currentData.id}?category-name=${currentData?.name
+                    ?.split(", ")
+                    .join("-")}`
             }
           >
-            <div className="mr-3 flex  items-center justify-center ">
-              <span className="-skew-x-12 transform rounded-md hover:text-slate-500">
-                {currentData?.name} {">"}
+            <div className="mr-3 flex -skew-x-6 items-center  justify-center rounded-sm">
+              <span className=" transform rounded-md p-1 text-[13px]  hover:text-[#212121]">
+                {currentData?.name} <span className="mx-5">/</span>
               </span>
             </div>
           </Link>
@@ -40,8 +46,10 @@ const Breadcrumbs = ({ categoryId, categories }) => {
   }
 
   return (
-    <div className="my-5 flex h-auto w-[max-content] items-center justify-start rounded-md bg-slate-200 p-1">
-      {breadcrumbsArr}
+    <div className="border-b ">
+      <div className="my-5 flex h-auto w-[max-content] items-center justify-start rounded-md   p-1">
+        {breadcrumbsArr}
+      </div>
     </div>
   );
 };

@@ -1,14 +1,35 @@
 import { Button } from "antd";
+import { useEffect, useState } from "react";
+import api from "../../config/api/api";
 import Container from "../../shared/Container";
 import UserBalance from "./user/userBalance";
 import UserTabs from "./user/userTabs";
 
 export default function ProfileComponent() {
+  const [user, setUser] = useState();
   const backToLastPage = () => {
     window.location = "/";
   };
+
+  const checkAuth = async () => {
+    try {
+      const res = await api.get("/user/1");
+      setUser(res.data?.data);
+    } catch (error) {
+      error.response.status === 403
+        ? (window.location = "/auth/login")
+        : (window.location = "/profile/dashboard?tab=1");
+    }
+  };
+  useEffect(() => {
+    checkAuth();
+  }, []);
+
   return (
     <Container>
+      <h1 className="flex h-10 items-center justify-center bg-green-300 font-medium">
+        Xush kelibsiz {user?.fullName}
+      </h1>
       <Button
         onClick={backToLastPage}
         to={"/"}

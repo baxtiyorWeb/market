@@ -7,10 +7,9 @@ import { FaSearch } from "react-icons/fa";
 import { MdClose } from "react-icons/md";
 import { useSearchParams } from "react-router-dom";
 import menuIcon from "../assets/menuIcon.svg";
+import HeadUserLinks from "../components/header/HeadUserLinks";
 import useProductSearch from "../hooks/product/useProductSearch";
 import Categoriyes from "../ui/Categoriyes";
-import HeadUserLinks from "./header/HeadUserLinks";
-import Navigation from "./logo/Navigation";
 import Regions from "./regions/regions";
 
 export default function Header() {
@@ -29,7 +28,7 @@ export default function Header() {
         const direction = scrollY > lastScrollY ? "down" : "up";
         if (
           direction !== scroll &&
-          (scrollY - lastScrollY > 1 || scrollY - lastScrollY < -5)
+          (scrollY - lastScrollY > 1 || scrollY - lastScrollY < -10)
         ) {
           setScroll(direction);
         }
@@ -46,13 +45,12 @@ export default function Header() {
     <div
       className={`sticky ${
         scroll === "down" ? "top-[-180px]" : " top-0"
-      } transitiona-all left-0 top-0 z-[300]  flex h-[150px] w-full  flex-col items-center justify-center bg-white  duration-500`}
+      } transitiona-all left-0 top-0 z-[300]   flex h-[100px] w-full  flex-col items-center justify-center bg-white  duration-500`}
     >
-      <Navigation />
       <Container>
-        <div className="flex h-full w-full items-center justify-between ">
+        <div className="flex h-full w-full items-center justify-between">
           <button
-            className="flex h-[50px] w-[130px] flex-shrink-0 items-center justify-between rounded-md bg-[#F4F4F4] p-2 text-center text-textColor"
+            className="flex h-[40px] w-[120px] flex-shrink-0 items-center justify-between rounded-md border border-bgColor bg-whiteTextColor p-2 text-center text-textColor"
             onClick={() => setOpen(!open)}
           >
             {!open ? (

@@ -5,10 +5,9 @@ import { SlBasket } from "react-icons/sl";
 import { Link } from "react-router-dom";
 
 const HeadUserLinks = () => {
-  const user = true;
   return (
     <>
-      <div>
+      <div className="mx-3">
         <Link
           to={"/profile/dashboard?tab=2"}
           className="hover/heart flex flex-col items-center justify-center"
@@ -23,9 +22,9 @@ const HeadUserLinks = () => {
           <span className="text text-spanColor">savatcha</span>
         </Link>
       </div>
-      <div>
+      <div className="mx-3">
         <Link
-          to={user ? `/profile/dashboard?tab=1` : "/auth/login"}
+          to={`/profile/dashboard?tab=1`}
           className="flex flex-col items-center justify-center"
         >
           <UserOutlined className="text text-2xl text-textColor " />

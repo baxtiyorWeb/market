@@ -51,13 +51,13 @@ const Products = () => {
         ) : (
           data?.data?.data?.content?.map((item, index) => (
             <div
-              className="relative h-[510px] w-[288px] flex-shrink-0 overflow-hidden rounded-md  bg-white/100  px-2 pt-2 transition-all   hover:shadow-lg  "
+              className="relative h-[460px] w-[288px] flex-shrink-0 overflow-hidden rounded-md  bg-white/100   px-[10px] pt-2 transition-all   hover:shadow-lg  "
               key={index}
             >
               <span className="absolute left-3 top-5 z-50 bg-red-500 px-1 text-sm  text-white">
                 TOP
               </span>
-              <div className="relative h-[300px] overflow-hidden">
+              <div className="relative h-[230px] overflow-hidden ">
                 <div className="cart-slider group flex h-full  items-center justify-center">
                   <button
                     className="absolute right-[30%] top-[40%] z-50 hidden rounded-3xl bg-bgColor px-3 py-2 text-whiteTextColor hover:border hover:border-bgColor hover:bg-whiteTextColor hover:text-textColor group-hover:block"
@@ -69,49 +69,52 @@ const Products = () => {
                     to={`/details/${item.id}?infoTab=1`}
                     className="w-[300px]"
                   >
-                    <div className="h-[290px]">
+                    <div className="h-[230px]">
                       <Image
                         alt={"avatar"}
                         src={`data:image/png;base64,${item.file?.fileBase64}`}
                         title={`${item?.name}`}
                         loading="eager"
                         width={290}
-                        height={290}
+                        height={230}
                         className=" w-full rounded-xl  bg-center object-cover align-middle"
                       />
                     </div>
                   </Link>
                 </div>
               </div>
-              <div className="mt-4 px-[18px]">
-                <span className="text line-clamp-1 font-poppins text-[18px] font-medium not-italic leading-[120%] tracking-[-0.32px] ">
-                  {item?.name}
-                </span>
-                <div className="mt-[12px] flex items-center  justify-start">
-                  <span className="text inline-flex items-center rounded-md border border-borderColor px-3 py-2 font-poppins text-[16px] font-semibold not-italic leading-[100%] text-textColor ">
-                    {item?.price}
-                    <p className="ml-1">so{"'"}m</p>
-                  </span>{" "}
+              <div className="mb-3 mt-4 h-[100px]  ">
+                <div className="h-10">
+                  <span className="text wrap line-clamp-2  font-poppins text-[20px] font-light not-italic leading-[120%] tracking-[-0.32px]">
+                    {item?.name}
+                  </span>
                 </div>
+
                 <div className="mt-3 rounded-xl  ">
                   <div className="text-xs">
-                    <div className="text mt-3 flex items-center justify-start font-poppins text-[14px] font-normal leading-[100%] tracking-[-0.22px] text-spanColor">
-                      <div className="flex w-full items-center justify-start ">
+                    <div className="text mt-3 flex flex-col  items-start justify-start font-poppins text-[14px] font-normal leading-[100%] tracking-[-0.22px] text-spanColor">
+                      <div className="flex w-full  items-center justify-start ">
                         <span className="flex items-center justify-start ">
                           <IoLocationOutline className="mr-3" />
                           {item?.regionName} / {item?.districtName}
                         </span>
                       </div>
+                      <span className="text mt-3 flex items-center justify-between font-poppins text-[13px] font-normal leading-[100%] tracking-[-0.22px] text-spanColor">
+                        <div className="flex items-center justify-center">
+                          <BsCalendarDate className="mr-3" />
+                          <span>2024-04-28</span>
+                        </div>
+                      </span>
                     </div>
-                    <span className="text mt-3 flex items-center justify-between font-poppins text-[13px] font-normal leading-[100%] tracking-[-0.22px] text-spanColor">
-                      <div className="flex items-center justify-center">
-                        <BsCalendarDate className="mr-3" />
-                        <span>2024-04-28</span>
-                      </div>
-                    </span>
                   </div>
                 </div>
-                <div className="text mt-5 flex items-center justify-between font-poppins  font-normal leading-[100%] tracking-[-0.22px] text-spanColor">
+              </div>
+              <div className="flex h-20 flex-col justify-between    ">
+                <span className="text inline-flex items-center rounded-md  py-2 font-poppins text-[18px] font-medium   not-italic leading-[100%] text-textColor ">
+                  {item?.price}
+                  <p className="ml-1">so{"'"}m</p>
+                </span>{" "}
+                <div className="text flex items-center justify-between font-poppins  font-normal leading-[100%] tracking-[-0.22px] text-spanColor">
                   <span className="flex items-center justify-center">
                     <FaEye className="mr-3 text-[16px]" />
                     {item?.viewCount}
