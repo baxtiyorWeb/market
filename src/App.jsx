@@ -6,6 +6,7 @@ import Confirm from "./components/auth/otpCodeConfirmComponent";
 import AuthLayout from "./layout/authLayout";
 import Layout from "./layout/layout";
 import CreateUser from "./pages/auth/createUser";
+import CategoryPage from "./pages/category/CategoryPage";
 import FilterPage from "./pages/filter/FilterPage";
 import NotFound from "./pages/not-found";
 import AddProductCategoryLayout from "./pages/product-form/productForm";
@@ -90,6 +91,15 @@ const App = () => {
               </React.Suspense>
             }
           >
+            <Route
+              loader={<Loading />}
+              path="/category/next"
+              element={
+                <React.Suspense fallback={<Loading />}>
+                  <CategoryPage />
+                </React.Suspense>
+              }
+            ></Route>
             <Route
               path="/category/:id"
               element={

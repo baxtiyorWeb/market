@@ -1,6 +1,7 @@
 import { UserOutlined } from "@ant-design/icons";
 import React from "react";
-import { FaPlusCircle, FaRegHeart } from "react-icons/fa";
+import { FaRegHeart } from "react-icons/fa";
+import { SlBasket } from "react-icons/sl";
 import { Link } from "react-router-dom";
 
 const HeadUserLinks = () => {
@@ -17,12 +18,9 @@ const HeadUserLinks = () => {
         </Link>
       </div>
       <div>
-        <Link
-          to={"/product-form/add-product"}
-          className="flex flex-col items-center justify-center"
-        >
-          <FaPlusCircle className="text text-2xl text-textColor " />
-          <span className="text text-spanColor">e&apos;lon qo&apos;shish</span>
+        <Link to={"/"} className="flex flex-col items-center justify-center">
+          <SlBasket className="text text-2xl text-textColor " />
+          <span className="text text-spanColor">savatcha</span>
         </Link>
       </div>
       <div>

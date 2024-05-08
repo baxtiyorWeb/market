@@ -5,10 +5,11 @@ import { MenuOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { MdClose } from "react-icons/md";
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import menuIcon from "../assets/menuIcon.svg";
 import useProductSearch from "../hooks/product/useProductSearch";
 import Categoriyes from "../ui/Categoriyes";
+import HeadUserLinks from "./header/HeadUserLinks";
 import Navigation from "./logo/Navigation";
 import Regions from "./regions/regions";
 
@@ -68,7 +69,7 @@ export default function Header() {
             <Regions opens={open} setOpens={setOpen} />
           </div>
 
-          <div onClick={() => setOpen(false)}>
+          <div onClick={() => setOpen(false)} className="mx-5">
             <form
               onSubmit={handleButtonClick}
               className="flex items-center justify-center"
@@ -78,7 +79,7 @@ export default function Header() {
                 type="text"
                 placeholder="Qidiruv"
                 defaultValue={search}
-                className="h-[50px] w-[450px] rounded-md border border-[#F4F4F4] bg-[#F9F9F9] pl-[19px] text-[#959EA7] outline-none"
+                className="h-[50px] w-[650px] rounded-md border border-[#F4F4F4] bg-[#F9F9F9] pl-[19px] text-[#959EA7] outline-none"
               />
               <button
                 type="submit"
@@ -89,12 +90,7 @@ export default function Header() {
             </form>
           </div>
           <div className="flex w-[25%] items-center justify-between">
-            <Link
-              to={"/auth/login"}
-              className="m-auto flex h-[50px]  w-[150px] items-center justify-center rounded-md border border-bgColor text-textColor hover:bg-bgColor hover:text-whiteTextColor"
-            >
-              Shaxsiy Kabinet
-            </Link>
+            <HeadUserLinks />
           </div>
         </div>
       </Container>
