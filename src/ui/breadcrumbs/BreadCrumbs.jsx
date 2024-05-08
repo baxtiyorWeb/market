@@ -51,6 +51,10 @@ const Breadcrumbs = ({ categoryId, categories }) => {
   return (
     <div className="">
       <div className="mt-2 flex h-auto  items-center justify-start rounded-md    p-1">
+        <Link to={"/"} className="-skew-x-6 text-sm hover:text-[#212121]">
+          bosh sahifa
+        </Link>
+        <span className="mx-5 ">/</span>
         {breadcrumbsArr}
       </div>
       <hr className="my-3 w-full" />

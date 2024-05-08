@@ -52,7 +52,7 @@ const Products = () => {
         ) : (
           data?.data?.data?.content?.map((item, index) => (
             <div
-              className="w-productWidth relative h-[460px] flex-shrink-0 overflow-hidden rounded-md      px-[10px] pt-2 transition-all   hover:shadow-lg  "
+              className="w-productWidth re lative relative h-[460px] flex-shrink-0 overflow-hidden rounded-md px-[10px] pt-2 transition-all   hover:shadow-lg  "
               key={index}
             >
               <span className="absolute left-3 top-5 z-50 bg-red-500 px-1 text-sm  text-white">
@@ -66,10 +66,7 @@ const Products = () => {
                   >
                     Tezkor ko&apos;rish
                   </button>
-                  <Link
-                    to={`/details/${item.id}?infoTab=1`}
-                    className="w-full border"
-                  >
+                  <Link to={`/details/${item.id}?infoTab=1`} className="w-full">
                     <div className="h-[230px]">
                       <Image
                         alt={"avatar"}

@@ -12,7 +12,7 @@ import useToggle from "../../hooks/useToggle";
 import Overlay from "../../ui/Overlay";
 import "./categories.css";
 
-const ProductGetList = () => {
+const ProductGetList = ({ productFilterProps }) => {
   const searchable = useSearchParams();
   const { id } = useParams();
   const [fastId, setFastId] = useState("");
@@ -22,7 +22,6 @@ const ProductGetList = () => {
     queryKey: ["product", id],
     queryFn: () => productWithCategoryFilter(search, id),
   });
-  console.log(productFilters);
 
   const getFastid = (id) => {
     if (id !== undefined) {
@@ -30,24 +29,20 @@ const ProductGetList = () => {
       setFastId(id);
     }
   };
+  console.log(productFilterProps);
   const content = (
     <>
       <div>
         {isOpen && <Overlay closed={handleToggle} />}
         {isOpen && <FastDetailView id={fastId} />}
-        <h1 className=" font-poppins text-[28px] font-medium not-italic leading-normal tracking-[-0.66px] ">
-          <div className="flex items-center justify-between ">
-            <h1 className="text-2xl">top maxsulotlar</h1>
-          </div>
-        </h1>
       </div>
       <div className="response_product_category grid grid-cols-3 gap-3  2xs:grid 2xs:grid-cols-2">
-        {productFilters?.data?.content?.length === 0 ? (
+        {productFilterProps?.content?.length === 0 ? (
           <div className="flex h-[60vh] w-[880px] items-center justify-center">
             <Empty description={"elon mavjud emas"} />
           </div>
         ) : (
-          productFilters?.data?.content?.map((item, index) => (
+          productFilterProps?.content?.map((item, index) => (
             <div
               className="relative h-[460px] w-[288px] flex-shrink-0 overflow-hidden rounded-md  bg-white/100   px-[10px] pt-2 transition-all   hover:shadow-lg  "
               key={index}

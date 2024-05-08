@@ -1,15 +1,19 @@
+:root {
+  --checkboxBackground: #ffbe1e;
+  --checkBoxBorder: #ffbe1e;
+}
 .product-section::-webkit-scrollbar {
   display: none;
 }
 .ant-input-search-button {
-  background: #1d828e !important;
+  background: var(--checkboxBackground) !important;
 }
 .ant-input-search-button:hover {
-  background: #1d828e !important;
+  background: var(--checkboxBackground) !important;
 }
 
 .ant-btn:hover {
-  background-color: #1d828e !important;
+  background-color: var(--checkboxBackground) !important;
   border: none !important;
   box-shadow: none !important;
   color: white !important;
@@ -38,19 +42,19 @@
   align-items: center;
   justify-content: center;
   margin-top: 5px;
-  width: 28px !important;
-  height: 28px !important;
+  width: 25px !important;
+  height: 25px !important;
 }
 .ant-checkbox-checked .ant-checkbox-inner {
-  background: #1d828e !important;
+  background: var(--checkboxBackground) !important;
 }
 .ant-checkbox-inner {
-  border: 1px solid #1d828e !important;
+  border: 1px solid var(--checkboxBackground) !important;
 }
 
 .ant-checkbox-inner::after {
   transform: scale(1.5) rotate(45deg) !important;
   position: relative !important;
-  top: 30% !important;
+  top: 23% !important;
   left: 38% !important;
 }

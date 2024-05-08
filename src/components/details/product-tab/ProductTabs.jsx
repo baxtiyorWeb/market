@@ -15,11 +15,11 @@ const ProductTabs = ({ productDetail }) => {
   };
 
   return (
-    <div className=" mt-5  w-full bg-whiteTextColor p-3">
+    <div className=" mt-5 w-full bg-whiteTextColor p-3">
       <div className="h-full w-full ">
-        <div className="flex items-center justify-between border-b pb-3">
+        <div className="flex items-center justify-start border-b pb-3">
           <span
-            className={`mx-1 my-1  flex  cursor-pointer items-center justify-center rounded-3xl border border-bgColor px-3 py-2 text-textColor hover:bg-bgColor hover:text-whiteTextColor ${
+            className={`mx-1 my-1  flex  cursor-pointer select-none items-center justify-center rounded-md border border-bgColor   px-3 py-2 text-textColor hover:bg-bgColor hover:text-whiteTextColor ${
               tabIndex == 1 ? " bg-bgColor text-whiteTextColor" : ""
             } `}
             onClick={() => productTabgetIndex(1)}
@@ -27,7 +27,7 @@ const ProductTabs = ({ productDetail }) => {
             ma&apos;lumot
           </span>
           <span
-            className={`mx-1 my-1  flex  cursor-pointer items-center justify-center rounded-3xl border border-bgColor px-3 py-2 text-textColor hover:bg-bgColor hover:text-whiteTextColor ${
+            className={`mx-1 my-1  flex  cursor-pointer select-none   items-center justify-center rounded-md border border-bgColor px-3 py-2 text-textColor hover:bg-bgColor hover:text-whiteTextColor ${
               tabIndex == 2 ? " bg-bgColor text-whiteTextColor" : ""
             } `}
             onClick={() => productTabgetIndex(2)}
@@ -35,7 +35,7 @@ const ProductTabs = ({ productDetail }) => {
             Sharxlar
           </span>
           <span
-            className={`mx-1 my-1  flex  cursor-pointer items-center justify-center rounded-3xl border border-bgColor px-3 py-2 text-textColor hover:bg-bgColor hover:text-whiteTextColor ${
+            className={`mx-1 my-1  flex  cursor-pointer select-none   items-center justify-center rounded-md border border-bgColor px-3 py-2 text-textColor hover:bg-bgColor hover:text-whiteTextColor ${
               tabIndex == 3 ? " bg-bgColor text-whiteTextColor" : ""
             } `}
             onClick={() => productTabgetIndex(3)}
@@ -43,7 +43,7 @@ const ProductTabs = ({ productDetail }) => {
             Savollar
           </span>
           <span
-            className={`mx-1 my-1  flex  cursor-pointer items-center justify-center rounded-3xl border border-bgColor px-3 py-2 text-textColor hover:bg-bgColor hover:text-whiteTextColor ${
+            className={`mx-1 my-1  flex  cursor-pointer select-none   items-center justify-center rounded-md border border-bgColor px-3 py-2 text-textColor hover:bg-bgColor hover:text-whiteTextColor ${
               tabIndex == 4 ? " bg-bgColor text-whiteTextColor" : ""
             } `}
             onClick={() => productTabgetIndex(4)}

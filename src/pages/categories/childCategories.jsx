@@ -16,6 +16,7 @@ import ProductGetList from "./productGetList";
 const ChildCategories = () => {
   const { id } = useParams();
   const [getCategId, setCateggetId] = useState([]);
+  const [lengthProduct, setLengthProduct] = useState([]);
 
   const searchParam = useSearchParams();
   const paramName = searchParam[0].get("category-name");
@@ -34,16 +35,26 @@ const ChildCategories = () => {
     queryFn: getCategoriesRootListSticky,
   });
 
+  const productGetLength = async () => {
+    const getid = await api.get(
+      `/product/list?page=0&size=10&search=&categoryId=${id}`,
+    );
+    const res = getid.data;
+    const data = await res?.data;
+    console.log(lengthProduct);
+    setLengthProduct(data);
+  };
   const getCategoryId = async () => {
     const getid = await api.get(`/category/${id}`);
     const res = getid.data;
     const data = await res?.data;
+
     setCateggetId(data);
+    productGetLength();
   };
   useEffect(() => {
     getCategoryId();
   }, [id]);
-
   const categId = getCategId.id;
 
   // if (isLoading) return <Loading />;
@@ -83,7 +94,9 @@ const ChildCategories = () => {
       <div className="text mb-3 mt-5 flex items-center justify-start text-[36px] font-medium leading-[49px] text-[#111]">
         <h1>{formatParamName}</h1>
         <span className="text mx-3 mt-3 text-sm text-gray-500">
-          500 ta mahsulot
+          {lengthProduct?.content?.length === 0
+            ? "e'lon mavjud emas"
+            : lengthProduct?.content?.length}
         </span>
       </div>
       <div className="flex w-full items-start  justify-start rounded-md pb-5">
@@ -142,7 +155,7 @@ const ChildCategories = () => {
 
             <SegmentedUi />
           </div>
-          <ProductGetList />
+          <ProductGetList productFilterProps={lengthProduct} />
         </div>
       </div>
     </div>
