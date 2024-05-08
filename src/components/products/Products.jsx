@@ -4,6 +4,7 @@ import { BsCalendarDate } from "react-icons/bs";
 import { CiHeart } from "react-icons/ci";
 import { FaEye } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
+import { SlBasket } from "react-icons/sl";
 import { Link } from "react-router-dom";
 import api from "../../config/api/api";
 import useProducts from "../../hooks/useProducts";
@@ -119,12 +120,20 @@ const Products = () => {
                     <FaEye className="mr-3 text-[16px]" />
                     {item?.viewCount}
                   </span>
-                  <span
-                    onClick={() => setQueryParams(item?.id)}
-                    className="flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-md border border-bgColor bg-bgColor text-whiteTextColor hover:bg-whiteTextColor hover:text-textColor"
-                  >
-                    <CiHeart className="cursor-pointer text-[28px]" />
-                  </span>
+                  <div className="flex items-center justify-center">
+                    <span
+                      onClick={() => setQueryParams(item?.id)}
+                      className="r mx-5 flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-md  bg-whiteTextColor text-bgColor hover:bg-bgColor hover:text-whiteTextColor"
+                    >
+                      <SlBasket className="cursor-pointer text-[28px]" />
+                    </span>
+                    <span
+                      onClick={() => setQueryParams(item?.id)}
+                      className="r mx-5 flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-md  bg-whiteTextColor text-bgColor hover:bg-bgColor hover:text-whiteTextColor"
+                    >
+                      <CiHeart className="cursor-pointer text-[28px]" />
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>

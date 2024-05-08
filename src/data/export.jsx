@@ -211,6 +211,7 @@ const Exports = () => {
         className="w-full"
         accordion
         ghost
+        collapsible="header"
         defaultActiveKey={1}
         items={items}
       />

@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { Select, Space } from "antd";
+import { Pagination, Select, Space } from "antd";
 import React, { useEffect, useState } from "react";
+import { FaArrowRight } from "react-icons/fa";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import api from "../../config/api/api";
 import {
@@ -50,7 +51,13 @@ const ChildCategories = () => {
   // console.log(categories);
   return (
     <div className="h-full flex-col items-start justify-center ">
-      <div className="flex  w-full items-start justify-start rounded-md">
+      <BreadCrumbs categories={getCategId} categoryId={id} />
+      <hr className=" mb-3" />
+      <div className="flex  w-full items-center justify-start rounded-md">
+        <h1 className="text-1xl mr-5 flex items-center justify-center">
+          bosh categoriyalar{" "}
+          <FaArrowRight className="text ml-3 mr-1 text-lg font-light" />
+        </h1>
         <Space direction="horizontal">
           {rootCategories?.data?.content?.map((item, index) => (
             <div className="flex items-center justify-center" key={index}>
@@ -72,11 +79,14 @@ const ChildCategories = () => {
           ))}
         </Space>
       </div>
-      <BreadCrumbs categories={getCategId} categoryId={id} />
-      <div className="mb-5 mt-5 flex items-center justify-start text-2xl">
-        {formatParamName}
+
+      <div className="text mb-3 mt-5 flex items-center justify-start text-[36px] font-medium leading-[49px] text-[#111]">
+        <h1>{formatParamName}</h1>
+        <span className="text mx-3 mt-3 text-sm text-gray-500">
+          500 ta mahsulot
+        </span>
       </div>
-      <div className="flex  w-full items-start justify-start rounded-md">
+      <div className="flex w-full items-start  justify-start rounded-md border-b pb-5">
         <Space direction="horizontal">
           {categories?.data?.content?.map((item, index) => (
             <div className="flex items-center justify-center" key={index}>
@@ -111,25 +121,6 @@ const ChildCategories = () => {
           <div className="my-5 flex items-center justify-between  rounded-md bg-white p-2 text-left text-[15px]  ">
             <div className="">
               <Select
-                className="w-[60px]"
-                defaultValue={5 || ""}
-                options={[
-                  {
-                    label: 5,
-                    value: 5,
-                  },
-                  {
-                    label: 10,
-                    value: 10,
-                  },
-                  {
-                    label: 15,
-                    value: 15,
-                  },
-                ]}
-              />
-
-              <Select
                 className="mx-5 w-[230px]"
                 options={[
                   {
@@ -147,6 +138,8 @@ const ChildCategories = () => {
                 ]}
               />
             </div>
+            <Pagination defaultCurrent={1} total={100} />
+
             <SegmentedUi />
           </div>
           <ProductGetList />

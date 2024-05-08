@@ -42,10 +42,8 @@ export default function Categoriyes() {
         className="flex select-none items-center justify-center"
         arrows
         dots={true}
-        slidesToShow={8}
+        slidesToShow={6}
         slidesToScroll={1}
-        autoplay
-        autoplaySpeed={5000}
         infinite
       >
         {data?.data?.content?.map((item, index) => (

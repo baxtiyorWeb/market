@@ -35,7 +35,7 @@ const ProductGetList = () => {
       <div>
         {isOpen && <Overlay closed={handleToggle} />}
         {isOpen && <FastDetailView id={fastId} />}
-        <h1 className=" mb-5 font-poppins text-[28px] font-medium not-italic leading-normal tracking-[-0.66px] ">
+        <h1 className=" font-poppins text-[28px] font-medium not-italic leading-normal tracking-[-0.66px] ">
           <div className="flex items-center justify-between ">
             <h1 className="text-2xl">top maxsulotlar</h1>
           </div>
@@ -129,7 +129,7 @@ const ProductGetList = () => {
           ))
         )}
       </div>
-      <div className="mb-[50px] mt-[50px] flex items-center justify-center">
+      <div className="mb-[10px] mt-[30px] flex items-center justify-center">
         <button className="flex h-[50px] w-[328px] flex-shrink-0 items-center justify-center rounded-[5px] bg-[#1D828E] text-[#fff] ">
           <span className="font-medium not-italic leading-[100%] tracking-[-0.30px] ">
             Ko’proq ko’rsatish
@@ -142,7 +142,7 @@ const ProductGetList = () => {
   return (
     <>
       <div>{content}</div>
-      <div className="my-3 flex items-center justify-center">
+      <div className="my-1 flex items-center justify-center">
         {/* <Button
           disabled={!hasNextPage || isFetchingNextPage}
           onClick={() => fetchNextPage()}

@@ -14,11 +14,13 @@ const ProductFilter = () => {
             type="number"
             className="m-1 w-full rounded-sm border py-2 indent-2 outline-none"
             pattern="-"
+            placeholder="0"
           />
 
           <input
             type="number"
             className="m-1 w-full rounded-sm border py-2 indent-2 outline-none"
+            placeholder="0"
           />
         </div>
       </div>

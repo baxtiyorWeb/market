@@ -46,8 +46,8 @@ const Breadcrumbs = ({ categoryId, categories }) => {
   }
 
   return (
-    <div className="border-b ">
-      <div className="my-5 flex h-auto w-[max-content] items-center justify-start rounded-md   p-1">
+    <div className="">
+      <div className="mt-2 flex h-auto w-[max-content] items-center justify-start rounded-md   p-1">
         {breadcrumbsArr}
       </div>
     </div>
