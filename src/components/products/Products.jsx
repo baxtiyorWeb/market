@@ -17,7 +17,7 @@ import "./Product.css";
 const Products = () => {
   const fetchData = async (page) => {
     try {
-      const res = await api.get(`/product/list?page=${page}&size=24`);
+      const res = await api.get(`/product/list?page=${page}&size=5`);
       return res.data?.data?.content; // Ma'lumotlarni qaytarish
     } catch (error) {
       throw new Error(error.message);
@@ -85,7 +85,7 @@ const Products = () => {
   }, [handleScrollDebounced]);
 
   useEffect(() => {
-    if (page === -1) {
+    if (page === 0) {
       setPage(0); // Sahifalashni boshlash uchun
     }
   }, [page]);
