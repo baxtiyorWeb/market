@@ -77,11 +77,11 @@ export default function Header() {
                 type="text"
                 placeholder="Qidiruv"
                 defaultValue={search}
-                className="h-[50px] w-[650px] rounded-bl-md rounded-tl-md border border-bgColor bg-[#F9F9F9] pl-[19px] text-[#959EA7] outline-none"
+                className="h-[40px] w-[650px] rounded-bl-md rounded-tl-md border border-bgColor bg-[#F9F9F9] pl-[19px] text-[#959EA7] outline-none"
               />
               <button
                 type="submit"
-                className="flex h-[50px] w-[50px]  items-center justify-center rounded-br-md rounded-tr-md bg-btnColor "
+                className="flex h-[40px] w-[50px]  items-center justify-center rounded-br-md rounded-tr-md bg-btnColor "
               >
                 <FaSearch className="text-white" />
               </button>

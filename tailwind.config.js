@@ -21,7 +21,7 @@ export default {
       },
       width: {
         containerWidth: "1400px",
-        productWidth: "275px",
+        productWidth: "280px",
       },
       screens: {
         "2xl": { max: "1535px" },

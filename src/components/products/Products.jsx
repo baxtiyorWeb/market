@@ -52,7 +52,7 @@ const Products = () => {
         ) : (
           data?.data?.data?.content?.map((item, index) => (
             <div
-              className="w-productWidth re lative relative h-[460px] flex-shrink-0 overflow-hidden rounded-md px-[10px] pt-2 transition-all   hover:shadow-lg  "
+              className="w-productWidth re lative relative h-[460px] flex-shrink-0 overflow-hidden rounded-md border px-[10px] pt-2   transition-all hover:shadow-lg "
               key={index}
             >
               <span className="absolute left-3 top-5 z-50 bg-red-500 px-1 text-sm  text-white">
@@ -61,7 +61,7 @@ const Products = () => {
               <div className="relative h-[230px] overflow-hidden ">
                 <div className="cart-slider group flex h-full  items-center justify-center">
                   <button
-                    className="absolute right-[30%] top-[40%] z-50 hidden rounded-3xl bg-bgColor px-3 py-2 text-whiteTextColor hover:border hover:border-bgColor hover:bg-whiteTextColor hover:text-textColor group-hover:block"
+                    className="absolute right-[30%] top-[40%] z-50 hidden rounded-3xl bg-bgColor px-3 py-2 text-white hover:border-bgColor  group-hover:block"
                     onClick={() => getFastid(item.id)}
                   >
                     Tezkor ko&apos;rish
