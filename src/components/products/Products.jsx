@@ -46,12 +46,14 @@ const Products = () => {
     if (
       !isLoading &&
       hasMore &&
-      window.innerHeight + document.documentElement.scrollTop + 150 ===
-        document.documentElement.offsetHeight + 150
+      window.innerHeight + document.documentElement.scrollTop >=
+        document.documentElement.offsetHeight - 350 &&
+      window.innerHeight + document.documentElement.scrollTop <
+        document.documentElement.offsetHeight
     ) {
-      loadData(); // Yuklash funksiyasini chaqirish
+      loadData(); // Yuklash funksiyasini chaqiris
     }
-  }, 10); // Cheklov vaqtini kiritish
+  }, 10);
   const { handleToggle, isOpen } = useToggle();
   const [fastId, setFastId] = useState("");
   const addLikeFavoriteProduct = async (id) => {
