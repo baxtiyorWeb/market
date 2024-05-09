@@ -4,7 +4,7 @@ import api from "../config/api/api";
 
 const useProducts = () => {
   const [page, setPage] = useState(0);
-  const [size, setSize] = useState(30);
+  const [size, setSize] = useState(10);
   const { isLoading, error, data } = useQuery({
     queryKey: ["product", page],
     queryFn: () => api.get(`/product/list?page=${page}&size=${size}`),
