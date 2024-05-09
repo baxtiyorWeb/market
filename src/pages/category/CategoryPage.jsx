@@ -16,7 +16,7 @@ const CategoryPage = () => {
               </Link>
             </div>
             <div className="mb-6 flex flex-col items-start justify-center">
-              <div className="mb-6">
+              <div className="mb-1">
                 <Link className="text-[18px] font-bold leading-6 text-[#111] hover:text-red-500">
                   Audio
                 </Link>
@@ -32,7 +32,7 @@ const CategoryPage = () => {
               </Link>
             </div>
             <div className="mb-6 flex flex-col items-start justify-center">
-              <div className="mb-6">
+              <div className="mb-1">
                 <Link className="text-[18px] font-bold leading-6 text-[#111] hover:text-red-500">
                   Videotexnika
                 </Link>

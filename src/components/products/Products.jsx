@@ -5,7 +5,6 @@ import { BsCalendarDate } from "react-icons/bs";
 import { CiHeart } from "react-icons/ci";
 import { FaEye } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
-import { SlBasket } from "react-icons/sl";
 import { Link } from "react-router-dom";
 import { useDebouncedCallback } from "use-debounce";
 import api from "../../config/api/api";
@@ -95,12 +94,14 @@ const Products = () => {
       <div>
         {isOpen && <Overlay closed={handleToggle} />}
         {isOpen && <FastDetailView id={fastId} />}
-        <h1 className="mb-5 font-poppins text-[28px] font-medium not-italic leading-normal tracking-[-0.66px] "></h1>
+        <h1 className="mb-28 mt-10 font-poppins text-[28px] font-medium not-italic leading-normal tracking-[-0.66px] ">
+          Top Mahsulotlar
+        </h1>
       </div>
       <div className="response_product_category grid grid-cols-5 gap-2 2xs:grid 2xs:grid-cols-2">
         {data?.map((item, index) => (
           <div
-            className="re lative relative h-[460px] w-productWidth flex-shrink-0 overflow-hidden rounded-md border px-[10px] pt-2   transition-all hover:shadow-lg "
+            className="re lative relative h-[460px] w-productWidth flex-shrink-0 overflow-hidden rounded-md px-[10px] pt-2   transition-all hover:shadow-lg "
             key={index}
           >
             <span className="absolute left-3 top-5 z-50 bg-red-500 px-1 text-sm  text-white">
@@ -167,13 +168,7 @@ const Products = () => {
                 <div className="flex items-center justify-center">
                   <span
                     onClick={() => setQueryParams(item?.id)}
-                    className="r mx-5 flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-md  bg-whiteTextColor text-bgColor hover:bg-bgColor hover:text-whiteTextColor"
-                  >
-                    <SlBasket className="cursor-pointer text-[28px]" />
-                  </span>
-                  <span
-                    onClick={() => setQueryParams(item?.id)}
-                    className="r mx-5 flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-md  bg-whiteTextColor text-bgColor hover:bg-bgColor hover:text-whiteTextColor"
+                    className="r mx-1 flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-md  bg-whiteTextColor text-bgColor hover:bg-bgColor hover:text-whiteTextColor"
                   >
                     <CiHeart className="cursor-pointer text-[28px]" />
                   </span>
