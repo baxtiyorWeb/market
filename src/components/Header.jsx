@@ -63,11 +63,14 @@ export default function Header() {
             </span>
           </button>
           <Categoriyes open={open} setOpen={setOpen} scroll={scroll} />
-          <div onClick={() => setOpen(false)} className="h-auto w-auto p-0  ">
+          <div
+            onClick={() => setOpen(false)}
+            className="mx-10 h-auto w-auto p-0  "
+          >
             <Regions opens={open} setOpens={setOpen} />
           </div>
 
-          <div onClick={() => setOpen(false)} className="mx-5">
+          <div onClick={() => setOpen(false)} className="ml-12">
             <form
               onSubmit={handleButtonClick}
               className="flex items-center justify-center"
@@ -87,7 +90,7 @@ export default function Header() {
               </button>
             </form>
           </div>
-          <div className="flex w-[25%] items-center justify-between">
+          <div className="flex w-[25%] items-center justify-end">
             <HeadUserLinks />
           </div>
         </div>

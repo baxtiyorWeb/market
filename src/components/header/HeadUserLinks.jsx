@@ -1,7 +1,6 @@
 import { UserOutlined } from "@ant-design/icons";
 import React from "react";
 import { FaRegHeart } from "react-icons/fa";
-import { SlBasket } from "react-icons/sl";
 import { Link } from "react-router-dom";
 
 const HeadUserLinks = () => {
@@ -14,12 +13,6 @@ const HeadUserLinks = () => {
         >
           <FaRegHeart className="text text-2xl text-textColor hover/heart:text-bgColor" />
           <span className="text text-spanColor">Sevimlilar</span>
-        </Link>
-      </div>
-      <div>
-        <Link to={"/"} className="flex flex-col items-center justify-center">
-          <SlBasket className="text text-2xl text-textColor " />
-          <span className="text text-spanColor">savatcha</span>
         </Link>
       </div>
       <div className="mx-3">
