@@ -1,5 +1,6 @@
+import { LoadingOutlined } from "@ant-design/icons";
 import { useQuery } from "@tanstack/react-query";
-import { Empty, Image } from "antd";
+import { Empty, Image, Spin } from "antd";
 import React, { useState } from "react";
 import { BsCalendarDate } from "react-icons/bs";
 import { CiHeart } from "react-icons/ci";
@@ -12,13 +13,13 @@ import useToggle from "../../hooks/useToggle";
 import Overlay from "../../ui/Overlay";
 import "./categories.css";
 
-const ProductGetList = ({ productFilterProps }) => {
+const ProductGetList = ({ productFilterProps, isLoading }) => {
   const searchable = useSearchParams();
   const { id } = useParams();
   const [fastId, setFastId] = useState("");
   const { handleToggle, isOpen } = useToggle();
   const search = searchable[0].get("search");
-  const { data: productFilters, isLoading } = useQuery({
+  const { data: productFilters } = useQuery({
     queryKey: ["product", id],
     queryFn: () => productWithCategoryFilter(search, id),
   });
@@ -37,12 +38,12 @@ const ProductGetList = ({ productFilterProps }) => {
         {isOpen && <FastDetailView id={fastId} />}
       </div>
       <div className="response_product_category grid grid-cols-3 gap-3  2xs:grid 2xs:grid-cols-2">
-        {productFilterProps?.content?.length === 0 ? (
+        {productFilterProps?.length === 0 ? (
           <div className="flex h-[60vh] w-[880px] items-center justify-center">
             <Empty description={"elon mavjud emas"} />
           </div>
         ) : (
-          productFilterProps?.content?.map((item, index) => (
+          productFilterProps?.map((item, index) => (
             <div
               className="relative h-[460px] w-[288px] flex-shrink-0 overflow-hidden rounded-md  bg-white/100   px-[10px] pt-2 transition-all   hover:shadow-lg  "
               key={index}
@@ -124,12 +125,10 @@ const ProductGetList = ({ productFilterProps }) => {
           ))
         )}
       </div>
-      <div className="mb-[10px] mt-[30px] flex items-center justify-center">
-        <button className="flex h-[50px] w-[328px] flex-shrink-0 items-center justify-center rounded-[5px] bg-[#1D828E] text-[#fff] ">
-          <span className="font-medium not-italic leading-[100%] tracking-[-0.30px] ">
-            Ko’proq ko’rsatish
-          </span>
-        </button>
+      <div className="mb-[50px] mt-[50px] flex items-center justify-center">
+        {isLoading && (
+          <Spin indicator={<LoadingOutlined style={{ fontSize: 50 }} />} />
+        )}
       </div>
     </>
   );

@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import { Pagination, Select, Space } from "antd";
+import { Select, Space } from "antd";
 import React, { useEffect, useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { Link, useParams, useSearchParams } from "react-router-dom";
+import { useDebouncedCallback } from "use-debounce";
 import api from "../../config/api/api";
 import {
   getCategoriesRootLisId,
@@ -14,6 +15,22 @@ import "./categories.css";
 import ProductFilter from "./productFilter/ProductFilter";
 import ProductGetList from "./productGetList";
 const ChildCategories = () => {
+  const fetchProduct = async (currentPage) => {
+    try {
+      const getid = await api.get(
+        `/product/list?page=${currentPage}&size=5&search=&categoryId=${id}`,
+      );
+      return getid.data?.data?.content;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  };
+
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
+  const [page, setPage] = useState(0);
+
   const { id } = useParams();
   const [getCategId, setCateggetId] = useState([]);
   const [lengthProduct, setLengthProduct] = useState([]);
@@ -22,9 +39,52 @@ const ChildCategories = () => {
   const paramName = searchParam[0].get("category-name");
   const formatParamName = paramName?.split("-").join(" ");
 
+  const loadData = async () => {
+    setIsLoading(true);
+    try {
+      const newData = await fetchProduct(page);
+      if (newData && newData.length > 0) {
+        setData((prevData) => [...prevData, ...newData]);
+        setPage((prevPage) => prevPage + 1);
+      } else {
+        setHasMore(false);
+      }
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleScrollDebounced = useDebouncedCallback(() => {
+    if (
+      !isLoading &&
+      hasMore &&
+      window.innerHeight + document.documentElement.scrollTop >=
+        document.documentElement.offsetHeight - 350 &&
+      window.innerHeight + document.documentElement.scrollTop <
+        document.documentElement.offsetHeight
+    ) {
+      loadData(); // Yuklash funksiyasini chaqiris
+    }
+  }, 10);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScrollDebounced);
+    return () => {
+      window.removeEventListener("scroll", handleScrollDebounced);
+    };
+  }, [handleScrollDebounced]);
+
+  useEffect(() => {
+    if (page === 0) {
+      setPage(0);
+    }
+  }, [page]);
+
   const {
     data: categories,
-    isLoading,
+    // isLoading,
     error,
   } = useQuery({
     queryKey: ["category", id],
@@ -41,8 +101,8 @@ const ChildCategories = () => {
     );
     const res = getid.data;
     const data = await res?.data;
-    console.log(lengthProduct);
     setLengthProduct(data);
+    console.log(lengthProduct);
   };
   const getCategoryId = async () => {
     const getid = await api.get(`/category/${id}`);
@@ -151,11 +211,10 @@ const ChildCategories = () => {
                 ]}
               />
             </div>
-            <Pagination defaultCurrent={1} total={100} />
 
             <SegmentedUi />
           </div>
-          <ProductGetList productFilterProps={lengthProduct} />
+          <ProductGetList productFilterProps={data} isLoading={isLoading} />
         </div>
       </div>
     </div>

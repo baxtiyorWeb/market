@@ -127,7 +127,6 @@ export const productWithCategoryFilter = async (search, id) => {
   const res = await api.get(
     `/product/list?page=0&size=10&search=&categoryId=${id}`,
   );
-  console.log(res.data.data.content);
   return res.data;
 };
 export const getProductWithCategoryFilter = async (id) => {

@@ -5,6 +5,7 @@ import { BsCalendarDate } from "react-icons/bs";
 import { CiHeart } from "react-icons/ci";
 import { FaEye } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
+import LazyLoad from "react-lazy-load";
 import { Link } from "react-router-dom";
 import { useDebouncedCallback } from "use-debounce";
 import api from "../../config/api/api";
@@ -119,14 +120,17 @@ const Products = () => {
                 </button>
                 <Link to={`/details/${item.id}?infoTab=1`} className="w-full">
                   <div className="h-[230px]">
-                    <Image
-                      alt={"avatar"}
-                      src={`data:image/png;base64,${item.file?.fileBase64}`}
-                      title={`${item?.name}`}
-                      loading="eager"
-                      height={230}
-                      className=" w-[250px_!important] rounded-xl  bg-center object-cover align-middle"
-                    />
+                    <LazyLoad height={230}>
+                      <Image
+                        alt={"avatar"}
+                        src={`data:image/png;base64,${item.file?.fileBase64}`}
+                        title={`${item?.name}`}
+                        loading="lazy"
+                        height={"230px"}
+                        width={"250px"}
+                        className=" w-[250px_!important] rounded-xl  bg-center object-cover align-middle"
+                      />
+                    </LazyLoad>
                   </div>
                 </Link>
               </div>
