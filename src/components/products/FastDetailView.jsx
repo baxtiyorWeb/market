@@ -37,15 +37,15 @@ const FastDetailView = ({ id }) => {
             </Link>
           </div>
           <div className="flex h-full w-full items-start justify-between rounded-2xl">
-            <div className="fast-detail relative left-10 w-[32%] ">
+            <div className="fast-detail relative left-10 w-[80%] ">
               <Carousel draggable effect="fade" waitForAnimate arrows>
                 {product?.files?.map((item, index) => (
                   <Image
                     key={index}
                     src={`data:image/png;base64,${item.file?.fileBase64}`}
                     loading="lazy"
-                    width={400}
-                    height={400}
+                    width={600}
+                    height={500}
                     className="scale-10 select-none overflow-clip rounded-2xl  border bg-gray-500/20 bg-center object-contain"
                   />
                 ))}
@@ -59,7 +59,7 @@ const FastDetailView = ({ id }) => {
                       {product?.name}
                     </h1>
                     <h5 className="text-xl font-semibold text-black">
-                      <span className=" text-3xl text-textColor">
+                      <span className=" text-3xl text-bgColor">
                         {product?.price}
                       </span>
                       <span className="mx-3 text-spanColor">/</span>
@@ -121,20 +121,7 @@ const FastDetailView = ({ id }) => {
                     </button>
                   </div>
                 </div>
-                <div className="flex items-center justify-start">
-                  <div className="mr-3 w-max rounded-3xl bg-slate-500/25 px-4 text-center ">
-                    <span className="text text-xs text-gray-500">
-                      sotuv turi
-                    </span>
-                    <h1 className="text-sm">{product.sellType?.name}</h1>
-                  </div>
-                  <div className="w-max rounded-3xl bg-slate-500/25 px-4 text-center ">
-                    <span className="text text-xs text-gray-500">
-                      to&apos;lov turi
-                    </span>
-                    <h1 className="text-sm">{product.paymentType?.name}</h1>
-                  </div>
-                </div>
+
                 <div className="mt-10 flex w-full flex-col gap-y-5">
                   <h3 className="text-[20px] font-semibold text-black">
                     Qisqacha ma’lumot
@@ -150,6 +137,21 @@ const FastDetailView = ({ id }) => {
                     Ko’rganlar: <FaEye className="ml-2 mr-2" />{" "}
                     {product?.viewCount}
                   </span>
+                </div>
+              </div>
+              <hr />
+              <div className="flex flex-col items-start justify-start">
+                <div className="my-3 mr-3  flex w-max items-center justify-center text-center">
+                  <span className="text mr-3 text-xs text-gray-500">
+                    sotuv turi:
+                  </span>
+                  <h1 className="text-sm">{product.sellType?.name}</h1>
+                </div>
+                <div className="my-3  flex w-max items-center justify-center text-center ">
+                  <span className="text mr-3 text-xs text-gray-500">
+                    to&apos;lov turi:
+                  </span>
+                  <h1 className="text-sm">{product.paymentType?.name}</h1>
                 </div>
               </div>
             </div>

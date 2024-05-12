@@ -72,9 +72,9 @@ export default function ProductImage({ productDetail }) {
                   key={index}
                   src={`data:image/png;base64,${item.file?.fileBase64}`}
                   loading="lazy"
-                  width={600}
-                  height={500}
-                  className="scale-10 h-[350px] select-none overflow-clip rounded-2xl  border bg-gray-500/20 bg-center object-contain"
+                  width={580}
+                  height={490}
+                  className="scale-10 h-[350px] select-none overflow-clip rounded-2xl border  bg-gray-500/20 bg-center object-contain p-5"
                 />
               ))}
             </Carousel>
