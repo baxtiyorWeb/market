@@ -18,7 +18,7 @@ const FastDetailView = ({ id }) => {
   console.log(product);
 
   return (
-    <div className="fixed left-[10%] top-[10%] z-[310] h-[800px] w-[1300px] overflow-y-scroll rounded-2xl bg-whiteTextColor p-3 shadow-2xl">
+    <div className="fixed  left-[10%] top-[10%] z-[310] h-[800px] w-[1300px] overflow-y-scroll rounded-2xl bg-whiteTextColor p-3 shadow-2xl">
       {isLoading ? (
         <div className="flex h-full w-full items-center justify-center text-5xl">
           <Spin
