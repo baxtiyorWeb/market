@@ -110,8 +110,6 @@ const useGenerateuuid = () => {
     return uiid;
   };
 
-  // Test qilish
-
   return { generateuiid };
 };
 
