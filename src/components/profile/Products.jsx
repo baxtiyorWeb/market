@@ -12,7 +12,7 @@ const Products = () => {
           className="mr-5 h-[50px] w-[400px]"
         />
         <Link
-          className="flex h-[50px]  items-center justify-center rounded-md bg-[#1D828E] p-5 text-white"
+          className="flex h-[50px]  items-center justify-center rounded-md bg-bgColor p-5 text-white"
           to={"/product-form/add-product"}
         >
           Mahsulot qo&apos;shish

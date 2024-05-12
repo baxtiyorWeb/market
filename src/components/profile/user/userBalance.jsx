@@ -34,7 +34,7 @@ export default function UserBalance() {
             </span>
           </div>
           <div className="flex items-center justify-center">
-            <button className="flex h-10 w-[180px] items-center justify-center rounded-lg bg-[#1D828E] text-[#fff] hover:bg-[#1D828E]/70">
+            <button className="flex h-10 w-[180px] items-center justify-center rounded-lg bg-bgColor text-[#fff] hover:bg-bgColor/70">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"

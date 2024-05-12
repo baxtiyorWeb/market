@@ -160,21 +160,21 @@ const ChildCategories = () => {
         </span>
       </div>
       <div className="flex w-full items-start  justify-start rounded-md pb-5">
-        <Space direction="horizontal">
+        <Space direction="vertical">
           {categories?.data?.content?.map((item, index) => (
             <div className="flex items-center justify-center" key={index}>
               <Link
                 to={`/category/${item?.id}?category-name=${item?.name
                   ?.split(", ")
                   ?.join("-")}`}
-                className={`flex items-center justify-center rounded-md ${
+                className={`group/item flex items-center justify-center rounded-md ${
                   paramName == item?.name
-                    ? "flex h-10  bg-[#FEECC1] p-2 text-sm hover:bg-[#FEECC1] hover:bg-slate-500/10  hover:text-slate-900 "
-                    : `h-10 rounded-md bg-[#F7F7F7] p-2 text-sm  hover:bg-slate-500/10  hover:text-slate-900`
+                    ? "flex h-10 hover:text-slate-900 "
+                    : `text-sm transition-all duration-75 hover:text-bgColor`
                 }`}
               >
-                {" "}
-                {item?.name}
+                {item?.name}{" "}
+                <FaArrowRight className="text ml-1 mt-1 text-[13px] duration-100 group-hover/item:translate-x-[1px] " />
               </Link>
               <span className="mx-1 text-spanColor"></span>
             </div>
@@ -183,7 +183,7 @@ const ChildCategories = () => {
       </div>
       <div className="grid h-full grid-flow-col grid-rows-3 gap-4">
         <div className="flex flex-col">
-          <div className="row-span-3 my-2 flex h-[max-content] w-[330px] flex-col rounded-2xl bg-white p-5  ">
+          <div className="row-span-3 my-2 flex h-[max-content] w-[330px] flex-col rounded-2xl bg-white ">
             <div className="my-5 border-b border-b-gray-500 text-left text-[15px] font-bold">
               Saralash
             </div>
