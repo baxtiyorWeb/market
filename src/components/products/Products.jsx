@@ -16,7 +16,7 @@ import "./Product.css";
 const Products = () => {
   const fetchData = async (page) => {
     try {
-      const res = await api.get(`/product/list?page=0&size=50`);
+      const res = await api.get(`/product/list?page=0&size=10`);
       setData(res.data?.data?.content); // Ma'lumotlarni qaytarish
     } catch (error) {
       throw new Error(error.message);
