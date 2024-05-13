@@ -138,7 +138,7 @@ const Products = () => {
               key={index}
             >
               <span className="absolute left-3 top-5 z-50 bg-red-500 px-1 text-sm  text-white">
-                TOP
+                TOP E&apos;lonlar
               </span>
               <div className="relative h-[230px] overflow-hidden ">
                 <div className="cart-slider group flex h-full  items-center justify-center">
