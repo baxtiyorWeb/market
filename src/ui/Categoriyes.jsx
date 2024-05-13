@@ -4,7 +4,7 @@ import Catalogue from "../components/catalogue/CategoryTab";
 
 export default function Categoriyes({ open, setOpen }) {
   const backgroundHidden = () => {
-    document.body.style.overflow = "hidden";
+    // document.body.style.overflow = "hidden";
   };
   const backgroundUnset = () => {
     document.body.style.overflow = "unset";
