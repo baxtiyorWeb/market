@@ -45,20 +45,20 @@ export default function RegisterComponent() {
   };
 
   return (
-    <div>
+    <div className="flex h-[80%] w-[80%] flex-col items-center justify-center ">
       <h1 className="mb-5 mt-3 text-center text-2xl">
         Ro&apos;yxatdan o&apos;tish
       </h1>
       <div></div>
-      <div className="mt-10 flex h-full w-full flex-col items-center justify-center ">
-        <span className="mb-3 w-full text-left">
+      <div className=" mt-10 flex h-full w-full flex-col items-center justify-center ">
+        <span className="mb-3 w-full  text-left">
           telefon raqamingizni kiriting
         </span>
-        <div className="relative w-full">
+        <div className="relative flex w-full flex-col items-start justify-center ">
           <span
-            className={`absolute left-0 top-[15px] z-10 text-xl ${
+            className={`absolute left-0 top-[27px] z-10 text-xl ${
               phone.length > 0
-                ? `${phone.length >= 10 ? "text-red-500 transition-all" : ""}`
+                ? `${phone.length >= 10 ? "text-red-500 " : ""}`
                 : "text-[#BFBFBF]"
             }`}
           >
@@ -70,7 +70,7 @@ export default function RegisterComponent() {
             onChange={(e) => setPhone(e.target.value)}
             maxLength={9}
             value={phone}
-            className="h-14 w-[328px] rounded-md p-3 indent-10 text-xl outline-none"
+            className="mb-3 mt-3 h-14 w-full  rounded-[5px_!important] p-3 indent-10  text-xl outline-none"
           />
         </div>
         {phone.length >= 10 ? (
@@ -80,10 +80,11 @@ export default function RegisterComponent() {
         ) : (
           ""
         )}
-        <div className="send-details">
+        <div className="send-details w-full">
           <ButtonUI
             disabled={phone.length === 9 ? false : true}
             onClick={() => registerPhoneOrPhone()}
+            className="mb-5 mt-5 h-[50px] w-full rounded-md bg-bgColor text-white hover:text-[#fff] disabled:cursor-not-allowed disabled:bg-bgColor/60"
           >
             {isLoading ? <SpinLoading /> : "Davom etish"}
           </ButtonUI>
@@ -95,15 +96,22 @@ export default function RegisterComponent() {
         <span className="my-3">
           ijtmoiy tarmoqlar orqali ro&apos;yxatdan o&apos;ting
         </span>
-        <div className="flex flex-col items-center justify-center">
-          <button className="m-1 flex h-12 w-[180px] items-center justify-center rounded-md border px-1">
-            <FcGoogle className="mx-2 h-8 w-8 cursor-pointer" />
-            <span className="text-sm text-textColor">google +</span>
-          </button>
-          <button className="m-1 flex h-12 w-[180px] items-center justify-center rounded-md border px-1">
-            <FaTelegram className="mx-2 h-8 w-8 cursor-pointer text-blue-500" />
-            <span className="text-sm text-textColor">telegram</span>
-          </button>
+
+        <div className="w-full">
+          <ButtonUI className="mb-1 mt-3 flex h-[50px] w-full items-center justify-start rounded-md border border-borderColor bg-whiteTextColor px-5 text-textColor disabled:cursor-not-allowed disabled:bg-bgColor/60">
+            <FaTelegram className="text text-3xl text-blue-500" />
+            <span className="m-auto">
+              Telegram orqali ro&apos;yxatdan o&apos;tish
+            </span>
+          </ButtonUI>
+        </div>
+        <div className="w-full">
+          <ButtonUI className="mb-1 mt-3 flex h-[50px] w-full items-center justify-start rounded-md border border-borderColor bg-whiteTextColor px-5 text-textColor disabled:cursor-not-allowed disabled:bg-bgColor/60">
+            <FcGoogle className="text t text-3xl" />
+            <span className="m-auto">
+              Google orqali ro&apos;yxatdan o&apos;tish
+            </span>
+          </ButtonUI>
         </div>
       </div>
     </div>

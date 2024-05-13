@@ -3,7 +3,7 @@ import { Image, Spin, message } from "antd";
 import { useEffect, useState } from "react";
 import { BsCalendarDate } from "react-icons/bs";
 import { CiHeart } from "react-icons/ci";
-import { FaEye } from "react-icons/fa";
+import { FaArrowRight, FaEye } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
 import LazyLoad from "react-lazy-load";
 import { Link } from "react-router-dom";
@@ -88,23 +88,45 @@ const Products = () => {
 
   useEffect(() => {
     if (page === 0) {
-      setPage(0); // Sahifalashni boshlash uchun
+      setPage(1); // Sahifalashni boshlash uchun
     }
   }, [page]);
   // if (error) return "An error has occurred: " + error.message;
   return (
     <div className="mt-5 h-full w-full">
-      <div>
+      <div className="mb-10 mt-10 flex items-center justify-between">
         {isOpen && <Overlay closed={handleToggle} />}
         {isOpen && <FastDetailView id={fastId} />}
-        <h1 className="mb-28 mt-10 font-poppins text-[28px] font-medium not-italic leading-normal tracking-[-0.66px] ">
+        <h1 className=" font-poppins text-[28px] font-medium not-italic leading-normal tracking-[-0.66px] ">
           Top Mahsulotlar
         </h1>
+        <div className="flex w-max items-center justify-center">
+          <div className="some-categories">
+            <Link className="mr-3 border-b-2 border-bgColor p-2 text-lg font-normal">
+              Barcha Mahsulotlar{" "}
+            </Link>
+            <Link className="mr-3 border-b-2 border-transparent p-2 text-base font-normal">
+              Smartfonlar
+            </Link>
+            <Link className="b-2 mr-3 border-b-2 border-transparent text-base font-normal">
+              Noutbuklar
+            </Link>
+            <Link className="mr-3 border-b-2 border-transparent p-2 text-base font-normal">
+              Stol kompyuterlar
+            </Link>
+          </div>
+          <Link className="flex items-center justify-center text-lg font-light text-bgColor">
+            Barcha categoriyani ko&apos;rish
+            <span>
+              <FaArrowRight className="mx-3" />
+            </span>
+          </Link>
+        </div>
       </div>
       <div className="response_product_category grid grid-cols-5 gap-2 2xs:grid 2xs:grid-cols-2">
         {data?.map((item, index) => (
           <div
-            className="re lative relative h-[460px] w-productWidth flex-shrink-0 overflow-hidden rounded-md px-[10px] pt-2   transition-all hover:shadow-lg "
+            className="re lative relative h-[460px] w-productWidth flex-shrink-0 overflow-hidden rounded-md px-[10px]  pt-2  transition-all hover:shadow-lg "
             key={index}
           >
             <span className="absolute left-3 top-5 z-50 bg-red-500 px-1 text-sm  text-white">
@@ -113,7 +135,7 @@ const Products = () => {
             <div className="relative h-[230px] overflow-hidden ">
               <div className="cart-slider group flex h-full  items-center justify-center">
                 <button
-                  className="absolute right-[30%] top-[40%] z-50 hidden rounded-3xl bg-bgColor px-3 py-2 text-white hover:border-bgColor  group-hover:block"
+                  className="absolute right-[30%] top-[40%] z-50 hidden rounded-3xl bg-bgColor px-3 py-2 text-white hover:border-bgColor hover:bg-bgColor/90  group-hover:block"
                   onClick={() => getFastid(item.id)}
                 >
                   Tezkor ko&apos;rish
@@ -162,7 +184,7 @@ const Products = () => {
               </div>
             </div>
             <div className="flex h-20 flex-col justify-between    ">
-              <span className="text inline-flex items-center rounded-md  py-2 font-poppins text-[18px] font-medium   not-italic leading-[100%] text-textColor ">
+              <span className="text inline-flex w-max items-center  rounded-md bg-bgColor px-2 py-2  font-poppins text-[18px] font-medium  not-italic leading-[100%] text-textColor ">
                 {item?.price}
                 <p className="ml-1">so{"'"}m</p>
               </span>{" "}

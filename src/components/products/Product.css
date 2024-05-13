@@ -1,3 +1,8 @@
+:root {
+  --slide-arrow-bg-color: #ffbe1e;
+  --slide-arrow-text-color: #fff;
+  --slide-arrow-border-color: #fff;
+}
 .ant-image-mask {
   display: none !important;
 }
@@ -5,7 +10,7 @@
 .fast-detail .slick-arrow {
   position: absolute;
   top: 48% !important;
-  right: -40px;
+  right: 100px !important;
   z-index: 100;
   display: block;
   width: 50px !important;
@@ -14,7 +19,9 @@
   color: transparent;
   font-size: 0 !important;
   line-height: 0 !important;
-  border: 1px solid rgb(118, 207, 207) !important;
+  background: var(--slide-arrow-bg-color) !important;
+  border: 1px solid var(--slide-arrow-border-color) !important;
+
   outline: none;
   cursor: pointer;
   border-radius: 100% !important;
@@ -32,14 +39,10 @@
   color: transparent;
   font-size: 0;
   line-height: 0;
-  background-color: rgb(118, 207, 207) !important;
   border: 0;
   outline: none;
   cursor: pointer;
   border-radius: 100% !important;
-}
-.fast-detail .slick-arrow:hover::before {
-  color: teal !important;
 }
 
 .fast-detail .slick-next::before {
@@ -48,7 +51,7 @@
   right: 33% !important;
   top: 48% !important;
   font-size: 30px !important;
-  color: rgb(118, 207, 207) !important;
+  color: var(--slide-arrow-text-color) !important;
 }
 .fast-detail .slick-prev::before {
   content: "<" !important;
@@ -56,5 +59,5 @@
   right: 33% !important;
   top: 48% !important;
   font-size: 30px !important;
-  color: rgb(118, 207, 207) !important;
+  color: var(--slide-arrow-text-color) !important;
 }

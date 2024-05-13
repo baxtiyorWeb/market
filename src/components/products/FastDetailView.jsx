@@ -37,14 +37,14 @@ const FastDetailView = ({ id }) => {
             </Link>
           </div>
           <div className="flex h-full w-full items-start justify-between rounded-2xl">
-            <div className="fast-detail relative left-10 w-[80%] ">
+            <div className="fast-detail relative left-10 w-[50%] ">
               <Carousel draggable effect="fade" waitForAnimate arrows>
                 {product?.files?.map((item, index) => (
                   <Image
                     key={index}
                     src={`data:image/png;base64,${item.file?.fileBase64}`}
                     loading="lazy"
-                    width={600}
+                    width={500}
                     height={500}
                     className="scale-10 select-none overflow-clip rounded-2xl  border bg-gray-500/20 bg-center object-contain"
                   />
