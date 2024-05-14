@@ -27,6 +27,13 @@ const Products = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
+  const [id, setId] = useState();
+
+  const likedProduct = async () => {
+    const liked = await api.get("/favorite-product/list");
+    const likeData = liked.data?.data?.content?.map((item) => item?.id);
+    setId(likeData);
+  };
   const loadData = async () => {
     setIsLoading(true);
     try {
@@ -77,6 +84,7 @@ const Products = () => {
 
   useEffect(() => {
     fetchData(page);
+    likedProduct();
   }, []);
 
   useEffect(() => {
@@ -88,7 +96,7 @@ const Products = () => {
 
   useEffect(() => {
     if (page === 0) {
-      setPage(1); // Sahifalashni boshlash uchun
+      setPage(0); // Sahifalashni boshlash uchun
     }
   }, [page]);
   // if (error) return "An error has occurred: " + error.message;
@@ -196,7 +204,11 @@ const Products = () => {
                 <div className="flex items-center justify-center">
                   <span
                     onClick={() => setQueryParams(item?.id)}
-                    className="r mx-1 flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-md  bg-whiteTextColor text-bgColor hover:bg-bgColor hover:text-whiteTextColor"
+                    className={
+                      item?.id === id
+                        ? "r mx-1 flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-md  bg-bgColor text-whiteTextColor hover:bg-whiteTextColor hover:text-whiteTextColor"
+                        : "r mx-1 flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-md  bg-whiteTextColor text-bgColor hover:bg-bgColor hover:text-whiteTextColor"
+                    }
                   >
                     <CiHeart className="cursor-pointer text-[28px]" />
                   </span>
