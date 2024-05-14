@@ -8,12 +8,12 @@ const Exports = () => {
       label: "Kompaniya",
       children: (
         <>
-          <Input.Search placeholder="qidirish" className="mb-5 mt-1" />
+          <Input placeholder="qidirish" className="mb-5 mt-1 h-10 border" />
           <div className="flex w-full items-center justify-start ">
             <Checkbox className="mr-3 " id="filter1" name="filter1" />
             <label
               htmlFor="filter1"
-              className="text cursor-pointer text-pretty text-lg"
+              className="text cursor-pointer text-pretty text-base"
             >
               Artel
             </label>
@@ -22,7 +22,7 @@ const Exports = () => {
             <Checkbox className="mr-3" id="filter1" name="filter1" />
             <label
               htmlFor="filter1"
-              className="text cursor-pointer text-pretty text-lg"
+              className="text cursor-pointer text-pretty text-base"
             >
               Apple
             </label>
@@ -31,7 +31,7 @@ const Exports = () => {
             <Checkbox className="mr-3" id="filter1" name="filter1" />
             <label
               htmlFor="filter1"
-              className="text cursor-pointer text-pretty text-lg"
+              className="text cursor-pointer text-pretty text-base"
             >
               Asus
             </label>
@@ -40,7 +40,7 @@ const Exports = () => {
             <Checkbox className="mr-3" id="filter1" name="filter1" />
             <label
               htmlFor="filter1"
-              className="text cursor-pointer text-pretty text-lg"
+              className="text cursor-pointer text-pretty text-base"
             >
               Artel
             </label>
@@ -49,7 +49,7 @@ const Exports = () => {
             <Checkbox className="mr-3" id="filter1" name="filter1" />
             <label
               htmlFor="filter1"
-              className="text cursor-pointer text-pretty text-lg"
+              className="text cursor-pointer text-pretty text-base"
             >
               Microsoft
             </label>
@@ -68,7 +68,7 @@ const Exports = () => {
               <Checkbox className="mr-3" id="filter1" name="filter1" />
               <label
                 htmlFor="filter1"
-                className="text cursor-pointer text-pretty text-lg"
+                className="text cursor-pointer text-pretty text-base"
               >
                 Artel
               </label>
@@ -77,7 +77,7 @@ const Exports = () => {
               <Checkbox className="mr-3" id="filter1" name="filter1" />
               <label
                 htmlFor="filter1"
-                className="text cursor-pointer text-pretty text-lg"
+                className="text cursor-pointer text-pretty text-base"
               >
                 Macbook air
               </label>
@@ -86,7 +86,7 @@ const Exports = () => {
               <Checkbox className="mr-3" id="filter1" name="filter1" />
               <label
                 htmlFor="filter1"
-                className="text cursor-pointer text-pretty text-lg"
+                className="text cursor-pointer text-pretty text-base"
               >
                 Macbook pro
               </label>
@@ -95,7 +95,7 @@ const Exports = () => {
               <Checkbox className="mr-3" id="filter1" name="filter1" />
               <label
                 htmlFor="filter1"
-                className="text cursor-pointer text-pretty text-lg"
+                className="text cursor-pointer text-pretty text-base"
               >
                 Asus rog strix
               </label>
@@ -104,7 +104,7 @@ const Exports = () => {
               <Checkbox className="mr-3" id="filter1" name="filter1" />
               <label
                 htmlFor="filter1"
-                className="text cursor-pointer text-pretty text-lg"
+                className="text cursor-pointer text-pretty text-base"
               >
                 hp pavilion gaming
               </label>
@@ -123,7 +123,7 @@ const Exports = () => {
               <Checkbox className="mr-3" id="filter1" name="filter1" />
               <label
                 htmlFor="filter1"
-                className="text cursor-pointer text-pretty text-lg"
+                className="text cursor-pointer text-pretty text-base"
               >
                 400 0000
               </label>
@@ -132,7 +132,7 @@ const Exports = () => {
               <Checkbox className="mr-3" id="filter1" name="filter1" />
               <label
                 htmlFor="filter1"
-                className="text cursor-pointer text-pretty text-lg"
+                className="text cursor-pointer text-pretty text-base"
               >
                 500 00000 00
               </label>
@@ -141,7 +141,7 @@ const Exports = () => {
               <Checkbox className="mr-3" id="filter1" name="filter1" />
               <label
                 htmlFor="filter1"
-                className="text cursor-pointer text-pretty text-lg"
+                className="text cursor-pointer text-pretty text-base"
               >
                 Asus
               </label>
@@ -150,7 +150,7 @@ const Exports = () => {
               <Checkbox className="mr-3" id="filter1" name="filter1" />
               <label
                 htmlFor="filter1"
-                className="text cursor-pointer text-pretty text-lg"
+                className="text cursor-pointer text-pretty text-base"
               >
                 Artel
               </label>
@@ -159,7 +159,7 @@ const Exports = () => {
               <Checkbox className="mr-3" id="filter1" name="filter1" />
               <label
                 htmlFor="filter1"
-                className="text cursor-pointer text-pretty text-lg"
+                className="text cursor-pointer text-pretty text-base"
               >
                 Artel
               </label>
@@ -181,7 +181,7 @@ const Exports = () => {
             />
             <label
               htmlFor="filter1"
-              className="text cursor-pointer text-pretty text-lg"
+              className="text cursor-pointer text-pretty text-base"
             >
               Narx
             </label>
@@ -190,7 +190,7 @@ const Exports = () => {
             <Checkbox className="mr-3" id="filter1" name="filter1" />
             <label
               htmlFor="filter1"
-              className="text cursor-pointer text-pretty text-lg"
+              className="text cursor-pointer text-pretty text-base"
             >
               Plastik
             </label>

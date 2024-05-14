@@ -14,22 +14,40 @@ import BreadCrumbs from "./../../ui/breadcrumbs/BreadCrumbs";
 import "./categories.css";
 import ProductFilter from "./productFilter/ProductFilter";
 import ProductGetList from "./productGetList";
-const ChildCategories = () => {
-  const fetchProduct = async (currentPage) => {
-    try {
-      const getid = await api.get(
-        `/product/list?page=${currentPage}&size=5&search=&categoryId=${id}`,
-      );
-      return getid.data?.data?.content;
-    } catch (error) {
-      throw new Error(error.message);
-    }
-  };
 
+const ChildCategories = () => {
+  const [searchFilterParams, setSearchFilterParams] = useSearchParams();
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
+  const [regions, setRegions] = useState({
+    regionData: [],
+    regionId: 0,
+  });
+
+  const regionId = searchFilterParams.get("regionId");
+
+  const fetchProduct = async (currentPage) => {
+    setQueryParams();
+    try {
+      setIsLoading(true);
+      const getid = await api.get(
+        `/product/list?page=${currentPage}&size=5&search=&categoryId=${id}&regionId=${regionId}`,
+      );
+      setData(getid.data?.data?.content);
+    } catch (error) {
+      throw new Error(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const setQueryParams = () => {
+    setSearchFilterParams({ regionId: regions.regionId });
+
+    if (searchFilterParams.get("regionId") === null || false) return false;
+  };
 
   const { id } = useParams();
   const [getCategId, setCateggetId] = useState([]);
@@ -38,6 +56,14 @@ const ChildCategories = () => {
   const searchParam = useSearchParams();
   const paramName = searchParam[0].get("category-name");
   const formatParamName = paramName?.split("-").join(" ");
+  if (regions.regionId) {
+    searchFilterParams.get("&regionId") || "";
+  }
+
+  const getRegionData = async () => {
+    const res = await api.get("/region/all");
+    setRegions({ ...regions, regionData: res.data.data });
+  };
 
   const loadData = async () => {
     setIsLoading(true);
@@ -61,7 +87,7 @@ const ChildCategories = () => {
       !isLoading &&
       hasMore &&
       window.innerHeight + document.documentElement.scrollTop >=
-        document.documentElement.offsetHeight - 350 &&
+        document.documentElement.offsetHeight - 2000 &&
       window.innerHeight + document.documentElement.scrollTop <
         document.documentElement.offsetHeight
     ) {
@@ -77,10 +103,8 @@ const ChildCategories = () => {
   }, [handleScrollDebounced]);
 
   useEffect(() => {
-    if (page === 0) {
-      setPage(0);
-    }
-  }, [page]);
+    fetchProduct(0);
+  }, [regions.regionId, regionId]);
 
   const {
     data: categories,
@@ -114,9 +138,8 @@ const ChildCategories = () => {
   };
   useEffect(() => {
     getCategoryId();
-  }, [id]);
-  const categId = getCategId.id;
-
+    getRegionData();
+  }, []);
   // if (isLoading) return <Loading />;
   // if (error) return `Error: ${error}`;
   // console.log(categories);
@@ -159,28 +182,6 @@ const ChildCategories = () => {
             : lengthProduct?.content?.length}
         </span>
       </div>
-      <div className="flex w-full items-start  justify-start rounded-md pb-5">
-        <Space direction="vertical">
-          {categories?.data?.content?.map((item, index) => (
-            <div className="flex items-center justify-center" key={index}>
-              <Link
-                to={`/category/${item?.id}?category-name=${item?.name
-                  ?.split(", ")
-                  ?.join("-")}`}
-                className={`group/item flex items-center justify-center rounded-md ${
-                  paramName == item?.name
-                    ? "flex h-10 hover:text-slate-900 "
-                    : `text-sm transition-all duration-75 hover:text-bgColor`
-                }`}
-              >
-                {item?.name}{" "}
-                <FaArrowRight className="text ml-1 mt-1 text-[13px] duration-100 group-hover/item:translate-x-[1px] " />
-              </Link>
-              <span className="mx-1 text-spanColor"></span>
-            </div>
-          ))}
-        </Space>
-      </div>
       <div className="grid h-full grid-flow-col grid-rows-3 gap-4">
         <div className="flex flex-col">
           <div className="row-span-3 my-2 flex h-[max-content] w-[330px] flex-col rounded-2xl bg-white ">
@@ -190,31 +191,68 @@ const ChildCategories = () => {
             <ProductFilter />
           </div>
         </div>
-        <div className="product-section col-span-12 row-span-3 h-full w-full    p-3">
-          <div className="my-5 flex items-center justify-between  rounded-md bg-white p-2 text-left text-[15px]  ">
-            <div className="">
-              <Select
-                className="mx-5 w-[230px]"
-                options={[
-                  {
-                    label: "Yangi kelganlar",
-                    value: "Yangi kelganlar",
-                  },
-                  {
-                    label: "eskilar",
-                    value: "eskilar ",
-                  },
-                  {
-                    label: "arzonlar ",
-                    value: "arzonlar ",
-                  },
-                ]}
-              />
+        <div className="product-section col-span-5 row-span-3 h-full w-full    p-3">
+          <div className=" mt-5 flex h-max w-full  items-start justify-start  rounded-md  pb-5">
+            <Space direction="horizontal" wrap className="w-full">
+              {categories?.data?.content?.map((item, index) => (
+                <div className="flex items-center justify-center" key={index}>
+                  <Link
+                    to={`/category/${item?.id}?category-name=${item?.name
+                      ?.split(", ")
+                      ?.join("-")}`}
+                    className={`group/item flex  items-center justify-center rounded-full border px-3 py-1  ${
+                      paramName == item?.name
+                        ? "flex  hover:text-slate-900 "
+                        : `text-sm transition-all duration-75 hover:bg-bgColor/50 hover:text-textColor`
+                    }`}
+                  >
+                    {item?.name}{" "}
+                  </Link>
+                  <span className="mx-1 text-spanColor"></span>
+                </div>
+              ))}
+            </Space>
+          </div>
+          <div>
+            <div className="my-5 flex items-center justify-between  rounded-md bg-white text-left text-[15px]  ">
+              <div className="">
+                <Select
+                  className=" w-[230px]"
+                  options={[
+                    {
+                      label: "Yangi kelganlar",
+                      value: "Yangi kelganlar",
+                    },
+                    {
+                      label: "eskilar",
+                      value: "eskilar ",
+                    },
+                    {
+                      label: "arzonlar ",
+                      value: "arzonlar ",
+                    },
+                  ]}
+                />
+              </div>
+              <div className="">
+                <Select
+                  className=" w-[230px]"
+                  onChange={(e) => setRegions({ ...regions, regionId: e })}
+                  placeholder="viloyatni tanlang"
+                >
+                  {regions.regionData?.map((item, index) => (
+                    <Select.Option key={index} value={item?.id}>
+                      {item?.name}
+                    </Select.Option>
+                  ))}
+                </Select>
+              </div>
+
+              <SegmentedUi />
             </div>
 
-            <SegmentedUi />
+            <ProductGetList productFilterProps={data} isLoading={isLoading} />
           </div>
-          <ProductGetList productFilterProps={data} isLoading={isLoading} />
         </div>
       </div>
     </div>

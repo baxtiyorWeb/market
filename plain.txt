@@ -1,0 +1,2 @@
+/src/components/products ---- for Main Product Page;
+/src/pages/categories/getProductGetList ---- for filter products;

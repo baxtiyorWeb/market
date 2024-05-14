@@ -55,7 +55,7 @@ const Products = () => {
       !isLoading &&
       hasMore &&
       window.innerHeight + document.documentElement.scrollTop >=
-        document.documentElement.offsetHeight - 350 &&
+        document.documentElement.offsetHeight - 550 &&
       window.innerHeight + document.documentElement.scrollTop <
         document.documentElement.offsetHeight
     ) {

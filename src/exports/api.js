@@ -43,7 +43,7 @@ export const getCategoriesRootListSticky = async () => {
 // GET CATEGORY LIST PARENT ID
 
 export const getCategoriesRootLisId = async (id) => {
-  const res = await api.get(`/category/list?page=0&size=10&parentId=${id}`);
+  const res = await api.get(`/category/list?page=0&size=50&parentId=${id}`);
   return res.data;
 };
 
@@ -69,9 +69,10 @@ export const getCategoryPropertiesId = async (id) => {
   return res.data;
 };
 
-export const getProducts = async ({ pageParam }) => {
-  const res = await api.get(`/product/list?page=${pageParam}&size=${10}`);
-  return res.data;
+export const getProducts = async ({ page }) => {
+  console.log(page);
+  const res = await api.get(`/product/list?page=${page}&size=10`);
+  return res.data?.data?.content;
 };
 
 export const getProductWithCategoryId = async (id) => {
