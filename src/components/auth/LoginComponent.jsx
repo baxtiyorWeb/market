@@ -17,7 +17,8 @@ export default function LoginComponent() {
   const [inputType, setInputType] = useState("text");
   const navigate = useNavigate();
   const { loginAction } = useAuth();
-  const loginNameAndPassword = async () => {
+  const loginNameAndPassword = async (e) => {
+    e.preventDefault();
     try {
       setisLoading(true);
 
@@ -42,7 +43,10 @@ export default function LoginComponent() {
   }, []);
 
   return (
-    <div className="flex h-[80%] w-[80%] flex-col items-center justify-center ">
+    <form
+      onSubmit={loginNameAndPassword}
+      className="flex h-[80%] w-[80%] flex-col items-center justify-center "
+    >
       <h1 className="mb-5 mt-3 text-center text-2xl">Dasturga kirish</h1>
       <div className=" flex w-full flex-col items-start justify-center ">
         <span className="mb-1 w-auto text-left">loginingizni kiriting</span>
@@ -78,7 +82,7 @@ export default function LoginComponent() {
             signIn.username != "" && signIn.password != "" ? false : true
           }
           className="mb-5 mt-5 h-[50px] w-full rounded-md bg-bgColor text-white hover:text-[#fff] disabled:cursor-not-allowed disabled:bg-bgColor/60"
-          onClick={() => loginNameAndPassword()}
+          type={"submit"}
         >
           {isLoading ? (
             <Spin />
@@ -108,6 +112,6 @@ export default function LoginComponent() {
           ro&apos;yxatdan o&apos;tish
         </span>
       </Link>
-    </div>
+    </form>
   );
 }

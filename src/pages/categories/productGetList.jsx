@@ -31,7 +31,6 @@ const ProductGetList = ({ productFilterProps, isLoading }) => {
       setFastId(id);
     }
   };
-  console.log(productFilterProps);
   const content = (
     <>
       <div>
@@ -44,7 +43,7 @@ const ProductGetList = ({ productFilterProps, isLoading }) => {
             <Empty description={"elon mavjud emas"} />
           </div>
         ) : (
-          productFilterProps?.map((item, index) => (
+          productFilterProps?.data?.content?.map((item, index) => (
             <div
               className=" w-productWidth/2 relative h-[460px] flex-shrink-0 overflow-hidden rounded-md px-[10px]  pt-2  transition-all hover:shadow-lg "
               key={index}

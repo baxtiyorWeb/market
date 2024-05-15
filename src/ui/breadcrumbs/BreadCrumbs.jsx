@@ -2,8 +2,8 @@ import { Breadcrumb } from "antd";
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Breadcrumbs = ({ categoryId, categories }) => {
-  const categ = categories;
+const Breadcrumbs = ({ id, category }) => {
+  const categ = category;
   const breadcrumbsArr = [];
   let currentData = categ;
   while (currentData) {
@@ -13,12 +13,11 @@ const Breadcrumbs = ({ categoryId, categories }) => {
         fontSize="sm"
         key={currentData.id}
         prefixCls="/"
-        params={categoryId}
       >
-        <Breadcrumb.Item>
+        <Breadcrumb.Item key={id}>
           <Link
             className={` hover:text-[#212121] ${
-              currentData.id == categoryId
+              currentData.id == id
                 ? "text-red-500 hover:text-[#212121]"
                 : "hover:text-[#212121]"
             }`}
@@ -35,9 +34,7 @@ const Breadcrumbs = ({ categoryId, categories }) => {
             <div className="mr-3 flex -skew-x-6 items-center  justify-center rounded-sm">
               <span className=" transform rounded-md p-1 text-[13px]  hover:text-[#212121]">
                 {currentData?.name}{" "}
-                <span className="mx-5">
-                  {currentData.id == categoryId ? "" : "/"}
-                </span>
+                <span className="mx-5">{currentData.id == id ? "" : "/"}</span>
               </span>
             </div>
           </Link>

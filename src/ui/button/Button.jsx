@@ -1,11 +1,18 @@
 import React from "react";
 import { twMerge } from "tailwind-merge";
 
-export default function ButtonUI({ children, onClick, className, disabled }) {
+export default function ButtonUI({
+  children,
+  onClick,
+  className,
+  disabled,
+  type,
+}) {
   return (
     <button
       disabled={disabled}
       onClick={onClick}
+      type={type}
       className={
         className
           ? className
