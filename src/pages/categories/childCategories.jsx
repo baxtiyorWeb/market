@@ -16,7 +16,7 @@ const ChildCategories = () => {
   // Data states
   const [regions, setRegions] = useState({
     regions: [],
-    regionId: searchParams.get("region") || "",
+    regionId: searchParams.get("region"),
   });
   const [categoryRoot, setCategoryRoot] = useState([]);
   const [categoryChild, setCategoryChild] = useState([]);
@@ -100,7 +100,8 @@ const ChildCategories = () => {
     const params = new URLSearchParams(searchParams);
     if (value) {
       params.set(key, value);
-    } else {
+    }
+    if (productFilterSearch.value != "") {
       params.delete(key);
     }
     setSearchParams(params);
