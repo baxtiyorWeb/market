@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { Input, Select, Space } from "antd";
-import React, { useEffect, useState } from "react";
-import { FaArrowRight, FaSearch } from "react-icons/fa";
+import React, { useEffect, useRef, useState } from "react";
+import { FaArrowLeft, FaArrowRight, FaSearch } from "react-icons/fa";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import api from "../../config/api/api";
 import BreadCrumbs from "../../ui/breadcrumbs/BreadCrumbs";
@@ -21,8 +21,11 @@ const ChildCategories = () => {
   const [categoryRoot, setCategoryRoot] = useState([]);
   const [categoryChild, setCategoryChild] = useState([]);
   const [category, setCategory] = useState();
+  const [categoryIndex, setCategoryIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const categoryChildRef = useRef(categoryChild.length);
+  const totalItems = categoryChild.length;
   const [productFilterSearch, setProductFilterSearch] = useState({
     value: searchParams.get("search") || "",
     save: [],
@@ -96,19 +99,6 @@ const ChildCategories = () => {
   };
 
   // Update search parameters
-  const updateSearchParams = (key, value) => {
-    const params = new URLSearchParams(searchParams);
-    if (value) {
-      params.set(key, value);
-    }
-    if (productFilterSearch.value != "") {
-      params.delete(key);
-    }
-    setSearchParams(params);
-  };
-
-  const search = searchParams.get("search") || "";
-  const region = searchParams.get("region") || "";
 
   // Fetch product list based on filters
   const productList = async () => {
@@ -137,16 +127,20 @@ const ChildCategories = () => {
     getCategoryChildWithId();
     getCategoryWithId();
     regionsData();
-  }, [id]);
+  }, [id, regions.regionId, productFilterSearch.value]);
 
-  useEffect(() => {
-    if (regions.regionId) {
-      updateSearchParams("region", regions.regionId);
-    }
-    if (productFilterSearch.value) {
-      updateSearchParams("search", productFilterSearch.value);
-    }
-  }, [regions.regionId, productFilterSearch.value]);
+  /* -------------------------------------------------------------------------- */
+  /*                                    other functionally                                   */
+  /* -------------------------------------------------------------------------- */
+
+  const nextCategorySlider = () => {
+    setCategoryIndex((prevIndex) => prevIndex + (categoryChild.length - 1));
+    console.log(categoryIndex);
+  };
+
+  const prevCategorySlider = () => {
+    setCategoryIndex((prevIndex) => prevIndex - (1 % categoryChild.length));
+  };
 
   return (
     <div className="child-categ h-full flex-col items-start justify-center">
@@ -188,26 +182,49 @@ const ChildCategories = () => {
             <ProductFilter />
           </div>
         </div>
-        <div className="product-section col-span-5 row-span-3 h-full w-full p-3">
-          <div className="mt-5 flex h-max w-full items-start justify-start rounded-md pb-5">
-            <Space direction="horizontal" wrap className="w-full">
-              {categoryChild.length === 0
-                ? "empty data"
-                : categoryChild?.map((item, index) => (
-                    <div
-                      className="flex items-center justify-center"
-                      key={index}
-                    >
-                      <Link
-                        to={`/category/${item?.id}`}
-                        className="group/item flex items-center justify-center rounded-full border px-3 py-1 hover:bg-bgColor/50 hover:text-slate-900"
-                      >
-                        {item?.name}
-                      </Link>
-                      <span className="mx-1 text-spanColor"></span>
-                    </div>
-                  ))}
-            </Space>
+        <div className="col-span-5 row-span-3 h-full w-[85%] border p-3">
+          <div className="relative mt-5 flex h-max w-full items-center justify-start  overflow-hidden rounded-md  border px-10 pb-5">
+            {categoryIndex !== -1 && (
+              <button
+                onClick={prevCategorySlider}
+                className="absolute bottom-5 left-1 z-30 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-bgColor text-textColor "
+              >
+                <FaArrowLeft />
+              </button>
+            )}
+
+            {categoryChild.length === 0 ? (
+              <h1 className="h-10">empty data</h1>
+            ) : (
+              categoryChild?.map((item, index) => (
+                <div
+                  style={{
+                    transform: `translateX(${categoryIndex * 110}px)`,
+                    transition: "0.3s ease-in-out",
+                  }}
+                  className={` mt-3 flex items-center justify-center  transition-none duration-150 `}
+                  key={index}
+                  ref={categoryChildRef}
+                >
+                  <Link
+                    to={`/category/${item?.id}`}
+                    className="group/item flex items-center justify-center rounded-full border px-3 py-1 hover:bg-bgColor/50 hover:text-slate-900"
+                  >
+                    {item?.name}
+                  </Link>
+                  <span className="mx-1 text-spanColor"></span>
+                </div>
+              ))
+            )}
+
+            {ChildCategories.length !== categoryIndex && (
+              <button
+                onClick={nextCategorySlider}
+                className="absolute bottom-5 right-1 z-30 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-bgColor text-textColor "
+              >
+                <FaArrowRight />
+              </button>
+            )}
           </div>
           <div>
             <div className="my-5 flex items-center justify-between rounded-md bg-white text-left text-[15px]">
@@ -235,7 +252,6 @@ const ChildCategories = () => {
                   className="w-[230px]"
                   onChange={(e) => setRegions({ ...regions, regionId: e })}
                   placeholder="viloyatni tanlang"
-                  value={region}
                 >
                   {regions.regions?.map((item, index) => (
                     <Select.Option key={index} value={item?.id}>
@@ -249,7 +265,6 @@ const ChildCategories = () => {
                 <Input
                   placeholder="e'lonlarni qidirish"
                   className="h-10 rounded-br-none rounded-tr-none focus:border-none"
-                  defaultValue={search}
                   onChange={(e) =>
                     setProductFilterSearch({
                       ...productFilterSearch,
