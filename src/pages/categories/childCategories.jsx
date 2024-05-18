@@ -1,11 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import { Input, Select, Space } from "antd";
 import React, { useEffect, useRef, useState } from "react";
-import { FaArrowLeft, FaArrowRight, FaSearch } from "react-icons/fa";
+import { FaArrowRight, FaSearch } from "react-icons/fa";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import api from "../../config/api/api";
 import BreadCrumbs from "../../ui/breadcrumbs/BreadCrumbs";
 import SegmentedUi from "../../ui/segmented/Segmented";
+import "./categories.css";
+import CategorySlider from "./categorySlider";
 import ProductFilter from "./productFilter/ProductFilter";
 import ProductGetList from "./productGetList";
 
@@ -24,8 +26,8 @@ const ChildCategories = () => {
   const [categoryIndex, setCategoryIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const categoryChildRef = useRef(categoryChild.length);
-  const totalItems = categoryChild.length;
+  const totalItems = Math.min(categoryChild.length, 5); // 5 ta element
+  const currentWidth = useRef(null);
   const [productFilterSearch, setProductFilterSearch] = useState({
     value: searchParams.get("search") || "",
     save: [],
@@ -133,17 +135,8 @@ const ChildCategories = () => {
   /*                                    other functionally                                   */
   /* -------------------------------------------------------------------------- */
 
-  const nextCategorySlider = () => {
-    setCategoryIndex((prevIndex) => prevIndex + (categoryChild.length - 1));
-    console.log(categoryIndex);
-  };
-
-  const prevCategorySlider = () => {
-    setCategoryIndex((prevIndex) => prevIndex - (1 % categoryChild.length));
-  };
-
   return (
-    <div className="child-categ h-full flex-col items-start justify-center">
+    <div className="child-categ h-full flex-col items-start justify-center border">
       <BreadCrumbs category={category} id={id} />
 
       <div className="flex w-full items-center justify-start rounded-md">
@@ -156,7 +149,7 @@ const ChildCategories = () => {
             <div className="flex items-center justify-center" key={index}>
               <Link
                 to={`/category/${item?.id}`}
-                className="group/item flex items-center justify-center rounded-full border px-3 py-1 hover:bg-bgColor/50 hover:text-slate-900"
+                className="group/item flex items-center justify-center  border-b border-b-transparent px-3 py-1 hover:border-b-bgColor  hover:text-slate-900"
               >
                 {item?.name}
               </Link>
@@ -175,57 +168,15 @@ const ChildCategories = () => {
       </div>
       <div className="grid h-full grid-flow-col grid-rows-3 gap-4">
         <div className="flex flex-col">
-          <div className="row-span-3 my-2 flex h-[max-content] w-[330px] flex-col rounded-2xl bg-white">
-            <div className="my-5 border-b border-b-gray-500 text-left text-[15px] font-bold">
+          <div className="child-category row-span-3 my-2 flex h-[max-content] w-[330px] flex-col rounded-2xl bg-white">
+            <div className=" my-5 border-b border-b-gray-500 text-left text-[15px] font-bold">
               Saralash
             </div>
             <ProductFilter />
           </div>
         </div>
-        <div className="col-span-5 row-span-3 h-full w-[85%] border p-3">
-          <div className="relative mt-5 flex h-max w-full items-center justify-start  overflow-hidden rounded-md  border px-10 pb-5">
-            {categoryIndex !== -1 && (
-              <button
-                onClick={prevCategorySlider}
-                className="absolute bottom-5 left-1 z-30 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-bgColor text-textColor "
-              >
-                <FaArrowLeft />
-              </button>
-            )}
-
-            {categoryChild.length === 0 ? (
-              <h1 className="h-10">empty data</h1>
-            ) : (
-              categoryChild?.map((item, index) => (
-                <div
-                  style={{
-                    transform: `translateX(${categoryIndex * 110}px)`,
-                    transition: "0.3s ease-in-out",
-                  }}
-                  className={` mt-3 flex items-center justify-center  transition-none duration-150 `}
-                  key={index}
-                  ref={categoryChildRef}
-                >
-                  <Link
-                    to={`/category/${item?.id}`}
-                    className="group/item flex items-center justify-center rounded-full border px-3 py-1 hover:bg-bgColor/50 hover:text-slate-900"
-                  >
-                    {item?.name}
-                  </Link>
-                  <span className="mx-1 text-spanColor"></span>
-                </div>
-              ))
-            )}
-
-            {ChildCategories.length !== categoryIndex && (
-              <button
-                onClick={nextCategorySlider}
-                className="absolute bottom-5 right-1 z-30 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-bgColor text-textColor "
-              >
-                <FaArrowRight />
-              </button>
-            )}
-          </div>
+        <div className="col-span-5 row-span-3 h-full w-[1053px] border  p-3 px-10">
+          <CategorySlider data={categoryChild} />
           <div>
             <div className="my-5 flex items-center justify-between rounded-md bg-white text-left text-[15px]">
               <div>
