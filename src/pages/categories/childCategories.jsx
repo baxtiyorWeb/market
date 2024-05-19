@@ -136,7 +136,7 @@ const ChildCategories = () => {
   /* -------------------------------------------------------------------------- */
 
   return (
-    <div className="child-categ h-full flex-col items-start justify-center border">
+    <div className="child-categ h-full flex-col items-start justify-center ">
       <BreadCrumbs category={category} id={id} />
 
       <div className="flex w-full items-center justify-start rounded-md">
@@ -175,7 +175,7 @@ const ChildCategories = () => {
             <ProductFilter />
           </div>
         </div>
-        <div className="col-span-5 row-span-3 h-full w-[1053px] border  p-3 px-10">
+        <div className="col-span-5 row-span-3 h-full w-[1053px]   p-3 px-10">
           <CategorySlider data={categoryChild} />
           <div>
             <div className="my-5 flex items-center justify-between rounded-md bg-white text-left text-[15px]">

@@ -1,7 +1,15 @@
 import axios from "axios";
 
+function getParamsLangQuery() {
+  const lang = localStorage.getItem("lang");
+  return lang;
+}
+
 export default axios.create({
   baseURL: "http://95.130.227.131:8080/api/v1",
+  params: {
+    lang: getParamsLangQuery(),
+  },
   headers: {
     "ngrok-skip-browser-warning": true,
     Authorization: `Bearer ${localStorage.getItem("accessToken")}`,

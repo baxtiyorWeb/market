@@ -1,9 +1,16 @@
 import { FaGlobe } from "react-icons/fa";
 
+import { Select } from "antd";
 import { Link } from "react-router-dom";
 import m_logo from "../../assets/m_logo.png";
+import { en, ru, uz } from "../../common/common";
 import Container from "../../shared/Container";
 export default function Navigation() {
+  const language = (langText) => {
+    localStorage.setItem("lang", langText);
+    window.location.reload();
+  };
+
   return (
     <div className="max-sm:w-full h-max bg-gray-500/10   ">
       <Container>
@@ -21,15 +28,31 @@ export default function Navigation() {
             "
             >
               <FaGlobe className="mx-2" />
-              <span className="flex h-[40px] w-[50px] items-center justify-center   border-r border-[#ffffff] text-[#212121] hover:bg-[#fdd355]">
-                UZ
-              </span>
-              <span className="flex h-[40px] w-[50px] items-center justify-center   border-r border-[#ffffff] text-[#212121] hover:bg-[#fdd355]">
-                EN
-              </span>
-              <span className="flex h-[40px] w-[50px] items-center justify-center   border-r border-[#ffffff] text-[#212121] hover:bg-[#fdd355]">
-                RU
-              </span>
+              <Select
+                placeholder={"tilni tanlang"}
+                className="flex h-[40px] w-[90px] items-center justify-center   border-r border-[#ffffff] bg-[transparent_!important] text-[#212121] hover:bg-[#fdd355]"
+                onChange={(e) => language(e)}
+                value={localStorage.getItem("lang")}
+              >
+                <Select.Option key={"uz"} value="uz">
+                  <div className="flex items-center justify-between">
+                    {" "}
+                    uz <img src={uz} alt="" className="h-5 w-5" />
+                  </div>
+                </Select.Option>
+                <Select.Option key={"en"} value="en">
+                  <div className="flex items-center justify-between">
+                    {" "}
+                    en <img src={en} alt="" className="h-5 w-5" />
+                  </div>
+                </Select.Option>
+                <Select.Option key={"ru"} value="ru">
+                  <div className="flex items-center justify-between">
+                    {" "}
+                    ru <img src={ru} alt="" className="h-5 w-5" />
+                  </div>
+                </Select.Option>
+              </Select>
             </div>
           </div>
         </div>
