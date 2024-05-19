@@ -32,7 +32,11 @@ export default function Navigation() {
                 placeholder={"tilni tanlang"}
                 className="flex h-[40px] w-[90px] items-center justify-center   border-r border-[#ffffff] bg-[transparent_!important] text-[#212121] hover:bg-[#fdd355]"
                 onChange={(e) => language(e)}
-                value={localStorage.getItem("lang")}
+                value={
+                  localStorage.getItem("lang") === null
+                    ? "uz"
+                    : localStorage.getItem("lang")
+                }
               >
                 <Select.Option key={"uz"} value="uz">
                   <div className="flex items-center justify-between">

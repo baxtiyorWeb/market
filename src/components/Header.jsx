@@ -12,7 +12,7 @@ import useProductSearch from "../hooks/product/useProductSearch";
 import Categoriyes from "../ui/Categoriyes";
 import Regions from "./regions/regions";
 
-export default function Header() {
+export default function Header({ update, setUpdate }) {
   const [open, setOpen] = useState(false);
   const [scroll, setScroll] = useState(false);
   const { handleInputChange, handleButtonClick } = useProductSearch();
@@ -91,7 +91,7 @@ export default function Header() {
             </form>
           </div>
           <div className="flex w-[25%] items-center justify-end">
-            <HeadUserLinks />
+            <HeadUserLinks update={update} setUpdate={setUpdate} />
           </div>
         </div>
       </Container>

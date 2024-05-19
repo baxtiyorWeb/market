@@ -28,6 +28,7 @@ const CategoriesLayout = lazy(() => import("./layout/categoriesLayout"));
 
 const App = () => {
   const [scroll, setScroll] = useState(null);
+  const [update, setUpdate] = useState([]);
   return (
     <>
       <Helmet>
@@ -37,12 +38,21 @@ const App = () => {
       <div className="fixed z-[10000] ml-5 p-2"></div>
 
       <Routes>
-        <Route exact path="/" element={<Layout />}>
+        <Route
+          exact
+          path="/"
+          element={<Layout update={update} setUpdate={setUpdate} />}
+        >
           <Route
             path="/"
             element={
               <React.Suspense fallback={<Loading />}>
-                <Home scroll={scroll} setScroll={setScroll} />
+                <Home
+                  setUpdate={setUpdate}
+                  update={update}
+                  scroll={scroll}
+                  setScroll={setScroll}
+                />
               </React.Suspense>
             }
           />

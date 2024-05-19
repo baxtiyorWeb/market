@@ -9,12 +9,13 @@ import LazyLoad from "react-lazy-load";
 import { Link } from "react-router-dom";
 import { useDebouncedCallback } from "use-debounce";
 import api from "../../config/api/api";
+import useAddFavourite from "../../hooks/useAddFavourite";
 import useToggle from "../../hooks/useToggle";
 import Overlay from "./../../ui/Overlay";
 import FastDetailView from "./FastDetailView";
 import "./Product.css";
 
-const Products = () => {
+const Products = ({ setUpdate }) => {
   const fetchData = async (page) => {
     try {
       const res = await api.get(`/product/list?page=${page}&size=5`);
@@ -23,13 +24,14 @@ const Products = () => {
       throw new Error(error.message);
     }
   };
+  const { saveLocalProductFavourite, update, savedLocal, savedProductLength } =
+    useAddFavourite();
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
   const [id, setId] = useState();
-  const [saveProduct, setSaveProduct] = useState([]);
-
+  const existing = JSON.parse(localStorage.getItem("product")) || [];
   const likedProduct = async () => {
     const liked = await api.get("/favorite-product/list");
     const likeData = liked.data?.data?.content?.map((item) => item?.id);
@@ -99,48 +101,10 @@ const Products = () => {
     if (page === 0) {
       setPage(0); // Sahifalashni boshlash uchun
     }
-  }, [page]);
+  }, [page, update, savedLocal()]);
 
-  const saveLocalProuctFavourite = (
-    id,
-    img,
-    name,
-    price,
-    sellType,
-    paymentType,
-    viewCount,
-    region,
-    canAgree,
-  ) => {
-    const productItem = {
-      id,
-      img,
-      name,
-      price,
-      sellType,
-      paymentType,
-      viewCount,
-      region,
-      canAgree,
-    };
-
-    setSaveProduct([...saveProduct, productItem]);
-
-    const productCheckId = localStorage.getItem("product");
-
-    if (localStorage.getItem("product") != null) {
-      productCheckId.map((item) => console.log(item.id));
-    }
-
-    if (id) {
-      localStorage.setItem(
-        "product",
-        JSON.stringify([...saveProduct, productItem]),
-      );
-    } else {
-      alert("id bir xil");
-    }
-  };
+  // Example usage (uncomment and modify as needed)
+  // saveLocalProductFavourite(1, 'img/path', 'Product Name', 100, 'Sell Type', 'Payment Type', 10, 'Region', true);
 
   // if (error) return "An error has occurred: " + error.message;
   return (
@@ -177,7 +141,7 @@ const Products = () => {
       <div className="response_product_category grid grid-cols-5 gap-2 2xs:grid 2xs:grid-cols-2">
         {data?.map((item, index) => (
           <div
-            className="re lative relative h-[460px] w-productWidth flex-shrink-0 overflow-hidden rounded-md px-[10px]  pt-2  transition-all hover:shadow-lg "
+            className="re lative relative h-[480px] w-productWidth flex-shrink-0 overflow-hidden rounded-md px-[10px]  pt-2  transition-all hover:shadow-lg "
             key={index}
           >
             <span className="absolute left-3 top-5 z-50 bg-red-500 px-1 text-sm  text-white">
@@ -234,9 +198,11 @@ const Products = () => {
                 </div>
               </div>
             </div>
+
             <div className="flex h-20 flex-col justify-between    ">
               <span className="text inline-flex w-max items-center  rounded-md bg-bgColor px-2 py-2  font-poppins text-[18px] font-medium  not-italic leading-[100%] text-textColor ">
                 {item?.price}
+
                 <p className="ml-1">so{"'"}m</p>
               </span>{" "}
               <div className="text flex items-center justify-between font-poppins  font-normal leading-[100%] tracking-[-0.22px] text-spanColor">
@@ -247,22 +213,25 @@ const Products = () => {
                 <div className="flex items-center justify-center">
                   <span
                     onClick={() =>
-                      saveLocalProuctFavourite(
+                      saveLocalProductFavourite(
                         item?.id,
-                        item?.img,
+                        `data:image/png;base64,${item.file?.fileBase64}`,
+                        item?.name,
                         item?.price,
-                        item?.sellType,
-                        item?.paymentType,
+                        item?.sellTypeName,
+                        item?.paymentTypeName,
                         item?.viewCount,
                         item?.regionName,
                         item?.canAgree,
                       )
                     }
-                    className={
-                      item?.id === id
-                        ? "r mx-1 flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-md  bg-bgColor text-whiteTextColor hover:bg-whiteTextColor hover:text-whiteTextColor"
-                        : "r mx-1 flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-md  bg-whiteTextColor text-bgColor hover:bg-bgColor hover:text-whiteTextColor"
-                    }
+                    className={`h-[40px] w-[40px]
+                        ${existing?.map(
+                          (items) =>
+                            items?.id === item?.id &&
+                            "r mx-1 flex  h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-md  bg-bgColor text-whiteTextColor   hover:text-whiteTextColor",
+                        )}
+                    `}
                   >
                     <CiHeart className="cursor-pointer text-[28px]" />
                   </span>
