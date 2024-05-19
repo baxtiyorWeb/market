@@ -15,7 +15,7 @@ export default {
         linkTextColor: "#3db4ec",
         textColor: "#000000",
         spanColor: "#959EA7",
-        borderColor: "rgb(148, 163, 184)",
+        borderColor: "FFBE1E",
         errorTextColor: "#EF4444",
         whiteTextColor: "#fff",
       },

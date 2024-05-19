@@ -28,6 +28,7 @@ const Products = () => {
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
   const [id, setId] = useState();
+  const [saveProduct, setSaveProduct] = useState([]);
 
   const likedProduct = async () => {
     const liked = await api.get("/favorite-product/list");
@@ -99,6 +100,48 @@ const Products = () => {
       setPage(0); // Sahifalashni boshlash uchun
     }
   }, [page]);
+
+  const saveLocalProuctFavourite = (
+    id,
+    img,
+    name,
+    price,
+    sellType,
+    paymentType,
+    viewCount,
+    region,
+    canAgree,
+  ) => {
+    const productItem = {
+      id,
+      img,
+      name,
+      price,
+      sellType,
+      paymentType,
+      viewCount,
+      region,
+      canAgree,
+    };
+
+    setSaveProduct([...saveProduct, productItem]);
+
+    const productCheckId = localStorage.getItem("product");
+
+    if (localStorage.getItem("product") != null) {
+      productCheckId.map((item) => console.log(item.id));
+    }
+
+    if (id) {
+      localStorage.setItem(
+        "product",
+        JSON.stringify([...saveProduct, productItem]),
+      );
+    } else {
+      alert("id bir xil");
+    }
+  };
+
   // if (error) return "An error has occurred: " + error.message;
   return (
     <div className="mt-5 h-full w-full">
@@ -203,7 +246,18 @@ const Products = () => {
                 </span>
                 <div className="flex items-center justify-center">
                   <span
-                    onClick={() => setQueryParams(item?.id)}
+                    onClick={() =>
+                      saveLocalProuctFavourite(
+                        item?.id,
+                        item?.img,
+                        item?.price,
+                        item?.sellType,
+                        item?.paymentType,
+                        item?.viewCount,
+                        item?.regionName,
+                        item?.canAgree,
+                      )
+                    }
                     className={
                       item?.id === id
                         ? "r mx-1 flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-md  bg-bgColor text-whiteTextColor hover:bg-whiteTextColor hover:text-whiteTextColor"

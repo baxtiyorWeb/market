@@ -1,33 +1,51 @@
-/* antd design add styles end*/
-
-/* tabs styled */
+/* root css config */
 :root {
-  --color: rgb(118, 207, 207);
+  --color: red;
+  --background-color: #fff;
+  --box-shadow: #0000001a;
+  --border-color: 0 5px 10px #0000001a;
+  --ant-checkbox-background: #ffbe1e;
+  --ant-checkbox-border: #ffbe1e;
 }
 
-.tabs-active {
-  @apply mt-6 block h-[100%] overflow-scroll  border;
+/* ant check box style */
+
+.ant-checkbox-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5px;
+  width: 28px !important;
+  height: 28px !important;
 }
-.tabs-none {
-  @apply hidden;
+.ant-checkbox-checked .ant-checkbox-inner {
+  background: var(--ant-checkbox-background) !important;
+}
+.ant-checkbox-inner {
+  border: 1px solid var(--ant-checkbox-border) !important;
 }
 
-.tab-el-active {
-  @apply flex h-[45px] w-[150px] cursor-pointer  select-none items-center justify-center rounded-md border bg-white duration-500;
+.ant-checkbox-inner::after {
+  transform: scale(1.5) rotate(45deg) !important;
+  position: relative !important;
+  top: 20% !important;
+  left: 38% !important;
 }
-.tab-icon {
-  @apply ml-1 mr-1 text-[20px];
+.ant-collapse-header {
+  border-radius: 10px;
+  transition: 0.1s ease !important;
+  user-select: none;
 }
-
-.tab-el {
-  @apply flex h-[45px] w-[150px] cursor-pointer  select-none items-center justify-center rounded-md border bg-[#EBEBEB] text-[#545454] transition-all duration-500 hover:bg-white;
+.ant-collapse-header:hover {
+  background-color: rgba(112, 128, 144, 0.111);
+  color: #5c5c5c !important;
 }
 
 .adjust_button_hover_drawer.ant-btn:hover {
-  border-color: white !important;
-  background: #fff !important;
+  border-color: var(--border-color) !important;
+  background: var(--background-color) !important;
 }
-
+/* .slider-container-styck style */
 .slider-container-styck .slick-arrow {
   scale: 1;
   transition: 0.3s ease;
@@ -51,8 +69,8 @@
   outline: none;
   cursor: pointer;
   border-radius: 100% !important;
-  background: white !important;
-  box-shadow: 0 5px 10px #0000001a !important;
+  background: var(--background-color) !important;
+  box-shadow: var(--border-color) !important;
 }
 .slider-container-styck .slick-next:hover {
   box-shadow: 0px 0px 0px !important;
@@ -66,7 +84,7 @@
   right: 33% !important;
   top: 53% !important;
   font-size: 25px !important;
-  color: red !important;
+  color: var(--color) !important;
 }
 .slider-container-styck .slick-prev::before {
   content: "<" !important;
@@ -74,7 +92,7 @@
   right: 33% !important;
   top: 53% !important;
   font-size: 25px !important;
-  color: red !important;
+  color: var(--color) !important;
 }
 .slider-container-styck .slick-prev {
   position: absolute;
@@ -93,11 +111,129 @@
   outline: none;
   cursor: pointer;
   border-radius: 100% !important;
-  background: white !important;
-  box-shadow: 0 5px 10px #0000001a !important;
+  background: var(--background-color) !important;
+  box-shadow: var(--border-color) !important;
 }
 .slider-container-styck .slick-slide {
   display: flex !important;
   justify-content: center;
   align-items: center;
 }
+/* .slider-container-styck style end*/
+
+/* child-categ style */
+
+.child-categ .slick-arrow {
+  transition: 0.3s ease;
+  width: 30px !important;
+  height: 30px !important;
+  top: 35% !important;
+  box-shadow: var(--border-color);
+}
+.child-categ .slick-arrow:hover {
+  box-shadow: 0 0 0 0 !important
+  ;
+}
+
+.child-categ .slick-next {
+  position: absolute;
+  right: 10px;
+  display: block;
+  margin-top: -10px;
+  padding: 0;
+  color: transparent;
+  font-size: 0;
+  line-height: 0;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  border-radius: 100% !important;
+  background: var(--background-color) !important;
+}
+.child-categ .slick-next::before {
+  content: ">" !important;
+  position: absolute !important;
+  right: 33% !important;
+  top: 53% !important;
+  font-size: 25px !important;
+  color: var(--color) !important;
+}
+.child-categ .slick-prev::before {
+  content: "<" !important;
+  position: absolute !important;
+  right: 33% !important;
+  top: 53% !important;
+  font-size: 25px !important;
+  color: var(--color) !important;
+}
+.child-categ .slick-prev {
+  position: absolute;
+  top: 45%;
+  left: 30px;
+  z-index: 100;
+  display: block;
+  width: 40px;
+  height: 40px;
+  margin-top: -10px;
+  padding: 0;
+  color: transparent;
+  font-size: 0;
+  line-height: 0;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  border-radius: 100% !important;
+  background: var(--background-color) !important;
+}
+.child-categ .slick-dots li {
+  position: relative;
+  top: -50px !important;
+}
+.child-categ .slick-dots li::before {
+  content: "";
+}
+.child-categ .slick-dots {
+  position: relative !important;
+  top: 10px !important;
+  width: max-content !important;
+  margin: 20px auto;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+.child-categ .slick-dots li button {
+  background: var(--color) !important;
+  padding: 3px !important;
+  max-width: 100px !important;
+  /* border-radius: 0 0 0 0 !important; */
+}
+.child-categ .slick-dots li {
+  position: relative !important;
+  top: -15px !important;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  /* padding: 5px; */
+  width: 10px !important;
+  max-height: 20px !important;
+}
+
+/* .tabs style */
+.tabs-active {
+  @apply mt-6 block h-[100%] overflow-scroll  border;
+}
+.tabs-none {
+  @apply hidden;
+}
+
+.tab-el-active {
+  @apply flex h-[45px] w-[150px] cursor-pointer  select-none items-center justify-center rounded-md border bg-white duration-500;
+}
+.tab-icon {
+  @apply ml-1 mr-1 text-[20px];
+}
+
+.tab-el {
+  @apply flex h-[45px] w-[150px] cursor-pointer  select-none items-center justify-center rounded-md border bg-[#EBEBEB] text-[#545454] transition-all duration-500 hover:bg-white;
+}
+/* .tabs style  end*/
