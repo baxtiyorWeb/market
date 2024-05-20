@@ -81,6 +81,7 @@ const Products = ({ setUpdate }) => {
   const getFastid = (id) => {
     if (id !== undefined) {
       handleToggle();
+      // fast id
       setFastId(id);
     }
   };

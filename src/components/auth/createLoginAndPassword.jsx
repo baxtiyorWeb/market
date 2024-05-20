@@ -8,7 +8,7 @@ const CreateLoginAndPassword = () => {
   return (
     <div className="flex flex-col items-center justify-center">
       <div className="flex flex-col items-center justify-center">
-        <span className="mb-3 w-full text-left">loginingizni kiriting</span>
+        <span className="mb-3  w-full text-left">loginingizni kiriting</span>
         <Input
           className="mb-5 h-14 w-[328px] rounded-md border p-3 text-xl outline-none"
           placeholder="login"
