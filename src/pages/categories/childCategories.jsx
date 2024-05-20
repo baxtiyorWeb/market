@@ -22,7 +22,7 @@ const ChildCategories = () => {
   });
   const [categoryRoot, setCategoryRoot] = useState([]);
   const [categoryChild, setCategoryChild] = useState([]);
-  const [category, setCategory] = useState();
+  const [category, setCategory] = useState([]);
   const [categoryIndex, setCategoryIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -58,9 +58,9 @@ const ChildCategories = () => {
       setIsLoading(true);
       const response = await api.get(`/category/${id}`);
       if (response.status === 200) {
-        if (response.data?.data?.length > 0) {
-          setCategory(response.data.data);
-        }
+        const res = await response.data;
+        const data = res?.data;
+        setCategory(data);
       }
     } catch (error) {
       setError(error.message);
@@ -68,7 +68,6 @@ const ChildCategories = () => {
       setIsLoading(false);
     }
   };
-
   // Fetch root categories
   const categoriesRootList = async () => {
     try {
@@ -134,7 +133,6 @@ const ChildCategories = () => {
   /* -------------------------------------------------------------------------- */
   /*                                    other functionally                                   */
   /* -------------------------------------------------------------------------- */
-
   return (
     <div className="child-categ h-full flex-col items-start justify-center ">
       <BreadCrumbs category={category} id={id} />
@@ -149,7 +147,12 @@ const ChildCategories = () => {
             <div className="flex items-center justify-center" key={index}>
               <Link
                 to={`/category/${item?.id}`}
-                className="group/item flex items-center justify-center  border-b border-b-transparent px-3 py-1 hover:border-b-bgColor  hover:text-slate-900"
+                className={`
+                 ${
+                   item?.id === category?.id
+                     ? `group/item flex items-center justify-center border-b  border-b-bgColor border-b-transparent px-3 py-1  hover:text-slate-900`
+                     : `group/item flex items-center justify-center border-b  border-b-transparent px-3 py-1 hover:border-b-bgColor hover:text-slate-900`
+                 }`}
               >
                 {item?.name}
               </Link>

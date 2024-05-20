@@ -15,7 +15,7 @@ import Overlay from "./../../ui/Overlay";
 import FastDetailView from "./FastDetailView";
 import "./Product.css";
 
-const Products = ({ setUpdate }) => {
+const Products = () => {
   const fetchData = async (page) => {
     try {
       const res = await api.get(`/product/list?page=${page}&size=5`);
