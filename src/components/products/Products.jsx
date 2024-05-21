@@ -17,7 +17,7 @@ import "./Product.css";
 
 const Products = () => {
   const fetchProducts = async ({ pageParam = 0 }) => {
-    const res = await api.get(`/product/list?page=${pageParam}&size=5`);
+    const res = await api.get(`/product/list?page=${pageParam}&size=30`);
     return res.data.data.content;
   };
   const { saveLocalProductFavourite, update, savedLocal, savedProductLength } =
@@ -229,9 +229,10 @@ const Products = () => {
         )}
       </div>
       <div className="mb-[50px] mt-[50px] flex items-center justify-center">
-        {isFetchingNextPage && (
-          <Spin indicator={<LoadingOutlined style={{ fontSize: 50 }} />} />
-        )}
+        {isFetchingNextPage ||
+          (isLoading && (
+            <Spin indicator={<LoadingOutlined style={{ fontSize: 50 }} />} />
+          ))}
       </div>
     </div>
   );
