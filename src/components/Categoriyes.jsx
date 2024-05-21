@@ -35,7 +35,7 @@ export default function Categoriyes() {
   if (isLoading) return <Loading />;
 
   return (
-    <div className="slider-container-styck mb-10 h-[140px] w-full  p-1">
+    <div className="slider-container-styck mt-10  h-[200px] w-full   p-1">
       <Carousel
         draggable
         className="flex select-none items-center justify-center"
@@ -49,17 +49,17 @@ export default function Categoriyes() {
         {data?.data?.content?.map((item, index) => (
           <div
             key={index}
-            className="my-5  flex h-[196px_!important] w-[160px_!important] flex-col items-center justify-center  "
+            className="my-5 flex h-[196px_!important] w-[160px_!important] flex-col items-center justify-center"
           >
             <Link
               to={`/category/${item?.id}?category-name=${item?.name
                 .split(", ")
                 .join("-")}`}
-              className="group  flex flex-col items-center  justify-center  rounded-sm text-center text-sm "
+              className="group flex  flex-col  items-center justify-center rounded-full   text-center text-sm "
             >
               <img
                 src={`data:image/png;base64,${item?.file?.fileBase64}`}
-                className="my-2 h-[100px] w-[100px] rounded-full border object-cover"
+                className="my-2 h-[120px] w-[120px] rounded-full  border border-bgColor object-cover  p-3 "
                 alt=""
               />
               <span className="mt-3 text-center font-poppins  font-normal  not-italic leading-[100%] text-textColor group-hover:text-bgColor">

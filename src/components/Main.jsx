@@ -5,8 +5,11 @@ import Products from "./products/Products";
 export default function Main({ setUpdate, update }) {
   return (
     <div>
-      <div className="flex flex-col items-start justify-between ">
+      <div className="my-5 flex  h-[332px] w-full items-center justify-between">
         <Slider />
+        <div className=" h-full w-[20%] rounded-xl border border-bgColor "></div>
+      </div>
+      <div>
         <Categoriyes scroll={scroll} />
       </div>
       <div>

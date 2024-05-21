@@ -1,6 +1,6 @@
 /* root css config */
 :root {
-  --color: red;
+  --color: #ffbe1e;
   --background-color: #fff;
   --box-shadow: #0000001a;
   --border-color: 0 5px 10px #0000001a;
@@ -208,6 +208,99 @@
   /* border-radius: 0 0 0 0 !important; */
 }
 .child-categ .slick-dots li {
+  position: relative !important;
+  top: -15px !important;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  /* padding: 5px; */
+  width: 10px !important;
+  max-height: 20px !important;
+}
+
+.slider-home .slick-arrow {
+  scale: 0;
+  transition: 0.3s ease;
+}
+.slider-home:hover .slick-arrow {
+  scale: 1;
+}
+.slider-home .slick-next {
+  position: absolute;
+  top: 45%;
+  right: 10px;
+  display: block;
+  width: 40px;
+  height: 40px;
+  margin-top: -10px;
+  padding: 0;
+  color: transparent;
+  font-size: 0;
+  line-height: 0;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  border-radius: 100% !important;
+  background: white !important;
+}
+.slider-home .slick-next::before {
+  content: ">" !important;
+  position: absolute !important;
+  right: 33% !important;
+  top: 53% !important;
+  font-size: 25px !important;
+  color: var(--color) !important;
+}
+.slider-home .slick-prev::before {
+  content: "<" !important;
+  position: absolute !important;
+  right: 33% !important;
+  top: 53% !important;
+  font-size: 25px !important;
+  color: var(--color) !important;
+}
+.slider-home .slick-prev {
+  position: absolute;
+  top: 45%;
+  left: 10px;
+  z-index: 100;
+  display: block;
+  width: 40px;
+  height: 40px;
+  margin-top: -10px;
+  padding: 0;
+  color: transparent;
+  font-size: 0;
+  line-height: 0;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  border-radius: 100% !important;
+  background: var(--background-color) !important;
+}
+.slider-home .slick-dots li {
+  position: relative;
+  top: -50px !important;
+}
+.slider-home .slick-dots li::before {
+  content: "";
+}
+.slider-home .slick-dots {
+  position: relative !important;
+  top: 10px !important;
+  width: max-content !important;
+  margin: 20px auto;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+.slider-home .slick-dots li button {
+  background: var(--color) !important;
+  padding: 3px !important;
+  max-width: 100px !important;
+  /* border-radius: 0 0 0 0 !important; */
+}
+.slider-home .slick-dots li {
   position: relative !important;
   top: -15px !important;
   display: flex !important;

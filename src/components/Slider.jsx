@@ -1,8 +1,7 @@
 import { Carousel } from "antd";
-import "./Slider.css";
 export default function Slider() {
   return (
-    <div className="slider-home mb-10 mt-5  h-[332px] w-full rounded-2xl border">
+    <div className="slider-home   h-full w-[78%] rounded-2xl border">
       <Carousel
         draggable
         className="select-none "
