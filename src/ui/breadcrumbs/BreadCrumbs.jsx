@@ -1,8 +1,20 @@
+import { useQuery } from "@tanstack/react-query";
 import { Breadcrumb } from "antd";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import api from "../../config/api/api";
 
-const Breadcrumbs = ({ id, category }) => {
+const Breadcrumbs = () => {
+  const { id } = useParams();
+  const getCategoryWithId = async () => {
+    const response = await api.get(`/category/${id}`);
+    return response.data?.data;
+  };
+
+  const { data: category } = useQuery({
+    queryKey: ["category", id],
+    queryFn: getCategoryWithId,
+  });
   const categ = category;
   const breadcrumbsArr = [];
   let currentData = categ;

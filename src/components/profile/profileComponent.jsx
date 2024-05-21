@@ -16,9 +16,8 @@ export default function ProfileComponent() {
       const res = await api.get("/user/1");
       setUser(res.data?.data);
     } catch (error) {
-      error.response.status === 403
-        ? (window.location = "/auth/login")
-        : (window.location = "/profile/dashboard?tab=1");
+      window.location = "/auth/login";
+      throw new Error(error?.response?.message);
     }
   };
   useEffect(() => {

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Input, Select, Space } from "antd";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaArrowRight, FaSearch } from "react-icons/fa";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import api from "../../config/api/api";
@@ -21,53 +21,17 @@ const ChildCategories = () => {
     regionId: searchParams.get("region"),
   });
   const [categoryRoot, setCategoryRoot] = useState([]);
-  const [categoryChild, setCategoryChild] = useState([]);
-  const [category, setCategory] = useState([]);
-  const [categoryIndex, setCategoryIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const totalItems = Math.min(categoryChild.length, 5); // 5 ta element
-  const currentWidth = useRef(null);
   const [productFilterSearch, setProductFilterSearch] = useState({
     value: searchParams.get("search") || "",
     save: [],
   });
 
   // Fetch child categories by id
-  const getCategoryChildWithId = async () => {
-    try {
-      setIsLoading(true);
-      const response = await api.get(
-        `/category/list?page=0&size=50&parentId=${id}`,
-      );
-      if (response.status === 200) {
-        if (response.data?.data?.content?.length > 0) {
-          setCategoryChild(response.data.data.content);
-        }
-      }
-    } catch (error) {
-      setError(error.message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   // Fetch category by id
-  const getCategoryWithId = async () => {
-    try {
-      setIsLoading(true);
-      const response = await api.get(`/category/${id}`);
-      if (response.status === 200) {
-        const res = await response.data;
-        const data = res?.data;
-        setCategory(data);
-      }
-    } catch (error) {
-      setError(error.message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+
   // Fetch root categories
   const categoriesRootList = async () => {
     try {
@@ -125,8 +89,6 @@ const ChildCategories = () => {
 
   useEffect(() => {
     categoriesRootList();
-    getCategoryChildWithId();
-    getCategoryWithId();
     regionsData();
   }, [id, regions.regionId, productFilterSearch.value]);
 
@@ -135,7 +97,7 @@ const ChildCategories = () => {
   /* -------------------------------------------------------------------------- */
   return (
     <div className="child-categ h-full flex-col items-start justify-center ">
-      <BreadCrumbs category={category} id={id} />
+      <BreadCrumbs />
 
       <div className="flex w-full items-center justify-start rounded-md">
         <h1 className="text-1xl mr-5 flex items-center justify-center">
@@ -149,7 +111,7 @@ const ChildCategories = () => {
                 to={`/category/${item?.id}`}
                 className={`
                  ${
-                   item?.id === category?.id
+                   item?.id === id
                      ? `group/item flex items-center justify-center border-b  border-b-bgColor border-b-transparent px-3 py-1  hover:text-slate-900`
                      : `group/item flex items-center justify-center border-b  border-b-transparent px-3 py-1 hover:border-b-bgColor hover:text-slate-900`
                  }`}
@@ -179,7 +141,7 @@ const ChildCategories = () => {
           </div>
         </div>
         <div className="col-span-5 row-span-3 h-full w-[1053px]   p-3 px-10">
-          <CategorySlider data={categoryChild} />
+          <CategorySlider />
           <div>
             <div className="my-5 flex items-center justify-between rounded-md bg-white text-left text-[15px]">
               <div>

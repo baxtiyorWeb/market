@@ -76,7 +76,7 @@ const ProductInfo = ({ productDetail }) => {
         <h3 className="text-[20px] font-semibold text-black">
           Qisqacha ma’lumot
         </h3>
-        <p className="text-foreground break-all font-poppins text-[16px] font-normal leading-[30px]">
+        <p className="text-foreground break-all font-poppins text-[16px] font-normal leading-[30px] text-[#73818c]">
           {productDetail?.description}
         </p>
       </div>
