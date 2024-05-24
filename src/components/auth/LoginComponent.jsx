@@ -4,8 +4,8 @@ import { FaArrowRight, FaEye, FaEyeSlash, FaTelegram } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../../config/api/api";
-import { useAuth } from "../../context/AuthContext";
 import ButtonUI from "../../ui/button/Button";
+import { useAuth } from "./../../context/authContext";
 
 export default function LoginComponent() {
   const [signIn, setSignIn] = useState({
