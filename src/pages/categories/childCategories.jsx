@@ -14,7 +14,6 @@ import ProductGetList from "./productGetList";
 const ChildCategories = () => {
   const { id } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
-
   // Data states
   const [regions, setRegions] = useState({
     regions: [],
@@ -23,11 +22,53 @@ const ChildCategories = () => {
   const [categoryRoot, setCategoryRoot] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const [productFilterSearch, setProductFilterSearch] = useState({
-    value: searchParams.get("search") || "",
-    save: [],
-  });
 
+  const [filter, setFilter] = useState({
+    search: "",
+    regionId: "",
+    price: "",
+  });
+  useEffect(() => {
+    const params = Object.fromEntries([...searchParams]);
+    setFilter({
+      search: params.search || "",
+      regionId: params.regionId || "",
+      price: params.price || "",
+    });
+  }, []);
+
+  useEffect(() => {
+    const params = {};
+    if (filter.search) params.search = filter.search;
+    if (filter.regionId) params.regionId = filter.regionId;
+    if (filter.price) params.price = filter.price;
+    setSearchParams(params);
+  }, [filter]);
+
+  // const filterProducts = () => {
+  //   let filteredProduct = [...products];
+
+  //   if (filter.search) {
+  //     filteredProduct = filteredProduct.filter((product) =>
+  //       product.name.toLowerCase().includes(filter.search.toLowerCase()),
+  //     );
+  //   }
+  //   if (filter.regionId) {
+  //     filteredProduct = filteredProduct.filter(
+  //       (product) => product.regionId === filter.regionId,
+  //     );
+  //   }
+  //   if (filter.price) {
+  //     const [minPrice, maxPrice] = filter.price.split("-").map(Number);
+  //     filteredProduct = filteredProduct.filter(
+  //       (product) => product.price >= minPrice && product.price <= maxPrice,
+  //     );
+  //   }
+
+  //   return filteredProduct;
+  // };
+
+  // const filters = filterProducts();
   // Fetch child categories by id
 
   // Fetch category by id
@@ -69,11 +110,11 @@ const ChildCategories = () => {
   const productList = async () => {
     let regionIdFiltersetApi = "";
     let searchFiltersetApi = "";
-    if (regions.regionId) {
-      regionIdFiltersetApi = `&regionId=${regions.regionId}`;
+    if (filter.regionId) {
+      regionIdFiltersetApi = `&regionId=${filter.regionId}`;
     }
-    if (productFilterSearch.value) {
-      searchFiltersetApi = `&search=${productFilterSearch.value}`;
+    if (filter.search) {
+      searchFiltersetApi = `&search=${filter.search}`;
     }
 
     const response = await api.get(
@@ -83,14 +124,14 @@ const ChildCategories = () => {
   };
 
   const { data: filteredProducts } = useQuery({
-    queryKey: ["product", id, regions.regionId, productFilterSearch.value],
+    queryKey: ["product", id],
     queryFn: productList,
   });
 
   useEffect(() => {
     categoriesRootList();
     regionsData();
-  }, [id, regions.regionId, productFilterSearch.value]);
+  }, [id, filter.regionId, filter.value]);
 
   /* -------------------------------------------------------------------------- */
   /*                                    other functionally                                   */
@@ -166,7 +207,7 @@ const ChildCategories = () => {
               <div>
                 <Select
                   className="w-[230px]"
-                  onChange={(e) => setRegions({ ...regions, regionId: e })}
+                  onChange={(e) => setFilter({ ...filter, regionId: e })}
                   placeholder="viloyatni tanlang"
                 >
                   {regions.regions?.map((item, index) => (
@@ -182,10 +223,7 @@ const ChildCategories = () => {
                   placeholder="e'lonlarni qidirish"
                   className="h-10 rounded-br-none rounded-tr-none focus:border-none"
                   onChange={(e) =>
-                    setProductFilterSearch({
-                      ...productFilterSearch,
-                      value: e.target.value,
-                    })
+                    setFilter({ ...filter, search: e.target.value })
                   }
                 />
                 <span

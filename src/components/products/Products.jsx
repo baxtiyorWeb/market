@@ -177,7 +177,7 @@ const Products = () => {
                       <span className="text mt-3 flex items-center justify-between font-poppins text-[13px] font-normal leading-[100%] tracking-[-0.22px] text-spanColor">
                         <div className="flex items-center justify-center">
                           <BsCalendarDate className="mr-3" />
-                          <span>2024-04-28</span>
+                          <span>{item?.dateValue}</span>
                         </div>
                       </span>
                     </div>

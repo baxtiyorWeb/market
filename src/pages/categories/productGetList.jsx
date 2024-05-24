@@ -21,9 +21,12 @@ const ProductGetList = ({ productFilterProps, isLoading }) => {
   const { handleToggle, isOpen } = useToggle();
   const search = searchable[0].get("search");
   const { data: productFilters } = useQuery({
-    queryKey: ["product", id],
-    queryFn: () => productWithCategoryFilter(search, id),
+    queryKey: ["product", id, search],
+    queryFn: () => {
+      productWithCategoryFilter(search, id), { keepPreviousData: true };
+    },
   });
+  console.log(productFilters);
 
   const getFastid = (id) => {
     if (id !== undefined) {
@@ -95,7 +98,7 @@ const ProductGetList = ({ productFilterProps, isLoading }) => {
                       <span className="text mt-3 flex items-center justify-between font-poppins text-[13px] font-normal leading-[100%] tracking-[-0.22px] text-spanColor">
                         <div className="flex items-center justify-center">
                           <BsCalendarDate className="mr-3" />
-                          <span>2024-04-28</span>
+                          <span>{item?.dateValue}</span>
                         </div>
                       </span>
                     </div>

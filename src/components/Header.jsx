@@ -2,11 +2,14 @@
 import Container from "../shared/Container";
 
 import { MenuOutlined } from "@ant-design/icons";
+import { Select } from "antd";
 import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { MdClose } from "react-icons/md";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
+import m_logo from "../assets/logo.png";
 import menuIcon from "../assets/menuIcon.svg";
+import { en, ru, uz } from "../common/common";
 import HeadUserLinks from "../components/header/HeadUserLinks";
 import useProductSearch from "../hooks/product/useProductSearch";
 import Categoriyes from "../ui/Categoriyes";
@@ -18,6 +21,10 @@ export default function Header({ update, setUpdate }) {
   const { handleInputChange, handleButtonClick } = useProductSearch();
   const searchable = useSearchParams();
   const search = searchable[0].get("search");
+  const language = (langText) => {
+    localStorage.setItem("lang", langText);
+    window.location.reload();
+  };
   // scroll
 
   useEffect(() => {
@@ -49,6 +56,15 @@ export default function Header({ update, setUpdate }) {
     >
       <Container>
         <div className="flex h-full w-full items-center justify-between">
+          <Link to={"/"}>
+            {" "}
+            <img
+              src={m_logo}
+              alt=""
+              className="h-[60px] w-[240px] object-cover"
+            />
+          </Link>
+
           <button
             className="flex h-[40px] w-[120px] flex-shrink-0 items-center justify-between rounded-md border border-bgColor bg-bgColor p-2 text-center text-textColor"
             onClick={() => setOpen(!open)}
@@ -56,31 +72,28 @@ export default function Header({ update, setUpdate }) {
             {!open ? (
               <MenuOutlined src={menuIcon} alt="" />
             ) : (
-              <MdClose className=" text-[30px] " />
+              <MdClose className="text-[30px] " />
             )}
             <span className="text font-poppins  text-[18px] font-normal not-italic leading-[100%]">
               Katalog
             </span>
           </button>
           <Categoriyes open={open} setOpen={setOpen} scroll={scroll} />
-          <div
-            onClick={() => setOpen(false)}
-            className="mx-10 h-auto w-auto p-0  "
-          >
+          <div onClick={() => setOpen(false)} className=" h-auto w-auto p-0  ">
             <Regions opens={open} setOpens={setOpen} />
           </div>
 
-          <div onClick={() => setOpen(false)} className="ml-12">
+          <div onClick={() => setOpen(false)}>
             <form
               onSubmit={handleButtonClick}
-              className="flex items-center justify-center"
+              className="mx-5 flex items-center justify-center"
             >
               <input
                 onChange={handleInputChange}
                 type="text"
                 placeholder="Qidiruv"
                 defaultValue={search}
-                className="h-[40px] w-[650px] rounded-bl-md rounded-tl-md border border-bgColor bg-[#F9F9F9] pl-[19px] text-[#959EA7] outline-none"
+                className="h-[40px] w-[510px]  rounded-bl-md rounded-tl-md border border-bgColor bg-[#F9F9F9] pl-[19px] text-[#959EA7] outline-none"
               />
               <button
                 type="submit"
@@ -90,8 +103,45 @@ export default function Header({ update, setUpdate }) {
               </button>
             </form>
           </div>
-          <div className="flex w-[25%] items-center justify-end">
+          <div className="flex w-auto items-center justify-end">
             <HeadUserLinks update={update} setUpdate={setUpdate} />
+          </div>
+          <div className="user-menu flex w-auto items-center justify-end">
+            <div
+              className="ml-3 mr-3 flex cursor-pointer items-center 
+              justify-end rounded-md   
+            "
+            >
+              <Select
+                placeholder={"tilni tanlang"}
+                className="flex h-[40px] w-[90px] items-center justify-center   border-r border-[#ffffff] bg-[transparent_!important] text-[#212121] hover:bg-[#fdd355]"
+                onChange={(e) => language(e)}
+                value={
+                  localStorage.getItem("lang") === null
+                    ? "uz"
+                    : localStorage.getItem("lang")
+                }
+              >
+                <Select.Option key={"uz"} value="uz">
+                  <div className="flex items-center justify-between">
+                    {" "}
+                    uz <img src={uz} alt="" className="h-5 w-5" />
+                  </div>
+                </Select.Option>
+                <Select.Option key={"en"} value="en">
+                  <div className="flex items-center justify-between">
+                    {" "}
+                    en <img src={en} alt="" className="h-5 w-5" />
+                  </div>
+                </Select.Option>
+                <Select.Option key={"ru"} value="ru">
+                  <div className="flex items-center justify-between">
+                    {" "}
+                    ru <img src={ru} alt="" className="h-5 w-5" />
+                  </div>
+                </Select.Option>
+              </Select>
+            </div>
           </div>
         </div>
       </Container>

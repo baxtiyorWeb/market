@@ -125,8 +125,10 @@ export const getRegions = async () => {
 // filter product for api returns
 
 export const productWithCategoryFilter = async (search, id) => {
-  if (id == null) return false;
-  const res = await api.get(`/product/list?page=0&size=10&categoryId=${id}`);
+  if (id == null || search == null) return false;
+  const res = await api.get(
+    `/product/list?page=0&size=10&categoryId=${id}&search=${search}`,
+  );
   return res.data;
 };
 export const getProductWithCategoryFilter = async (id) => {
