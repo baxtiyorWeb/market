@@ -48,7 +48,7 @@ export default function Details() {
               >
                 <span className=" text-sm">{item?.propertyDto?.name}</span>
                 <span className=" text-sm font-medium text-black">
-                  {item?.stringValue || item?.intValue}
+                  {item?.stringValue || item?.intValue || item?.doubleValue}
                 </span>
               </div>
             ))}

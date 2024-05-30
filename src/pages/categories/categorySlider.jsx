@@ -1,23 +1,35 @@
-import { useQuery } from "@tanstack/react-query";
 import { Carousel, Spin } from "antd";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import api from "../../config/api/api";
 
 const CategorySlider = () => {
   const { id } = useParams();
+  const [categoryChild, setCategoryChild] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const getCategoryChildWithId = async () => {
-    const response = await api.get(
-      `/category/list?page=0&size=50&parentId=${id}`,
-    );
-
-    return response.data?.data;
+    try {
+      setIsLoading(true);
+      const response = await api.get(
+        `/category/list?page=0&size=50&parentId=${id}`,
+      );
+      if (response?.status === 200) {
+        if (response?.data?.data?.content?.length === 0) {
+          return false;
+        } else {
+          setCategoryChild(response.data?.data);
+        }
+      }
+    } catch (error) {
+      console.log(error?.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const { data: categoryChild, isLoading } = useQuery({
-    queryKey: ["category/list", id],
-    queryFn: getCategoryChildWithId,
-  });
+  useEffect(() => {
+    getCategoryChildWithId();
+  }, [id]);
 
   return (
     <>

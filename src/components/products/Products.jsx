@@ -1,5 +1,5 @@
 import { LoadingOutlined } from "@ant-design/icons";
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { Image, Spin, message } from "antd";
 import { useEffect, useState } from "react";
 import { BsCalendarDate } from "react-icons/bs";
@@ -17,8 +17,23 @@ import "./Product.css";
 
 const Products = () => {
   const fetchProducts = async ({ pageParam = 0 }) => {
-    const res = await api.get(`/product/list?page=${pageParam}&size=30`);
-    return res.data.data.content;
+    const res = await api.get(`/product/list`, {
+      data: JSON.stringify({
+        categoryId: 154,
+        districtId: 0,
+        regionId: 0,
+        paymentTypeId: 0,
+        sellTypeId: 0,
+        ownProducts: false,
+        userId: 0,
+        valueFilter: [],
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      maxBodyLength: Infinity,
+    });
+    return res.data;
   };
   const { saveLocalProductFavourite, update, savedLocal, savedProductLength } =
     useAddFavourite();
@@ -61,12 +76,12 @@ const Products = () => {
     hasNextPage,
     isFetchingNextPage,
     isLoading,
-  } = useInfiniteQuery({
-    queryKey: ["product"],
+  } = useQuery({
+    queryKey: ["product/list"],
     queryFn: fetchProducts,
 
-    getNextPageParam: (lastPage, pages) =>
-      lastPage.length ? pages.length : false,
+    // getNextPageParam: (lastPage, pages) =>
+    //   lastPage.length ? pages.length : false,
   });
 
   const handleScroll = () => {

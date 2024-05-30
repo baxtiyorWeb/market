@@ -125,11 +125,24 @@ export const getRegions = async () => {
 // filter product for api returns
 
 export const productWithCategoryFilter = async (search, id) => {
-  if (id == null || search == null) return false;
-  const res = await api.get(
-    `/product/list?page=0&size=10&categoryId=${id}&search=${search}`,
-  );
-  return res.data;
+  // if (id == null || search == null) return false;
+
+  const response = await api.get("/product/list", {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    data: JSON.stringify({
+      categoryId: 0,
+      districtId: 0,
+      regionId: 0,
+      paymentTypeId: 0,
+      sellTypeId: 0,
+      ownProducts: false,
+      userId: 0,
+      valueFilter: [],
+    }),
+  });
+  return response.data;
 };
 export const getProductWithCategoryFilter = async (id) => {
   const res = await api.get(`/category/list?page=0&size=20&parentId=${id}`);

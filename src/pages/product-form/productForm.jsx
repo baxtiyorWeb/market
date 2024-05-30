@@ -60,7 +60,7 @@ export default function AddProductCategory() {
   });
   const [nextProductData, setNextProductData] = useState([{}]);
   const { isOpen } = useToggle();
-
+  console.log(nextProductData);
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
@@ -175,6 +175,8 @@ export default function AddProductCategory() {
   useEffect(() => {
     getSellType();
     getPaymenType();
+
+    console.log(propertiesData);
   }, []);
   return (
     <div className="product-layout">
@@ -279,7 +281,8 @@ export default function AddProductCategory() {
                       type={
                         (item?.valueTypeDto?.typeName === "INTEGER" &&
                           "number") ||
-                        (item?.valueTypeDto?.typeName === "STRING" && "text")
+                        (item?.valueTypeDto?.typeName === "STRING" && "text") ||
+                        (item?.valueTypeDto?.typeName === "DOUBLE" && "number")
                       }
                       required
                       className="focus:border-[1px_solid_rgb(59 130 246)] mt-2 h-[50px] w-[334px] shrink-0 rounded-[5px] border border-[#E2E2E2] bg-[#FAFAFA] p-3 font-poppins text-[16px] outline-none"
@@ -288,6 +291,7 @@ export default function AddProductCategory() {
                         nextProductData[index]?.stringValue ||
                         nextProductData[index]?.intValue ||
                         nextProductData[index]?.booleanValue ||
+                        nextProductData[index]?.doubleValue ||
                         nextProductData[index]?.dateValue ||
                         ""
                       }
@@ -296,6 +300,8 @@ export default function AddProductCategory() {
                         let stringValue =
                           nextProductData[index]?.stringValue || "";
                         let intValue = nextProductData[index]?.intValue || "";
+                        let doubleValue =
+                          nextProductData[index]?.doubleValue || "";
 
                         // Property's value type detection
                         const valueType = item?.valueTypeDto?.typeName;
@@ -305,6 +311,8 @@ export default function AddProductCategory() {
                           intValue = value;
                         } else if (valueType === "STRING") {
                           stringValue = value;
+                        } else if (valueType === "DOUBLE") {
+                          doubleValue = value;
                         }
 
                         const updatedData = [...nextProductData]; // Copy the array
@@ -315,6 +323,7 @@ export default function AddProductCategory() {
                           valueTypeId: item?.valueTypeDto?.id || 3,
                           stringValue,
                           intValue,
+                          doubleValue,
                         }; // Update the data in the array
                         setNextProductData(updatedData); // Update the state
                       }}

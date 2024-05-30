@@ -1,9 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
 import { Input, Select, Space } from "antd";
 import React, { useEffect, useState } from "react";
 import { FaArrowRight, FaSearch } from "react-icons/fa";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import api from "../../config/api/api";
+import useFilter from "../../hooks/product/useFilter";
 import BreadCrumbs from "../../ui/breadcrumbs/BreadCrumbs";
 import SegmentedUi from "../../ui/segmented/Segmented";
 import "./categories.css";
@@ -14,15 +14,17 @@ import ProductGetList from "./productGetList";
 const ChildCategories = () => {
   const { id } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
+  const { data, saveFilter, manufacture } = useFilter();
   // Data states
   const [regions, setRegions] = useState({
     regions: [],
-    regionId: searchParams.get("region"),
+    regionId: searchParams.get("regionId"),
   });
   const [categoryRoot, setCategoryRoot] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-
+  const propertyName = manufacture.propertyName;
+  const propertyValue = manufacture.propertyValue;
   const [filter, setFilter] = useState({
     search: "",
     regionId: "",
@@ -35,13 +37,14 @@ const ChildCategories = () => {
       regionId: params.regionId || "",
       price: params.price || "",
     });
-  }, []);
+  }, [searchParams]);
 
   useEffect(() => {
     const params = {};
     if (filter.search) params.search = filter.search;
     if (filter.regionId) params.regionId = filter.regionId;
     if (filter.price) params.price = filter.price;
+    if (filter.propertyId) params.propertyId = filter.propertyId;
     setSearchParams(params);
   }, [filter]);
 
@@ -107,31 +110,11 @@ const ChildCategories = () => {
   // Update search parameters
 
   // Fetch product list based on filters
-  const productList = async () => {
-    let regionIdFiltersetApi = "";
-    let searchFiltersetApi = "";
-    if (filter.regionId) {
-      regionIdFiltersetApi = `&regionId=${filter.regionId}`;
-    }
-    if (filter.search) {
-      searchFiltersetApi = `&search=${filter.search}`;
-    }
-
-    const response = await api.get(
-      `/product/list?page=0&size=10&categoryId=${id}${regionIdFiltersetApi}${searchFiltersetApi}`,
-    );
-    return response.data;
-  };
-
-  const { data: filteredProducts } = useQuery({
-    queryKey: ["product", id],
-    queryFn: productList,
-  });
 
   useEffect(() => {
     categoriesRootList();
     regionsData();
-  }, [id, filter.regionId, filter.value]);
+  }, [id, filter.regionId, filter.value, saveFilter]);
 
   /* -------------------------------------------------------------------------- */
   /*                                    other functionally                                   */
@@ -167,9 +150,9 @@ const ChildCategories = () => {
 
       <div className="text mb-3 mt-5 flex items-center justify-start text-[36px] font-medium leading-[49px] text-[#111]">
         <span className="text mx-3 mt-3 text-sm text-gray-500">
-          {filteredProducts?.data?.content?.length === 0
+          {data?.data?.data?.content?.length === 0
             ? "e'lon mavjud emas"
-            : filteredProducts?.data?.content?.length}
+            : data?.data?.data?.content?.length}
         </span>
       </div>
       <div className="grid h-full grid-flow-col grid-rows-3 gap-4">
@@ -178,7 +161,12 @@ const ChildCategories = () => {
             <div className=" my-5 border-b border-b-gray-500 text-left text-[15px] font-bold">
               Saralash
             </div>
-            <ProductFilter />
+            <ProductFilter
+              filter={filter}
+              setFilter={setFilter}
+              setSearchParams={setSearchParams}
+              searchParams={searchParams}
+            />
           </div>
         </div>
         <div className="col-span-5 row-span-3 h-full w-[1053px]   p-3 px-10">
@@ -207,7 +195,9 @@ const ChildCategories = () => {
               <div>
                 <Select
                   className="w-[230px]"
-                  onChange={(e) => setFilter({ ...filter, regionId: e })}
+                  onChange={(e) => {
+                    setFilter({ ...filter, regionId: e });
+                  }}
                   placeholder="viloyatni tanlang"
                 >
                   {regions.regions?.map((item, index) => (
@@ -228,7 +218,7 @@ const ChildCategories = () => {
                 />
                 <span
                   className="flex h-10 w-10 cursor-pointer items-center justify-center border border-l-0 border-[#808080] bg-bgColor"
-                  onClick={() => productList()}
+                  // onClick={() => productList()}
                 >
                   <FaSearch />
                 </span>
@@ -237,10 +227,7 @@ const ChildCategories = () => {
               <SegmentedUi />
             </div>
 
-            <ProductGetList
-              productFilterProps={filteredProducts}
-              isLoading={isLoading}
-            />
+            <ProductGetList isLoading={isLoading} />
           </div>
         </div>
       </div>

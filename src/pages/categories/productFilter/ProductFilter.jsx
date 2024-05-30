@@ -1,10 +1,15 @@
 import React from "react";
 import Exports from "../../../data/export";
 
-const ProductFilter = () => {
+const ProductFilter = ({
+  filter,
+  setFilter,
+  setSearchParams,
+  searchParams,
+}) => {
   return (
     <div>
-      <div className="flex flex-col items-center justify-center">
+      {/* <div className="flex flex-col items-center justify-center">
         <div className="inline-flex w-full items-center justify-between">
           <span>dan</span>
           <span>gacha</span>
@@ -23,10 +28,15 @@ const ProductFilter = () => {
             placeholder="0"
           />
         </div>
-      </div>
+      </div> */}
 
       <div>
-        <Exports />
+        <Exports
+          filter={filter}
+          setFilter={setFilter}
+          setSearchParams={setSearchParams}
+          searchParams={searchParams}
+        />
       </div>
     </div>
   );

@@ -15,8 +15,10 @@
   align-items: center;
   justify-content: center;
   margin-top: 5px;
-  width: 28px !important;
-  height: 28px !important;
+  width: 20px !important;
+  height: 20px !important;
+  font-size: 10px !important;
+  padding: 5px;
 }
 .ant-checkbox-checked .ant-checkbox-inner {
   background: var(--ant-checkbox-background) !important;
@@ -28,8 +30,8 @@
 .ant-checkbox-inner::after {
   transform: scale(1.5) rotate(45deg) !important;
   position: relative !important;
-  top: 20% !important;
-  left: 38% !important;
+  top: -20% !important;
+  left: 10% !important;
 }
 .ant-collapse-header {
   border-radius: 10px;
