@@ -37,7 +37,7 @@ const ChildCategories = () => {
       regionId: params.regionId || "",
       price: params.price || "",
     });
-  }, [searchParams]);
+  }, []);
 
   useEffect(() => {
     const params = {};
