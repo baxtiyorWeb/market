@@ -142,7 +142,7 @@ const Products = () => {
         {product?.pages?.map((page) =>
           page?.map((item, index) => (
             <div
-              className="re lative relative h-[480px] w-productWidth flex-shrink-0 overflow-hidden rounded-md px-[10px]  pt-2  transition-all hover:shadow-lg "
+              className=" relative h-[480px] w-productWidth flex-shrink-0 overflow-hidden rounded-md px-[10px]  pt-2  transition-all hover:shadow-lg "
               key={index}
             >
               <span className="absolute left-3 top-5 z-50 bg-red-500 px-1 text-sm  text-white">
