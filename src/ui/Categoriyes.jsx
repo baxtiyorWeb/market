@@ -23,9 +23,9 @@ export default function Categoriyes({ open, setOpen }) {
             onClick={() => setOpen(false)}
           />
         </div>
-        {open
-          ? backgroundHidden() || <Catalogue open={open} />
-          : setOpen(false) || backgroundUnset()}
+        {(open && <Catalogue open={open} />) ||
+          setOpen(false) ||
+          backgroundUnset()}
       </div>
     </div>
   );

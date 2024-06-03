@@ -12,7 +12,7 @@ const useProduct = () => {
   const [hasMore, setHasMore] = useState(true);
   const { ref, inView } = useInView();
   const getProducts = async ({ page }) => {
-    console.log(page);
+    page;
     const res = await api.get(`/product/list?page=${page}&size=10`);
     return res.data?.data?.content;
   };
@@ -51,7 +51,7 @@ const useProduct = () => {
     }
   }, [inView, hasNextPage, fetchNextPage]);
 
-  console.log(product);
+  product;
 
   return { product, hasMore, isFetchingNextPage };
 };

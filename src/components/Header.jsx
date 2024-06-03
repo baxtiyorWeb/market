@@ -1,19 +1,18 @@
 /* eslint-disable react/prop-types */
 import Container from "../shared/Container";
-
-import { MenuOutlined } from "@ant-design/icons";
-import { Select } from "antd";
 import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { MdClose } from "react-icons/md";
-import { Link, useSearchParams } from "react-router-dom";
-import m_logo from "../assets/logo.png";
-import menuIcon from "../assets/menuIcon.svg";
-import { en, ru, uz } from "../common/common";
 import HeadUserLinks from "../components/header/HeadUserLinks";
 import useProductSearch from "../hooks/product/useProductSearch";
 import Categoriyes from "../ui/Categoriyes";
 import Regions from "./regions/regions";
+import { MenuOutlined } from "@ant-design/icons";
+import { en, ru, uz } from "../common/common";
+import { Link, useSearchParams } from "react-router-dom";
+import { Select } from "antd";
+import menuIcon from "../assets/menuIcon.svg";
+import m_logo from "../assets/logo.png";
 
 export default function Header({ update, setUpdate }) {
   const [open, setOpen] = useState(false);
@@ -33,10 +32,7 @@ export default function Header({ update, setUpdate }) {
       const updateScrollDirection = () => {
         const scrollY = window.scrollY;
         const direction = scrollY > lastScrollY ? "down" : "up";
-        if (
-          direction !== scroll &&
-          (scrollY - lastScrollY > 1 || scrollY - lastScrollY < -10)
-        ) {
+        if (direction !== scroll && (scrollY - lastScrollY > 1 || scrollY - lastScrollY < -10)) {
           setScroll(direction);
         }
         lastScrollY = scrollY > 0 ? scrollY : 0;
@@ -48,103 +44,105 @@ export default function Header({ update, setUpdate }) {
     }
   }, []);
 
-  return (
-    <div
-      className={`sticky ${
-        scroll === "down" ? "top-[-180px]" : " top-0"
-      } transitiona-all left-0 top-0 z-[300]   flex h-[100px] w-full  flex-col items-center justify-center bg-white  duration-500`}
-    >
-      <Container>
-        <div className="flex h-full w-full items-center justify-between">
-          <Link to={"/"}>
-            {" "}
-            <img
-              src={m_logo}
-              alt=""
-              className="h-[60px] w-[240px] object-cover"
-            />
-          </Link>
-
-          <button
-            className="flex h-[40px] w-[120px] flex-shrink-0 items-center justify-between rounded-md border border-bgColor bg-bgColor p-2 text-center text-textColor"
-            onClick={() => setOpen(!open)}
-          >
-            {!open ? (
-              <MenuOutlined src={menuIcon} alt="" />
-            ) : (
-              <MdClose className="text-[30px] " />
-            )}
-            <span className="text font-poppins  text-[18px] font-normal not-italic leading-[100%]">
-              Katalog
-            </span>
-          </button>
-          <Categoriyes open={open} setOpen={setOpen} scroll={scroll} />
-          <div onClick={() => setOpen(false)} className=" h-auto w-auto p-0  ">
-            <Regions opens={open} setOpens={setOpen} />
-          </div>
-
-          <div onClick={() => setOpen(false)}>
-            <form
-              onSubmit={handleButtonClick}
-              className="mx-5 flex items-center justify-center"
-            >
-              <input
-                onChange={handleInputChange}
-                type="text"
-                placeholder="Qidiruv"
-                defaultValue={search}
-                className="h-[40px] w-[510px]  rounded-bl-md rounded-tl-md border border-bgColor bg-[#F9F9F9] pl-[19px] text-[#959EA7] outline-none"
+  return (<>
+      {/*<ResponsiveBottomMenu/>*/}
+      <div
+        className={`sticky    ${scroll === "down" ? "top-[-180px]" : " top-0"} transitiona-all left-0 top-0 z-[300] flex  h-[100px] w-full flex-col  items-center  justify-center bg-white duration-500    sm:bg-blue-500`}
+      >
+        <Container>
+          <div className="flex h-full  w-full items-center justify-between">
+            <Link to={"/"}>
+              {" "}
+              <img
+                src={m_logo}
+                alt=""
+                className="h-[60px] w-[240px] object-cover"
               />
-              <button
-                type="submit"
-                className="flex h-[40px] w-[50px]  items-center justify-center rounded-br-md rounded-tr-md bg-btnColor "
-              >
-                <FaSearch className="text-white" />
-              </button>
-            </form>
-          </div>
-          <div className="flex w-auto items-center justify-end">
-            <HeadUserLinks update={update} setUpdate={setUpdate} />
-          </div>
-          <div className="user-menu flex w-auto items-center justify-end">
-            <div
-              className="ml-3 mr-3 flex cursor-pointer items-center 
-              justify-end rounded-md   
-            "
+            </Link>
+
+            <button
+              className="flex h-[40px] w-[120px] flex-shrink-0 items-center justify-between rounded-md border border-bgColor bg-bgColor p-2 text-center text-textColor sm:hidden"
+              onClick={() => setOpen(!open)}
             >
-              <Select
-                placeholder={"tilni tanlang"}
-                className="flex h-[40px] w-[90px] items-center justify-center   border-r border-[#ffffff] bg-[transparent_!important] text-[#212121] hover:bg-[#fdd355]"
-                onChange={(e) => language(e)}
-                value={
-                  localStorage.getItem("lang") === null
-                    ? "uz"
-                    : localStorage.getItem("lang")
-                }
+              {!open ? (<MenuOutlined
+                  src={menuIcon}
+                  alt=""
+                  className="text-whiteTextColor"
+                />) : (<MdClose className="text-[30px] text-whiteTextColor" />)}
+              <span
+                className="text font-poppins text-[18px]  font-normal not-italic leading-[100%] text-whiteTextColor">
+                Katalog
+              </span>
+            </button>
+            <div className="sm:hidden">
+              <Categoriyes open={open} setOpen={setOpen} scroll={scroll} />
+            </div>
+
+            <div
+              onClick={() => setOpen(false)}
+              className=" h-auto w-auto p-0  "
+            >
+              <Regions opens={open} setOpens={setOpen} />
+            </div>
+
+            <div onClick={() => setOpen(false)}>
+              <form
+                onSubmit={handleButtonClick}
+                className="mx-5 flex items-center justify-center"
               >
-                <Select.Option key={"uz"} value="uz">
-                  <div className="flex items-center justify-between">
-                    {" "}
-                    uz <img src={uz} alt="" className="h-5 w-5" />
-                  </div>
-                </Select.Option>
-                <Select.Option key={"en"} value="en">
-                  <div className="flex items-center justify-between">
-                    {" "}
-                    en <img src={en} alt="" className="h-5 w-5" />
-                  </div>
-                </Select.Option>
-                <Select.Option key={"ru"} value="ru">
-                  <div className="flex items-center justify-between">
-                    {" "}
-                    ru <img src={ru} alt="" className="h-5 w-5" />
-                  </div>
-                </Select.Option>
-              </Select>
+                <input
+                  onChange={handleInputChange}
+                  type="text"
+                  placeholder="Qidiruv"
+                  defaultValue={search}
+                  className="h-[40px] w-[510px]  rounded-bl-md rounded-tl-md border border-bgColor bg-[#F9F9F9] pl-[19px] text-[#959EA7] outline-none"
+                />
+                <button
+                  type="submit"
+                  className="flex h-[40px] w-[50px]  items-center justify-center rounded-br-md rounded-tr-md bg-btnColor "
+                >
+                  <FaSearch className="text-white" />
+                </button>
+              </form>
+            </div>
+            <div className="flex w-auto items-center justify-end">
+              <HeadUserLinks update={update} setUpdate={setUpdate} />
+            </div>
+            <div className="user-menu flex w-auto items-center justify-end">
+              <div
+                className="ml-3 mr-3 flex cursor-pointer items-center
+              justify-end rounded-md
+            "
+              >
+                <Select
+                  placeholder={"tilni tanlang"}
+                  className="flex h-[40px] w-[90px] items-center justify-center   border-r border-[#ffffff] bg-[transparent_!important] text-[#212121] hover:bg-[#fdd355]"
+                  onChange={(e) => language(e)}
+                  value={localStorage.getItem("lang") === null ? "uz" : localStorage.getItem("lang")}
+                >
+                  <Select.Option key={"uz"} value="uz">
+                    <div className="flex items-center justify-between">
+                      {" "}
+                      uz <img src={uz} alt="" className="h-5 w-5" />
+                    </div>
+                  </Select.Option>
+                  <Select.Option key={"en"} value="en">
+                    <div className="flex items-center justify-between">
+                      {" "}
+                      en <img src={en} alt="" className="h-5 w-5" />
+                    </div>
+                  </Select.Option>
+                  <Select.Option key={"ru"} value="ru">
+                    <div className="flex items-center justify-between">
+                      {" "}
+                      ru <img src={ru} alt="" className="h-5 w-5" />
+                    </div>
+                  </Select.Option>
+                </Select>
+              </div>
             </div>
           </div>
-        </div>
-      </Container>
-    </div>
-  );
+        </Container>
+      </div>
+    </>);
 }

@@ -28,7 +28,7 @@ const CategoryTab = ({ handleChoosen }) => {
     if (selectedOptions && selectedOptions.length > 0) {
       const selectedCategory = selectedOptions[selectedOptions.length - 1];
       if (selectedCategory.children.length <= 0) {
-        console.log(selectedCategory.label, selectedCategory.value);
+        selectedCategory.label, selectedCategory.value;
         handleChoosen(selectedCategory.label, selectedCategory.value);
       }
     }

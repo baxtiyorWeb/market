@@ -45,6 +45,22 @@ export default function Categoriyes() {
         slidesToScroll={1}
         infinite
         autoplay
+        responsive={[
+          {
+            breakpoint: 640,
+            settings: {
+              slidesToShow: 4,
+              slidesToScroll: 1,
+            },
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+            },
+          },
+        ]}
       >
         {data?.data?.content?.map((item, index) => (
           <div

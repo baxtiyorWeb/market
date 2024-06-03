@@ -24,11 +24,11 @@ const Regions = () => {
     <div>
       <button
         className={
-          "mx-5 flex h-[40px] w-[140px] flex-shrink-0 items-center justify-between rounded-md border border-bgColor bg-bgColor p-1 text-center text-textColor"
+          "mx-5 flex h-[40px] w-[140px] flex-shrink-0 items-center justify-between rounded-md border border-bgColor  bg-bgColor p-1 text-center text-whiteTextColor"
         }
         onClick={handleToggle}
       >
-        <IoLocation className="text-2xl text-textColor" />
+        <IoLocation className="text-2xl text-whiteTextColor" />
         <span className="text line-clamp-1 font-poppins  text-[16px] font-normal not-italic leading-[100%]">
           surxondaryo
         </span>

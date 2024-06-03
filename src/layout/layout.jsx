@@ -5,7 +5,7 @@ import Header from "../components/Header";
 
 export default function Layout({ update, setUpdate }) {
   return (
-    <div className="bg-[#FFFFFF]">
+    <div className="relative bg-[#FFFFFF]">
       <Header update={update} setUpdate={setUpdate} />
       <div className=" min-h-screen w-full flex-grow">
         <Outlet />

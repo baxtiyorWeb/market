@@ -21,7 +21,7 @@ const CategorySlider = () => {
         }
       }
     } catch (error) {
-      console.log(error?.message);
+      error?.message;
     } finally {
       setIsLoading(false);
     }

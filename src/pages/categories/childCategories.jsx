@@ -1,6 +1,6 @@
 import { Input, Select, Space } from "antd";
 import React, { useEffect, useState } from "react";
-import { FaArrowRight, FaSearch } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import api from "../../config/api/api";
 import useFilter from "../../hooks/product/useFilter";
@@ -121,14 +121,11 @@ const ChildCategories = () => {
   /* -------------------------------------------------------------------------- */
   return (
     <div className="child-categ h-full flex-col items-start justify-center ">
-      <BreadCrumbs />
-
-      <div className="flex w-full items-center justify-start rounded-md">
-        <h1 className="text-1xl mr-5 flex items-center justify-center">
-          bosh categoriyalar
-          <FaArrowRight className="text ml-3 mr-1 text-lg font-light" />
-        </h1>
-        <Space direction="horizontal">
+      <div className="mb-3 flex w-full items-center justify-start rounded-md">
+        <Space
+          direction="horizontal"
+          className="flex w-full items-center justify-between"
+        >
           {categoryRoot?.map((item, index) => (
             <div className="flex items-center justify-center" key={index}>
               <Link
@@ -148,8 +145,10 @@ const ChildCategories = () => {
         </Space>
       </div>
 
+      <BreadCrumbs />
+
       <div className="text mb-3 mt-5 flex items-center justify-start text-[36px] font-medium leading-[49px] text-[#111]">
-        <span className="text mx-3 mt-3 text-sm text-gray-500">
+        <span className="text mx-3  text-sm text-gray-500">
           {data?.data?.data?.content?.length === 0
             ? "e'lon mavjud emas"
             : data?.data?.data?.content?.length}

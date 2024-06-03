@@ -70,7 +70,7 @@ export const getCategoryPropertiesId = async (id) => {
 };
 
 export const getProducts = async ({ page }) => {
-  console.log(page);
+  page;
   const res = await api.get(`/product/list?page=${page}&size=10`);
   return res.data?.data?.content;
 };
@@ -91,7 +91,7 @@ export const createProduct = async (data) => {
   const res = await api.post("/product", data, {
     headers: { "Content-Type": "application/json" },
   });
-  console.log(res.data?.data);
+  res.data?.data;
   message.success("product qo'shildi");
   return res.data;
 };
@@ -106,14 +106,14 @@ export const fileUplaodLoadedData = async (data) => {
       headers: { "Content-Type": "multipart/form-data" },
     },
   );
-  console.log(res.data?.data);
+  res.data?.data;
   message.success("rasm yuklandi");
   return res.data;
 };
 
 export const createUserData = async (data) => {
   const res = await api.put(`/user/5`, data);
-  if (res.data) console.log("ok");
+  if (res.data) "ok";
   return res.data;
 };
 

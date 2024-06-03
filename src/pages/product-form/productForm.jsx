@@ -21,7 +21,7 @@ const getBase64 = (file) =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
-    console.log(reader.result);
+    reader.result;
     reader.onload = () => resolve(reader.result);
     reader.onerror = (error) => reject(error);
   });
@@ -60,7 +60,7 @@ export default function AddProductCategory() {
   });
   const [nextProductData, setNextProductData] = useState([{}]);
   const { isOpen } = useToggle();
-  console.log(nextProductData);
+  nextProductData;
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
@@ -131,7 +131,7 @@ export default function AddProductCategory() {
     try {
       const data = fileUplaodLoadedData(file);
       data.then((res) => {
-        // Fayl identifikatorini olish
+        // Fayl id (identifikatorini) olish
         const fileId = res?.data?.id;
 
         // fileList ni yangilash
@@ -146,7 +146,7 @@ export default function AddProductCategory() {
       });
       onSuccess("Ok");
     } catch (err) {
-      console.log("Eroor: ", err);
+      "Eroor: ", err;
       onError({ err });
     }
   };
@@ -176,7 +176,7 @@ export default function AddProductCategory() {
     getSellType();
     getPaymenType();
 
-    console.log(propertiesData);
+    propertiesData;
   }, []);
   return (
     <div className="product-layout">

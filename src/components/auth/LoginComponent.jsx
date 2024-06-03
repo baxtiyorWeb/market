@@ -25,7 +25,7 @@ export default function LoginComponent() {
       loginAction(signIn);
       // window.location.href = "/";
     } catch (error) {
-      console.log(error.message);
+      error.message;
     } finally {
       setisLoading(false);
     }
@@ -33,7 +33,7 @@ export default function LoginComponent() {
 
   const authCheck = async () => {
     const res = await api.get("/user/1");
-    console.log(res.data);
+    res.data;
     if (res.data) {
       navigate("/profile/dashboard?tab=1");
     }

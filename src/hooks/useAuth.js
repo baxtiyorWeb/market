@@ -17,12 +17,12 @@ const useAuth = () => {
 
       navigate("/auth/create");
     } catch (error) {
-      console.log(error);
+      error;
     } finally {
       setisLoading(false);
     }
   };
-  console.log(isLoading);
+  isLoading;
   return { registerLoginAndPassword, createUser, setAuth, auth, isLoading };
 };
 

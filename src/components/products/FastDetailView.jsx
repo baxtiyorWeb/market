@@ -15,7 +15,7 @@ const FastDetailView = ({ id }) => {
     queryKey: ["product", id],
     queryFn: getFastViewProduct,
   });
-  console.log(product);
+  product;
 
   return (
     <div className="fixed  left-[10%] top-[10%] z-[310] h-[800px] w-[1300px] overflow-y-scroll rounded-2xl bg-whiteTextColor p-3 shadow-2xl">

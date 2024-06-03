@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { Breadcrumb } from "antd";
 import React from "react";
+import { FaArrowRight } from "react-icons/fa";
 import { Link, useParams } from "react-router-dom";
 import api from "../../config/api/api";
 
@@ -44,9 +45,11 @@ const Breadcrumbs = () => {
             }
           >
             <div className="mr-3 flex -skew-x-6 items-center  justify-center rounded-sm">
-              <span className=" transform rounded-md p-1 text-[13px]  hover:text-[#212121]">
+              <span className=" flex transform items-center justify-center rounded-md p-1 text-[13px]  hover:text-[#212121]">
                 {currentData?.name}{" "}
-                <span className="mx-5">{currentData.id == id ? "" : "/"}</span>
+                <span className="mx-5">
+                  {currentData.id == id ? "" : <FaArrowRight />}
+                </span>
               </span>
             </div>
           </Link>
@@ -60,10 +63,12 @@ const Breadcrumbs = () => {
   return (
     <div className="">
       <div className="mt-2 flex h-auto  items-center justify-start rounded-md    p-1">
-        <Link to={"/"} className="-skew-x-6 text-sm hover:text-[#212121]">
+        <Link to={"/"} className="-skew-x-6 text-[13px] hover:text-[#212121]">
           bosh sahifa
         </Link>
-        <span className="mx-5 ">/</span>
+        <span className="mx-5  ">
+          <FaArrowRight className="text-[13px]" />
+        </span>
         {breadcrumbsArr}
       </div>
       <hr className="my-3 w-full" />

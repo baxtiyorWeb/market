@@ -38,7 +38,7 @@ export default function RegisterComponent() {
       navigate("/auth/confirm");
       localStorage.setItem("secretKey", generateUId);
     } catch (error) {
-      console.log(error.message);
+      error.message;
     } finally {
       setisLoading(false);
     }
