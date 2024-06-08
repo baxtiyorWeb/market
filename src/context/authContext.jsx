@@ -6,6 +6,7 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [error, setError] = useState("");
   const [token, setToken] = useState(localStorage.getItem("accessToken") || "");
   const navigate = useNavigate();
   const loginAction = async (data) => {
@@ -20,10 +21,12 @@ const AuthProvider = ({ children }) => {
         localStorage.setItem("accessToken", res.data.accessToken);
         window.location = "/profile/dashboard?tab=1";
         return;
+      } else {
+        setError(res?.errorResponse);
       }
       throw new Error(res.message);
     } catch (err) {
-      console.error(err);
+      setError(err?.response?.data?.errorResponse?.message);
     }
   };
 
@@ -35,7 +38,7 @@ const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ token, user, loginAction, logOut }}>
+    <AuthContext.Provider value={{ token, user, error, loginAction, logOut }}>
       {children}
     </AuthContext.Provider>
   );

@@ -15,7 +15,8 @@ export default function LoginComponent() {
 
   const [isLoading, setisLoading] = useState(false);
   const [inputType, setInputType] = useState("text");
-  const { loginAction } = useAuth();
+  const { loginAction, error } = useAuth();
+
   const loginNameAndPassword = async (e) => {
     e.preventDefault();
     try {
@@ -24,7 +25,7 @@ export default function LoginComponent() {
       loginAction(signIn);
       // window.location.href = "/";
     } catch (error) {
-      error.message;
+      console.log(error?.message);
     } finally {
       setisLoading(false);
     }
@@ -55,8 +56,8 @@ export default function LoginComponent() {
           onChange={(e) => setSignIn({ ...signIn, username: e.target.value })}
         />
       </div>
-      <div className="flex w-full flex-col items-start justify-center ">
-        <span className="mb-1 w-auto text-left">parolingizni kiriting</span>
+      <div className="relative flex w-full flex-col items-start justify-center ">
+        <span className="mb-1 w-auto text-left ">parolingizni kiriting</span>
         <Input
           type={inputType ? "password" : "text"}
           placeholder="password"
@@ -74,6 +75,7 @@ export default function LoginComponent() {
           )}
         </span>
       </div>
+
       <div className="send-details w-full">
         <ButtonUI
           disabled={
@@ -91,6 +93,7 @@ export default function LoginComponent() {
           )}
         </ButtonUI>
       </div>
+      <span className="text-red-500">{error}</span>
       <span>yoki</span>
 
       <div className="w-full">
