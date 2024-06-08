@@ -18,7 +18,7 @@ const AuthProvider = ({ children }) => {
         setUser(res.data);
         setToken(res.data.accessToken);
         localStorage.setItem("accessToken", res.data.accessToken);
-        navigate("/profile/dashboard?tab=1");
+        window.location = "/profile/dashboard?tab=1";
         return;
       }
       throw new Error(res.message);

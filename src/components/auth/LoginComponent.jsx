@@ -2,7 +2,7 @@ import { Input, Spin } from "antd";
 import { useEffect, useState } from "react";
 import { FaArrowRight, FaEye, FaEyeSlash, FaTelegram } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import api from "../../config/api/api";
 import ButtonUI from "../../ui/button/Button";
 import { useAuth } from "./../../context/authContext";
@@ -15,7 +15,6 @@ export default function LoginComponent() {
 
   const [isLoading, setisLoading] = useState(false);
   const [inputType, setInputType] = useState("text");
-  const navigate = useNavigate();
   const { loginAction } = useAuth();
   const loginNameAndPassword = async (e) => {
     e.preventDefault();
@@ -33,9 +32,8 @@ export default function LoginComponent() {
 
   const authCheck = async () => {
     const res = await api.get("/user/1");
-    res.data;
     if (res.data) {
-      navigate("/profile/dashboard?tab=1");
+      window.location = "/profile/dashboard?tab=1";
     }
   };
   useEffect(() => {

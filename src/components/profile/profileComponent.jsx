@@ -14,12 +14,29 @@ export default function ProfileComponent() {
   const checkAuth = async () => {
     try {
       const res = await api.get("/user/1");
-      setUser(res.data?.data);
+      const userData = res.data?.data;
+
+      // User data ni o'rnatish
+      if (userData) {
+        setUser(userData);
+      }
+
+      // API javobi status kodini tekshirish
+      if (res.status === 403) {
+        window.location = "/auth/login";
+      }
     } catch (error) {
-      window.location = "/auth/login";
-      throw new Error(error?.response?.message);
+      // Xatolik status kodi 403 bo'lsa, login sahifasiga yo'naltirish
+      if (error.response?.status === 403) {
+        window.location = "/auth/login";
+      } else {
+        const errorMessage =
+          error?.response?.message || "An unexpected error occurred";
+        throw new Error(errorMessage);
+      }
     }
   };
+
   useEffect(() => {
     checkAuth();
   }, []);
