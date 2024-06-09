@@ -193,6 +193,7 @@ const Exports = ({ filter, setFilter }) => {
         <div className="my-3 h-[1.2em]  w-[50%] overflow-hidden text-ellipsis  whitespace-nowrap text-left text-sm font-light">
           {item?.property?.name}
         </div>
+
         {isNumberType ? (
           <div className="flex flex-col items-center justify-center">
             <div className="inline-flex w-full items-center justify-between">
@@ -202,7 +203,7 @@ const Exports = ({ filter, setFilter }) => {
             <div className="flex w-full items-center justify-center ">
               <input
                 type="number"
-                className=" h-10 w-full rounded-sm border py-2 indent-2 outline-none"
+                className="mx-1  h-10 w-[98px] rounded-sm border py-2 indent-2 outline-none"
                 placeholder={item?.filter?.min}
                 onChange={(e) =>
                   setTypes({
@@ -220,7 +221,7 @@ const Exports = ({ filter, setFilter }) => {
               />
               <input
                 type="number"
-                className=" mx-1 h-10 w-full rounded-sm border py-2 indent-2 outline-none"
+                className=" h-10  w-[98px] rounded-sm border py-2 indent-2 outline-none"
                 placeholder={item?.filter?.max}
                 onChange={(e) =>
                   setTypes({
@@ -267,6 +268,53 @@ const Exports = ({ filter, setFilter }) => {
   return (
     <div className="flex  flex-col items-center justify-start rounded-md border">
       <List orientation="left" className="w-[100%_important]">
+        <div className="flex flex-col items-end justify-center">
+          <div className="inline-flex w-[67%] items-center justify-between">
+            <span className="text-xs text-gray-400">dan</span>
+            <span className="text-xs text-gray-400">gacha</span>
+          </div>
+          <div className="flex w-full items-center justify-center ">
+            <div className="my-3 h-[1.2em]  w-[50%] overflow-hidden text-ellipsis  whitespace-nowrap text-left text-sm font-light">
+              narxini kiriting
+            </div>
+            <input
+              type="number"
+              className="mx-1  h-10 w-[98px] rounded-sm border py-2 indent-2 outline-none"
+              placeholder={"min"}
+              onChange={(e) =>
+                setTypes({
+                  ...types,
+                  e: e.target.value,
+                  item: "INTEGER",
+                  type: "min",
+                })
+              }
+              onKeyDown={(e) => {
+                if (e.keyCode === 13) {
+                  addPropertyForFilter(e);
+                }
+              }}
+            />
+            <input
+              type="number"
+              className=" h-10  w-[98px] rounded-sm border py-2 indent-2 outline-none"
+              placeholder={"max"}
+              onChange={(e) =>
+                setTypes({
+                  ...types,
+                  e: e.target.value,
+                  item: "INTEGER",
+                  type: "max",
+                })
+              }
+              onKeyDown={(e) => {
+                if (e.keyCode === 13) {
+                  addPropertyForFilter(e);
+                }
+              }}
+            />
+          </div>
+        </div>
         {isLoading ? (
           <Spin indicator={<LoadingOutlined style={{ fontSize: 50 }} />} />
         ) : (
