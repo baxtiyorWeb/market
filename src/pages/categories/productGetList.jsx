@@ -60,6 +60,7 @@ const ProductGetList = ({ setSearchParams, searchParams }) => {
     return <div>Mahsulotlarni yuklashda xato</div>;
   }
 
+  console.log(data);
   // useEffect(() => {
   //   // handleFilterClick(); // Fetch data when the component mounts
   // }, [filter[0].get("search"), filter[0].get("regionId")]);

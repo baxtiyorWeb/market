@@ -28,14 +28,16 @@ const ChildCategories = () => {
   const [filter, setFilter] = useState({
     search: "",
     regionId: "",
-    price: "",
+    price_min: "",
+    price_max: "",
   });
   useEffect(() => {
     const params = Object.fromEntries([...searchParams]);
     setFilter({
       search: params.search || "",
       regionId: params.regionId || "",
-      price: params.price || "",
+      price_min: params.price_min || "",
+      price_max: params.procie_max || "",
     });
   }, []);
 
@@ -43,7 +45,8 @@ const ChildCategories = () => {
     const params = {};
     if (filter.search) params.search = filter.search;
     if (filter.regionId) params.regionId = filter.regionId;
-    if (filter.price) params.price = filter.price;
+    if (filter.price_min) params.price_min = filter.price_min;
+    if (filter.price_max) params.price_max = filter.price_max;
     if (filter.propertyId) params.propertyId = filter.propertyId;
     setSearchParams(params);
   }, [filter]);

@@ -179,6 +179,14 @@ const Exports = ({ filter, setFilter }) => {
       onChangeEvent();
     }
   };
+  // const handleClickPriceValue = (event, type) => {
+  //   if (type === "min") {
+  //     setFilter({ ...filter, price_min: event });
+  //   } else {
+  //     setFilter({ ...filter, price_max: event });
+  //   }
+  // };
+
   const renderFilterItem = (item) => {
     const isNumberType = ["INTEGER", "DOUBLE"].includes(
       item?.property?.valueTypeDto?.typeName,
@@ -282,36 +290,27 @@ const Exports = ({ filter, setFilter }) => {
               className="mx-1  h-10 w-[98px] rounded-sm border py-2 indent-2 outline-none"
               placeholder={"min"}
               onChange={(e) =>
-                setTypes({
-                  ...types,
-                  e: e.target.value,
-                  item: "INTEGER",
-                  type: "min",
+                setFilter({
+                  ...filter,
+                  price_min: e.target.value,
                 })
               }
-              onKeyDown={(e) => {
-                if (e.keyCode === 13) {
-                  addPropertyForFilter(e);
-                }
-              }}
+              // onKeyDown={(e) => {
+              //   if (e.keyCode === 13) {
+              //     handleClickPriceValue(e, "min");
+              //   }
+              // }}
             />
             <input
               type="number"
               className=" h-10  w-[98px] rounded-sm border py-2 indent-2 outline-none"
               placeholder={"max"}
               onChange={(e) =>
-                setTypes({
-                  ...types,
-                  e: e.target.value,
-                  item: "INTEGER",
-                  type: "max",
+                setFilter({
+                  ...filter,
+                  price_max: e.target.value,
                 })
               }
-              onKeyDown={(e) => {
-                if (e.keyCode === 13) {
-                  addPropertyForFilter(e);
-                }
-              }}
             />
           </div>
         </div>

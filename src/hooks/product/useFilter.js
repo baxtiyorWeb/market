@@ -18,26 +18,61 @@ const useFilter = () => {
 
   const searchValue = searchParams.get("search") || "";
   const regionId = searchParams.get("regionId");
+  const price_min = searchParams.get("price_min") || "";
+  const price_max = searchParams.get("price_max") || "";
   const filters = JSON.parse(localStorage.getItem("filters"));
   const fetchProducts = async ({ pageParam = 0 }) => {
+    let price;
+    let min = Number(price_min);
+    let max = Number(price_max);
+
+    if (min || max) {
+      if (min) {
+        price = { min };
+      }
+      if (max) {
+        price = { max };
+      }
+      if (min && max) {
+        price = { min, max };
+      } else {
+        if (min || max) {
+          price = { min } || { max } || { min, max };
+        }
+      }
+    } else {
+      if (price == {}) {
+        price = null;
+      }
+    }
+
+    if (min === 0) {
+      searchParams.delete("price_min");
+    } else {
+      searchParams.delete("price_max");
+    }
+
+    console.log(price);
     const response = await api.post("/product/list", {
       search: searchValue || "",
-      page: pageParam,
+      page: pageParam || 0,
       size: 10,
       categoryId: id || 0,
       districtId: 0,
-      regionId: regionId || 0,
+      regionId: 0,
       paymentTypeId: 0,
       sellTypeId: 0,
       ownProducts: false,
       userId: 0,
+      price,
+      canAgree: false,
       valueFilter: manufacture,
     });
 
     return {
-      data: response.data?.data?.content,
+      data: response.data?.data,
       nextPage: pageParam + 1,
-      hasNextPage: response.data?.data?.content.length === 10,
+      hasNextPage: response.data?.data.length === 10,
     };
   };
 
@@ -56,7 +91,6 @@ const useFilter = () => {
       searchParams.get("search"),
       searchParams.get("propertyId"),
       searchParams.toString(""),
-
       saveFilter,
     ],
     queryFn: fetchProducts,

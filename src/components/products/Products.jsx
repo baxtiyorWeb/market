@@ -36,9 +36,9 @@ const Products = () => {
     });
 
     return {
-      data: response.data?.data?.content,
+      data: response.data?.data,
       nextPage: pageParam + 1,
-      hasNextPage: response.data?.data?.content.length === 10,
+      hasNextPage: response.data?.data.length === 10,
     };
   };
 
