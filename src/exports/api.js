@@ -122,6 +122,15 @@ export const getRegions = async () => {
   return res.data;
 };
 
+export const getPaymentType = async () => {
+  const res = await api.get("/payment-type/all");
+  return res.data;
+};
+export const getSellType = async () => {
+  const res = await api.get("/sell-type/all");
+  return res.data;
+};
+
 // filter product for api returns
 
 export const productWithCategoryFilter = async (search, id) => {

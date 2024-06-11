@@ -1,11 +1,9 @@
-import { Input, Select, Space } from "antd";
+import { Select, Space, Switch } from "antd";
 import React, { useEffect, useState } from "react";
-import { FaSearch } from "react-icons/fa";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import api from "../../config/api/api";
 import useFilter from "../../hooks/product/useFilter";
 import BreadCrumbs from "../../ui/breadcrumbs/BreadCrumbs";
-import SegmentedUi from "../../ui/segmented/Segmented";
 import "./categories.css";
 import CategorySlider from "./categorySlider";
 import ProductFilter from "./productFilter/ProductFilter";
@@ -14,7 +12,8 @@ import ProductGetList from "./productGetList";
 const ChildCategories = () => {
   const { id } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
-  const { data, saveFilter, manufacture } = useFilter();
+  const { data, saveFilter, manufacture, district, paymentType, sellType } =
+    useFilter();
   // Data states
   const [regions, setRegions] = useState({
     regions: [],
@@ -28,6 +27,10 @@ const ChildCategories = () => {
   const [filter, setFilter] = useState({
     search: "",
     regionId: "",
+    districtId: "",
+    canAgree: "",
+    paymentType: "",
+    sellType: "",
     price_min: "",
     price_max: "",
   });
@@ -36,6 +39,10 @@ const ChildCategories = () => {
     setFilter({
       search: params.search || "",
       regionId: params.regionId || "",
+      districtId: params.districtId || "",
+      canAgree: params.canAgree || "",
+      paymentType: params.paymentType || "",
+      sellType: params.sellType || "",
       price_min: params.price_min || "",
       price_max: params.procie_max || "",
     });
@@ -45,9 +52,12 @@ const ChildCategories = () => {
     const params = {};
     if (filter.search) params.search = filter.search;
     if (filter.regionId) params.regionId = filter.regionId;
+    if (filter.districtId) params.districtId = filter.districtId;
+    if (filter.canAgree) params.canAgree = filter.canAgree;
+    if (filter.paymentType) params.paymentType = filter.paymentType;
+    if (filter.sellType) params.sellType = filter.sellType;
     if (filter.price_min) params.price_min = filter.price_min;
     if (filter.price_max) params.price_max = filter.price_max;
-    if (filter.propertyId) params.propertyId = filter.propertyId;
     setSearchParams(params);
   }, [filter]);
 
@@ -174,29 +184,10 @@ const ChildCategories = () => {
         <div className="col-span-5 row-span-3 h-full w-[1053px]   p-3 px-10">
           <CategorySlider />
           <div>
-            <div className="my-5 flex items-center justify-between rounded-md bg-white text-left text-[15px]">
-              <div>
+            <div className="my-5 grid grid-cols-5 items-center justify-between rounded-md bg-white text-left text-[15px]">
+              <div className="flex justify-between ">
                 <Select
-                  className="w-[230px]"
-                  options={[
-                    {
-                      label: "Yangi kelganlar",
-                      value: "Yangi kelganlar",
-                    },
-                    {
-                      label: "eskilar",
-                      value: "eskilar ",
-                    },
-                    {
-                      label: "arzonlar ",
-                      value: "arzonlar ",
-                    },
-                  ]}
-                />
-              </div>
-              <div>
-                <Select
-                  className="w-[230px]"
+                  className="mx-3 w-[230px]"
                   onChange={(e) => {
                     setFilter({ ...filter, regionId: e });
                   }}
@@ -208,9 +199,73 @@ const ChildCategories = () => {
                     </Select.Option>
                   ))}
                 </Select>
+
+                {searchParams.get("regionId") && (
+                  <Select
+                    className="mx-3 w-[230px]"
+                    onChange={(e) => {
+                      setFilter({ ...filter, districtId: e });
+                    }}
+                    placeholder="tumanni tanlang"
+                  >
+                    {district?.data?.map((item, index) => (
+                      <Select.Option key={index} value={item?.id}>
+                        {item?.name}
+                      </Select.Option>
+                    ))}
+                  </Select>
+                )}
+
+                {
+                  <Select
+                    className="mx-3 w-[230px]"
+                    onChange={(e) => {
+                      setFilter({ ...filter, sellType: e });
+                    }}
+                    placeholder="to'lov turini tanlang"
+                  >
+                    {sellType?.data?.map((item, index) => (
+                      <Select.Option key={index} value={item?.id}>
+                        {item?.name}
+                      </Select.Option>
+                    ))}
+                  </Select>
+                }
+                {
+                  <Select
+                    className="mx-3 w-[230px]"
+                    onChange={(e) => {
+                      setFilter({ ...filter, paymentType: e });
+                    }}
+                    placeholder="sotuv turini tanlang"
+                  >
+                    {paymentType?.data?.map((item, index) => (
+                      <Select.Option key={index} value={item?.id}>
+                        {item?.name}
+                      </Select.Option>
+                    ))}
+                  </Select>
+                }
+
+                <div className="flex w-40 cursor-pointer items-center justify-center ">
+                  <label
+                    className=" w-28 cursor-pointer"
+                    name="canAgree"
+                    htmlFor="canAgree"
+                  >
+                    {Boolean(searchParams.get("canAgree"))
+                      ? "kelishiladi"
+                      : "kelishilmaydi"}
+                  </label>
+                  <Switch
+                    id="canAgree"
+                    className="bg-bgColor "
+                    onChange={(e) => setFilter({ ...filter, canAgree: e })}
+                  />
+                </div>
               </div>
 
-              <div className="flex items-center justify-center">
+              {/* <div className="flex items-center justify-center">
                 <Input
                   placeholder="e'lonlarni qidirish"
                   className="h-10 rounded-br-none rounded-tr-none focus:border-none"
@@ -224,9 +279,9 @@ const ChildCategories = () => {
                 >
                   <FaSearch />
                 </span>
-              </div>
+              </div> */}
 
-              <SegmentedUi />
+              {/* <SegmentedUi /> */}
             </div>
 
             <ProductGetList isLoading={isLoading} />

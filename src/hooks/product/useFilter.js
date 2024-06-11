@@ -1,8 +1,9 @@
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { message } from "antd";
 import { useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import api from "../../config/api/api";
+import { getDistrict, getPaymentType, getSellType } from "../../exports/api";
 
 const useFilter = () => {
   const [searchParams] = useSearchParams();
@@ -17,33 +18,41 @@ const useFilter = () => {
   const { id } = useParams();
 
   const searchValue = searchParams.get("search") || "";
-  const regionId = searchParams.get("regionId");
+  const regionId = searchParams.get("regionId") || "";
+  const districtId = searchParams.get("districtId") || "";
+  const canAgree = searchParams.get("canAgree") || false;
   const price_min = searchParams.get("price_min") || "";
   const price_max = searchParams.get("price_max") || "";
+  const paymentTypeId = searchParams.get("paymentType") || "";
+  const sellTypeId = searchParams.get("sellType") || "";
   const filters = JSON.parse(localStorage.getItem("filters"));
-  const fetchProducts = async ({ pageParam = 0 }) => {
-    let price;
-    let min = Number(price_min);
-    let max = Number(price_max);
+  let price;
+  let min = Number(price_min);
+  let max = Number(price_max);
 
-    if (min || max) {
-      if (min) {
-        price = { min };
-      }
-      if (max) {
-        price = { max };
-      }
-      if (min && max) {
-        price = { min, max };
-      } else {
-        if (min || max) {
-          price = { min } || { max } || { min, max };
-        }
-      }
+  const { data: district } = useQuery({
+    queryKey: ["district/all", regionId],
+    queryFn: async () => await getDistrict(regionId),
+    enabled: !!regionId,
+  });
+  const { data: paymentType } = useQuery({
+    queryKey: ["payment-type"],
+    queryFn: getPaymentType,
+  });
+  const { data: sellType } = useQuery({
+    queryKey: ["sell-type"],
+    queryFn: getSellType,
+  });
+
+  const fetchProducts = async ({ pageParam = 0 }) => {
+    if (min && max) {
+      price = { min, max };
+    } else if (min) {
+      price = { min };
+    } else if (max) {
+      price = { max };
     } else {
-      if (price == {}) {
-        price = null;
-      }
+      price = null;
     }
 
     if (min === 0) {
@@ -51,21 +60,19 @@ const useFilter = () => {
     } else {
       searchParams.delete("price_max");
     }
-
-    console.log(price);
     const response = await api.post("/product/list", {
       search: searchValue || "",
       page: pageParam || 0,
       size: 10,
-      categoryId: id || 0,
-      districtId: 0,
-      regionId: 0,
-      paymentTypeId: 0,
-      sellTypeId: 0,
+      categoryId: Number(id) || 0,
+      districtId: districtId || 0,
+      regionId: regionId || 0,
+      paymentTypeId: Number(paymentTypeId) || 0,
+      sellTypeId: Number(sellTypeId) || 0,
       ownProducts: false,
       userId: 0,
       price,
-      canAgree: false,
+      canAgree: Boolean(canAgree),
       valueFilter: manufacture,
     });
 
@@ -87,11 +94,12 @@ const useFilter = () => {
     queryKey: [
       "product/list",
       id,
-      searchParams.get("regionId"),
-      searchParams.get("search"),
-      searchParams.get("propertyId"),
       searchParams.toString(""),
+      districtId,
+      regionId,
       saveFilter,
+      sellTypeId,
+      paymentTypeId,
     ],
     queryFn: fetchProducts,
     getNextPageParam: (lastPage) => (lastPage.length ? pages.length : false),
@@ -114,6 +122,9 @@ const useFilter = () => {
     manufacture,
     setSaveLocal,
     saveLocal,
+    district,
+    paymentType,
+    sellType,
   };
 };
 
