@@ -90,6 +90,7 @@ const ChildCategories = () => {
   // Fetch category by id
 
   // Fetch root categories
+
   const categoriesRootList = async () => {
     try {
       setIsLoading(true);

@@ -60,6 +60,7 @@ const useFilter = () => {
     } else {
       searchParams.delete("price_max");
     }
+
     const response = await api.post("/product/list", {
       search: searchValue || "",
       page: pageParam || 0,
