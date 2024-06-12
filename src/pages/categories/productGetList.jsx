@@ -55,17 +55,15 @@ const ProductGetList = () => {
     );
   }
 
+  const existing = JSON.parse(localStorage.getItem("products"));
+
   if (error) {
     return <div>Mahsulotlarni yuklashda xato</div>;
   }
-  const existing = JSON.parse(localStorage.getItem("product")) || [];
-  // useEffect(() => {
-  //   // handleFilterClick(); // Fetch data when the component mounts
-  // }, [filter[0].get("search"), filter[0].get("regionId")]);
 
   return (
-    <>
-      <div className="mb-10 mt-10 flex items-center justify-between">
+    <div className="h-[80vh] overflow-scroll border">
+      <div>
         {isOpen && <Overlay closed={handleToggle} />}
         {isOpen && <FastDetailView id={fastId} />}
       </div>
@@ -188,7 +186,7 @@ const ProductGetList = () => {
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

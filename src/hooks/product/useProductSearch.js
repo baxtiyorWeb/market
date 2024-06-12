@@ -10,21 +10,7 @@ const useProductSearch = () => {
   const navigate = useNavigate();
   searchParams.get("q");
 
-  const handleInputChange = (e) => {
-    setSearchQuery(e.target.value);
-  };
-
-  const handleButtonClick = (e) => {
-    e.preventDefault();
-    setSearchParams({ search_result: searchQuery });
-    navigate(
-      `/category/${categoryId}?category-name=${categoryName}&search=${searchQuery}`,
-    );
-  };
-
   return {
-    handleInputChange,
-    handleButtonClick,
     searchQuery,
     setCategoryId,
     setCategoryName,
