@@ -8,24 +8,22 @@ import { getDistrict, getPaymentType, getSellType } from "../../exports/api";
 const useFilter = () => {
   const [searchParams] = useSearchParams();
   const [manufacture, setManufacture] = useState([]);
+  const [filterValue, setFilterValue] = useState([]);
 
   const [saveFilter, setSaveFilter] = useState([]);
   const [reFetch, setRefetch] = useState();
   const [saveLocal, setSaveLocal] = useState([]);
-
-  const [search, setSearch] = useState("");
 
   const { id } = useParams();
 
   const searchValue = searchParams.get("search") || "";
   const regionId = searchParams.get("regionId") || "";
   const districtId = searchParams.get("districtId") || "";
-  const canAgree = searchParams.get("canAgree") || false;
+  const canAgree = searchParams.get("canAgree") || null;
   const price_min = searchParams.get("price_min") || "";
   const price_max = searchParams.get("price_max") || "";
   const paymentTypeId = searchParams.get("paymentType") || "";
   const sellTypeId = searchParams.get("sellType") || "";
-  const filters = JSON.parse(localStorage.getItem("filters"));
   let price;
   let min = Number(price_min);
   let max = Number(price_max);
@@ -73,7 +71,7 @@ const useFilter = () => {
       ownProducts: false,
       userId: 0,
       price,
-      canAgree: Boolean(canAgree),
+      canAgree: Boolean(canAgree) ? true : false,
       valueFilter: manufacture,
     });
 
@@ -100,6 +98,8 @@ const useFilter = () => {
       regionId,
       saveFilter,
       sellTypeId,
+      filterValue,
+
       paymentTypeId,
     ],
     queryFn: fetchProducts,
@@ -126,6 +126,7 @@ const useFilter = () => {
     district,
     paymentType,
     sellType,
+    setFilterValue,
   };
 };
 

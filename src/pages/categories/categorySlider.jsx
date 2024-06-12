@@ -1,12 +1,13 @@
-import { Carousel, Spin } from "antd";
+import { Input, List, Spin } from "antd";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import api from "../../config/api/api";
 
-const CategorySlider = () => {
+const CategorySlider = ({ setFilter, filter }) => {
   const { id } = useParams();
   const [categoryChild, setCategoryChild] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [search, setSearch] = useState("");
   const getCategoryChildWithId = async () => {
     try {
       setIsLoading(true);
@@ -32,36 +33,50 @@ const CategorySlider = () => {
   }, [id]);
 
   return (
-    <>
+    <div className="h-auto">
       {isLoading ? (
         <Spin style={{ color: "#FFBE1E" }} />
       ) : (
-        <Carousel
-          draggable
-          className="flex select-none items-center justify-center"
-          arrows={true}
-          dots={false}
-          infinite={false}
-          slidesToShow={5}
-          slidesToScroll={3}
-        >
-          {categoryChild?.content?.map((item, index) => (
-            <div
-              className={`mt-3 flex items-center justify-center  transition-none duration-150 `}
-              key={index}
+        <div className="flex flex-col items-start justify-center">
+          <div className="w-full p-3">
+            <h1 className="text my-1 text-base font-light">
+              categoriyani tanlang
+            </h1>
+            <List
+              header="bo'limlar"
+              extra
+              bordered
+              loading={isLoading}
+              className="px-1"
+              grid={5}
             >
-              <Link
-                to={`/category/${item?.id}`}
-                className={`group/item flex items-center justify-center rounded-md bg-[#f3f6f7] px-3 py-1 text-sm transition-all duration-200 hover:bg-[#E5E8EC]  hover:text-slate-900`}
-              >
-                {item?.name}
-              </Link>
-              <span className="mx-1 text-spanColor"></span>
-            </div>
-          ))}
-        </Carousel>
+              <Input
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="qidiring ..."
+                className="ml-5   w-[80%]"
+              />
+              {categoryChild?.content
+                ?.filter((item) => item?.name?.toLowerCase().includes(search))
+                .map((item, index) =>
+                  index <= 5 ? (
+                    <List.Item>
+                      <Link
+                        to={`/category/${item?.id}`}
+                        className={`mt-3 flex items-start justify-start  transition-none duration-150 `}
+                        key={index}
+                      >
+                        {item?.name}
+                      </Link>
+                    </List.Item>
+                  ) : (
+                    ""
+                  ),
+                )}
+            </List>
+          </div>
+        </div>
       )}
-    </>
+    </div>
   );
 };
 

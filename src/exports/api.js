@@ -158,6 +158,24 @@ export const getProductWithCategoryFilter = async (id) => {
   return res.data;
 };
 
+export const getProductStringValues = async (categoryId, propertyId) => {
+  if (categoryId === null || false) return false;
+  if (propertyId === null || false) return false;
+  const res = await api.get(`/product/string-values`, {
+    params: {
+      categoryId,
+      propertyId,
+    },
+  });
+  return res.data;
+};
+
+export const getCategoryFilter = async (id) => {
+  if (id === null || false) return false;
+  const res = await api.get(`/category/get-filters/${id}`);
+  return res.data;
+};
+
 export const deleteFavorite = async (id) => {
   return (await api.post(`favorite-product/remove?productId=${id}`)).data;
 };

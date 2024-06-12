@@ -6,15 +6,14 @@ import { CiHeart } from "react-icons/ci";
 import { FaEye } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
 import LazyLoad from "react-lazy-load";
-import { Link, useParams, useSearchParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import FastDetailView from "../../components/products/FastDetailView";
 import useFilter from "../../hooks/product/useFilter";
 import useToggle from "../../hooks/useToggle";
 import Overlay from "../../ui/Overlay";
 import "./categories.css";
 
-const ProductGetList = ({ setSearchParams, searchParams }) => {
-  const filter = useSearchParams();
+const ProductGetList = () => {
   const { manufacture } = useFilter();
   const {
     data,
@@ -60,14 +59,8 @@ const ProductGetList = ({ setSearchParams, searchParams }) => {
     return <div>Mahsulotlarni yuklashda xato</div>;
   }
 
-  console.log(data);
-  // useEffect(() => {
-  //   // handleFilterClick(); // Fetch data when the component mounts
-  // }, [filter[0].get("search"), filter[0].get("regionId")]);
-
   return (
     <div className="h-[80vh] overflow-scroll border">
-      {/* <button onClick={handleFilterClick}>get product</button> */}
       <div>
         {isOpen && <Overlay closed={handleToggle} />}
         {isOpen && <FastDetailView id={fastId} />}
