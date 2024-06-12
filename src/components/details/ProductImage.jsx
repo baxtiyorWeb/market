@@ -1,7 +1,6 @@
 import { Carousel, Image } from "antd";
 import { useEffect, useRef, useState } from "react";
 import "react-medium-image-zoom/dist/styles.css";
-import "./Product-details.css";
 
 export default function ProductImage({ productDetail }) {
   const [imgGetIndex, setImgGetIndex] = useState(0);

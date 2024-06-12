@@ -22,8 +22,6 @@ const ChildCategories = () => {
   const [categoryRoot, setCategoryRoot] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const propertyName = manufacture.propertyName;
-  const propertyValue = manufacture.propertyValue;
   const [filter, setFilter] = useState({
     search: "",
     regionId: "",
