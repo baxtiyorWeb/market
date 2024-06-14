@@ -1,4 +1,4 @@
-import { Select, Space, Switch } from "antd";
+import { Select, Space } from "antd";
 import React, { useEffect, useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import api from "../../config/api/api";
@@ -209,23 +209,6 @@ const ChildCategories = () => {
                   ))}
                 </Select>
               }
-
-              <div className="flex w-[230px] cursor-pointer items-center justify-center ">
-                <label
-                  className="w-[230px] cursor-pointer"
-                  name="canAgree"
-                  htmlFor="canAgree"
-                >
-                  {Boolean(searchParams.get("canAgree"))
-                    ? "kelishiladi"
-                    : "kelishilmaydi"}
-                </label>
-                <Switch
-                  id="canAgree"
-                  className="bg-bgColor "
-                  onChange={(e) => setFilter({ ...filter, canAgree: e })}
-                />
-              </div>
             </div>
 
             <ProductGetList isLoading={isLoading} />

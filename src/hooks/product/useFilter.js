@@ -19,7 +19,6 @@ const useFilter = () => {
   const searchValue = searchParams.get("search") || "";
   const regionId = searchParams.get("regionId") || "";
   const districtId = searchParams.get("districtId") || "";
-  const canAgree = searchParams.get("canAgree") || null;
   const price_min = searchParams.get("price_min") || "";
   const price_max = searchParams.get("price_max") || "";
   const paymentTypeId = searchParams.get("paymentType") || "";
@@ -71,7 +70,6 @@ const useFilter = () => {
       ownProducts: false,
       userId: 0,
       price,
-      canAgree: Boolean(canAgree) ? true : false,
       valueFilter: manufacture,
     });
 
