@@ -15,7 +15,7 @@ export default function LoginComponent() {
 
   const [isLoading, setisLoading] = useState(false);
   const [inputType, setInputType] = useState("text");
-  const { loginAction, error } = useAuth();
+  const { loginAction } = useAuth();
 
   const loginNameAndPassword = async (e) => {
     e.preventDefault();
@@ -93,7 +93,6 @@ export default function LoginComponent() {
           )}
         </ButtonUI>
       </div>
-      <span className="text-red-500">{error}</span>
       <span>yoki</span>
 
       <div className="w-full">

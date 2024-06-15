@@ -1,3 +1,4 @@
+import { message } from "antd";
 import { createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../config/api/api";
@@ -26,7 +27,7 @@ const AuthProvider = ({ children }) => {
       }
       throw new Error(res.message);
     } catch (err) {
-      setError(err?.response?.data?.errorResponse?.message);
+      message.error(err?.response?.data?.errorResponse?.message);
     }
   };
 

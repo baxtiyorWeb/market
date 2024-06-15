@@ -49,7 +49,7 @@ const Exports = ({ filter, setFilter }) => {
   };
 
   const onChangeNumberEvent = () => {
-    const { value, e, num, item, name, type } = types;
+    const { e, item, type } = types;
     const propertyId = item?.property?.id;
     const valueTypeId = item?.property?.valueTypeDto?.id;
 
@@ -111,9 +111,8 @@ const Exports = ({ filter, setFilter }) => {
     updateSearchParams(item?.property?.name, e, type);
   };
 
-  const addPropertyForFilter = () => {
+  const addPropertyForFilter = (prevent) => {
     const { e, item, type } = types;
-    // prevent.preventDefault();
 
     if (type === "min" || type === "max") {
       onChangeNumberEvent();
@@ -220,11 +219,7 @@ const Exports = ({ filter, setFilter }) => {
     );
 
     return (
-      <div
-        // onSubmit={addPropertyForFilter}
-        className="my-3 flex w-[300px] items-center "
-        key={item.property.id}
-      >
+      <div className="my-3 flex w-[300px] items-center " key={item.property.id}>
         <div className="my-3 h-[1.2em]  w-[50%] overflow-hidden text-ellipsis  whitespace-nowrap text-left text-sm font-light">
           {item?.property?.name}
         </div>
