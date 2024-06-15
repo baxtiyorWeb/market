@@ -46,28 +46,7 @@ const CategorySlider = () => {
               </h1>
 
               <List
-                header={
-                  <div className="flex items-center justify-between">
-                    <h1>bo&apos;limlar</h1>
-                    {viewMore === 5 ? (
-                      <button
-                        className="underline"
-                        onClick={() =>
-                          setviewMore(categoryChild?.content?.length)
-                        }
-                      >
-                        ko&apos;proq
-                      </button>
-                    ) : (
-                      <button
-                        onClick={() => setviewMore(5)}
-                        className="underline"
-                      >
-                        yashirish
-                      </button>
-                    )}
-                  </div>
-                }
+                header={"bo'limlar"}
                 extra
                 bordered
                 loading={isLoading}
@@ -97,6 +76,23 @@ const CategorySlider = () => {
                     ),
                   )}
               </List>
+              <div className="flex items-center justify-between">
+                <h1>bo&apos;limlar</h1>
+                {viewMore === 5 ? (
+                  <button
+                    className="underline"
+                    onClick={() => {
+                      setviewMore(categoryChild?.content?.length);
+                    }}
+                  >
+                    ko&apos;proq
+                  </button>
+                ) : (
+                  <button onClick={() => setviewMore(5)} className="underline">
+                    yashirish
+                  </button>
+                )}
+              </div>
             </div>
           </div>
         )

@@ -1,5 +1,5 @@
 import { PlusOutlined } from "@ant-design/icons";
-import { Checkbox, Select, Switch, Upload } from "antd";
+import { Select, Switch, Upload } from "antd";
 
 import React, { useEffect, useState } from "react";
 
@@ -40,6 +40,8 @@ export default function AddProductCategory() {
   const [propertiesData, setPropertiesData] = useState([]);
   const [selltype, setSellType] = useState([]);
   const [paymenttype, setPaymentType] = useState([]);
+  const [currency, setCurrency] = useState([]);
+  const [currencyId, setCurrencyId] = useState([]);
   const [queryName, setQueryName] = useState(params.get("categoryName") || "");
   const [queryId, setQueryId] = useState(params.get("categoryId") || "");
 
@@ -369,19 +371,26 @@ export default function AddProductCategory() {
               />
             </div>
 
-            <div className=" flex h-full w-auto items-center justify-center">
-              <span className="ml-5 mr-5">
-                <label htmlFor="uzs" className="ml-1 mr-2">
-                  UZS
-                </label>{" "}
-                <Checkbox required id="uzs" autoFocus />
-              </span>
-              <span className="ml-5 mr-5">
-                <label htmlFor="usd" className="ml-1 mr-2">
-                  USD
-                </label>
-                <Checkbox required id="usd" />
-              </span>
+            <div className=" flex h-full w-auto flex-col items-center justify-center">
+              {" "}
+              <div className="mx-10 mb-10 w-auto">
+                {" "}
+                <span className="text block font-poppins text-[14px] font-normal leading-[22px] text-black">
+                  {" "}
+                  valyutani tanlang{" "}
+                </span>{" "}
+                <Select
+                  onChange={(e) => setCurrencyId(e.target.id)}
+                  className="focus:border-[1px_solid_rgb(59 130 246)] mt-2 h-[50px] w-[334px] shrink-0 rounded-[5px] border-[#E2E2E2] bg-[#FAFAFA]  font-poppins text-[16px] outline-none "
+                  placeholder="valyutani tanlang"
+                  required
+                >
+                  {" "}
+                  {currency?.map((item, index) => (
+                    <Select.Option key={index}>{item?.shortName}</Select.Option>
+                  ))}{" "}
+                </Select>{" "}
+              </div>{" "}
             </div>
           </div>
           <span className="text mx-10 block font-poppins text-[14px] font-normal leading-[22px] text-black">
