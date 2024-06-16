@@ -3,9 +3,8 @@ import { RiAppleFill, RiTelegramLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import Container from "../shared/Container";
 export default function Footer() {
-
   return (
-    <div className="h-[202px] w-full flex-shrink-0 border-[#D2D2D2] bg-white py-10 ">
+    <div className="h-[202px]  w-full flex-shrink-0 border-[#D2D2D2] bg-white py-10 xs:overflow-hidden ">
       <Container>
         <div className="flex items-center justify-between">
           <div className="h-[66px] w-[287px] ">

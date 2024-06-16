@@ -320,7 +320,7 @@ const Exports = ({ filter, setFilter }) => {
   };
 
   return (
-    <div className="flex  flex-col items-start justify-start rounded-md border">
+    <div className=" flex  flex-col items-start justify-start rounded-md border">
       <div>
         <CategorySlider />
         <List orientation="left" className="w-[100%_important] px-1 py-3">

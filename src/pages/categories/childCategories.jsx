@@ -134,7 +134,7 @@ const ChildCategories = () => {
       </div>
       <div className="grid h-full grid-flow-col grid-rows-3 gap-4">
         <div className="flex flex-col">
-          <div className="child-category row-span-3 my-2 flex h-[max-content] w-[330px] flex-col rounded-2xl bg-white">
+          <div className="child-category row-span-3 my-2 flex h-[max-content] w-[330px] flex-col rounded-2xl bg-white xs:hidden">
             <div className=" my-5 border-b border-b-gray-500 text-left text-[15px] font-bold">
               Saralash
             </div>

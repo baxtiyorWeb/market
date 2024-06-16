@@ -39,6 +39,7 @@ export default {
         sm: { max: "639px" },
         // => @media (max-width: 639px) { ... }
         xs: { max: "500px" },
+        xs_min: { min: "500px" },
         "2xs": { max: "360px" },
         "3xs": { max: "250px" },
       },

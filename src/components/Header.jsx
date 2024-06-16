@@ -3,6 +3,7 @@ import { MenuOutlined } from "@ant-design/icons";
 import { Select } from "antd";
 import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
+import { IoMenu } from "react-icons/io5";
 import { MdClose } from "react-icons/md";
 import { Link, useSearchParams } from "react-router-dom";
 import m_logo from "../assets/logo.png";
@@ -52,13 +53,23 @@ export default function Header({ update, setUpdate }) {
     <>
       {/*<ResponsiveBottomMenu/>*/}
       <div
-        className={`sticky    ${
+        className={`sticky xs:overflow-hidden   ${
           scroll === "down" ? "top-[-180px]" : " top-0"
-        } transitiona-all left-0 top-0 z-[300] flex  h-[100px] w-full flex-col  items-center  justify-center bg-white duration-500    sm:bg-blue-500`}
+        } transitiona-all left-0 top-0 z-[300] flex  h-[100px] w-full flex-col  items-center  justify-center bg-white duration-500   `}
       >
         <Container>
           <div className="flex h-full  w-full items-center justify-between">
-            <Link to={"/"}>
+            <div
+              onClick={() => setOpen(!open)}
+              className="xs_min:hidden xs:flex xs:h-10 xs:w-10 xs:items-center xs:justify-center xs:rounded-md xs:bg-bgColor xs:text-2xl "
+            >
+              {!open ? (
+                <IoMenu src={menuIcon} alt="" className=" text-textColor" />
+              ) : (
+                <MdClose className="text-[30px] text-textColor" />
+              )}
+            </div>
+            <Link to={"/"} className="hidden">
               {" "}
               <img
                 src={m_logo}
@@ -68,7 +79,7 @@ export default function Header({ update, setUpdate }) {
             </Link>
 
             <button
-              className="flex h-[40px] w-[120px] flex-shrink-0 items-center justify-between rounded-md border border-bgColor bg-bgColor p-2 text-center text-textColor sm:hidden"
+              className="flex h-[40px] w-[120px] flex-shrink-0 items-center justify-between rounded-md border border-bgColor bg-bgColor p-2 text-center text-textColor  xs:hidden"
               onClick={() => setOpen(!open)}
             >
               {!open ? (
@@ -84,13 +95,13 @@ export default function Header({ update, setUpdate }) {
                 Katalog
               </span>
             </button>
-            <div className="sm:hidden">
+            <div className="sm:hidden xs:hidden">
               <Categoriyes open={open} setOpen={setOpen} scroll={scroll} />
             </div>
 
             <div
               onClick={() => setOpen(false)}
-              className=" h-auto w-auto p-0  "
+              className="h-auto w-auto p-0 xs:hidden  "
             >
               <Regions opens={open} setOpens={setOpen} />
             </div>
@@ -98,14 +109,14 @@ export default function Header({ update, setUpdate }) {
             <div onClick={() => setOpen(false)}>
               <form
                 onSubmit={(e) => e.preventDefault()}
-                className="mx-5 flex items-center justify-center"
+                className="mx-5 flex items-center justify-center xs:mx-0"
               >
                 <input
                   type="text"
                   placeholder="Qidiruv"
                   defaultValue={search}
                   onChange={(e) => liveSearch(e.target.value)}
-                  className="h-[40px] w-[510px]  rounded-bl-md rounded-tl-md border border-bgColor bg-[#F9F9F9] pl-[19px] text-[#959EA7] outline-none"
+                  className="h-[40px] w-[510px] rounded-bl-md rounded-tl-md border border-bgColor bg-[#F9F9F9] pl-[19px] text-[#959EA7] outline-none xs:w-[236px]"
                 />
                 <button
                   type="submit"
@@ -115,10 +126,10 @@ export default function Header({ update, setUpdate }) {
                 </button>
               </form>
             </div>
-            <div className="flex w-auto items-center justify-end">
+            <div className="flex w-auto items-center justify-end xs:hidden">
               <HeadUserLinks update={update} setUpdate={setUpdate} />
             </div>
-            <div className="user-menu flex w-auto items-center justify-end">
+            <div className="user-menu flex w-auto items-center justify-end xs:hidden">
               <div
                 className="ml-3 mr-3 flex cursor-pointer items-center
               justify-end rounded-md
