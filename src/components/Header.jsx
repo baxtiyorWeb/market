@@ -61,7 +61,7 @@ export default function Header({ update, setUpdate }) {
           <div className="flex h-full  w-full items-center justify-between">
             <div
               onClick={() => setOpen(!open)}
-              className="xs_min:hidden xs:flex xs:h-10 xs:w-10 xs:items-center xs:justify-center xs:rounded-md xs:bg-bgColor xs:text-2xl "
+              className="xs:flex xs:h-10 xs:w-10 xs:items-center xs:justify-center xs:rounded-md xs:bg-bgColor xs:text-2xl xs_min:hidden "
             >
               {!open ? (
                 <IoMenu src={menuIcon} alt="" className=" text-textColor" />
@@ -69,7 +69,7 @@ export default function Header({ update, setUpdate }) {
                 <MdClose className="text-[30px] text-textColor" />
               )}
             </div>
-            <Link to={"/"} className="hidden">
+            <Link to={"/"} className="xs:hidden">
               {" "}
               <img
                 src={m_logo}

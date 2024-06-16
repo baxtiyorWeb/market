@@ -164,7 +164,7 @@ const Products = () => {
                         title={`${item?.name}`}
                         loading="lazy"
                         height={"230px"}
-                        className=" h-[100%_!important] w-[100%_!important] rounded-xl   bg-center object-cover align-middle xs:h-[150px_!important] xs:w-[145px_!important]"
+                        className=" h-[100%_!important] w-[268px_!important] rounded-xl   bg-center object-cover align-middle xs:h-[150px_!important] xs:w-[145px_!important]"
                       />
                     </LazyLoad>
                   </div>
