@@ -1,5 +1,11 @@
 /* eslint-disable react/prop-types */
-import { MenuOutlined } from "@ant-design/icons";
+import {
+  HeartOutlined,
+  HomeOutlined,
+  MenuOutlined,
+  PlusCircleFilled,
+  UserOutlined,
+} from "@ant-design/icons";
 import { Select } from "antd";
 import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
@@ -95,7 +101,7 @@ export default function Header({ update, setUpdate }) {
                 Katalog
               </span>
             </button>
-            <div className="sm:hidden xs:hidden">
+            <div className=" ">
               <Categoriyes open={open} setOpen={setOpen} scroll={scroll} />
             </div>
 
@@ -165,6 +171,50 @@ export default function Header({ update, setUpdate }) {
                   </Select.Option>
                 </Select>
               </div>
+            </div>
+          </div>
+          <div className="xs:fixed xs:bottom-0 xs:left-0 xs:z-[99999] xs:flex xs:h-16 xs:w-full xs:items-center xs:justify-between xs:border xs:bg-whiteTextColor xs:px-5 xs_min:hidden">
+            <div className="flex h-[65px] w-[65px] flex-col items-center justify-evenly  rounded-full ">
+              <Link
+                to={"/"}
+                className="text flex h-[65px] w-[65px] flex-col items-center justify-evenly text-bgColor"
+              >
+                <HomeOutlined className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[20px]" />
+                <span className="text-[10px]">bosh sahifa</span>
+              </Link>
+            </div>
+            <div className="flex h-[65px] w-[65px] flex-col items-center justify-evenly  rounded-full ">
+              <Link className="text flex h-[65px] w-[65px] flex-col items-center justify-evenly text-bgColor">
+                <MenuOutlined className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[20px]" />
+                <span className="text-[10px]">Categoriya</span>
+              </Link>
+            </div>
+            <div className="flex h-[65px] w-[65px] flex-col items-center justify-evenly  rounded-full ">
+              <Link
+                to={"product-form/add-product?"}
+                className="text flex h-[65px] w-[65px] flex-col items-center justify-evenly  text-bgColor"
+              >
+                <PlusCircleFilled className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[30px]" />
+                <span className="text-[10px]">E&apos;lon berish</span>
+              </Link>
+            </div>
+            <div className="flex h-[65px] w-[65px] flex-col items-center justify-evenly  rounded-full ">
+              <Link
+                to={"/profile/dashboard?tab=2"}
+                className="text flex h-[65px] w-[65px] flex-col items-center justify-evenly text-bgColor"
+              >
+                <HeartOutlined className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[20px]" />
+                <span className="text-[10px]">Sevimlilar</span>
+              </Link>
+            </div>
+            <div className="flex h-[65px] w-[65px] flex-col items-center justify-evenly  rounded-full ">
+              <Link
+                to={`/profile/dashboard?tab=1`}
+                className="text flex h-[65px] w-[65px] flex-col items-center justify-evenly text-bgColor"
+              >
+                <UserOutlined className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[20px]" />
+                <span className="text-[10px]">Kabinet</span>
+              </Link>
             </div>
           </div>
         </Container>

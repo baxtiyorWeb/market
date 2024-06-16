@@ -11,8 +11,8 @@ export default function Categoriyes({ open, setOpen }) {
       <div
         className={
           open
-            ? `scroll-wrapper absolute left-40 top-24 z-50 rounded-md bg-[#FFFFFF]  opacity-100 shadow-xl  transition-all duration-100 xs:absolute xs:left-80`
-            : "absolute left-40 top-24  z-[-100] h-[0] opacity-0 transition-all  duration-300 xs:absolute xs:left-80"
+            ? `scroll-wrapper absolute  left-40 top-24 z-50 rounded-md bg-[#FFFFFF]  opacity-100 shadow-xl  transition-all duration-100 xs:absolute xs:right-[50%] xs:z-50`
+            : "absolute left-40 top-24  z-[-100] h-[0] opacity-0 transition-all  duration-300 xs:absolute xs:left-0"
         }
       >
         <div className="mb-10">
