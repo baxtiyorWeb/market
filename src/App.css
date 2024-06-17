@@ -376,3 +376,20 @@
   @apply flex h-[45px] w-[150px] cursor-pointer  select-none items-center justify-center rounded-md border bg-[#EBEBEB] text-[#545454] transition-all duration-500 hover:bg-white;
 }
 /* .tabs style  end*/
+
+.ant-menu-submenu-title {
+  margin: 0px !important;
+  border-radius: 0 0 0 0 !important;
+}
+.ant-menu-submenu-placement-rightTop {
+  margin: 0px !important;
+  border-radius: 0 0 0 0 !important;
+}
+.ant-menu-submenu-popup .ant-menu-item {
+  /* background: red !important;/ */
+}
+.menu-item {
+  margin: 5px !important;
+  padding-right: 0 !important  ;
+  border-radius: 0 0 0 0 !important;
+}

@@ -54,12 +54,12 @@ const AddProductLocation = ({ regionId, setRegionId, setDistrictId }) => {
             placeholder="Tumanni tanlang"
             onChange={(e) => setDistrictId(e)} // Update regionId on change
           >
+            <Select.Option>tanlang</Select.Option>
             {districts.map(
               (
                 item, // Use districts here, not district?.data
               ) => (
                 <>
-                  <Select.Option>tanlang</Select.Option>
                   <Select.Option key={item?.id} value={item?.id}>
                     {item?.name}
                   </Select.Option>

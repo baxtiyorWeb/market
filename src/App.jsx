@@ -1,6 +1,8 @@
 import React, { lazy, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import Confirm from "./components/auth/otpCodeConfirmComponent";
 import AuthLayout from "./layout/authLayout";
@@ -14,7 +16,6 @@ import AddProductCategoryLayout from "./pages/product-form/productForm";
 import Profile from "./pages/profile/Profile";
 import "./response.css";
 import Loading from "./ui/loading/Loading";
-
 const Home = lazy(() => import("./pages/Home"));
 const Details = lazy(() => import("./pages/Details"));
 const Register = lazy(() => import("./pages/auth/Register"));
@@ -31,6 +32,14 @@ const App = () => {
   const [update, setUpdate] = useState([]);
   return (
     <>
+      <ToastContainer
+        position="top-right"
+        draggable={true}
+        rtl={false}
+        draggableDirection="x"
+        closeOnClick={true}
+        pauseOnHover={true}
+      />
       <Helmet>
         <title>Kelishamiz.uz saytiga hush kelibsiz</title>
         <link rel="stylesheet" href="http://95.130.227.131" />

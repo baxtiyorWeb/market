@@ -1,5 +1,5 @@
 import { PlusOutlined } from "@ant-design/icons";
-import { Select, Switch, Upload } from "antd";
+import { Select, Spin, Switch, Upload } from "antd";
 
 import React, { useEffect, useState } from "react";
 
@@ -44,7 +44,7 @@ export default function AddProductCategory() {
   const [currencyId, setCurrencyId] = useState([]);
   const [queryName, setQueryName] = useState(params.get("categoryName") || "");
   const [queryId, setQueryId] = useState(params.get("categoryId") || "");
-
+  const [isLoading, setisLoading] = useState(false);
   const [productInitData, setProductInitData] = useState({
     id: 0,
     name: "Mashinalar",
@@ -155,23 +155,30 @@ export default function AddProductCategory() {
 
   const handleSubmit = async (e) => {
     // Category tanlanganini olish
-    e.preventDefault();
-    createProduct({
-      ...productInitData,
-      regionId: regionId,
-      categoryId: queryId,
-      canAgree: productInitData.canAgree ? true : false,
-      districtId: districtId,
-      propertyValues: nextProductData,
-      files: fileLisId, // `fileList` yuborgan fayllar ro'yxati
-    });
+    try {
+      setisLoading(true);
+      e.preventDefault();
+      createProduct({
+        ...productInitData,
+        regionId: regionId,
+        categoryId: queryId,
+        canAgree: productInitData.canAgree ? true : false,
+        districtId: districtId,
+        propertyValues: nextProductData,
+        files: fileLisId, // `fileList` yuborgan fayllar ro'yxati
+      });
 
-    // State yangilanadi
-    setProductInitData({
-      ...productInitData,
-      propertyValues: nextProductData,
-      files: fileList, // `fileList` yuborgan fayllar ro'yxati
-    });
+      // State yangilanadi
+      setProductInitData({
+        ...productInitData,
+        propertyValues: nextProductData,
+        files: fileList, // `fileList` yuborgan fayllar ro'yxati
+      });
+    } catch (error) {
+      console.log(error?.message);
+    } finally {
+      setisLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -454,7 +461,7 @@ export default function AddProductCategory() {
               className="ring-offset-background inline-flex h-11 items-center justify-center rounded-md bg-[#1d828e] px-8 text-[15px] font-medium text-white transition-colors duration-200 ease-in-out hover:bg-emerald-600 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
               type="submit"
             >
-              E’lonni yuklash
+              {isLoading ? <Spin /> : "  E’lonni yuklash"}
             </button>
           </div>
         </form>
