@@ -97,7 +97,7 @@ export default function LoginComponent() {
           onSubmit={loginNameAndPassword}
           className="flex h-[580px] w-[80%] flex-col items-center justify-center "
         >
-          <h1 className="mb-5 mt-3 text-center text-2xl">Dasturga kirish</h1>
+          <h1 className="mb-5 mt-3 text-center text-2xl">Profilga kirish</h1>
           <div className=" flex w-full flex-col items-start justify-center ">
             <span className="mb-1 w-auto text-left">loginingizni kiriting</span>
             <Input

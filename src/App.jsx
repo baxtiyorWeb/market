@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
+import CategoryTest from "./CategoryTest";
 import Confirm from "./components/auth/otpCodeConfirmComponent";
 import AuthLayout from "./layout/authLayout";
 import Layout from "./layout/layout";
@@ -47,6 +48,7 @@ const App = () => {
       <div className="fixed z-[10000] ml-5 p-2"></div>
 
       <Routes>
+        <Route exact path="/test" element={<CategoryTest />} />
         <Route
           exact
           path="/"
