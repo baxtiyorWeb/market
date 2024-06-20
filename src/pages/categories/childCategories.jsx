@@ -97,6 +97,9 @@ const ChildCategories = () => {
     regionsData();
   }, [id, filter.regionId, filter.value, saveFilter]);
 
+  const totalProducts =
+    data?.pages?.reduce((acc, page) => acc + page.data.length, 0) || 0;
+
   return (
     <div className="child-categ h-full flex-col items-start justify-center ">
       <div className="mb-3 flex w-full items-center justify-start rounded-md">
@@ -122,9 +125,10 @@ const ChildCategories = () => {
           ))}
         </Space>
       </div>
-
       <BreadCrumbs />
-
+      <span className="text text-base text-textColor ">
+        <b>{totalProducts}</b> Ta Mahsulot topildi
+      </span>
       <div className="text mb-3 mt-5 flex items-center justify-start text-[36px] font-medium leading-[49px] text-[#111]">
         <span className="text   text-sm text-gray-500">
           {data?.data?.data?.content?.length === 0
@@ -148,7 +152,7 @@ const ChildCategories = () => {
         </div>
         <div className="col-span-5 row-span-3 h-full w-[1053px]   ">
           <div>
-            <div className="my-5 grid h-auto grid-cols-4 items-center justify-between gap-3 rounded-md bg-white text-left text-[15px]">
+            <div className=" my-5 grid h-auto grid-cols-4 items-center justify-between gap-3 rounded-md bg-white text-left text-[15px]">
               <Select
                 className=" w-[230px]"
                 onChange={(e) => {

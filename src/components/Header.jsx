@@ -20,6 +20,7 @@ import useProductSearch from "../hooks/product/useProductSearch";
 import useLiveSeach from "../hooks/useLiveSeach";
 import Container from "../shared/Container";
 import Categoriyes from "../ui/Categoriyes";
+import Overlay from "../ui/Overlay";
 import Regions from "./regions/regions";
 
 export default function Header({ update, setUpdate }) {
@@ -55,13 +56,18 @@ export default function Header({ update, setUpdate }) {
       };
     }
   }, []);
+
+  const closed = () => {
+    setOpen(!open);
+  };
+
   return (
     <>
       {/*<ResponsiveBottomMenu/>*/}
       <div
-        className={`sticky xs:overflow-hidden   ${
+        className={`sticky z-[302]  xs:overflow-hidden  ${
           scroll === "down" ? "top-[-180px]" : " top-0"
-        } transitiona-all left-0 top-0 z-[300] flex  h-[100px] w-full flex-col  items-center  justify-center bg-white duration-500   `}
+        } transitiona-all left-0 top-0  flex  h-[100px] w-full flex-col  items-center  justify-center bg-white duration-500   `}
       >
         <Container>
           <div className="flex h-full  w-full items-center justify-between">
@@ -101,7 +107,8 @@ export default function Header({ update, setUpdate }) {
                 Katalog
               </span>
             </button>
-            <div className=" ">
+            {open && <Overlay closed={closed} />}
+            <div className="">
               <Categoriyes open={open} setOpen={setOpen} scroll={scroll} />
             </div>
 

@@ -60,8 +60,8 @@ const useFilter = () => {
 
     const response = await api.post("/product/list", {
       search: searchValue || "",
-      page: pageParam || 0,
-      size: 10,
+      page: pageParam,
+      size: 5,
       categoryId: Number(id) || 0,
       districtId: districtId || 0,
       regionId: regionId || 0,
@@ -76,7 +76,7 @@ const useFilter = () => {
     return {
       data: response.data?.data,
       nextPage: pageParam + 1,
-      hasNextPage: response.data?.data.length === 10,
+      hasNextPage: response.data?.data.length === 5,
     };
   };
 
@@ -101,7 +101,10 @@ const useFilter = () => {
       paymentTypeId,
     ],
     queryFn: fetchProducts,
-    getNextPageParam: (lastPage) => (lastPage.length ? pages.length : false),
+    initialPageParam: 0,
+    getNextPageParam: (lastPage, allPages) => {
+      return lastPage.hasNextPage ? lastPage.nextPage : undefined;
+    },
     onError: () => {
       message.error("Mahsulot ro'yxatini  olishda xato");
     },
