@@ -65,7 +65,7 @@ const CreateUser = () => {
         />
       </Form.Item>
       <Form.Item
-        label="Ikkinchi ism"
+        label="Otangizning ismingiz"
         name="ikkinchi ism ni kiriting"
         rules={[
           {
