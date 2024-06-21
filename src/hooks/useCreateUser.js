@@ -7,16 +7,15 @@ const useCreateUser = () => {
   const navigate = useNavigate();
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState("");
+  const [id, setId] = useState();
   const [name, setName] = useState({
     firstName: "",
     lastName: "",
     secondName: "",
     birthDate: "",
-    username: "",
-    password: "",
-    phone: "",
-    email: "",
-    authorityId: 0,
+    username: "adsasda",
+    phone: "998909999999",
+    password: "1231231231",
     districtId: 0,
     address: "",
     fileItemId: 1,
@@ -26,9 +25,8 @@ const useCreateUser = () => {
     try {
       setIsPending(true);
       const res = createUserData(name);
-      message.success("created user");
     } catch (err) {
-      setError(err);
+      message.success(err);
     } finally {
       setIsPending(false);
     }
@@ -40,6 +38,8 @@ const useCreateUser = () => {
     createUser,
     isPending,
     error,
+    id,
+    setId,
   };
 };
 

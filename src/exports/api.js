@@ -112,7 +112,7 @@ export const fileUplaodLoadedData = async (data) => {
 };
 
 export const createUserData = async (data) => {
-  const res = await api.put(`/user/5`, data);
+  const res = await api.put(`/user/26`, data);
   if (res.data) "ok";
   return res.data;
 };

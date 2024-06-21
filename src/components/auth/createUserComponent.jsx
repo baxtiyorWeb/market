@@ -1,38 +1,40 @@
-import { Form, Input, Select, Spin } from "antd";
+import { useQuery } from "@tanstack/react-query";
+import { Button, DatePicker, Form, Input, Select, Space, Spin } from "antd";
 import React from "react";
+import { Link } from "react-router-dom";
+import { getDistrict, getRegions } from "../../exports/api";
 import useCreateUser from "../../hooks/useCreateUser";
-import ButtonUI from "../../ui/button/Button";
-
 const formItemLayout = {
   labelCol: {
-    xs: {
-      span: 24,
-    },
-    sm: {
-      span: 8,
-    },
+    xs: { span: 24 },
+    sm: { span: 6 },
   },
   wrapperCol: {
-    xs: {
-      span: 24,
-    },
-    sm: {
-      span: 14,
-    },
+    xs: { span: 24 },
+    sm: { span: 14 },
   },
 };
 const CreateUser = () => {
-  const { createUser, isPending, name, setName } = useCreateUser();
+  const { createUser, isPending, name, setName, id, setId } = useCreateUser();
+  const { data: regions } = useQuery({
+    queryKey: ["region", id],
+    queryFn: () => getRegions(),
+  });
+
+  const { data: districts } = useQuery({
+    queryKey: ["district"],
+    queryFn: () => getDistrict(id),
+    enabled: !!id,
+  });
 
   // if (error) return `error: ${error}`;
   return (
-    <Form
-      {...formItemLayout}
-      variant="filled"
-      className="grid w-full grid-cols-2 border"
-    >
+    <Form {...formItemLayout} variant="filled" className="">
+      <h1 className="text mb-5 text-center text-lg">
+        Ma&apos;lumotingizni to&apos;ldiring
+      </h1>
       <Form.Item
-        label="ism"
+        label="Ism"
         name="ism kiriting"
         rules={[
           {
@@ -48,7 +50,7 @@ const CreateUser = () => {
       </Form.Item>
 
       <Form.Item
-        label="familiya"
+        label="Familiya"
         name="familiyangizni kiriting"
         rules={[
           {
@@ -63,7 +65,7 @@ const CreateUser = () => {
         />
       </Form.Item>
       <Form.Item
-        label="ikkinchi ism"
+        label="Ikkinchi ism"
         name="ikkinchi ism ni kiriting"
         rules={[
           {
@@ -78,42 +80,44 @@ const CreateUser = () => {
         />
       </Form.Item>
 
-      {/*<Form.Item*/}
-      {/*  label="tug'ilgan sanangizni kiriting"*/}
-      {/*  name="tug'ilgan sanangizni kiriting"*/}
-      {/*  rules={[*/}
-      {/*    {*/}
-      {/*      required: true,*/}
-      {/*      message: "tug'ilgan sanangizni kiriting",*/}
-      {/*    },*/}
-      {/*  ]}*/}
-      {/*>*/}
-      {/*  <DatePicker*/}
-      {/*    className="w-[280px]"*/}
-      {/*    onChange={(e) =>*/}
-      {/*      setName({ ...name, birthDate: e.format("YYYY-MM-DD") })*/}
-      {/*    }*/}
-      {/*  />*/}
-      {/*</Form.Item>*/}
-
       <Form.Item
-        label="username"
-        name="username kiriting"
+        label="Tug'ilgan sana"
+        name="tug'ilgan sanangizni kiriting"
         rules={[
           {
             required: true,
-            message: "username ni kiriting",
+            message: "tug'ilgan sanangizni kiriting",
           },
         ]}
       >
-        <Input
+        <DatePicker
           className="w-[280px]"
-          onChange={(e) => setName({ ...name, username: e.target.value })}
+          onChange={(e) =>
+            setName({ ...name, birthDate: e.format("YYYY-MM-DD") })
+          }
         />
       </Form.Item>
 
       <Form.Item
-        label="tuman"
+        label="Viloyat"
+        name="Viloyat kiriting"
+        rules={[
+          {
+            required: true,
+            message: "Viloyatingizni kiriting",
+          },
+        ]}
+      >
+        <Select className="w-[280px]" onChange={(e) => setId(e)}>
+          {regions?.data?.map((item, index) => (
+            <Select.Option value={item?.id} key={index}>
+              {item?.name}
+            </Select.Option>
+          ))}
+        </Select>
+      </Form.Item>
+      <Form.Item
+        label="Tuman"
         name="tumaningzni kiriting"
         rules={[
           {
@@ -124,14 +128,14 @@ const CreateUser = () => {
       >
         <Select
           className="w-[280px]"
-          options={[
-            {
-              label: "Qumqo'rg'on",
-              value: "1",
-            },
-          ]}
           onChange={(e) => setName({ ...name, districtId: e })}
-        />
+        >
+          {districts?.data?.map((item, index) => (
+            <Select.Option key={index} value={item?.id}>
+              {item?.name}
+            </Select.Option>
+          ))}
+        </Select>
       </Form.Item>
       <Form.Item
         label="Manzil"
@@ -149,14 +153,16 @@ const CreateUser = () => {
         />
       </Form.Item>
 
-      <div className={"block w-full border"}>
-        <ButtonUI onClick={() => createUser()}>
-          {isPending ? <Spin /> : "tugatish"}
-        </ButtonUI>
-        <ButtonUI onClick={() => createUser()}>
-          {isPending ? <Spin /> : "tugatish"}
-        </ButtonUI>
-      </div>
+      <Form.Item>
+        <Space className="flex w-[400px] items-center justify-between  pl-24">
+          <Button onClick={() => createUser()}>
+            {isPending ? <Spin /> : "kiritish"}
+          </Button>
+          <Link className="text underline " onClick={() => createUser()}>
+            O&apos;tkazib yuborish
+          </Link>
+        </Space>
+      </Form.Item>
     </Form>
   );
 };
