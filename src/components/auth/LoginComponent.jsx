@@ -1,14 +1,16 @@
-import { Input, Spin, message } from "antd";
-import { useEffect, useState } from "react";
-import { FaArrowRight, FaEye, FaEyeSlash, FaTelegram } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
-import api from "../../config/api/api";
-import useGenerateuuid from "../../hooks/useGenerateuuid";
-import ButtonUI from "../../ui/button/Button";
-import SpinLoading from "../../ui/loading/spinLoading";
-import { useAuth } from "./../../context/authContext";
+import { Input, Spin, message } from "antd"
+import { useEffect, useState } from "react"
+import { useCookies } from "react-cookie"
+import { FaArrowRight, FaEye, FaEyeSlash, FaTelegram } from "react-icons/fa"
+import { FcGoogle } from "react-icons/fc"
+import { Link, useNavigate, useSearchParams } from "react-router-dom"
+import api from "../../config/api/api"
+import useGenerateuuid from "../../hooks/useGenerateuuid"
+import ButtonUI from "../../ui/button/Button"
+import SpinLoading from "../../ui/loading/spinLoading"
+import { useAuth } from "./../../context/authContext"
 
+import Cookies from "universal-cookie"
 export default function LoginComponent() {
   const [params, setParams] = useSearchParams();
   const [signIn, setSignIn] = useState({
@@ -17,12 +19,25 @@ export default function LoginComponent() {
   });
 
   const navigate = useNavigate();
+  const [cookies, setCookie] = useCookies(["user_info"]);
   const [isLoading, setisLoading] = useState(false);
   const [inputType, setInputType] = useState("text");
   const [phone, setPhone] = useState("");
   const { generateuiid } = useGenerateuuid();
   const [open, setOpen] = useState(false);
   const { loginAction } = useAuth();
+  function getCookie(name) {
+    let matches = document.cookie.match(
+      new RegExp(
+        "(?:^|; )" +
+          name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") +
+          "=([^;]*)",
+      ),
+    );
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+  }
+
+  console.log(getCookie("user_info"));
   const toggle = params.get("auth") || "login";
   const login = () => {
     setParams({ auth: "login" });
@@ -53,6 +68,7 @@ export default function LoginComponent() {
         params: { phone: phone },
         headers: {
           secretKey: generateUId,
+          
         },
         xsrfCookieName: "XSRF-TOKEN",
       });
@@ -75,6 +91,21 @@ export default function LoginComponent() {
   useEffect(() => {
     authCheck();
   }, [toggle]);
+
+  function onChange(newName) {
+    const cookies = new Cookies(null, {
+      path: "/api/v1/authority",
+      domain: "95.130.227.131",
+      expires: "Session",
+      sameSite: "none",
+      secure: true,
+      httpOnly: true,
+    });
+
+    console.log(cookies.getAll("user_info"));
+  }
+  // get("user_info")
+  onChange("");
 
   return (
     <div className="flex w-full flex-col items-center ">
