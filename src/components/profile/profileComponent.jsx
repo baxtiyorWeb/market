@@ -10,14 +10,15 @@ export default function ProfileComponent() {
   const [cookieValue, setCookieValue] = useState("");
   const checkAuth = async () => {
     try {
-      // axios.defaults.withCredentials = true;
       api
-        .get("user/1")
+        .get("user/1", {
+          headers: {
+            "Set-Cookie": "user_info",
+          },
+        })
 
         .then((response) => {
-          const cookies = document.cookie;
-          console.log("Barcha cookie-lar:", cookies);
-          console.log(response.data.Cookies);
+          //
         })
         .catch((error) => {
           console.error("Error:", error);

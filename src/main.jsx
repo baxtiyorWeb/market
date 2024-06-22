@@ -10,7 +10,6 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App.jsx";
 import AuthProvider from "./context/authContext.jsx";
 import "./index.css";
-
 axios.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem(
   "token",
 )}`;
