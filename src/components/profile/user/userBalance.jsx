@@ -1,6 +1,6 @@
 import React from "react";
 import Location from "./../../../assets/location.svg";
-export default function UserBalance() {
+export default function UserBalance({ userData }) {
   return (
     <div className="px-[66px] py-5">
       <div className="user-title flex items-center justify-between">
@@ -14,7 +14,7 @@ export default function UserBalance() {
         <div className="flex flex-col">
           <div>
             <h1 className="mb-2 text-xl font-semibold capitalize text-[#130F1E]">
-              Baxtiyor Qurbonnazarov
+              {userData?.firstName} {userData?.lastName}
             </h1>
           </div>
           <div className="flex  items-center">
