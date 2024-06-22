@@ -1,42 +1,54 @@
 import axios from "axios";
 
-// function getParamsLangQuery() {
-//   const lang = localStorage.getItem("lang");
-//   return lang;
-// }
+// Function to get the language parameter
+function getParamsLangQuery() {
+  return localStorage.getItem("lang");
+}
 
-export default axios.create({
+const api = axios.create({
   baseURL: "http://95.130.227.131:8080/api/v1",
-  // params: {
-  //   lang: getParamsLangQuery(),
-  // },
   headers: {
     "ngrok-skip-browser-warning": true,
     "Content-Type": "application/json",
-    Accept: "application/json",
-    "Access-Control-Allow-Origin": "*",
-
     Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
     SecretKey: `${localStorage.getItem("secretKey")}`,
   },
-  // withCredentials: true,
+  // params: {
+  //   lang: getParamsLangQuery(),
+  // },
 });
 
-axios.interceptors.response.use(
-  (resp) => resp,
+// Interceptor to handle token refresh
+api.interceptors.response.use(
+  (response) => response,
   async (error) => {
-    if (error.response.status === 401) {
-      const response = await axios.post(
-        "refresh",
-        {},
-        { withCredentials: true },
-      );
-      if (response.status === 200) {
-        axios.defaults.headers.common["Authorization"] =
-          `Bearer ${localStorage.getItem("refreshToken")}`;
-        return axios(error.config);
+    if (error.response && error.response.status === 401) {
+      try {
+        const refreshToken = localStorage.getItem("refreshToken");
+        const response = await api.post(
+          "/refresh",
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${refreshToken}`,
+            },
+          },
+        );
+
+        if (response.status === 200) {
+          localStorage.setItem("accessToken", response.data?.data.accessToken);
+          error.config.headers["Authorization"] =
+            `Bearer ${response.data.data.accessToken}`;
+          return api(error.config);
+        }
+      } catch (refreshError) {
+        // Handle refresh token error (e.g., redirect to login)
+        console.error("Refresh token error", refreshError);
       }
     }
-    return error;
+
+    return Promise.reject(error);
   },
 );
+
+export default api;

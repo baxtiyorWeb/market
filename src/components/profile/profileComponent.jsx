@@ -1,5 +1,6 @@
 import { Button } from "antd";
 import { useEffect, useState } from "react";
+import api from "../../config/api/api";
 import Container from "../../shared/Container";
 import UserBalance from "./user/userBalance";
 import UserTabs from "./user/userTabs";
@@ -9,31 +10,22 @@ export default function ProfileComponent() {
   const [cookieValue, setCookieValue] = useState("");
   const checkAuth = async () => {
     try {
-      const response = await fetch("/user/1", {
+      const response = await api.get("/user/1", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
         credentials: "same-origin",
       });
 
-      const cookie = response.headers.get("Set-Cookie");
-      console.log(cookie);
-      const values = (document.cookie = "ok=ok;");
-      console.log(values);
       // Javobni tekshirish
       console.log("Javob:", response.data);
 
-      // Barcha cookie-larni olish
-      const cookies = document.cookie;
-      console.log("Barcha cookie-lar:", cookies);
-
+      const cookie = (key) =>
+        (new RegExp((key || "=") + "=(.*?); ", "gm").exec(
+          document.cookie + "; ",
+        ) || ["", null])[1];
+      console.log(cookie("user_info"));
       // 'user_info' cookie ni olish
-      const userInfo = getCookie("user_info");
-      console.log("user_info cookie:", userInfo);
-
-      // 'authority' cookie ni olish
-      const authority = getCookie("authority");
-      console.log("authority cookie:", authority);
     } catch (error) {
       console.error("Xatolik:", error);
       if (error.response?.status === 403) {

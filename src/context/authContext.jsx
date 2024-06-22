@@ -1,4 +1,3 @@
-import Cookie from "js-cookie";
 import { createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -17,21 +16,16 @@ const AuthProvider = ({ children }) => {
         ...data,
       });
       const res = await response.data;
-      const cookies = response.headers["set-cookie"];
-      console.log(cookies);
       if (res.data) {
         setUser(res.data);
-        setToken(res.data.accessToken);
-        const values = Cookie.get("user_info");
-        console.log();
+        setToken(res.data);
 
         // or undefined if not found
-
+        console.log(res.data);
         // 'user_info' cookie ni olish
 
         localStorage.setItem("accessToken", res.data.accessToken);
-        navigate("/profile/dashboard?tab=1");
-        return;
+        // navigate("/profile/dashboard?tab=1");
       } else {
         setError(res?.errorResponse);
       }

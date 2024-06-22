@@ -1,20 +1,20 @@
-import { Input, Spin, message } from "antd"
-import { useEffect, useState } from "react"
-import { useCookies } from "react-cookie"
-import { FaArrowRight, FaEye, FaEyeSlash, FaTelegram } from "react-icons/fa"
-import { FcGoogle } from "react-icons/fc"
-import { Link, useNavigate, useSearchParams } from "react-router-dom"
-import api from "../../config/api/api"
-import useGenerateuuid from "../../hooks/useGenerateuuid"
-import ButtonUI from "../../ui/button/Button"
-import SpinLoading from "../../ui/loading/spinLoading"
-import { useAuth } from "./../../context/authContext"
+import { Input, Spin, message } from "antd";
+import { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
+import { FaArrowRight, FaEye, FaEyeSlash, FaTelegram } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import api from "../../config/api/api";
+import useGenerateuuid from "../../hooks/useGenerateuuid";
+import ButtonUI from "../../ui/button/Button";
+import SpinLoading from "../../ui/loading/spinLoading";
+import { useAuth } from "./../../context/authContext";
 
-import Cookies from "universal-cookie"
+import Cookies from "universal-cookie";
 export default function LoginComponent() {
   const [params, setParams] = useSearchParams();
   const [signIn, setSignIn] = useState({
-    username: "",
+    login: "",
     password: "",
   });
 
@@ -68,7 +68,6 @@ export default function LoginComponent() {
         params: { phone: phone },
         headers: {
           secretKey: generateUId,
-          
         },
         xsrfCookieName: "XSRF-TOKEN",
       });
