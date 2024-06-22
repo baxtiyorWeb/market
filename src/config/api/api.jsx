@@ -14,7 +14,7 @@ export default axios.create({
     "ngrok-skip-browser-warning": true,
     "Content-Type": "application/json",
     Accept: "application/json",
-    " Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Origin": "*",
 
     Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
     SecretKey: `${localStorage.getItem("secretKey")}`,

@@ -1,6 +1,5 @@
 import { Button } from "antd";
 import { useEffect, useState } from "react";
-import api from "../../config/api/api";
 import Container from "../../shared/Container";
 import UserBalance from "./user/userBalance";
 import UserTabs from "./user/userTabs";
@@ -10,42 +9,47 @@ export default function ProfileComponent() {
   const [cookieValue, setCookieValue] = useState("");
   const checkAuth = async () => {
     try {
-      api
-        .get("user/1", {
-          headers: {
-            "Set-Cookie": "user_info",
-          },
-        })
+      const response = await fetch("/user/1", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+        credentials: "same-origin",
+      });
 
-        .then((response) => {
-          //
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
-      // User data ni o'rnatish
+      const cookie = response.headers.get("Set-Cookie");
+      console.log(cookie);
+      const values = (document.cookie = "ok=ok;");
+      console.log(values);
+      // Javobni tekshirish
+      console.log("Javob:", response.data);
 
-      // API javobi status kodini tekshirish
+      // Barcha cookie-larni olish
+      const cookies = document.cookie;
+      console.log("Barcha cookie-lar:", cookies);
+
+      // 'user_info' cookie ni olish
+      const userInfo = getCookie("user_info");
+      console.log("user_info cookie:", userInfo);
+
+      // 'authority' cookie ni olish
+      const authority = getCookie("authority");
+      console.log("authority cookie:", authority);
     } catch (error) {
-      // Xatolik status kodi 403 bo'lsa, login sahifasiga yo'naltirish
+      console.error("Xatolik:", error);
       if (error.response?.status === 403) {
-        window.location = "/auth/login";
-      } else {
-        const errorMessage =
-          error?.response?.message || "An unexpected error occurred";
-        throw new Error(errorMessage);
+        // window.location = "/auth/login";
       }
     }
   };
-  function getCookie() {
-    const header = new Headers();
-    const name = header.get("user_info");
-    // 'user_info' cookie ni olish
-    console.log(name);
+
+  // Cookie olish uchun yordamchi funksiya
+  function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(";").shift();
   }
 
   useEffect(() => {
-    const userInfo = getCookie("authority");
     checkAuth();
   }, []);
 
