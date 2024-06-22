@@ -14,7 +14,6 @@ export default function ProfileComponent() {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
-        credentials: "same-origin",
       });
 
       // Javobni tekshirish
