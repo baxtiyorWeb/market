@@ -21,6 +21,8 @@
     "dayjs": "^1.11.10",
     "fs": "^0.0.1-security",
     "json-server": "^1.0.0-alpha.19",
+    "jsonwebtoken": "^9.0.2",
+    "jwt-decode": "^4.0.0",
     "nextjs-toploader": "^1.6.12",
     "npm": "^10.4.0",
     "primeicons": "^7.0.0",
