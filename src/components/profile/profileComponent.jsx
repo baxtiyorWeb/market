@@ -1,5 +1,4 @@
 import { Button } from "antd";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import api from "../../config/api/api";
 import Container from "../../shared/Container";
@@ -11,7 +10,7 @@ export default function ProfileComponent() {
   const [cookieValue, setCookieValue] = useState("");
   const checkAuth = async () => {
     try {
-      axios.defaults.withCredentials = true;
+      // axios.defaults.withCredentials = true;
       api
         .get("user/1")
 
@@ -19,9 +18,6 @@ export default function ProfileComponent() {
           const cookies = document.cookie;
           console.log("Barcha cookie-lar:", cookies);
           console.log(response.data.Cookies);
-          // 'user_info' cookie ni olish
-          const userInfo = getCookie("authority");
-          console.log("user_info cookie:", userInfo);
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -40,14 +36,15 @@ export default function ProfileComponent() {
       }
     }
   };
-  function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(";").shift();
-    console.log(value);
+  function getCookie() {
+    const header = new Headers();
+    const name = header.get("user_info");
+    // 'user_info' cookie ni olish
+    console.log(name);
   }
 
   useEffect(() => {
+    const userInfo = getCookie("authority");
     checkAuth();
   }, []);
 
