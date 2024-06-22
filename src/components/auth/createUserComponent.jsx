@@ -21,8 +21,8 @@ const CreateUser = () => {
     queryFn: () => getRegions(),
   });
 
-  const { data: districts } = useQuery({
-    queryKey: ["district"],
+  const { data: districts, isLoading } = useQuery({
+    queryKey: ["district", id],
     queryFn: () => getDistrict(id),
     enabled: !!id,
   });
@@ -116,27 +116,31 @@ const CreateUser = () => {
           ))}
         </Select>
       </Form.Item>
-      <Form.Item
-        label="Tuman"
-        name="tumaningzni kiriting"
-        rules={[
-          {
-            required: true,
-            message: "tumaningzni kiriting",
-          },
-        ]}
-      >
-        <Select
-          className="w-[280px]"
-          onChange={(e) => setName({ ...name, districtId: e })}
+      {isLoading ? (
+        "..."
+      ) : (
+        <Form.Item
+          label="Tuman"
+          name="tumaningzni kiriting"
+          rules={[
+            {
+              required: true,
+              message: "tumaningzni kiriting",
+            },
+          ]}
         >
-          {districts?.data?.map((item, index) => (
-            <Select.Option key={index} value={item?.id}>
-              {item?.name}
-            </Select.Option>
-          ))}
-        </Select>
-      </Form.Item>
+          <Select
+            className="w-[280px]"
+            onChange={(e) => setName({ ...name, districtId: e })}
+          >
+            {districts?.data?.map((item, index) => (
+              <Select.Option key={index} value={item?.id}>
+                {item?.name}
+              </Select.Option>
+            ))}
+          </Select>
+        </Form.Item>
+      )}
       <Form.Item
         label="Manzil"
         name="Manzilingizni kiriting"

@@ -69,7 +69,7 @@ export default function LoginComponent() {
   const authCheck = async () => {
     const res = await api.get("/user/1");
     if (res.data) {
-      window.location = "/profile/dashboard?tab=1";
+      // window.location = "/profile/dashboard?tab=1";
     }
   };
   useEffect(() => {

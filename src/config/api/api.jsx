@@ -12,9 +12,14 @@ export default axios.create({
   // },
   headers: {
     "ngrok-skip-browser-warning": true,
+    "Content-Type": "application/json",
+    Accept: "application/json",
+    " Access-Control-Allow-Origin": "*",
+
     Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
     SecretKey: `${localStorage.getItem("secretKey")}`,
   },
+  // withCredentials: true,
 });
 
 axios.interceptors.response.use(

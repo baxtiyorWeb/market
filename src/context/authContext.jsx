@@ -16,11 +16,20 @@ const AuthProvider = ({ children }) => {
         ...data,
       });
       const res = await response.data;
+      const cookies = response.headers["set-cookie"];
+      console.log(cookies);
       if (res.data) {
         setUser(res.data);
         setToken(res.data.accessToken);
+        const cookies = document.cookie;
+        console.log("Barcha cookie-lar:", cookies);
+        console.log(response.data.Cookies);
+        // 'user_info' cookie ni olish
+        const userInfo = getCookie("authority");
+        console.log("user_info cookie:", userInfo);
+
         localStorage.setItem("accessToken", res.data.accessToken);
-        window.location = "/profile/dashboard?tab=1";
+        navigate("/profile/dashboard?tab=1");
         return;
       } else {
         setError(res?.errorResponse);
