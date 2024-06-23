@@ -176,8 +176,8 @@ const App = () => {
             }
           ></Route>
         </Route>
-        <Route exact path="/profile" element={<PrivateRouter />}>
-          <Route path="/profile/dashboard" element={<Profile />} />
+        <Route exact path="/profile/*" element={<PrivateRouter />}>
+          <Route exact path="dashboard" element={<Profile />} />
         </Route>
       </Routes>
     </>

@@ -12,8 +12,14 @@ const useUser = () => {
       try {
         const decodedUser = jwtDecode(token);
         setUser(decodedUser);
+
+        // Agar foydalanuvchi login bo'lsa, profile qismiga o'tish
+        navigate("/profile/dashboard?tab=1");
       } catch (error) {
         console.error("Failed to decode token", error);
+
+        // Agar token xato bo'lsa, login sahifasiga o'tish
+        navigate("/auth/login");
       }
     }
   }, [navigate, token]);

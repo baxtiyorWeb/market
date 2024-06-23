@@ -9,7 +9,7 @@ import Settings from "../Settings";
 import "../product-details.css";
 export default function UserTabs() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const tab = searchParams.get("tab");
+  const tab = searchParams.get("tab") || 1;
   const tabs = (n) => {
     setSearchParams({ tab: n });
   };
