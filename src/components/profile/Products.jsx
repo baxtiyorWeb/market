@@ -4,8 +4,10 @@ import React, { useEffect } from "react";
 import { FaHeart } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
+import useUser from "../../hooks/useUser";
 import api from "./../../config/api/api";
-const Products = ({ userData }) => {
+const Products = () => {
+  const { token } = useUser();
   const myFavourites = JSON.parse(localStorage.getItem("product") || []);
   const getUserProductFilter = async () => {
     const res = await api.post("/product/list", {
@@ -24,7 +26,7 @@ const Products = ({ userData }) => {
     return res.data;
   };
   const { data: products } = useQuery({
-    queryKey: ["product/list"],
+    queryKey: ["product/list", token],
     queryFn: async () => await getUserProductFilter(),
   });
 
@@ -61,7 +63,7 @@ const Products = ({ userData }) => {
         </thead>
         <tbody className="relative top-5 ">
           {products?.data?.map((item) => (
-            <tr className="mb-10 border-b hover:bg-gray-200/50">
+            <tr key={item?.id} className="mb-10 border-b hover:bg-gray-200/50">
               <td>
                 <img
                   className="h-[100px] w-[100px]"

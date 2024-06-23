@@ -7,7 +7,7 @@ import Pricing from "../Pricing";
 import Products from "../Products";
 import Settings from "../Settings";
 import "../product-details.css";
-export default function UserTabs({ userData }) {
+export default function UserTabs() {
   const [searchParams, setSearchParams] = useSearchParams();
   const tab = searchParams.get("tab");
   const tabs = (n) => {
@@ -68,7 +68,7 @@ export default function UserTabs({ userData }) {
 
       <div>
         <div className={tab == 1 ? `tabs-active` : `tabs-none`}>
-          <Products userData={userData} />
+          <Products />
         </div>
 
         <div className={tab == 2 ? `tabs-active` : `tabs-none`}>
@@ -86,7 +86,7 @@ export default function UserTabs({ userData }) {
           <Pricing />
         </div>
         <div className={tab == 6 ? `tabs-active` : `tabs-none`}>
-          <Settings userData={userData} />
+          <Settings />
         </div>
       </div>
     </div>

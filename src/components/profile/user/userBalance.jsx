@@ -1,19 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import api from "../../../config/api/api";
+import useUser from "../../../hooks/useUser";
 import Location from "./../../../assets/location.svg";
-export default function UserBalance({ userData }) {
+export default function UserBalance() {
+  const { user, token } = useUser();
   const getUserBalance = async () => {
     const res = await api.get("/account/user-account", {
-      params: { userId: userData?.id },
+      params: { userId: user?.id },
     });
     return res.data;
   };
   const { data: userBalance } = useQuery({
-    queryKey: ["account/user-account"],
+    queryKey: ["account/user-account", token],
     queryFn: getUserBalance,
   });
-  console.log(userBalance);
   return (
     <div className="px-[66px] py-5">
       <div className="user-title flex items-center justify-between">
@@ -27,7 +28,7 @@ export default function UserBalance({ userData }) {
         <div className="flex flex-col">
           <div>
             <h1 className="mb-2 text-xl font-semibold capitalize text-[#130F1E]">
-              {userData?.firstName} {userData?.lastName}
+              {user?.firstName} {user?.lastName}
             </h1>
           </div>
           <div className="flex  items-center">
@@ -40,7 +41,7 @@ export default function UserBalance({ userData }) {
         <div className="flex w-[540px]  items-start justify-between ">
           <div>
             <h1 className="mb-2 text-[18px] font-semibold capitalize text-[#130F1E]">
-              5 555 500 sum
+              {userBalance?.data?.balance} {userBalance?.data?.currencyName}
             </h1>
             <span className="flex items-center gap-x-2 text-[14px] capitalize italic text-gray-500">
               hisobingiz

@@ -1,15 +1,13 @@
-import { createContext, useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import api from "../config/api/api";
+import useUser from "../hooks/useUser";
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
   const [error, setError] = useState("");
-  const [token, setToken] = useState(localStorage.getItem("accessToken") || "");
-  const navigate = useNavigate();
+  const { user, navigate } = useUser();
   const loginAction = async (data) => {
     try {
       const response = await api.post("/authority/sign-in", {
@@ -17,33 +15,31 @@ const AuthProvider = ({ children }) => {
       });
       const res = await response.data;
       if (res.data) {
-        setUser(res.data);
-        setToken(res.data);
+        const token = res.data.accessToken;
 
-        // or undefined if not found
-        console.log(res.data);
-        // 'user_info' cookie ni olish
+        localStorage.setItem("accessToken", token);
 
-        localStorage.setItem("accessToken", res.data.accessToken);
-        // navigate("/profile/dashboard?tab=1");
+        window.location.href = "/profile/dashboard?tab=1";
       } else {
         setError(res?.errorResponse);
+
+        throw new Error(res.message);
       }
-      throw new Error(res.message);
     } catch (err) {
       toast.error(err?.response?.data?.errorResponse?.message);
     }
   };
 
-  const logOut = () => {
-    setUser(null);
-    setToken("");
-    localStorage.removeItem("site");
-    navigate("/login");
-  };
+  useEffect(() => {
+    if (!!user) {
+      return false;
+    } else {
+      navigate("/profile/dashboard?tab=1");
+    }
+  }, []);
 
   return (
-    <AuthContext.Provider value={{ token, user, error, loginAction, logOut }}>
+    <AuthContext.Provider value={{ error, loginAction }}>
       {children}
     </AuthContext.Provider>
   );

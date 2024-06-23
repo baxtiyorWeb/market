@@ -145,13 +145,14 @@ const MyFavourites = () => {
   };
 
   if (isLoading) return <Loading />;
-
+  const key = favorites?.data?.map((item) => item?.id);
   return (
     <div className="h-full">
       <Table
         columns={columns}
         dataSource={favorites?.data}
         loading={isLoading}
+        key={1}
       />
     </div>
   );

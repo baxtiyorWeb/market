@@ -5,6 +5,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import CategoryTest from "./CategoryTest";
+import PrivateRouter from "./PrivateRouter";
 import Confirm from "./components/auth/otpCodeConfirmComponent";
 import AuthLayout from "./layout/authLayout";
 import Layout from "./layout/layout";
@@ -175,15 +176,8 @@ const App = () => {
             }
           ></Route>
         </Route>
-        <Route
-          path="/profile"
-          element={
-            <React.Suspense fallback={<Loading />}>
-              <ProfileLayout />
-            </React.Suspense>
-          }
-        >
-          <Route path="/profile/dashboard" element={<Profile />}></Route>
+        <Route exact path="/profile" element={<PrivateRouter />}>
+          <Route path="/profile/dashboard" element={<Profile />} />
         </Route>
       </Routes>
     </>
