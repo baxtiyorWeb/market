@@ -43,7 +43,7 @@ export default function ProfileComponent() {
         <div className="mb-[20px] ">
           <UserBalance userData={userData} />
         </div>
-        <UserTabs />
+        <UserTabs userData={userData} />
       </div>
     </Container>
   );

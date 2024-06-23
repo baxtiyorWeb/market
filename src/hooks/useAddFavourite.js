@@ -33,21 +33,21 @@ const useAddFavourite = () => {
     let existingProducts = JSON.parse(localStorage.getItem("product")) || [];
 
     // Check if the product already exists in the local storage
-    const productExists = existingProducts.some((product) => product.id === id);
+    const productExists = existingProducts.some((product) => product === id);
 
     if (productExists) {
       // Local storage dan barcha mahsulotlarni olish
       let products = JSON.parse(localStorage.getItem("product")) || [];
 
       // Berilgan id ga ega mahsulotni topish va o'chirish
-      const updatedProducts = products.filter((product) => product.id !== id);
+      const updatedProducts = products.filter((product) => product !== id);
 
       // Yangilangan mahsulotlar ro'yxatini local storage ga qaytadan saqlash
       localStorage.setItem("product", JSON.stringify(updatedProducts));
       setUpdate(updatedProducts);
     } else {
       // Add the new product to the existing products array
-      existingProducts.push(productItem);
+      existingProducts.push(productItem.id);
 
       // Update the local storage with the new list of products
       localStorage.setItem("product", JSON.stringify(existingProducts));

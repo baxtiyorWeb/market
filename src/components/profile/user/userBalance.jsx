@@ -1,6 +1,19 @@
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import api from "../../../config/api/api";
 import Location from "./../../../assets/location.svg";
 export default function UserBalance({ userData }) {
+  const getUserBalance = async () => {
+    const res = await api.get("/account/user-account", {
+      params: { userId: userData?.id },
+    });
+    return res.data;
+  };
+  const { data: userBalance } = useQuery({
+    queryKey: ["account/user-account"],
+    queryFn: getUserBalance,
+  });
+  console.log(userBalance);
   return (
     <div className="px-[66px] py-5">
       <div className="user-title flex items-center justify-between">

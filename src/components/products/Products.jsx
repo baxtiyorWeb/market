@@ -215,7 +215,7 @@ const Products = () => {
                       }
                       className={`h-[40px] w-[40px] ${existing?.map(
                         (items) =>
-                          items?.id === item?.id &&
+                          items === item?.id &&
                           "r mx-1 flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-md bg-bgColor text-whiteTextColor hover:text-whiteTextColor",
                       )}`}
                     >

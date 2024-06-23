@@ -1,13 +1,13 @@
 import React from "react";
 import { FaCog, FaRegHeart } from "react-icons/fa";
-import { IoSearchOutline } from "react-icons/io5";
 import { MdOutlineDashboard, MdOutlineMail } from "react-icons/md";
 import { useSearchParams } from "react-router-dom";
 import MyFavourites from "../MyFavourites";
 import Pricing from "../Pricing";
 import Products from "../Products";
+import Settings from "../Settings";
 import "../product-details.css";
-export default function UserTabs() {
+export default function UserTabs({ userData }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const tab = searchParams.get("tab");
   const tabs = (n) => {
@@ -15,7 +15,7 @@ export default function UserTabs() {
   };
   return (
     <div>
-      <div className="flex w-full items-center justify-evenly  p-1">
+      <div className="flex w-full items-center justify-between  p-1">
         <div
           className={tab == 1 ? "tab-el-active" : "tab-el"}
           onClick={() => tabs(1)}
@@ -34,15 +34,6 @@ export default function UserTabs() {
             <FaRegHeart />{" "}
           </i>
           <span>yoqtirganlarim</span>
-        </div>
-        <div
-          className={tab == 3 ? "tab-el-active" : "tab-el"}
-          onClick={() => tabs(3)}
-        >
-          <i className="tab-icon">
-            <IoSearchOutline />
-          </i>
-          <span>Qidiruvlarim</span>
         </div>
         <div
           className={tab == 4 ? "tab-el-active" : "tab-el"}
@@ -77,7 +68,7 @@ export default function UserTabs() {
 
       <div>
         <div className={tab == 1 ? `tabs-active` : `tabs-none`}>
-          <Products />
+          <Products userData={userData} />
         </div>
 
         <div className={tab == 2 ? `tabs-active` : `tabs-none`}>
@@ -95,7 +86,7 @@ export default function UserTabs() {
           <Pricing />
         </div>
         <div className={tab == 6 ? `tabs-active` : `tabs-none`}>
-          <h1>Settings</h1>
+          <Settings userData={userData} />
         </div>
       </div>
     </div>

@@ -1,9 +1,38 @@
+import { useQuery } from "@tanstack/react-query";
 import { Input } from "antd";
-import React from "react";
+import React, { useEffect } from "react";
 import { FaHeart } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
-const Products = () => {
+import api from "./../../config/api/api";
+const Products = ({ userData }) => {
+  const myFavourites = JSON.parse(localStorage.getItem("product") || []);
+  const getUserProductFilter = async () => {
+    const res = await api.post("/product/list", {
+      search: "",
+      page: 0,
+      size: 10,
+      categoryId: 0,
+      districtId: 0,
+      regionId: 0,
+      paymentTypeId: 0,
+      sellTypeId: 0,
+      ownProducts: true,
+      price: null,
+      valueFilter: [],
+    });
+    return res.data;
+  };
+  const { data: products } = useQuery({
+    queryKey: ["product/list"],
+    queryFn: async () => await getUserProductFilter(),
+  });
+
+  useEffect(() => {
+    getUserProductFilter();
+  }, []);
+
+  console.log(products);
   return (
     <div className="p-3">
       <div className="mb-3 flex h-[80px] w-full items-center justify-between">
@@ -31,111 +60,29 @@ const Products = () => {
           </tr>
         </thead>
         <tbody className="relative top-5 ">
-          <tr className="mb-10 border-b hover:bg-gray-200/50">
-            <td>
-              <img
-                className="h-[100px] w-[100px]"
-                src="https://assets.asaxiy.uz/product/items/desktop/fc2c7c47b918d0c2d792a719dfb602ef2023101816401026153pvOl2XiSmL.png.webp"
-                alt=""
-              />
-            </td>
-            <td>iPhone 12 Pro Max (Original)</td>
-            <td>9 041 000 UZS </td>
-            <td>02.02.22 | 15:33</td>
-            <td>412 marta</td>
-            <td className="">
-              <span className="flex items-center justify-center">
-                <FaHeart className="mr-3" /> <b className="">2</b>
-              </span>
-            </td>
-            <td>
-              <MdDelete />
-            </td>
-          </tr>
-          <tr className="mb-10 border-b hover:bg-gray-200/50">
-            <td>
-              <img
-                className="h-[100px] w-[100px]"
-                src="https://assets.asaxiy.uz/product/items/desktop/fc2c7c47b918d0c2d792a719dfb602ef2023101816401026153pvOl2XiSmL.png.webp"
-                alt=""
-              />
-            </td>
-            <td>iPhone 12 Pro Max (Original)</td>
-            <td>9 041 000 UZS </td>
-            <td>02.02.22 | 15:33</td>
-            <td>412 marta</td>
-            <td className="">
-              <span className="flex items-center justify-center">
-                <FaHeart className="mr-3" /> <b className="">2</b>
-              </span>
-            </td>
-            <td>
-              <MdDelete />
-            </td>
-          </tr>
-          <tr className="mb-10 border-b hover:bg-gray-200/50">
-            <td>
-              <img
-                className="h-[100px] w-[100px]"
-                src="https://assets.asaxiy.uz/product/items/desktop/fc2c7c47b918d0c2d792a719dfb602ef2023101816401026153pvOl2XiSmL.png.webp"
-                alt=""
-              />
-            </td>
-            <td>iPhone 12 Pro Max (Original)</td>
-            <td>9 041 000 UZS </td>
-            <td>02.02.22 | 15:33</td>
-            <td>412 marta</td>
-            <td className="">
-              <span className="flex items-center justify-center">
-                <FaHeart className="mr-3" /> <b className="">2</b>
-              </span>
-            </td>
-            <td>
-              <MdDelete />
-            </td>
-          </tr>
-          <tr className="mb-10 border-b hover:bg-gray-200/50">
-            <td>
-              <img
-                className="h-[100px] w-[100px]"
-                src="https://assets.asaxiy.uz/product/items/desktop/fc2c7c47b918d0c2d792a719dfb602ef2023101816401026153pvOl2XiSmL.png.webp"
-                alt=""
-              />
-            </td>
-            <td>iPhone 12 Pro Max (Original)</td>
-            <td>9 041 000 UZS </td>
-            <td>02.02.22 | 15:33</td>
-            <td>412 marta</td>
-            <td className="">
-              <span className="flex items-center justify-center">
-                <FaHeart className="mr-3" /> <b className="">2</b>
-              </span>
-            </td>
-            <td>
-              <MdDelete />
-            </td>
-          </tr>
-          <tr className="mb-10 border-b hover:bg-gray-200/50">
-            <td>
-              <img
-                className="h-[100px] w-[100px]"
-                src="https://assets.asaxiy.uz/product/items/desktop/fc2c7c47b918d0c2d792a719dfb602ef2023101816401026153pvOl2XiSmL.png.webp"
-                alt=""
-              />
-            </td>
-            <td>iPhone 12 Pro Max (Original)</td>
-            <td>9 041 000 UZS </td>
-            <td>02.02.22 | 15:33</td>
-            <td>412 marta</td>
-            <td className="">
-              <span className="flex items-center justify-center">
-                <FaHeart className="mr-3" /> <b className="">2</b>
-              </span>
-            </td>
-            <td>
-              <MdDelete />
-            </td>
-          </tr>
+          {products?.data?.map((item) => (
+            <tr className="mb-10 border-b hover:bg-gray-200/50">
+              <td>
+                <img
+                  className="h-[100px] w-[100px]"
+                  src={`data:image/jpeg;base64,${item?.file?.fileBase64}`}
+                  alt=""
+                />
+              </td>
+              <td>{item?.name}</td>
+              <td>{item.price} </td>
+              <td>02.02.22 | 15:33</td>
+              <td>{item?.viewCount} marta</td>
+              <td className="">
+                <span className="flex items-center justify-center">
+                  <FaHeart className="mr-3" /> <b className="">2</b>
+                </span>
+              </td>
+              <td>
+                <MdDelete />
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

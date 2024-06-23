@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Space, Table, message } from "antd";
-import React from "react";
+import React, { useEffect } from "react";
 import { FaEye } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
@@ -15,14 +15,35 @@ const MyFavourites = () => {
     );
     return res.data?.data?.content;
   };
-  const {
-    data: myFavorite,
-    isLoading,
-    refetch,
-  } = useQuery({
+  const { data: myFavorite, refetch } = useQuery({
     queryKey: ["favorite-product"],
     queryFn: myFavourites,
   });
+  const myFavouritesList = JSON.parse(localStorage.getItem("product") || []);
+  const getUserFavouriteProductList = async () => {
+    const res = await api.post("/product/list", {
+      search: "",
+      page: 0,
+      size: 10,
+      categoryId: 0,
+      districtId: 0,
+      regionId: 0,
+      paymentTypeId: 0,
+      sellTypeId: 0,
+      ownProducts: false,
+      price: null,
+      valueFilter: [],
+      productIdList: myFavouritesList,
+    });
+    return res.data;
+  };
+  const { data: favorites, isLoading } = useQuery({
+    queryKey: ["product/list", myFavouritesList],
+    queryFn: async () => await getUserFavouriteProductList(),
+  });
+  useEffect(() => {
+    getUserFavouriteProductList();
+  }, []);
 
   const columns = [
     {
@@ -127,7 +148,11 @@ const MyFavourites = () => {
 
   return (
     <div className="h-full">
-      <Table columns={columns} dataSource={myFavorite} loading={isLoading} />
+      <Table
+        columns={columns}
+        dataSource={favorites?.data}
+        loading={isLoading}
+      />
     </div>
   );
 };
