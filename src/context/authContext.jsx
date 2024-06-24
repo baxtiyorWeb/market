@@ -19,7 +19,7 @@ const AuthProvider = ({ children }) => {
         const refreshToken = res.data.refreshToken;
         localStorage.setItem("accessToken", token);
         localStorage.setItem("refreshToken", refreshToken);
-        navigate("/profile/dashboard?tab=1");
+        window.location.href = "/profile/dashboard?tab=1";
       } else {
         setError(res.errorResponse);
         throw new Error(res.message);
