@@ -13,7 +13,7 @@ const useUser = () => {
   useEffect(() => {
     const tokens = localStorage.getItem("accessToken");
 
-    if (tokens) {
+    if (tokens || user) {
       setToken(tokens);
       try {
         const decodedUser = jwtDecode(tokens);

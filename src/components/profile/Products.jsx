@@ -8,7 +8,6 @@ import useUser from "../../hooks/useUser";
 import api from "./../../config/api/api";
 const Products = () => {
   const { token } = useUser();
-  const myFavourites = JSON.parse(localStorage.getItem("product") || []);
   const getUserProductFilter = async () => {
     const res = await api.post("/product/list", {
       search: "",
@@ -33,8 +32,6 @@ const Products = () => {
   useEffect(() => {
     getUserProductFilter();
   }, []);
-
-  console.log(products);
   return (
     <div className="p-3">
       <div className="mb-3 flex h-[80px] w-full items-center justify-between">

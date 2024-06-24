@@ -19,7 +19,7 @@ const MyFavourites = () => {
     queryKey: ["favorite-product"],
     queryFn: myFavourites,
   });
-  const myFavouritesList = JSON.parse(localStorage.getItem("product") || []);
+  const myFavouritesList = localStorage.getItem("product") || [];
   const getUserFavouriteProductList = async () => {
     const res = await api.post("/product/list", {
       search: "",
