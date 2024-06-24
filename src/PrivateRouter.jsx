@@ -1,11 +1,10 @@
 import React from "react";
-import { Navigate, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 import useUser from "./hooks/useUser";
 
 const PrivateRouter = () => {
-  const { user, token } = useUser();
+  const { user } = useUser();
   const location = useLocation();
-  const navigate = useNavigate();
 
   if (!user) {
     return (
@@ -16,6 +15,8 @@ const PrivateRouter = () => {
         }}
       />
     );
+  } else {
+    window.location.pathname;
   }
 
   return (

@@ -1,12 +1,12 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Button, Input } from "antd";
+import { Button, Input, Spin } from "antd";
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import api from "../../config/api/api";
 import useUser from "../../hooks/useUser";
 
 const Settings = () => {
-  const { user } = useUser();
-  const queryClient = useQueryClient();
+  const { user, setUser, setRefetch } = useUser();
+  const [isLoading, setisLoading] = useState(false);
   const [state, setState] = useState({
     email: "",
     firstName: "",
@@ -15,6 +15,8 @@ const Settings = () => {
     role: "",
     secondName: "",
   });
+
+  const currentRefreshToken = localStorage.getItem("refreshToken");
 
   useEffect(() => {
     if (user) {
@@ -30,41 +32,49 @@ const Settings = () => {
   }, [user]);
 
   const updateUser = async (user) => {
-    const res = await api.put(`/user/${user?.id}`, user);
-    return res.data;
+    try {
+      const res = await api.put(`/user/${user?.id}`, user);
+      return res.data;
+    } catch (error) {
+      console.error("User update failed", error);
+    }
   };
 
-  const refreshToken = async () => {
+  const refreshTokens = async () => {
     const refreshToken = localStorage.getItem("refreshToken");
-    const res = await api.post(
-      "/authority/refresh-token",
-      {},
-      { params: { refreshToken: refreshToken } },
-    );
-
-    console.log(res.data);
-    console.log(state);
+    try {
+      const res = await api.post("/authority/refresh-token", {
+        refreshToken,
+      });
+      localStorage.setItem("accessToken", res.data?.data?.accessToken);
+      localStorage.setItem("refreshToken", res.data?.data?.refreshToken);
+    } catch (error) {
+      console.error("Token refresh failed", error);
+    }
   };
-
-  const userUpdate = useMutation({
-    mutationKey: ["user", user?.id],
-    mutationFn: updateUser,
-    onSuccess: () => {
-      queryClient.invalidateQueries(["user", user?.id]);
-      return queryClient.refetchQueries([user?.id]);
-    },
-  });
-
-  const handleUpdate = () => {
-    refreshToken();
-    userUpdate.mutate({ ...user, id: user?.id });
+  const handleUpdate = async () => {
+    try {
+      setisLoading(true);
+      if (currentRefreshToken) {
+        await updateUser({ ...state, id: user?.id });
+        refreshTokens();
+        toast.success("ma'lumotingiz yangilandi");
+        setTimeout(() => {
+          window.location.href = window.location.pathname;
+        }, 1000);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setisLoading(false);
+    }
   };
 
   return (
     <div className="grid grid-cols-3">
       <Input
         className="mx-1 my-3 w-[330px] p-2"
-        placeholder="ismingiz"
+        placeholder="Ismingiz"
         onChange={(e) =>
           setState((prev) => ({ ...prev, firstName: e.target.value }))
         }
@@ -72,7 +82,7 @@ const Settings = () => {
       />
       <Input
         className="mx-1 my-3 w-[330px] p-2"
-        placeholder="familiyangiz"
+        placeholder="Familiyangiz"
         onChange={(e) =>
           setState((prev) => ({ ...prev, secondName: e.target.value }))
         }
@@ -80,7 +90,7 @@ const Settings = () => {
       />
       <Input
         className="mx-1 my-3 w-[330px] p-2"
-        placeholder="sharifingiz"
+        placeholder="Sharifingiz"
         onChange={(e) =>
           setState((prev) => ({ ...prev, lastName: e.target.value }))
         }
@@ -88,7 +98,7 @@ const Settings = () => {
       />
       <Input
         className="mx-1 my-3 w-[330px] p-2"
-        placeholder="telefon raqamingiz"
+        placeholder="Telefon raqamingiz"
         type="number"
         onChange={(e) =>
           setState((prev) => ({ ...prev, phone: e.target.value }))
@@ -97,7 +107,7 @@ const Settings = () => {
       />
       <Input
         className="mx-1 my-3 w-[330px] p-2"
-        placeholder="emailingiz"
+        placeholder="Emailingiz"
         type="text"
         onChange={(e) =>
           setState((prev) => ({ ...prev, email: e.target.value }))
@@ -108,7 +118,7 @@ const Settings = () => {
         className="mx-1 my-3 h-[40px] w-[230px] p-2"
         onClick={handleUpdate}
       >
-        saqlash
+        {isLoading ? <Spin /> : "Saqlash"}
       </Button>
     </div>
   );

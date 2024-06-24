@@ -26,8 +26,10 @@ api.interceptors.response.use(
       try {
         const refreshToken = localStorage.getItem("refreshToken");
         const response = await api.post(
-          "/refresh",
-          {},
+          "/refresh-token",
+          {
+            refreshToken,
+          },
           {
             headers: {
               Authorization: `Bearer ${refreshToken}`,

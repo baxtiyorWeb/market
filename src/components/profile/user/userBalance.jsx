@@ -28,7 +28,7 @@ export default function UserBalance() {
         <div className="flex flex-col">
           <div>
             <h1 className="mb-2 text-xl font-semibold capitalize text-[#130F1E]">
-              {user?.firstName} {user?.lastName}
+              {user?.firstName} {user?.secondName}
             </h1>
           </div>
           <div className="flex  items-center">
