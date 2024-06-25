@@ -1,3 +1,4 @@
+import ContentLoader from "react-content-loader";
 export const ChildSkeletonLoading = ({
   heading = { width: 140, height: 24 },
   row = 2,
