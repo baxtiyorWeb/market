@@ -10,7 +10,7 @@ import FastDetailView from "../../components/products/FastDetailView";
 import useFilter from "../../hooks/product/useFilter";
 import useToggle from "../../hooks/useToggle";
 import Overlay from "../../ui/Overlay";
-import { ChildSkeletonLoading } from "./../../ui/loading/SkeletonLoading";
+import { ChildSkeletonLoading } from "../../ui/loading/ChildSkeletonLoading";
 import "./categories.css";
 
 const ProductGetList = () => {
