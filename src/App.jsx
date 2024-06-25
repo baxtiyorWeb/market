@@ -16,6 +16,7 @@ import FilterPage from "./pages/filter/FilterPage";
 import NotFound from "./pages/not-found";
 import AddProductCategoryLayout from "./pages/product-form/productForm";
 import Profile from "./pages/profile/Profile";
+import MyFavourites from "./pages/profile/sub-pages/Favourites";
 import "./response.css";
 import Loading from "./ui/loading/Loading";
 const Home = lazy(() => import("./pages/Home"));
@@ -178,6 +179,7 @@ const App = () => {
         </Route>
         <Route exact path="/profile/*" element={<PrivateRouter />}>
           <Route exact path="dashboard" element={<Profile />} />
+          <Route exact path="favourites" element={<MyFavourites />} />
         </Route>
       </Routes>
     </>

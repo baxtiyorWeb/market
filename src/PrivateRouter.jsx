@@ -17,12 +17,7 @@ const PrivateRouter = () => {
       />
     );
   } else {
-    <Navigate
-      to={{
-        pathname: "/profile/dashboard?tab=1",
-        state: { from: location.pathname },
-      }}
-    />;
+    <Outlet />;
   }
 
   return (

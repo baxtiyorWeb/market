@@ -1,8 +1,7 @@
 import React from "react";
 import { FaCog, FaRegHeart } from "react-icons/fa";
 import { MdOutlineDashboard, MdOutlineMail } from "react-icons/md";
-import { useSearchParams } from "react-router-dom";
-import MyFavourites from "../MyFavourites";
+import { Link, useSearchParams } from "react-router-dom";
 import Pricing from "../Pricing";
 import Products from "../Products";
 import Settings from "../Settings";
@@ -26,14 +25,11 @@ export default function UserTabs() {
           <span>Productlarim</span>
         </div>
 
-        <div
-          className={tab == 2 ? "tab-el-active" : "tab-el"}
-          onClick={() => tabs(2)}
-        >
+        <div className={"tab-el"}>
           <i className="tab-icon">
             <FaRegHeart />{" "}
           </i>
-          <span>yoqtirganlarim</span>
+          <Link to={"/profile/favourites"}>yoqtirganlarim</Link>
         </div>
         <div
           className={tab == 4 ? "tab-el-active" : "tab-el"}
@@ -71,11 +67,6 @@ export default function UserTabs() {
           <Products />
         </div>
 
-        <div className={tab == 2 ? `tabs-active` : `tabs-none`}>
-          <h1>
-            <MyFavourites />
-          </h1>
-        </div>
         <div className={tab == 3 ? `tabs-active` : `tabs-none`}>
           <h1>My Searches</h1>
         </div>
