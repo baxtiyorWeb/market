@@ -1,5 +1,3 @@
-// useUser.jsx
-
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -7,29 +5,41 @@ import { useNavigate } from "react-router-dom";
 const useUser = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState();
+  const [token, setToken] = useState(localStorage.getItem("accessToken"));
   const [refetch, setRefetch] = useState(false);
 
   useEffect(() => {
-    const tokens = localStorage.getItem("accessToken");
+    const handleToken = () => {
+      const storedToken = localStorage.getItem("accessToken");
 
-    if (tokens || user) {
-      setToken(tokens);
+      if (!storedToken) {
+        navigate("/auth/login");
+        return;
+      }
+
       try {
-        const decodedUser = jwtDecode(tokens);
+        const decodedUser = jwtDecode(storedToken);
         setUser(decodedUser);
-        navigate("/profile/dashboard?tab=1");
+        setToken(storedToken);
       } catch (error) {
         console.error("Failed to decode token", error);
-        navigate("/auth/login");
+        window.location.href = "/auth/login";
       }
+    };
+
+    if (refetch || !user) {
+      handleToken();
+      setRefetch(false);
     }
-  }, [navigate, token, refetch]);
+
+    if (user && token) {
+      navigate("/profile/dashboard?tab=1");
+    }
+  }, [navigate, user, token, refetch]);
 
   return {
     user,
     token,
-    navigate,
     setRefetch,
   };
 };

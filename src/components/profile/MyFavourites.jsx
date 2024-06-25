@@ -33,7 +33,8 @@ const MyFavourites = () => {
       ownProducts: false,
       price: null,
       valueFilter: [],
-      productIdList: myFavouritesList,
+      productIdList:
+        myFavouritesList?.length == null ? [] : Number(myFavouritesList),
     });
     return res.data;
   };

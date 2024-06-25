@@ -4,7 +4,8 @@ import useUser from "./hooks/useUser";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const { user } = useUser();
-  return user ? <Outlet /> : (window.location.href = "/auth/login");
+
+  return user ? <Outlet /> : "";
 };
 
 export default PrivateRoute;
