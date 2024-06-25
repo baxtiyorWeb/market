@@ -7,6 +7,8 @@ import "./App.css";
 import CategoryTest from "./CategoryTest";
 import PrivateRouter from "./PrivateRouter";
 import Confirm from "./components/auth/otpCodeConfirmComponent";
+import Products from "./components/profile/Products";
+import Settings from "./components/profile/Settings";
 import AuthLayout from "./layout/authLayout";
 import Layout from "./layout/layout";
 import CreateUser from "./pages/auth/createUser";
@@ -178,8 +180,12 @@ const App = () => {
           ></Route>
         </Route>
         <Route exact path="/profile/*" element={<PrivateRouter />}>
-          <Route exact path="dashboard" element={<Profile />} />
-          <Route exact path="favourites" element={<MyFavourites />} />
+          <Route exact path="dashboard/*" element={<Profile />}>
+            <Route exact path="favourites" element={<MyFavourites />} />
+            <Route exact path="products" element={<Products />} />
+            <Route exact path="settings" element={<Settings />} />
+          </Route>
+          {/* <Route path='/' */}
         </Route>
       </Routes>
     </>

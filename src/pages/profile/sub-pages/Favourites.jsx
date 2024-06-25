@@ -19,7 +19,7 @@ const MyFavourites = () => {
     queryKey: ["favorite-product"],
     queryFn: myFavourites,
   });
-  const myFavouritesList = localStorage.getItem("product") || [];
+  const myFavouritesList = JSON.parse(localStorage.getItem("product")) || [];
   const getUserFavouriteProductList = async () => {
     const res = await api.post("/product/list", {
       search: "",
@@ -33,7 +33,7 @@ const MyFavourites = () => {
       ownProducts: false,
       price: null,
       valueFilter: [],
-      productIdList: JSON.parse(myFavouritesList),
+      productIdList: myFavouritesList,
     });
     return res.data;
   };

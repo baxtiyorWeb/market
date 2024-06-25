@@ -33,7 +33,7 @@ const useUser = () => {
     }
 
     if (user && token) {
-      navigate("/profile/dashboard");
+      // navigate("/profile/dashboard");
     }
   }, [navigate, user, token, refetch]);
 

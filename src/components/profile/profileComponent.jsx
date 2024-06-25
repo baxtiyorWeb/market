@@ -1,9 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import useUser from "../../hooks/useUser";
 import Container from "../../shared/Container";
 import UserBalance from "./user/userBalance";
 import UserTabs from "./user/userTabs";
-
 export default function ProfileComponent() {
   const { user } = useUser();
   return (
@@ -21,8 +20,9 @@ export default function ProfileComponent() {
       <div className="mt-11 h-full  w-full rounded-t-2xl  border bg-[#F5F5F5]">
         <div className="mb-[20px] ">
           <UserBalance />
+          <UserTabs />
         </div>
-        <UserTabs />
+        <Outlet />
       </div>
     </Container>
   );

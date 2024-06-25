@@ -10,7 +10,7 @@ const HeadUserLinks = () => {
     <>
       <div className="mx-3 ">
         <Link
-          to={"/profile/dashboard?tab=2"}
+          to={"/profile/dashboard/favourites"}
           className="hover/heart relative flex flex-col items-center justify-center"
         >
           <FaRegHeart className="text text-2xl text-textColor hover/heart:text-bgColor" />
@@ -22,7 +22,7 @@ const HeadUserLinks = () => {
       </div>
       <div className="mx-3">
         <Link
-          to={`/profile/dashboard?tab=1`}
+          to={`/profile/dashboard/products`}
           className="flex flex-col items-center justify-center"
         >
           <UserOutlined className="text text-2xl text-textColor " />

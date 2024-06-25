@@ -1,10 +1,7 @@
 import React from "react";
 import { FaCog, FaRegHeart } from "react-icons/fa";
 import { MdOutlineDashboard, MdOutlineMail } from "react-icons/md";
-import { Link, useSearchParams } from "react-router-dom";
-import Pricing from "../Pricing";
-import Products from "../Products";
-import Settings from "../Settings";
+import { NavLink, useSearchParams } from "react-router-dom";
 import "../product-details.css";
 export default function UserTabs() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -13,24 +10,30 @@ export default function UserTabs() {
     setSearchParams({ tab: n });
   };
   return (
-    <div>
+    <div className="border-b pb-3">
       <div className="flex w-full items-center justify-between  p-1">
-        <div
-          className={tab == 1 ? "tab-el-active" : "tab-el"}
-          onClick={() => tabs(1)}
+        <NavLink
+          to={"/profile/dashboard/products"}
+          className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "tab-el-active" : "tab-el"
+          }
         >
           <i className="tab-icon">
             <MdOutlineDashboard />
           </i>
-          <span>Productlarim</span>
-        </div>
-
-        <div className={"tab-el"}>
+          Elonlarim
+        </NavLink>
+        <NavLink
+          to={"/profile/dashboard/favourites"}
+          className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "tab-el-active" : "tab-el"
+          }
+        >
           <i className="tab-icon">
             <FaRegHeart />{" "}
           </i>
-          <Link to={"/profile/favourites"}>yoqtirganlarim</Link>
-        </div>
+          yoqtirganlarim
+        </NavLink>
         <div
           className={tab == 4 ? "tab-el-active" : "tab-el"}
           onClick={() => tabs(4)}
@@ -51,34 +54,17 @@ export default function UserTabs() {
           </i>
           <span>Narxlar</span>
         </div>
-        <div
-          className={tab == 6 ? "tab-el-active" : "tab-el"}
-          onClick={() => tabs(6)}
+        <NavLink
+          to={"/profile/dashboard/settings"}
+          className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "tab-el-active" : "tab-el"
+          }
         >
           <i className="tab-icon">
             <FaCog />
           </i>
           <span>sozlamalar</span>
-        </div>
-      </div>
-
-      <div>
-        <div className={tab == 1 ? `tabs-active` : `tabs-none`}>
-          <Products />
-        </div>
-
-        <div className={tab == 3 ? `tabs-active` : `tabs-none`}>
-          <h1>My Searches</h1>
-        </div>
-        <div className={tab == 4 ? `tabs-active` : `tabs-none`}>
-          <h1>Xabarlar</h1>
-        </div>
-        <div className={tab == 5 ? `tabs-active` : `tabs-none`}>
-          <Pricing />
-        </div>
-        <div className={tab == 6 ? `tabs-active` : `tabs-none`}>
-          <Settings />
-        </div>
+        </NavLink>
       </div>
     </div>
   );
