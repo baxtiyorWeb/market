@@ -1,9 +1,10 @@
-import React, { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { toast } from "react-toastify";
 import api from "../config/api/api";
 
 const AuthContext = createContext();
 
+// eslint-disable-next-line react/prop-types
 const AuthProvider = ({ children }) => {
   const [error, setError] = useState("");
 
@@ -20,7 +21,7 @@ const AuthProvider = ({ children }) => {
         window.location.href = "/profile/dashboard?tab=1";
       } else {
         setError(res.errorResponse);
-        throw new Error(res.message);
+        console.log(res.message);
       }
     } catch (err) {
       const errorMessage =
@@ -39,6 +40,7 @@ const AuthProvider = ({ children }) => {
 
 export default AuthProvider;
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = () => {
   return useContext(AuthContext);
 };

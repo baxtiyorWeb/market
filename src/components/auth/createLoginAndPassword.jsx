@@ -1,5 +1,4 @@
 import { Input, Spin } from "antd";
-import React from "react";
 import useAuth from "../../hooks/useAuth";
 import ButtonUI from "../../ui/button/Button";
 
@@ -11,7 +10,7 @@ const CreateLoginAndPassword = () => {
         <span className="mb-3  w-full text-left">loginingizni kiriting</span>
         <Input
           className="mb-5 h-14 w-[328px] rounded-md border p-3 text-xl outline-none"
-          placeholder="login"
+        placeholder="login"
           onChange={(e) => setAuth({ ...auth, login: e.target.value })}
         />
       </div>

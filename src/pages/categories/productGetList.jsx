@@ -69,7 +69,7 @@ const ProductGetList = () => {
       </div>
       {/* <button onClick={handleFilterClick}>get product</button> */}
 
-      <div className="response_product_category grid grid-cols-3 gap-2 2xs:grid 2xs:grid-cols-2">
+      <div className="response_product_category grid p-1 grid-cols-3 gap-2 2xs:grid 2xs:grid-cols-2">
         {isLoading ? (
           <ChildSkeletonLoading />
         ) : (
@@ -77,7 +77,7 @@ const ProductGetList = () => {
             page?.data?.map((item, index) => {
               return (
                 <div
-                  className=" relative h-[480px] w-productWidth flex-shrink-0 overflow-hidden rounded-md px-[10px]  pt-2  transition-all hover:shadow-lg "
+                  className=" relative h-[480px]  flex-shrink-0 overflow-hidden rounded-md px-[10px]  pt-2  transition-all hover:shadow-lg "
                   key={index}
                 >
                   <span className="absolute left-3 top-5 z-50 bg-red-500 px-1 text-sm  text-white">
@@ -103,8 +103,8 @@ const ProductGetList = () => {
                               title={`${item?.name}`}
                               loading="lazy"
                               height={"230px"}
-                              width={"250px"}
-                              className=" w-[250px_!important] rounded-xl  bg-center object-cover align-middle"
+                              width={"100%"}
+                              className=" w-[100%_!important] rounded-xl  bg-center object-cover align-middle"
                             />
                           </LazyLoad>
                         </div>
