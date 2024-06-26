@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import api from "../config/api/api";
 
@@ -7,7 +6,6 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [error, setError] = useState("");
-  const navigate = useNavigate();
 
   const loginAction = async (data) => {
     try {

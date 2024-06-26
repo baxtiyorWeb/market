@@ -5,7 +5,6 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, Navigate, useNavigate, useSearchParams } from "react-router-dom";
 import api from "../../config/api/api";
 import useGenerateuuid from "../../hooks/useGenerateuuid";
-import useUser from "../../hooks/useUser";
 import ButtonUI from "../../ui/button/Button";
 import SpinLoading from "../../ui/loading/spinLoading";
 import { useAuth } from "./../../context/authContext";
@@ -23,7 +22,6 @@ export default function LoginComponent() {
   const [phone, setPhone] = useState("");
   const { generateuiid } = useGenerateuuid();
   const { loginAction } = useAuth();
-  const { token, user } = useUser();
 
   const toggle = params.get("auth") || "login";
   const login = () => {
@@ -47,7 +45,6 @@ export default function LoginComponent() {
   };
 
   const registerPhoneOrPhone = async () => {
-    // Cookie-larni olish
     const generateUId = generateuiid();
 
     try {
