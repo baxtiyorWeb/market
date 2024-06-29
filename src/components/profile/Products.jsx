@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Input } from "antd";
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { FaHeart } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
@@ -8,7 +8,7 @@ import useUser from "../../hooks/useUser";
 import api from "./../../config/api/api";
 const Products = () => {
   const { token } = useUser();
-  const getUserProductFilter = async () => {
+  const getUserProductFilter = useCallback(async () => {
     const res = await api.post("/product/list", {
       search: "",
       page: 0,
@@ -23,15 +23,14 @@ const Products = () => {
       valueFilter: [],
     });
     return res.data;
-  };
+  }, []);
   const { data: products } = useQuery({
     queryKey: ["product/list", token],
     queryFn: async () => await getUserProductFilter(),
   });
 
-  useEffect(() => {
-    getUserProductFilter();
-  }, []);
+  useEffect(() => {}, [getUserProductFilter]);
+
   return (
     <div className="p-3">
       <div className="mb-3 flex h-[80px] w-full items-center justify-between">

@@ -36,9 +36,15 @@ export const SkeletonLoading = ({
       padding * 6;
 
     const yHeading = padding + space * (i - 1);
+    let pushedNumber = [];
+
+    pushedNumber.push((Math.random() * 45 - 22 * i).toPrecision(3));
+
+    console.log(pushedNumber);
 
     list.push(
       <rect
+        key={`rect_${(Math.random() * 45 - 22 * i).toPrecision(3)}`}
         x={padding}
         y={yHeading}
         rx={0}
@@ -58,7 +64,9 @@ export const SkeletonLoading = ({
       const y3 = y2 + padding / 2 + height2;
 
       list.push(
-        <>
+        <React.Fragment
+          key={`rectangle_${(Math.random() * 38 - 22 * i).toPrecision(3)}`}
+        >
           <rect
             x={x}
             y={y1}
@@ -76,7 +84,7 @@ export const SkeletonLoading = ({
             width={itemWidth * 0.6}
             height={height3}
           />
-        </>,
+        </React.Fragment>,
       );
 
       if (i === row) {

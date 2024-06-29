@@ -29,8 +29,8 @@ api.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
     if (error.response.status === 400 && !originalRequest._retry) {
-      // originalRequest._retry = true;
-      console.log(error.response.status);
+      originalRequest._retry = true;
+      console.log(error.response);
       const refreshToken = localStorage.getItem("refreshToken");
       const response = await axios.post(
         "http://95.130.227.131:8080/api/v1/authority/refresh-token",
@@ -43,9 +43,8 @@ api.interceptors.response.use(
           },
         },
       );
-      console.log(response.data);
       if (response.status === 200) {
-        const newAccessToken = response.data.accessToken;
+        const newAccessToken = response.data.data.accessToken;
         localStorage.setItem("accessToken", newAccessToken);
         api.defaults.headers.common["Authorization"] =
           `Bearer ${newAccessToken}`;

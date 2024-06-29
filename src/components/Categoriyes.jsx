@@ -44,7 +44,7 @@ export default function Categoriyes() {
           className="flex select-none items-center justify-center"
           arrows={true}
           dots={false}
-          slidesToShow={7}
+          slidesToShow={8}
           slidesToScroll={1}
           infinite
           autoplay
@@ -68,7 +68,7 @@ export default function Categoriyes() {
           {data?.data?.content?.map((item, index) => (
             <div
               key={index}
-              className="my-5 flex h-[196px_!important] w-[160px_!important] flex-col items-center justify-center xs:h-[130px_important] xs:w-[130px_important]"
+              className="my-1 flex h-[196px_!important] w-[160px_!important] flex-col items-center justify-center xs:h-[130px_important] xs:w-[130px_important]"
             >
               <Link
                 to={`/category/${item?.id}?category-name=${item?.name
@@ -78,7 +78,7 @@ export default function Categoriyes() {
               >
                 <img
                   src={`data:image/png;base64,${item?.file?.fileBase64}`}
-                  className="my-2 h-[120px] w-[120px] rounded-full border  border-bgColor object-cover p-3 xs:h-[60px_!important]  xs:w-[60px_!important] xs:p-1"
+                  className="my-2 h-[100px] w-[100px] rounded-full border  border-bgColor object-cover p-3 xs:h-[60px_!important]  xs:w-[60px_!important] xs:p-1"
                   alt=""
                 />
                 <span className="mt-3 text-center font-poppins font-normal  not-italic  leading-[100%] text-textColor group-hover:text-bgColor xs:text-xs">

@@ -69,7 +69,7 @@ const ProductGetList = () => {
       </div>
       {/* <button onClick={handleFilterClick}>get product</button> */}
 
-      <div className="response_product_category grid p-1 grid-cols-3 gap-2 2xs:grid 2xs:grid-cols-2">
+      <div className="response_product_category grid grid-cols-4 gap-2 p-1 2xs:grid 2xs:grid-cols-2">
         {isLoading ? (
           <ChildSkeletonLoading />
         ) : (

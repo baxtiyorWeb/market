@@ -125,14 +125,14 @@ const Products = () => {
           </Link>
         </div>
       </div>
-      <div className="response_product_category grid grid-cols-5 gap-2 xs:grid xs:grid-cols-2 xs:gap-1 2xs:grid 2xs:grid-cols-2">
+      <div className="response_product_category grid grid-cols-5 gap-1 xs:grid xs:grid-cols-2 xs:gap-1 2xs:grid 2xs:grid-cols-2">
         {isLoading ? (
           <SkeletonLoading />
         ) : (
           product?.pages?.map((page) =>
             page.data?.map((item, index) => (
               <div
-                className="relative h-[480px] w-productWidth flex-shrink-0 rounded-md px-[10px] pt-2 transition-all hover:shadow-lg xs:h-[368px] xs:w-[180px]"
+                className="relative h-[480px]  flex-shrink-0 rounded-md px-[10px] pt-2 transition-all hover:shadow-lg xs:h-[368px] xs:w-[180px]"
                 key={index}
               >
                 <span className="absolute left-3 top-5 z-50 bg-red-500 px-1 text-sm text-white">
