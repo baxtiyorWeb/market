@@ -36,7 +36,7 @@ export const getCategories = async () => {
 // GET CATEGORY LIST
 
 export const getCategoriesRootListSticky = async () => {
-  const res = await api.get(`/category/list?page=0&size=8&parentId=`);
+  const res = await api.get(`/category/list?page=0&size=15&parentId=`);
   return res.data;
 };
 

@@ -2,7 +2,7 @@ import ContentLoader from "react-content-loader";
 export const ChildSkeletonLoading = ({
   heading = { width: 140, height: 24 },
   row = 2,
-  column = 3,
+  column = 4,
   width = 1053,
   padding = 12,
   borderRadius = 4,

@@ -29,7 +29,7 @@ api.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
     if (error.response.status === 400 && !originalRequest._retry) {
-      originalRequest._retry = true;
+      // originalRequest._retry = true;
       console.log(error.response.status);
       const refreshToken = localStorage.getItem("refreshToken");
       const response = await axios.post(
@@ -43,7 +43,6 @@ api.interceptors.response.use(
           },
         },
       );
-      console.log(response.data);
       if (response.status === 200) {
         const newAccessToken = response.data.data.accessToken;
         localStorage.setItem("accessToken", newAccessToken);

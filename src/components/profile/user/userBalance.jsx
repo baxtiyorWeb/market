@@ -1,10 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
+import { Dropdown, Space, message } from "antd";
 import React from "react";
+import { HiDotsVertical } from "react-icons/hi";
+import { useNavigate } from "react-router-dom";
 import api from "../../../config/api/api";
 import useUser from "../../../hooks/useUser";
 import Location from "./../../../assets/location.svg";
 export default function UserBalance() {
   const { user, token } = useUser();
+  const navigate = useNavigate();
   const getUserBalance = async () => {
     const res = await api.get("/account/user-account", {
       params: { userId: user?.id },
@@ -15,6 +19,22 @@ export default function UserBalance() {
     queryKey: ["account/user-account", token],
     queryFn: getUserBalance,
   });
+  const handleButtonClick = (e) => {
+    if (token && user) {
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+      message.info("successfully");
+      navigate("/auth/login", { replace: true });
+    }
+  };
+  const items = [
+    {
+      label: "logout",
+      key: "1",
+      danger: true,
+      onClick: () => handleButtonClick(),
+    },
+  ];
   return (
     <div className="px-[66px] py-5">
       <div className="user-title flex items-center justify-between">
@@ -86,6 +106,21 @@ export default function UserBalance() {
               </svg>
               <span>Balansni to'ldirish</span>
             </button>
+            <div>
+              <Dropdown
+                menu={{
+                  items,
+                }}
+                className="cursor-pointer"
+                trigger={["click"]}
+              >
+                <div onClick={(e) => e.preventDefault()}>
+                  <Space>
+                    <HiDotsVertical />
+                  </Space>
+                </div>
+              </Dropdown>
+            </div>
           </div>
         </div>
       </div>
