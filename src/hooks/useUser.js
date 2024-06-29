@@ -12,7 +12,7 @@ const useUser = () => {
     const handleToken = () => {
       const storedToken = localStorage.getItem("accessToken");
 
-      if (!storedToken) {
+      if (!storedToken && !user) {
         navigate("/auth/login");
         return;
       }
@@ -32,8 +32,8 @@ const useUser = () => {
       setRefetch(false);
     }
 
-    if (user && token) {
-      // navigate("/profile/dashboard");
+    if (!token) {
+      navigate("/auth/login");
     }
   }, [navigate, user, token, refetch]);
 

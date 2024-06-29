@@ -91,7 +91,7 @@ export default function Header({ update, setUpdate }) {
             </Link>
 
             <button
-              className="flex h-[40px] w-[120px] flex-shrink-0 items-center justify-between rounded-md border border-bgColor bg-bgColor p-2 text-center text-textColor  xs:hidden"
+              className="flex h-[35px] w-[100px] flex-shrink-0 items-center justify-between rounded-md border border-bgColor bg-bgColor p-2 text-center text-textColor  xs:hidden"
               onClick={() => setOpen(!open)}
             >
               {!open ? (
@@ -103,7 +103,7 @@ export default function Header({ update, setUpdate }) {
               ) : (
                 <MdClose className="text-[30px] text-whiteTextColor" />
               )}
-              <span className="text font-poppins text-[18px]  font-normal not-italic leading-[100%] text-whiteTextColor">
+              <span className="text font-poppins text-base  font-normal not-italic leading-[100%] text-whiteTextColor">
                 Katalog
               </span>
             </button>
@@ -129,11 +129,11 @@ export default function Header({ update, setUpdate }) {
                   placeholder="Qidiruv"
                   defaultValue={search}
                   onChange={(e) => liveSearch(e.target.value)}
-                  className="h-[40px] w-[510px] rounded-bl-md rounded-tl-md border border-bgColor bg-[#F9F9F9] pl-[19px] text-[#959EA7] outline-none xs:w-[236px]"
+                  className="h-[35px] w-[510px] rounded-bl-md rounded-tl-md border border-bgColor bg-[#F9F9F9] pl-[19px] text-[#959EA7] outline-none xs:w-[236px]"
                 />
                 <button
                   type="submit"
-                  className="flex h-[40px] w-[50px]  items-center justify-center rounded-br-md rounded-tr-md bg-btnColor "
+                  className="flex h-[35px] w-[50px]  items-center justify-center rounded-br-md rounded-tr-md bg-btnColor "
                 >
                   <FaSearch className="text-white" />
                 </button>
@@ -150,7 +150,7 @@ export default function Header({ update, setUpdate }) {
               >
                 <Select
                   placeholder={"tilni tanlang"}
-                  className="flex h-[40px] w-[90px] items-center justify-center   border-r border-[#ffffff] bg-[transparent_!important] text-[#212121] hover:bg-[#fdd355]"
+                  className="flex h-[35px] w-[90px] items-center justify-center   border-r border-[#ffffff] bg-[transparent_!important] text-[#212121] hover:bg-[#fdd355]"
                   onChange={(e) => language(e)}
                   value={
                     localStorage.getItem("lang") === null
