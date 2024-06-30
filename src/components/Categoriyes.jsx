@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 
-import { Carousel } from "antd";
+import { Carousel, Menu } from "antd";
 import {
   getCategoriesRootLisId,
   getCategoriesRootListSticky,
@@ -35,7 +35,7 @@ export default function Categoriyes() {
   // if (isLoading) return <Loading />;
 
   return (
-    <div className="slider-container-styck mt-10  h-[200px] w-full   p-1">
+    <div className="slider-container-styck mt-3  h-[200px] w-full   p-1">
       {isLoading ? (
         <CategoryLoading />
       ) : (
@@ -78,7 +78,7 @@ export default function Categoriyes() {
               >
                 <img
                   src={`data:image/png;base64,${item?.file?.fileBase64}`}
-                  className="my-2 h-[100px] w-[100px] rounded-full border  border-bgColor object-cover p-3 xs:h-[60px_!important]  xs:w-[60px_!important] xs:p-1"
+                  className="my-2 h-[100px] w-[100px] rounded-full border  border-bgColor object-cover p-[10px] xs:h-[60px_!important]  xs:w-[60px_!important] xs:p-1"
                   alt=""
                 />
                 <span className="mt-3 text-center font-poppins font-normal  not-italic  leading-[100%] text-textColor group-hover:text-bgColor xs:text-xs">

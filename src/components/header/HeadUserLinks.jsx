@@ -1,21 +1,18 @@
-import { PlusCircleOutlined, UserOutlined } from "@ant-design/icons";
-import React from "react";
+import { UserOutlined } from "@ant-design/icons";
 import { FaRegHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import useAddFavourite from "../../hooks/useAddFavourite";
-import useUser from "./../../hooks/useUser";
 const HeadUserLinks = () => {
   const { savedLocal } = useAddFavourite();
-  const { user, token } = useUser();
+  const token = localStorage.getItem("accessToken");
   return (
-    <>
-      <div className="mx-3">
+    <div className={'flex items-center justify-center w-[330px]'}>
+      <div >
         <Link
-          to={`${user && token ? `/product-form/add-product` : "/auth/login"}`}
-          className="flex flex-col items-center justify-center"
+          to={`${token ? `/product-form/add-product` : "/auth/login"}`}
+          className="flex  items-center justify-center bg-bgColor h-[35px]  py-2 px-3 rounded-md "
         >
-          <PlusCircleOutlined className="text text-base  text-textColor " />
-          <span className="text text-[16px] text-spanColor">kabinet</span>
+          <span className="text text-[16px] text-center text-whiteTextColor">E&apos;lon qo&apos;shish</span>
         </Link>
       </div>
       <div className="mx-3 ">
@@ -30,7 +27,7 @@ const HeadUserLinks = () => {
           </span>
         </Link>
       </div>
-      <div className="mx-3">
+      <div className="">
         <Link
           to={`/profile/dashboard/products`}
           className="flex flex-col items-center justify-center"
@@ -39,7 +36,7 @@ const HeadUserLinks = () => {
           <span className="text text-[16px] text-spanColor">kabinet</span>
         </Link>
       </div>
-    </>
+    </div>
   );
 };
 

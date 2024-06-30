@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { Image, Spin, message } from "antd";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { BsCalendarDate } from "react-icons/bs";
 import { CiHeart } from "react-icons/ci";
 import { FaArrowRight, FaEye } from "react-icons/fa";
@@ -14,13 +14,16 @@ import { SkeletonLoading } from "../../ui/loading/SkeletonLoading";
 import Overlay from "./../../ui/Overlay";
 import FastDetailView from "./FastDetailView";
 import "./Product.css";
+import { data } from "autoprefixer";
 
 const Products = () => {
-  const { saveLocalProductFavourite, update, savedLocal, savedProductLength } =
+  const { saveLocalProductFavourite,  } =
     useAddFavourite();
   const existing = JSON.parse(localStorage.getItem("product")) || [];
 
-  const fetchProducts = async ({ pageParam = 0 }) => {
+  const callback = useCallback(() => {}, [])
+
+  const fetchProducts = useCallback(async ({ pageParam = 0 }) => {
     const response = await api.post("/product/list", {
       search: "",
       page: pageParam,
@@ -40,7 +43,7 @@ const Products = () => {
       nextPage: pageParam + 1,
       hasNextPage: response.data?.data?.length === 5,
     };
-  };
+  }, []);
 
   const { handleToggle, isOpen } = useToggle();
   const [fastId, setFastId] = useState("");
@@ -74,6 +77,8 @@ const Products = () => {
     },
   });
 
+
+
   useEffect(() => {
     const handleScroll = () => {
       if (
@@ -90,11 +95,13 @@ const Products = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
+  }, [fetchNextPage, hasNextPage, isFetchingNextPage, fetchProducts]);
+
+
 
   return (
-    <div className="mt-5 h-full w-full">
-      <div className="mb-10 mt-10 flex items-center justify-between">
+    <div className="   h-full w-full">
+      <div className="mb-5  flex items-center justify-between">
         {isOpen && <Overlay closed={handleToggle} />}
         {isOpen && <FastDetailView id={fastId} />}
         <h1 className="font-poppins text-[28px] font-medium not-italic leading-normal tracking-[-0.66px] xs:text-lg">

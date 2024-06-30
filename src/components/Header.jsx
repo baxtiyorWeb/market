@@ -1,13 +1,12 @@
-/* eslint-disable react/prop-types */
 import {
   HeartOutlined,
   HomeOutlined,
   MenuOutlined,
   PlusCircleFilled,
-  UserOutlined,
+  UserOutlined
 } from "@ant-design/icons";
 import { Select } from "antd";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { IoMenu } from "react-icons/io5";
 import { MdClose } from "react-icons/md";
@@ -16,7 +15,6 @@ import m_logo from "../assets/logo.png";
 import menuIcon from "../assets/menuIcon.svg";
 import { en, ru, uz } from "../common/common";
 import HeadUserLinks from "../components/header/HeadUserLinks";
-import useProductSearch from "../hooks/product/useProductSearch";
 import useLiveSeach from "../hooks/useLiveSeach";
 import Container from "../shared/Container";
 import Categoriyes from "../ui/Categoriyes";
@@ -24,10 +22,9 @@ import Overlay from "../ui/Overlay";
 import Regions from "./regions/regions";
 
 export default function Header({ update, setUpdate }) {
-  const { productLiveFilter, liveSearch } = useLiveSeach();
+  const { liveSearch } = useLiveSeach();
   const [open, setOpen] = useState(false);
   const [scroll, setScroll] = useState(false);
-  const { handleButtonClick } = useProductSearch();
   const searchable = useSearchParams();
   const search = searchable[0].get("search");
   const language = (langText) => {
@@ -36,7 +33,7 @@ export default function Header({ update, setUpdate }) {
   };
   // scroll
 
-  useEffect(() => {
+  const toggleHeader = useCallback(() => {
     let lastScrollY = window.scrollY;
     if (typeof window !== "undefined") {
       const updateScrollDirection = () => {
@@ -55,11 +52,15 @@ export default function Header({ update, setUpdate }) {
         window.removeEventListener("scroll", updateScrollDirection); // clean up
       };
     }
-  }, []);
+  }, [scroll]);
 
   const closed = () => {
     setOpen(!open);
   };
+
+  useEffect(() => {
+    toggleHeader();
+  }, [toggleHeader]);
 
   return (
     <>
@@ -122,14 +123,14 @@ export default function Header({ update, setUpdate }) {
             <div onClick={() => setOpen(false)}>
               <form
                 onSubmit={(e) => e.preventDefault()}
-                className="mx-5 flex items-center justify-center xs:mx-0"
+                className=" flex items-center justify-center xs:mx-0"
               >
                 <input
                   type="text"
                   placeholder="Qidiruv"
                   defaultValue={search}
                   onChange={(e) => liveSearch(e.target.value)}
-                  className="h-[35px] w-[510px] rounded-bl-md rounded-tl-md border border-bgColor bg-[#F9F9F9] pl-[19px] text-[#959EA7] outline-none xs:w-[236px]"
+                  className="h-[35px] w-[480px] rounded-bl-md rounded-tl-md border border-bgColor bg-[#F9F9F9] pl-[19px] text-[#959EA7] outline-none xs:w-[236px]"
                 />
                 <button
                   type="submit"
@@ -139,12 +140,12 @@ export default function Header({ update, setUpdate }) {
                 </button>
               </form>
             </div>
-            <div className="flex w-auto items-center justify-end xs:hidden">
+            <div className="flex  mr-3 items-center justify-end xs:hidden">
               <HeadUserLinks update={update} setUpdate={setUpdate} />
             </div>
             <div className="user-menu flex w-auto items-center justify-end xs:hidden">
               <div
-                className="ml-3 mr-3 flex cursor-pointer items-center
+                className=" flex cursor-pointer items-center
               justify-end rounded-md
             "
               >
@@ -180,19 +181,22 @@ export default function Header({ update, setUpdate }) {
               </div>
             </div>
           </div>
-          <div className="xs:fixed xs:bottom-0 xs:left-0 xs:z-[99999] xs:flex xs:h-16 xs:w-full xs:items-center xs:justify-between xs:border xs:bg-whiteTextColor xs:px-5 xs_min:hidden">
+          <div
+            className="xs:fixed xs:bottom-0 xs:left-0 xs:z-[99999] xs:flex xs:h-16 xs:w-full xs:items-center xs:justify-between xs:border xs:bg-whiteTextColor xs:px-5 xs_min:hidden">
             <div className="flex h-[65px] w-[65px] flex-col items-center justify-evenly  rounded-full ">
               <Link
                 to={"/"}
                 className="text flex h-[65px] w-[65px] flex-col items-center justify-evenly text-bgColor"
               >
-                <HomeOutlined className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[20px]" />
+                <HomeOutlined
+                  className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[20px]" />
                 <span className="text-[10px]">bosh sahifa</span>
               </Link>
             </div>
             <div className="flex h-[65px] w-[65px] flex-col items-center justify-evenly  rounded-full ">
               <Link className="text flex h-[65px] w-[65px] flex-col items-center justify-evenly text-bgColor">
-                <MenuOutlined className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[20px]" />
+                <MenuOutlined
+                  className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[20px]" />
                 <span className="text-[10px]">Categoriya</span>
               </Link>
             </div>
@@ -201,7 +205,8 @@ export default function Header({ update, setUpdate }) {
                 to={"product-form/add-product?"}
                 className="text flex h-[65px] w-[65px] flex-col items-center justify-evenly  text-bgColor"
               >
-                <PlusCircleFilled className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[30px]" />
+                <PlusCircleFilled
+                  className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[30px]" />
                 <span className="text-[10px]">E&apos;lon berish</span>
               </Link>
             </div>
@@ -210,7 +215,8 @@ export default function Header({ update, setUpdate }) {
                 to={"/profile/dashboard?tab=2"}
                 className="text flex h-[65px] w-[65px] flex-col items-center justify-evenly text-bgColor"
               >
-                <HeartOutlined className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[20px]" />
+                <HeartOutlined
+                  className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[20px]" />
                 <span className="text-[10px]">Sevimlilar</span>
               </Link>
             </div>
@@ -219,7 +225,8 @@ export default function Header({ update, setUpdate }) {
                 to={`/profile/dashboard?tab=1`}
                 className="text flex h-[65px] w-[65px] flex-col items-center justify-evenly text-bgColor"
               >
-                <UserOutlined className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[20px]" />
+                <UserOutlined
+                  className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[20px]" />
                 <span className="text-[10px]">Kabinet</span>
               </Link>
             </div>
@@ -229,3 +236,4 @@ export default function Header({ update, setUpdate }) {
     </>
   );
 }
+
