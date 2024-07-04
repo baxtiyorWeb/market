@@ -7,7 +7,6 @@ const AuthContext = createContext();
 // eslint-disable-next-line react/prop-types
 const AuthProvider = ({ children }) => {
   const [error, setError] = useState("");
-
   const loginAction = async (data) => {
     try {
       const response = await api.post("/authority/sign-in", data);

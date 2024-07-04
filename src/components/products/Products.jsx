@@ -14,15 +14,10 @@ import { SkeletonLoading } from "../../ui/loading/SkeletonLoading";
 import Overlay from "./../../ui/Overlay";
 import FastDetailView from "./FastDetailView";
 import "./Product.css";
-import { data } from "autoprefixer";
 
 const Products = () => {
-  const { saveLocalProductFavourite,  } =
-    useAddFavourite();
+  const { saveLocalProductFavourite } = useAddFavourite();
   const existing = JSON.parse(localStorage.getItem("product")) || [];
-
-  const callback = useCallback(() => {}, [])
-
   const fetchProducts = useCallback(async ({ pageParam = 0 }) => {
     const response = await api.post("/product/list", {
       search: "",
@@ -77,8 +72,6 @@ const Products = () => {
     },
   });
 
-
-
   useEffect(() => {
     const handleScroll = () => {
       if (
@@ -96,8 +89,6 @@ const Products = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [fetchNextPage, hasNextPage, isFetchingNextPage, fetchProducts]);
-
-
 
   return (
     <div className="   h-full w-full">
@@ -139,7 +130,7 @@ const Products = () => {
           product?.pages?.map((page) =>
             page.data?.map((item, index) => (
               <div
-                className="relative h-[480px]  flex-shrink-0 rounded-md px-[10px] pt-2 transition-all hover:shadow-lg xs:h-[368px] xs:w-[180px]"
+                className="relative h-[460px]  flex-shrink-0 rounded-md px-[10px] pt-2 transition-all hover:shadow-lg xs:h-[368px] xs:w-[180px]"
                 key={index}
               >
                 <span className="absolute left-3 top-5 z-50 bg-red-500 px-1 text-sm text-white">
@@ -157,15 +148,16 @@ const Products = () => {
                       to={`/details/${item.id}?infoTab=1`}
                       className="w-full xs:flex xs:h-[100%_!important] xs:w-[163px_!important] xs:items-center xs:justify-center"
                     >
-                      <div className="h-[230px] xs:h-[150px_!important] xs:w-[150px_!important]">
-                        <LazyLoad height={230}>
+                      <div className="h-[200px]  xs:h-[150px_!important] xs:w-[150px_!important]">
+                        <LazyLoad height={200}>
                           <Image
                             alt={"avatar"}
                             src={`data:image/png;base64,${item.file?.fileBase64}`}
                             title={`${item?.name}`}
                             loading="lazy"
-                            height={"230px"}
-                            className="h-[100%_!important] w-[268px_!important] rounded-xl bg-center object-cover align-middle xs:h-[150px_!important] xs:w-[145px_!important]"
+                            width={"100%"}
+                            height={"200px"}
+                            className="h-[100%_!important] w-[100%_!important] rounded-xl bg-center object-cover align-middle xs:h-[150px_!important] xs:w-[145px_!important]"
                           />
                         </LazyLoad>
                       </div>
@@ -211,19 +203,7 @@ const Products = () => {
                     </span>
                     <div className="flex items-center justify-center">
                       <span
-                        onClick={() =>
-                          saveLocalProductFavourite(
-                            item?.id,
-                            `data:image/png;base64,${item.file?.fileBase64}`,
-                            item?.name,
-                            item?.price,
-                            item?.sellTypeName,
-                            item?.paymentTypeName,
-                            item?.viewCount,
-                            item?.regionName,
-                            item?.canAgree,
-                          )
-                        }
+                        onClick={() => saveLocalProductFavourite(item?.id)}
                         className={`h-[40px] w-[40px] ${existing?.map(
                           (items) =>
                             items === item?.id &&

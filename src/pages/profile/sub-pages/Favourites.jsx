@@ -6,7 +6,6 @@ import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 import api from "../../../config/api/api";
 import { deleteFavorite } from "../../../exports/api";
-import Loading from "../../../ui/loading/Loading";
 const MyFavourites = () => {
   const queryClient = useQueryClient();
   const myFavourites = async () => {
@@ -144,7 +143,6 @@ const MyFavourites = () => {
     refetch();
   };
 
-  if (isLoading) return <Loading />;
   return (
     <div className="h-full">
       <Table

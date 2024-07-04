@@ -9,6 +9,7 @@ import useLiveSeach from "../hooks/useLiveSeach";
 import CategorySlider from "../pages/categories/categorySlider";
 import "./style.css";
 
+// eslint-disable-next-line react/prop-types
 const Exports = ({ filter, setFilter }) => {
   const { id } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -70,7 +71,6 @@ const Exports = ({ filter, setFilter }) => {
         const updatedManufacture = [...prevManufacture];
         const currentFilter =
           updatedManufacture[existingItemIndex].filter || {};
-
         // Update the filter with the new min/max value
         if (e === "") {
           // If input is empty, remove the corresponding value from the filter

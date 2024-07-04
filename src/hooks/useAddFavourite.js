@@ -2,61 +2,31 @@ import { useState } from "react";
 
 const useAddFavourite = () => {
   const [saveProduct, setSaveProduct] = useState([]);
-
   const [update, setUpdate] = useState([]);
 
-  const saveLocalProductFavourite = (
-    id,
-    img,
-    name,
-    price,
-    sellType,
-    paymentType,
-    viewCount,
-    regionName,
-    canAgree,
-  ) => {
-    // Create a product item object with the provided parameters
-    const productItem = {
-      id,
-      img,
-      name,
-      price,
-      sellType,
-      paymentType,
-      viewCount,
-      regionName,
-      canAgree,
-    };
+  const saveLocalProductFavourite = (id) => {
+    const productItem = id;
 
-    // Retrieve the existing products from local storage or initialize an empty array if none exist
-    if (localStorage.getItem("product") == null) {
-      let existingProducts = JSON.parse(localStorage.getItem("product")) || [];
+    // Existing productsni olish yoki bo'sh array yaratish
+    let existingProducts = JSON.parse(localStorage.getItem("product")) || [];
 
-      // Check if the product already exists in the local storage
-      const productExists = existingProducts.some((product) => product === id);
+    // Product mavjudligini tekshirish
+    const productExists = existingProducts.some((product) => product === id);
 
-      if (productExists) {
-        // Local storage dan barcha mahsulotlarni olish
-        let products = JSON.parse(localStorage.getItem("product")) || [];
+    if (productExists) {
+      // Mahsulotni o'chirish
+      const updatedProducts = existingProducts.filter(
+        (product) => product !== id,
+      );
 
-        // Berilgan id ga ega mahsulotni topish va o'chirish
-        const updatedProducts = products.filter((product) => product !== id);
+      localStorage.setItem("product", JSON.stringify(updatedProducts));
+      setUpdate(updatedProducts);
+    } else {
+      // Mahsulotni qo'shish
+      existingProducts.push(productItem);
 
-        // Yangilangan mahsulotlar ro'yxatini local storage ga qaytadan saqlash
-        localStorage.setItem("product", JSON.stringify(updatedProducts));
-        setUpdate(updatedProducts);
-      } else {
-        // Add the new product to the existing products array
-        existingProducts.push(productItem.id);
-
-        // Update the local storage with the new list of products
-        localStorage.setItem("product", JSON.stringify(existingProducts));
-
-        // Update the saveProduct state if required
-        setSaveProduct([...saveProduct, existingProducts]);
-      }
-      savedLocal();
+      localStorage.setItem("product", JSON.stringify(existingProducts));
+      setSaveProduct([...saveProduct, productItem]);
     }
   };
 
@@ -68,7 +38,6 @@ const useAddFavourite = () => {
   return {
     saveLocalProductFavourite,
     update,
-    saveProduct,
     saveProduct,
     savedLocal,
   };
