@@ -7,7 +7,7 @@ export default function Slider() {
     setCurrentSlide(to);
   };
   return (
-    <div className="slider-home h-full shadow-xl  w-[78%] overflow-hidden rounded-2xl  sm:max-h-full  sm:w-full">
+    <div className="slider-home h-full w-[78%]   overflow-hidden rounded-2xl shadow-xl  sm:max-h-full  sm:w-full">
       <Carousel
         draggable
         className="select-none "
@@ -18,6 +18,17 @@ export default function Slider() {
         centerMode
         centerPadding="150px"
         slidesToScroll={1}
+        responsive={[
+          {
+            breakpoint: 640,
+            settings: {
+              centerMode: false,
+              centerPadding: "0px",
+              slidesToShow: 1,
+              slidesToScroll: 1,
+            },
+          },
+        ]}
         infinite
         dotPosition="bottom"
         autoplay
@@ -39,9 +50,9 @@ export default function Slider() {
         ].map((src, index) => (
           <div
             key={index}
-            className={`h-[280px] w-[100%]  p-10 shadow-2xl transition-all  duration-300 sm:max-h-[150px] ${
+            className={`h-[280px] w-[100%] p-10 shadow-2xl  transition-all duration-300 sm:max-h-[150px]  sm:p-0  ${
               currentSlide === index
-                ? " scale-110 transition duration-700 "
+                ? " trans ition scale-110 duration-700 "
                 : " aspect-* opacity-15 "
             }`}
           >
