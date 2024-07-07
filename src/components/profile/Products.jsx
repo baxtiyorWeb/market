@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { Input } from "antd";
+import { Input, Space, Spin, Table } from "antd";
 import React, { useCallback, useEffect } from "react";
-import { FaHeart } from "react-icons/fa";
+import { FaEye } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 import useUser from "../../hooks/useUser";
@@ -24,65 +24,130 @@ const Products = () => {
     });
     return res.data;
   }, []);
-  const { data: products } = useQuery({
+  const { data: products, isLoading } = useQuery({
     queryKey: ["product/list", token],
     queryFn: async () => await getUserProductFilter(),
   });
 
   useEffect(() => {}, [getUserProductFilter]);
 
+  const columns = [
+    {
+      title: "rasmi",
+      dataIndex: "file",
+      editable: false,
+      render: (file, index) => (
+        <img
+          key={index}
+          src={`data:image/png;base64,${file.fileBase64}`}
+          width={"150px"}
+          height={"150px"}
+          alt=""
+        />
+      ),
+    },
+    {
+      title: "nomi",
+      dataIndex: "name",
+      editable: true,
+    },
+    {
+      title: "Narxi",
+      dataIndex: "price",
+      editable: true,
+    },
+    {
+      title: "to'lov turi",
+      dataIndex: "paymentTypeName",
+      editable: true,
+    },
+    {
+      title: "sotuv turi",
+      dataIndex: "sellTypeName",
+      editable: true,
+    },
+    {
+      title: "ko'rilgan",
+      dataIndex: "viewCount",
+      editable: true,
+    },
+    {
+      title: "viloyat",
+      dataIndex: "regionName",
+      editable: true,
+    },
+    {
+      title: "tuman",
+      dataIndex: "districtName",
+      editable: true,
+    },
+    {
+      title: "manzil",
+      dataIndex: "addreess",
+      editable: true,
+    },
+    {
+      title: "kelishish",
+      dataIndex: "canAgree",
+      editable: true,
+      render: (item) => {
+        return <>{item ? "kelishiladi" : "kelishilmaydi"}</>;
+      },
+    },
+    {
+      title: "operation",
+      dataIndex: "id",
+      render: (record) => {
+        return (
+          <span>
+            <Space size="middle" className="flex items-center justify-center">
+              <span>
+                <MdDelete
+                  onClick={() => handleDelete(record)}
+                  className="cursor-pointer text-center text-xl text-red-500"
+                />
+              </span>
+              <Link to={`/details/${record}?infoTab=1`}>
+                <FaEye className="cursor-pointer text-center text-xl text-teal-800" />
+              </Link>
+            </Space>
+          </span>
+        );
+      },
+    },
+  ];
+  console.log(products);
   return (
     <div className="p-3">
-      <div className="mb-3 flex h-[80px] w-full items-center justify-between">
-        <Input
-          placeholder="mahsulotni qidiring"
-          className="mr-5 h-[50px] w-[400px]"
-        />
-        <Link
-          className="flex h-[50px]  items-center justify-center rounded-md bg-bgColor p-5 text-white"
-          to={"/product-form/add-product"}
-        >
-          Mahsulot qo&apos;shish
-        </Link>
-      </div>
-      <table className="h-full w-full">
-        <thead className="h-14 bg-[#E2E2E2] text-[13px]  font-semibold shadow-md">
-          <tr>
-            <th>Surati</th>
-            <th>mahsulot nomi</th>
-            <th>narxi</th>
-            <th>sana</th>
-            <th>ko&apos;rilgan</th>
-            <th>harakat</th>
-            <th>action</th>
-          </tr>
-        </thead>
-        <tbody className="relative top-5 ">
-          {products?.data?.map((item) => (
-            <tr key={item?.id} className="mb-10 border-b hover:bg-gray-200/50">
-              <td>
-                <img
-                  className="h-[100px] w-[100px]"
-                  src={`data:image/jpeg;base64,${item?.file?.fileBase64}`}
-                  alt=""
-                />
-              </td>
-              <td>{item?.name}</td>
-              <td>{item.price} </td>
-              <td>02.02.22 | 15:33</td>
-              <td>{item?.viewCount} marta</td>
-              <td className="">
-                <span className="flex items-center justify-center">
-                  <FaHeart className="mr-3" /> <b className="">2</b>
-                </span>
-              </td>
-              <td>
-                <MdDelete />
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      {isLoading ? (
+        <div className="flex w-full items-center justify-center border">
+          <Spin
+            style={{ color: "#FFBE1E !important" }}
+            className="text-textColor"
+          />
+        </div>
+      ) : (
+        <>
+          <div className="mb-3 flex h-[80px] w-full items-center justify-between">
+            <Input
+              placeholder="mahsulotni qidiring"
+              className="mr-5 h-[50px] w-[400px]"
+            />
+            <Link
+              className="flex h-[50px]  items-center justify-center rounded-md bg-bgColor p-5 text-white"
+              to={"/product-form/add-product"}
+            >
+              Mahsulot qo&apos;shish
+            </Link>
+          </div>
+          <Table
+            columns={columns}
+            dataSource={products?.data}
+            loading={isLoading}
+            key={products?.id}
+          />
+        </>
+      )}
     </div>
   );
 };
