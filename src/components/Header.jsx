@@ -3,7 +3,7 @@ import {
   HomeOutlined,
   MenuOutlined,
   PlusCircleFilled,
-  UserOutlined
+  UserOutlined,
 } from "@ant-design/icons";
 import { Select } from "antd";
 import { useCallback, useEffect, useState } from "react";
@@ -74,7 +74,7 @@ export default function Header({ update, setUpdate }) {
           <div className="flex h-full  w-full items-center justify-between">
             <div
               onClick={() => setOpen(!open)}
-              className="xs:flex xs:h-10 xs:w-10 xs:items-center xs:justify-center xs:rounded-md xs:bg-bgColor xs:text-2xl xs_min:hidden "
+              className="sm:mr-3 sm:flex sm:h-10 sm:w-10 sm:items-center sm:justify-center sm:rounded-md sm:bg-bgColor md:mr-3 md:flex md:h-10 md:w-10 md:items-center md:justify-center md:rounded-md md:bg-bgColor md:text-2xl xs:flex xs:h-10 xs:w-10 xs:items-center xs:justify-center xs:rounded-md xs:bg-bgColor  xs:text-2xl"
             >
               {!open ? (
                 <IoMenu src={menuIcon} alt="" className=" text-textColor" />
@@ -82,7 +82,7 @@ export default function Header({ update, setUpdate }) {
                 <MdClose className="text-[30px] text-textColor" />
               )}
             </div>
-            <Link to={"/"} className="xs:hidden">
+            <Link to={"/"} className="sm:hidden md:hidden xs:hidden">
               {" "}
               <img
                 src={m_logo}
@@ -92,7 +92,7 @@ export default function Header({ update, setUpdate }) {
             </Link>
 
             <button
-              className="flex h-[35px] w-[100px] flex-shrink-0 items-center justify-between rounded-md border border-bgColor bg-bgColor p-2 text-center text-textColor  xs:hidden"
+              className="flex h-[35px] w-[100px] flex-shrink-0 items-center justify-between rounded-md border border-bgColor bg-bgColor p-2 text-center text-textColor sm:hidden md:hidden  xs:hidden"
               onClick={() => setOpen(!open)}
             >
               {!open ? (
@@ -104,7 +104,7 @@ export default function Header({ update, setUpdate }) {
               ) : (
                 <MdClose className="text-[30px] text-whiteTextColor" />
               )}
-              <span className="text font-poppins text-base  font-normal not-italic leading-[100%] text-whiteTextColor">
+              <span className="text font-poppins text-base  font-normal not-italic leading-[100%] text-whiteTextColor sm:hidden xs:hidden">
                 Katalog
               </span>
             </button>
@@ -115,22 +115,25 @@ export default function Header({ update, setUpdate }) {
 
             <div
               onClick={() => setOpen(false)}
-              className="h-auto w-auto p-0 xs:hidden  "
+              className="h-auto w-auto p-0 sm:hidden md:hidden  xs:hidden"
             >
               <Regions opens={open} setOpens={setOpen} />
             </div>
 
-            <div onClick={() => setOpen(false)}>
+            <div
+              onClick={() => setOpen(false)}
+              className="sm:w-full md:w-full xs:w-full"
+            >
               <form
                 onSubmit={(e) => e.preventDefault()}
-                className=" flex items-center justify-center xs:mx-0"
+                className=" flex items-center justify-center sm:w-full xs:mx-0"
               >
                 <input
                   type="text"
                   placeholder="Qidiruv"
                   defaultValue={search}
                   onChange={(e) => liveSearch(e.target.value)}
-                  className="h-[35px] w-[480px] rounded-bl-md rounded-tl-md border border-bgColor bg-[#F9F9F9] pl-[19px] text-[#959EA7] outline-none xs:w-[236px]"
+                  className="h-[35px] w-[480px] rounded-bl-md rounded-tl-md border border-bgColor bg-[#F9F9F9] pl-[19px] text-[#959EA7] outline-none sm:w-[100%] md:w-full xs:w-full"
                 />
                 <button
                   type="submit"
@@ -140,7 +143,7 @@ export default function Header({ update, setUpdate }) {
                 </button>
               </form>
             </div>
-            <div className="flex  mr-3 items-center justify-end xs:hidden">
+            <div className="mr-3 flex items-center  justify-end sm:hidden md:hidden xs:hidden">
               <HeadUserLinks update={update} setUpdate={setUpdate} />
             </div>
             <div className="user-menu flex w-auto items-center justify-end xs:hidden">
@@ -151,7 +154,7 @@ export default function Header({ update, setUpdate }) {
               >
                 <Select
                   placeholder={"tilni tanlang"}
-                  className="flex h-[35px] w-[90px] items-center justify-center   border-r border-[#ffffff] bg-[transparent_!important] text-[#212121] hover:bg-[#fdd355]"
+                  className="flex h-[35px] w-[90px] items-center justify-center border-r border-[#ffffff]   bg-[transparent_!important] text-[#212121] hover:bg-[#fdd355] sm:hidden md:hidden"
                   onChange={(e) => language(e)}
                   value={
                     localStorage.getItem("lang") === null
@@ -181,22 +184,19 @@ export default function Header({ update, setUpdate }) {
               </div>
             </div>
           </div>
-          <div
-            className="xs:fixed xs:bottom-0 xs:left-0 xs:z-[99999] xs:flex xs:h-16 xs:w-full xs:items-center xs:justify-between xs:border xs:bg-whiteTextColor xs:px-5 xs_min:hidden">
+          <div className="xs:fixed  xs:bottom-0 xs:left-0 xs:z-[99999] xs:flex xs:h-16 xs:w-full xs:items-center xs:justify-between xs:border xs:bg-whiteTextColor xs:px-5 xs_min:hidden">
             <div className="flex h-[65px] w-[65px] flex-col items-center justify-evenly  rounded-full ">
               <Link
                 to={"/"}
                 className="text flex h-[65px] w-[65px] flex-col items-center justify-evenly text-bgColor"
               >
-                <HomeOutlined
-                  className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[20px]" />
+                <HomeOutlined className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[20px]" />
                 <span className="text-[10px]">bosh sahifa</span>
               </Link>
             </div>
             <div className="flex h-[65px] w-[65px] flex-col items-center justify-evenly  rounded-full ">
               <Link className="text flex h-[65px] w-[65px] flex-col items-center justify-evenly text-bgColor">
-                <MenuOutlined
-                  className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[20px]" />
+                <MenuOutlined className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[20px]" />
                 <span className="text-[10px]">Categoriya</span>
               </Link>
             </div>
@@ -205,8 +205,7 @@ export default function Header({ update, setUpdate }) {
                 to={"product-form/add-product?"}
                 className="text flex h-[65px] w-[65px] flex-col items-center justify-evenly  text-bgColor"
               >
-                <PlusCircleFilled
-                  className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[30px]" />
+                <PlusCircleFilled className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[30px]" />
                 <span className="text-[10px]">E&apos;lon berish</span>
               </Link>
             </div>
@@ -215,8 +214,7 @@ export default function Header({ update, setUpdate }) {
                 to={"/profile/dashboard?tab=2"}
                 className="text flex h-[65px] w-[65px] flex-col items-center justify-evenly text-bgColor"
               >
-                <HeartOutlined
-                  className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[20px]" />
+                <HeartOutlined className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[20px]" />
                 <span className="text-[10px]">Sevimlilar</span>
               </Link>
             </div>
@@ -225,8 +223,7 @@ export default function Header({ update, setUpdate }) {
                 to={`/profile/dashboard?tab=1`}
                 className="text flex h-[65px] w-[65px] flex-col items-center justify-evenly text-bgColor"
               >
-                <UserOutlined
-                  className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[20px]" />
+                <UserOutlined className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[20px]" />
                 <span className="text-[10px]">Kabinet</span>
               </Link>
             </div>
@@ -236,4 +233,3 @@ export default function Header({ update, setUpdate }) {
     </>
   );
 }
-

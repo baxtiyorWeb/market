@@ -63,6 +63,13 @@ export default function Categoriyes() {
                 slidesToScroll: 1,
               },
             },
+            {
+              breakpoint: 767,
+              settings: {
+                slidesToShow: 5,
+                slidesToScroll: 1,
+              },
+            },
           ]}
         >
           {data?.data?.content?.map((item, index) => (

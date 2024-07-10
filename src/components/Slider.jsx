@@ -28,6 +28,15 @@ export default function Slider() {
               slidesToScroll: 1,
             },
           },
+          {
+            breakpoint: 767,
+            settings: {
+              centerMode: false,
+              centerPadding: "0px",
+              slidesToShow: 1,
+              slidesToScroll: 1,
+            },
+          },
         ]}
         infinite
         dotPosition="bottom"
