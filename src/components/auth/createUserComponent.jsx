@@ -26,8 +26,9 @@ const CreateUser = () => {
     queryFn: () => getDistrict(id),
     enabled: !!id,
   });
-
   // if (error) return `error: ${error}`;
+
+
   return (
     <Form {...formItemLayout} variant="filled" className="">
       <h1 className="text mb-5 text-center text-lg">

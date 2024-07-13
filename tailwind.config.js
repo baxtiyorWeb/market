@@ -40,6 +40,8 @@ export default {
         // => @media (max-width: 639px) { ... }
         xs: { max: "500px" },
         xs_min: { min: "500px" },
+        md_min: { min: "600px" },
+        lg_min: { min: "769px" },
         "2xs": { max: "360px" },
         "3xs": { max: "250px" },
       },

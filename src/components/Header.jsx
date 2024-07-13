@@ -3,7 +3,7 @@ import {
   HomeOutlined,
   MenuOutlined,
   PlusCircleFilled,
-  UserOutlined,
+  UserOutlined
 } from "@ant-design/icons";
 import { Select } from "antd";
 import { useCallback, useEffect, useState } from "react";
@@ -70,11 +70,59 @@ export default function Header({ update, setUpdate }) {
           scroll === "down" ? "top-[-180px]" : " top-0"
         } transitiona-all left-0 top-0  flex  h-[100px] w-full flex-col  items-center  justify-center bg-white duration-500   `}
       >
+        <div className={"flex justify-between w-full items-center lg_min:hidden"}>
+          <Link to={"/"} className="">
+            {" "}
+            <img
+              src={m_logo}
+              alt=""
+              className="h-[60px] w-[160px] object-cover"
+            />
+          </Link>
+          <div className="user-menu flex w-auto items-center justify-end ">
+            <div
+              className=" flex cursor-pointer items-center
+              justify-end rounded-md
+            "
+            >
+              <Select
+                placeholder={"tilni tanlang"}
+                className="flex h-[35px] w-[90px] items-center justify-center border-r border-[#ffffff]   bg-[transparent_!important] text-[#212121] hover:bg-[#fdd355] "
+                onChange={(e) => language(e)}
+                value={
+                  localStorage.getItem("lang") === null
+                    ? "uz"
+                    : localStorage.getItem("lang")
+                }
+              >
+                <Select.Option key={"uz"} value="uz">
+                  <div className="flex items-center justify-between">
+                    {" "}
+                    uz <img src={uz} alt="" className="h-5 w-5" />
+                  </div>
+                </Select.Option>
+                <Select.Option key={"en"} value="en">
+                  <div className="flex items-center justify-between">
+                    {" "}
+                    en <img src={en} alt="" className="h-5 w-5" />
+                  </div>
+                </Select.Option>
+                <Select.Option key={"ru"} value="ru">
+                  <div className="flex items-center justify-between">
+                    {" "}
+                    ru <img src={ru} alt="" className="h-5 w-5" />
+                  </div>
+                </Select.Option>
+              </Select>
+            </div>
+          </div>
+        </div>
+
         <Container>
-          <div className="flex h-full  w-full items-center justify-between">
+          <div className="flex h-full   w-full items-center justify-between">
             <div
               onClick={() => setOpen(!open)}
-              className="sm:mr-3 sm:flex sm:h-10 sm:w-10 sm:items-center sm:justify-center sm:rounded-md sm:bg-bgColor md:mr-3 md:flex md:h-10 md:w-10 md:items-center md:justify-center md:rounded-md md:bg-bgColor md:text-2xl xs:flex xs:h-10 xs:w-10 xs:items-center xs:justify-center xs:rounded-md xs:bg-bgColor  xs:text-2xl"
+              className="sm:mr-3 xs_min:hidden sm:flex sm:h-10 sm:w-10 sm:items-center sm:justify-center sm:rounded-md sm:bg-bgColor md:mr-3 md:flex md:h-10 md:w-10 md:items-center md:justify-center md:rounded-md md:bg-bgColor md:text-2xl xs:flex xs:h-10 xs:w-10 xs:items-center xs:justify-center xs:rounded-md xs:bg-bgColor  xs:text-2xl"
             >
               {!open ? (
                 <IoMenu src={menuIcon} alt="" className=" text-textColor" />
@@ -104,7 +152,8 @@ export default function Header({ update, setUpdate }) {
               ) : (
                 <MdClose className="text-[30px] text-whiteTextColor" />
               )}
-              <span className="text font-poppins text-base  font-normal not-italic leading-[100%] text-whiteTextColor sm:hidden xs:hidden">
+              <span
+                className="text font-poppins text-base  font-normal not-italic leading-[100%] text-whiteTextColor sm:hidden xs:hidden">
                 Katalog
               </span>
             </button>
@@ -184,19 +233,22 @@ export default function Header({ update, setUpdate }) {
               </div>
             </div>
           </div>
-          <div className="xs:fixed  xs:bottom-0 xs:left-0 xs:z-[99999] xs:flex xs:h-16 xs:w-full xs:items-center xs:justify-between xs:border xs:bg-whiteTextColor xs:px-5 xs_min:hidden">
+          <div
+            className="xs:fixed  xs:bottom-0 xs:left-0 xs:z-[99999] xs:flex xs:h-16 xs:w-full xs:items-center xs:justify-between xs:border xs:bg-whiteTextColor xs:px-5 xs_min:hidden">
             <div className="flex h-[65px] w-[65px] flex-col items-center justify-evenly  rounded-full ">
               <Link
                 to={"/"}
                 className="text flex h-[65px] w-[65px] flex-col items-center justify-evenly text-bgColor"
               >
-                <HomeOutlined className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[20px]" />
+                <HomeOutlined
+                  className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[20px]" />
                 <span className="text-[10px]">bosh sahifa</span>
               </Link>
             </div>
             <div className="flex h-[65px] w-[65px] flex-col items-center justify-evenly  rounded-full ">
               <Link className="text flex h-[65px] w-[65px] flex-col items-center justify-evenly text-bgColor">
-                <MenuOutlined className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[20px]" />
+                <MenuOutlined
+                  className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[20px]" />
                 <span className="text-[10px]">Categoriya</span>
               </Link>
             </div>
@@ -205,7 +257,8 @@ export default function Header({ update, setUpdate }) {
                 to={"product-form/add-product?"}
                 className="text flex h-[65px] w-[65px] flex-col items-center justify-evenly  text-bgColor"
               >
-                <PlusCircleFilled className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[30px]" />
+                <PlusCircleFilled
+                  className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[30px]" />
                 <span className="text-[10px]">E&apos;lon berish</span>
               </Link>
             </div>
@@ -214,7 +267,8 @@ export default function Header({ update, setUpdate }) {
                 to={"/profile/dashboard?tab=2"}
                 className="text flex h-[65px] w-[65px] flex-col items-center justify-evenly text-bgColor"
               >
-                <HeartOutlined className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[20px]" />
+                <HeartOutlined
+                  className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[20px]" />
                 <span className="text-[10px]">Sevimlilar</span>
               </Link>
             </div>
@@ -223,7 +277,8 @@ export default function Header({ update, setUpdate }) {
                 to={`/profile/dashboard?tab=1`}
                 className="text flex h-[65px] w-[65px] flex-col items-center justify-evenly text-bgColor"
               >
-                <UserOutlined className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[20px]" />
+                <UserOutlined
+                  className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[20px]" />
                 <span className="text-[10px]">Kabinet</span>
               </Link>
             </div>
@@ -231,5 +286,6 @@ export default function Header({ update, setUpdate }) {
         </Container>
       </div>
     </>
-  );
+  )
+    ;
 }

@@ -5,7 +5,6 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, Navigate, useNavigate, useSearchParams } from "react-router-dom";
 import api from "../../config/api/api";
 import useGenerateuuid from "../../hooks/useGenerateuuid";
-import useUser from "../../hooks/useUser";
 import ButtonUI from "../../ui/button/Button";
 import SpinLoading from "../../ui/loading/spinLoading";
 import { useAuth } from "./../../context/authContext";
@@ -16,7 +15,6 @@ export default function LoginComponent() {
     login: "",
     password: "",
   });
-  const { user, token } = useUser();
 
   const navigate = useNavigate();
   const [isLoading, setisLoading] = useState(false);
