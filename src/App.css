@@ -385,9 +385,6 @@
   margin: 0px !important;
   border-radius: 0 0 0 0 !important;
 }
-.ant-menu-submenu-popup .ant-menu-item {
-  /* background: red !important;/ */
-}
 .menu-item {
   margin: 5px !important;
   padding-right: 0 !important  ;
@@ -399,23 +396,20 @@
 @media (max-width: 768px) {
   .your-class-name {
     /* Mobil uchun o'zgarishlar */
-    column: 2;
-    row: 1;
+    columns: 2;
   }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
   .your-class-name {
     /* Planshet uchun o'zgarishlar */
-    column: 3;
-    row: 2;
+    columns: 3;
   }
 }
 
 @media (min-width: 1025px) {
   .your-class-name {
     /* Desktop uchun o'zgarishlar */
-    column: 5;
-    row: 2;
+    columns: 5;
   }
 }
