@@ -1,10 +1,9 @@
 import { message } from "antd";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createUserData } from "../exports/api";
+import { updateUserData } from "../exports/api";
 
 const useCreateUser = () => {
-  const navigate = useNavigate();
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState("");
   const [id, setId] = useState();
@@ -21,12 +20,13 @@ const useCreateUser = () => {
     fileItemId: 1,
   });
 
-  const createUser = () => {
+  const userUpdate = () => {
     try {
       setIsPending(true);
-      const res = createUserData(name);
+      const res = updateUserData(name);
     } catch (err) {
       message.success(err);
+      setError(err);
     } finally {
       setIsPending(false);
     }
@@ -34,12 +34,12 @@ const useCreateUser = () => {
 
   return {
     name,
-    setName,
-    createUser,
     isPending,
     error,
     id,
+    setName,
     setId,
+    userUpdate,
   };
 };
 

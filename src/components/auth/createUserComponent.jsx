@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Button, DatePicker, Form, Input, Select, Space, Spin } from "antd";
 import React from "react";
 import { Link } from "react-router-dom";
-import { getDistrict, getRegions } from "../../exports/api";
+import { getRegions, getDistrictById } from "../../exports/api";
 import useCreateUser from "../../hooks/useCreateUser";
 const formItemLayout = {
   labelCol: {
@@ -23,11 +23,10 @@ const CreateUser = () => {
 
   const { data: districts, isLoading } = useQuery({
     queryKey: ["district", id],
-    queryFn: () => getDistrict(id),
+    queryFn: () => getDistrictById(id),
     enabled: !!id,
   });
   // if (error) return `error: ${error}`;
-
 
   return (
     <Form {...formItemLayout} variant="filled" className="">

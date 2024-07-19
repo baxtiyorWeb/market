@@ -5,48 +5,23 @@ import { CiHeart } from "react-icons/ci";
 import { FaEye } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
 import LazyLoad from "react-lazy-load";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import FastDetailView from "../../components/products/FastDetailView";
-import useFilter from "../../hooks/product/useFilter";
-import useToggle from "../../hooks/useToggle";
 import Overlay from "../../ui/Overlay";
 import { ChildSkeletonLoading } from "../../ui/loading/ChildSkeletonLoading";
 import "./categories.css";
+import useScrollLoadingProduct from "../../hooks/useScrollLoadingProduct";
 
 const ProductGetList = () => {
-  const { manufacture } = useFilter();
   const {
+    fastId,
+    existing,
+    isOpen,
     data,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
+    getFastid,
     isLoading,
-    error,
-  } = useFilter();
-  const { id } = useParams();
-  const [fastId, setFastId] = useState("");
-  const { handleToggle, isOpen } = useToggle();
-  const getFastid = (id) => {
-    if (id !== undefined) {
-      handleToggle();
-      setFastId(id);
-    }
-  };
-
-  const handleScroll = () => {
-    if (
-      window.innerHeight + document.documentElement.scrollTop !==
-        document.documentElement.offsetHeight ||
-      isFetchingNextPage
-    )
-      return;
-    if (hasNextPage) fetchNextPage();
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [hasNextPage, isFetchingNextPage, manufacture]);
+    isFetchingNextPage,
+  } = useScrollLoadingProduct();
   if (isLoading) {
     return (
       <div className="text-center">
@@ -54,20 +29,13 @@ const ProductGetList = () => {
       </div>
     );
   }
-
-  const existing = JSON.parse(localStorage.getItem("products"));
-
-  if (error) {
-    return <div>Mahsulotlarni yuklashda xato</div>;
-  }
-
   return (
     <div className="border">
       <div>
         {isOpen && <Overlay closed={handleToggle} />}
         {isOpen && <FastDetailView id={fastId} />}
       </div>
-      {/* <button onClick={handleFilterClick}>get product</button> */}
+      {/* <button>get product</button> */}
 
       <div className="response_product_category grid grid-cols-4 gap-2 p-1 2xs:grid 2xs:grid-cols-2">
         {isLoading ? (
@@ -77,7 +45,7 @@ const ProductGetList = () => {
             page?.data?.map((item, index) => {
               return (
                 <div
-                  className=" relative h-[480px]  flex-shrink-0 overflow-hidden rounded-md px-[10px]  pt-2  transition-all hover:shadow-lg "
+                  className=" relative h-[480px]   flex-shrink-0 overflow-hidden rounded-md px-[10px]  pt-2  transition-all hover:shadow-lg "
                   key={index}
                 >
                   <span className="absolute left-3 top-5 z-50 bg-red-500 px-1 text-sm  text-white">
@@ -137,7 +105,6 @@ const ProductGetList = () => {
                       </div>
                     </div>
                   </div>
-
                   <div className="flex h-20 flex-col justify-between    ">
                     <span className="text inline-flex w-max items-center  rounded-md bg-bgColor px-2 py-2  font-poppins text-[18px] font-medium  not-italic leading-[100%] text-textColor ">
                       {item?.price}

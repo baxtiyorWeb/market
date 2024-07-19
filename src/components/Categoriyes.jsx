@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 
 import { Carousel, Menu } from "antd";
 import {
-  getCategoriesRootLisId,
+  getCategoriesRootListById,
   getCategoriesRootListSticky,
 } from "../exports/api";
 import CategoryLoading from "../ui/loading/CategoryLoading";
 const SubmenuComponent = ({ childCategories, chilId }) => {
   const { data } = useQuery({
     queryKey: ["category"],
-    queryFn: () => getCategoriesRootLisId(chilId),
+    queryFn: () => getCategoriesRootListById(chilId),
   });
 
   return (

@@ -1,81 +1,40 @@
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import { Select, Spin, Switch, Upload } from "antd";
-
-import React, { useEffect, useState } from "react";
-
-import { Outlet, useSearchParams } from "react-router-dom";
+import React from "react";
+import { Outlet } from "react-router-dom";
 import CategoryTab from "../../components/categoryTab/CategoryTab";
-
-import api from "../../config/api/api";
-import {
-  createProduct,
-  fileUplaodLoadedData,
-  getCategoryPropertiesId,
-} from "../../exports/api";
-import useToggle from "../../hooks/useToggle";
 import AddProductLocation from "../../layout/addProductLocation";
 import Container from "../../shared/Container";
-import "./ProductForm.css";
-
-const getBase64 = (file) =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.result;
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = (error) => reject(error);
-  });
+import useCreateProduct from "../../hooks/useCreateProduct";
 
 export default function AddProductCategory() {
-  const [previewOpen, setPreviewOpen] = useState(false);
-  const [previewImage, setPreviewImage] = useState("");
-
-  const [params, setParams] = useSearchParams();
-  const [regionId, setRegionId] = useState("");
-  const [districtId, setDistrictId] = useState("");
-
-  const [fileList, setFileList] = useState([]);
-  const [fileLisId, setFileListId] = useState([]);
-
-  const [propertiesData, setPropertiesData] = useState([]);
-  const [selltype, setSellType] = useState([]);
-  const [paymenttype, setPaymentType] = useState([]);
-  const [fileSaveId, setFileSaveId] = useState([]);
-  const [currency, setCurrency] = useState([]);
-  const [currencyId, setCurrencyId] = useState([]);
-  const [queryName, setQueryName] = useState(params.get("categoryName") || "");
-  const [queryId, setQueryId] = useState(params.get("categoryId") || "");
-  const [isLoading, setisLoading] = useState(false);
-  const [isUpload, setisUpload] = useState(false);
-  const [productInitData, setProductInitData] = useState({
-    name: "",
-    price: 0,
-    canAgree: false,
-    regionId: regionId,
-    description: "",
-    categoryId: queryId,
-    districtId: districtId,
-    address: "",
-    sellTypeId: 1,
-    paymentTypeId: 1,
-    propertyValues: null,
-    files: null,
-  });
-  const [nextProductData, setNextProductData] = useState([{}]);
-  const { isOpen } = useToggle();
-  nextProductData;
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
-  const handlePreview = async (file) => {
-    if (!file.url && !file.preview) {
-      file.preview = await getBase64(file.originFileObj);
-    }
-    setPreviewImage(file.url || file.preview);
-    setPreviewOpen(true);
-  };
-
-  const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
+  const {
+    currency,
+    isLoading,
+    isUpload,
+    isOpen,
+    paymenttype,
+    previewImage,
+    previewOpen,
+    nextProductData,
+    productInitData,
+    propertiesData,
+    queryName,
+    selltype,
+    regionId,
+    fileList,
+    setNextProductData,
+    setProductInitData,
+    handleSubmit,
+    handleChange,
+    handleChoosen,
+    handlePreview,
+    removeFileListID,
+    setCurrencyId,
+    setDistrictId,
+    setRegionId,
+    uploadImage,
+  } = useCreateProduct();
   const uploadButton = (
     <button
       style={{
@@ -94,118 +53,6 @@ export default function AddProductCategory() {
       </div>
     </button>
   );
-
-  const getSellType = async () => {
-    const res = await api.get("/sell-type/all");
-    const data = await res.data;
-    setSellType(data?.data);
-  };
-  const getPaymenType = async () => {
-    const res = await api.get("/payment-type/all");
-    const data = await res.data;
-    setPaymentType(data?.data);
-  };
-
-  const handleChoosen = async (name, id) => {
-    try {
-      const res = await getCategoryPropertiesId(id);
-      setParams({ categoryName: name, categoryId: id });
-      setQueryName(name);
-      setQueryId(id);
-      setNextProductData("");
-
-      // Combine the fetched properties with nextProductData
-      const combinedData = [...res?.data];
-
-      // Set propertiesData state
-      setPropertiesData(combinedData);
-    } catch (error) {
-      console.error("Xatolik sodir  bo'ldi:", error);
-    }
-  };
-
-  const uploadImage = async (options) => {
-    const { onSuccess, onError, file, onProgress } = options;
-    const imgFile = new FormData();
-    imgFile.append("img", file);
-    const imgList = new FileReader();
-    imgList.readAsDataURL(file);
-    setisUpload(true);
-    console.log(file);
-    try {
-      const data = fileUplaodLoadedData(file);
-      data.then((res) => {
-        // Fayl id (identifikatorini) olish
-        const fileId = res?.data?.id;
-
-        // fileList ni yangilash
-        setFileListId((prevFileList) => [
-          ...prevFileList,
-          {
-            id: fileId, // Hozirgi faylning indeksi
-            fileItemId: fileId, // Fayl identifikatori
-            mainFile: prevFileList.length === 0, // Agar bu birinchi fayl bo'lsa
-          },
-        ]);
-
-        setFileSaveId((prev) => [
-          ...prev,
-          {
-            id: res?.data?.id,
-          },
-        ]);
-
-        console.log(fileSaveId);
-      });
-      onSuccess("Ok");
-    } catch (err) {
-      "Eroor: ", err;
-      onError({ err });
-    } finally {
-      setisUpload(false);
-    }
-  };
-
-  const handleSubmit = async (e) => {
-    // Category tanlanganini olish
-    try {
-      setisLoading(true);
-      e.preventDefault();
-      createProduct({
-        ...productInitData,
-        regionId: regionId,
-        categoryId: queryId,
-        canAgree: productInitData.canAgree ? true : false,
-        districtId: districtId,
-        propertyValues: nextProductData,
-        files: fileLisId, // `fileList` yuborgan fayllar ro'yxati
-      });
-
-      // State yangilanadi
-      setProductInitData({
-        ...productInitData,
-        propertyValues: nextProductData,
-        files: fileList, // `fileList` yuborgan fayllar ro'yxati
-      });
-    } catch (error) {
-      console.log(error?.message);
-    } finally {
-      setisLoading(false);
-    }
-  };
-
-  const removeFileListID = (file) => {
-    const fileIdToRemove = file.id; // O'chirilishi kerak bo'lgan faylning identifikatorini olish
-    setFileListId((prev) =>
-      prev?.filter((item) => item?.fileItemId !== fileIdToRemove),
-    );
-  };
-
-  console.log(fileLisId);
-  useEffect(() => {
-    getSellType();
-    getPaymenType();
-  }, []);
   return (
     <div className="product-layout">
       <Container>

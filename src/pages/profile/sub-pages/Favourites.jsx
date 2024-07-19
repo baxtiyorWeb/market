@@ -5,7 +5,7 @@ import { FaEye } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 import api from "../../../config/api/api";
-import { deleteFavorite } from "../../../exports/api";
+import { deleteFavoriteProduct } from "../../../exports/api";
 const MyFavourites = () => {
   const queryClient = useQueryClient();
   const myFavourites = async () => {
@@ -132,7 +132,7 @@ const MyFavourites = () => {
 
   const deleteMutation = useMutation({
     mutationKey: ["favorite-product"],
-    mutationFn: deleteFavorite,
+    mutationFn: deleteFavoriteProduct,
     onSuccess: async () => {
       message.success(`malumot o'chirildi `);
       await queryClient.invalidateQueries(myFavorite);

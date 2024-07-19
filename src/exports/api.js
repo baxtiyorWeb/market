@@ -5,8 +5,6 @@ import api from "./../config/api/api";
 /*                                REGISTRATION                                */
 /* -------------------------------------------------------------------------- */
 
-// LOGIN AND PASSWORD REGISTER
-
 export const registerLoginAndPassword = async (data) => {
   const secretKey = localStorage.getItem("secretKey");
   const res = await api.post("/authority/register-login-password", data, {
@@ -23,118 +21,94 @@ export const registerLoginAndPassword = async (data) => {
 };
 
 /* -------------------------------------------------------------------------- */
-/*                           cateogires section api                           */
+/*                                 CATEGORY                                   */
 /* -------------------------------------------------------------------------- */
 
-//  GET CATEGORY
-
+// GET ALL CATEGORIES
 export const getCategories = async () => {
   const res = await api.get("/category/all");
   return res.data;
 };
 
 // GET CATEGORY LIST
-
 export const getCategoriesRootListSticky = async () => {
-  const res = await api.get(`/category/list?page=0&size=15&parentId=`);
+  const res = await api.get("/category/list?page=0&size=15&parentId=");
   return res.data;
 };
 
-// GET CATEGORY LIST PARENT ID
-
-export const getCategoriesRootLisId = async (id) => {
+// GET CATEGORY LIST BY PARENT ID
+export const getCategoriesRootListById = async (id) => {
   const res = await api.get(`/category/list?page=0&size=10&parentId=${id}`);
   return res.data;
 };
 
-// GET CATEGORY ID
-export const getCategoriesWithId = async (id) => {
+// GET CATEGORY BY ID
+export const getCategoryById = async (id) => {
   const res = await api.get(`/category/${id}`);
   return res.data;
 };
 
-/* -------------------------------------------------------------------------- */
-/*                                   CATEGORY                                  */
-/* -------------------------------------------------------------------------- */
-
-// CREATE PRODUCT
-
-export const getDistrict = async (id) => {
-  const res = await api.get(`/district/all/${id}`);
-  return res.data;
-};
-
-export const getCategoryPropertiesId = async (id) => {
+// GET CATEGORY PROPERTIES BY ID
+export const getCategoryPropertiesById = async (id) => {
   const res = await api.get(`/category/properties/${id}`);
   return res.data;
 };
 
-export const getProducts = async ({ page }) => {
-  page;
-  const res = await api.get(`/product/list?page=${page}&size=10`);
-  return res.data?.data?.content;
-};
-
-export const getProductWithCategoryId = async (id) => {
-  const res = await api.get(`/product/list?page=0&size=10&categoryId=${id}`);
+// GET CATEGORY FILTER BY ID
+export const getCategoryFilterById = async (id) => {
+  if (id === null || id === false) return false;
+  const res = await api.get(`/category/get-filters/${id}`);
   return res.data;
 };
 
-export const getproductgetFileterSearch = async (searchValue) => {
-  const res = await api.get(
-    `product/list?page=0&size=10&search=${searchValue}`,
-  );
-  return res.data;
-};
+/* -------------------------------------------------------------------------- */
+/*                                  PRODUCT                                   */
+/* -------------------------------------------------------------------------- */
 
+// CREATE PRODUCT
 export const createProduct = async (data) => {
   const res = await api.post("/product", data, {
     headers: { "Content-Type": "application/json" },
   });
-  res.data?.data;
-  message.success("product qo'shildi");
+  message.success("Product added successfully");
   return res.data;
 };
 
-export const fileUplaodLoadedData = async (data) => {
-  const res = await api.post(
-    `/file/upload`,
-    {
-      file: data,
-    },
-    {
-      headers: { "Content-Type": "multipart/form-data" },
-    },
+// GET PRODUCTS WITH PAGINATION
+export const getProducts = async ({ page }) => {
+  const res = await api.get(`/product/list?page=${page}&size=10`);
+  return res.data?.data?.content;
+};
+
+// GET PRODUCTS BY CATEGORY ID
+export const getProductByCategoryId = async (id) => {
+  const res = await api.get(`/product/list?page=0&size=10&categoryId=${id}`);
+  return res.data;
+};
+
+// SEARCH PRODUCTS WITH FILTER
+export const searchProducts = async (searchValue) => {
+  const res = await api.get(
+    `/product/list?page=0&size=10&search=${searchValue}`,
   );
-  message.success("rasm yuklandi");
   return res.data;
 };
 
-export const createUserData = async (data) => {
-  const res = await api.put(`/user/26`, data);
-  if (res.data) "ok";
+// GET PRODUCT STRING VALUES
+export const getProductStringValues = async (categoryId, propertyId) => {
+  if (categoryId === null || categoryId === false) return false;
+  if (propertyId === null || propertyId === false) return false;
+  const res = await api.get(`/product/string-values`, {
+    params: {
+      categoryId,
+      propertyId,
+    },
+  });
   return res.data;
 };
 
-export const getRegions = async () => {
-  const res = await api.get("/region/all");
-  return res.data;
-};
-
-export const getPaymentType = async () => {
-  const res = await api.get("/payment-type/all");
-  return res.data;
-};
-export const getSellType = async () => {
-  const res = await api.get("/sell-type/all");
-  return res.data;
-};
-
-// filter product for api returns
-
-export const productWithCategoryFilter = async (search, id) => {
-  // if (id == null || search == null) return false;
-
+// GET PRODUCTS WITH CATEGORY FILTER
+export const getProductsByCategoryFilter = async (search, id) => {
   const response = await api.get("/product/list", {
     headers: {
       "Content-Type": "application/json",
@@ -152,29 +126,63 @@ export const productWithCategoryFilter = async (search, id) => {
   });
   return response.data;
 };
-export const getProductWithCategoryFilter = async (id) => {
-  const res = await api.get(`/category/list?page=0&size=20&parentId=${id}`);
-  return res.data;
-};
 
-export const getProductStringValues = async (categoryId, propertyId) => {
-  if (categoryId === null || false) return false;
-  if (propertyId === null || false) return false;
-  const res = await api.get(`/product/string-values`, {
-    params: {
-      categoryId,
-      propertyId,
+/* -------------------------------------------------------------------------- */
+/*                                   FILES                                    */
+/* -------------------------------------------------------------------------- */
+
+// FILE UPLOAD
+export const uploadFile = async (data) => {
+  const res = await api.post(
+    `/file/upload`,
+    { file: data },
+    {
+      headers: { "Content-Type": "multipart/form-data" },
     },
-  });
+  );
+  message.success("File uploaded successfully");
   return res.data;
 };
 
-export const getCategoryFilter = async (id) => {
-  if (id === null || false) return false;
-  const res = await api.get(`/category/get-filters/${id}`);
+/* -------------------------------------------------------------------------- */
+/*                                  USER                                      */
+/* -------------------------------------------------------------------------- */
+
+// UPDATE USER DATA
+export const updateUserData = async (data) => {
+  const res = await api.put(`/user/26`, data);
   return res.data;
 };
 
-export const deleteFavorite = async (id) => {
+/* -------------------------------------------------------------------------- */
+/*                                 MISCELLANEOUS                              */
+/* -------------------------------------------------------------------------- */
+
+// GET DISTRICT BY ID
+export const getDistrictById = async (id) => {
+  const res = await api.get(`/district/all/${id}`);
+  return res.data;
+};
+
+// GET ALL REGIONS
+export const getRegions = async () => {
+  const res = await api.get("/region/all");
+  return res.data;
+};
+
+// GET ALL PAYMENT TYPES
+export const getPaymentTypes = async () => {
+  const res = await api.get("/payment-type/all");
+  return res.data;
+};
+
+// GET ALL SELL TYPES
+export const getSellTypes = async () => {
+  const res = await api.get("/sell-type/all");
+  return res.data;
+};
+
+// DELETE FAVORITE PRODUCT
+export const deleteFavoriteProduct = async (id) => {
   return (await api.post(`favorite-product/remove?productId=${id}`)).data;
 };

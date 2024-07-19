@@ -3,7 +3,11 @@ import { message } from "antd";
 import { useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import api from "../../config/api/api";
-import { getDistrict, getPaymentType, getSellType } from "../../exports/api";
+import {
+  getDistrictById,
+  getPaymentTypes,
+  getSellTypes,
+} from "../../exports/api";
 
 const useFilter = () => {
   const [searchParams] = useSearchParams();
@@ -29,16 +33,16 @@ const useFilter = () => {
 
   const { data: district } = useQuery({
     queryKey: ["district/all", regionId],
-    queryFn: async () => await getDistrict(regionId),
+    queryFn: async () => await getDistrictById(regionId),
     enabled: !!regionId,
   });
   const { data: paymentType } = useQuery({
     queryKey: ["payment-type"],
-    queryFn: getPaymentType,
+    queryFn: getPaymentTypes,
   });
   const { data: sellType } = useQuery({
     queryKey: ["sell-type"],
-    queryFn: getSellType,
+    queryFn: getSellTypes,
   });
 
   const fetchProducts = async ({ pageParam = 0 }) => {

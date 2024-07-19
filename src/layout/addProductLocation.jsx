@@ -1,16 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
 import { Select } from "antd";
 import React from "react";
-import { getDistrict, getRegions } from "../exports/api";
+import { getDistrictById, getRegions } from "../exports/api";
 
 const AddProductLocation = ({ regionId, setRegionId, setDistrictId }) => {
-  const { data, isPending, refetch, error } = useQuery({
+  const { data, isPending, refetch } = useQuery({
     queryKey: ["regions"],
     queryFn: () => getRegions(), // Pass function reference
   });
   const { data: districtData } = useQuery({
     queryKey: ["district", regionId],
-    queryFn: () => getDistrict(regionId), // Pass function reference and regionId as dependency
+    queryFn: () => getDistrictById(regionId), // Pass function reference and regionId as dependency
     enabled: regionId !== "", // Enable the query only when regionId is not empty
   });
 
