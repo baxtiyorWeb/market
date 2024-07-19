@@ -100,7 +100,7 @@ const useCreateProduct = () => {
     const imgList = new FileReader();
     imgList.readAsDataURL(file);
     setisUpload(true);
-    console.log(file);
+    (file);
     try {
       const data = uploadFile(file);
       data.then((res) => {
@@ -124,7 +124,7 @@ const useCreateProduct = () => {
           },
         ]);
 
-        console.log(fileSaveId);
+        (fileSaveId);
       });
       onSuccess("Ok");
     } catch (err) {
@@ -157,7 +157,7 @@ const useCreateProduct = () => {
         files: fileList, // `fileList` yuborgan fayllar ro'yxati
       });
     } catch (error) {
-      console.log(error?.message);
+      (error?.message);
     } finally {
       setisLoading(false);
     }

@@ -44,38 +44,34 @@ const CategorySlider = () => {
               <h1 className="text my-1 text-base font-light">
                 categoriyani tanlang
               </h1>
-
+              <Input
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="qidiring ..."
+                className="ml-5   w-[80%]"
+              />
               <List
                 header={"bo'limlar"}
-                extra
-                bordered
                 loading={isLoading}
                 className="px-1"
-                grid={5}
-              >
-                <Input
-                  onChange={(e) => setSearch(e.target.value)}
-                  placeholder="qidiring ..."
-                  className="ml-5   w-[80%]"
-                />
-                {categoryChild?.content
-                  ?.filter((item) => item?.name?.toLowerCase().includes(search))
-                  .map((item, index) =>
-                    index <= viewMore ? (
-                      <List.Item>
-                        <Link
-                          to={`/category/${item?.id}`}
-                          className={`mt-3 flex items-start justify-start  transition-none duration-150 `}
-                          key={index}
-                        >
-                          {item?.name}
-                        </Link>
-                      </List.Item>
-                    ) : (
-                      ""
-                    ),
-                  )}
-              </List>
+                grid={0}
+                bordered
+                dataSource={categoryChild?.content}
+                renderItem={(item, index) => {
+                  return index <= viewMore ? (
+                    <List.Item key={index}>
+                      <Link
+                        to={`/category/${item?.id}`}
+                        className={`mt-3 flex h-full w-full items-start justify-start  transition-none duration-150 `}
+                        key={index}
+                      >
+                        {item?.name}
+                      </Link>
+                    </List.Item>
+                  ) : (
+                    ""
+                  );
+                }}
+              />
               <div className="flex items-center justify-between">
                 <h1>bo&apos;limlar</h1>
 
@@ -89,14 +85,9 @@ const CategorySlider = () => {
                     ko&apos;proq
                   </button>
                 ) : (
-                  viewMore <= 5 && (
-                    <button
-                      onClick={() => setviewMore(5)}
-                      className="underline"
-                    >
-                      yashirish
-                    </button>
-                  )
+                  <button onClick={() => setviewMore(5)} className="underline">
+                    yashirish
+                  </button>
                 )}
               </div>
             </div>

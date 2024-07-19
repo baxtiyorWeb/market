@@ -30,7 +30,7 @@ api.interceptors.response.use(
     const originalRequest = error.config;
     if (error.response.status === 400 && !originalRequest._retry) {
       // originalRequest._retry = true;
-      console.log(error.response.status);
+      (error.response.status);
       const refreshToken = localStorage.getItem("refreshToken");
       const response = await axios.post(
         "http://95.130.227.131:8080/api/v1/authority/refresh-token",

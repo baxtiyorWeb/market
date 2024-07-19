@@ -20,7 +20,7 @@ const AuthProvider = ({ children }) => {
         window.location.href = "/profile/dashboard?tab=1";
       } else {
         setError(res.errorResponse);
-        console.log(res.message);
+        (res.message);
       }
     } catch (err) {
       const errorMessage =

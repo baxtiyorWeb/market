@@ -116,7 +116,7 @@ const Products = () => {
       },
     },
   ];
-  console.log(products);
+  (products);
   return (
     <div className="p-3">
       {isLoading ? (

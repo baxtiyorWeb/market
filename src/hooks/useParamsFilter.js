@@ -67,7 +67,7 @@ const useParamsFilter = () => {
         }
       }
     } catch (error) {
-      console.log(error.message);
+      (error.message);
     } finally {
       setIsLoading(false);
     }

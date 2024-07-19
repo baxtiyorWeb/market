@@ -1,4 +1,6 @@
+import React from "react";
 import ContentLoader from "react-content-loader";
+
 export const ChildSkeletonLoading = ({
   heading = { width: 140, height: 24 },
   row = 2,
@@ -31,12 +33,16 @@ export const ChildSkeletonLoading = ({
       (padding + height1) +
       (padding / 2 + height2) +
       height3 +
-      padding * 3;
+      padding * 6;
 
     const yHeading = padding + space * (i - 1);
+    let pushedNumber = [];
+
+    pushedNumber.push((Math.random() * 45 - 22 * 10 + i).toPrecision(3));
 
     list.push(
       <rect
+        key={`rect_${pushedNumber}`}
         x={padding}
         y={yHeading}
         rx={0}
@@ -56,7 +62,9 @@ export const ChildSkeletonLoading = ({
       const y3 = y2 + padding / 2 + height2;
 
       list.push(
-        <>
+        <React.Fragment
+          key={`rectangle_${(Math.random() * 38 - 22 * i).toPrecision(3)}`}
+        >
           <rect
             x={x}
             y={y1}
@@ -74,7 +82,7 @@ export const ChildSkeletonLoading = ({
             width={itemWidth * 0.6}
             height={height3}
           />
-        </>,
+        </React.Fragment>,
       );
 
       if (i === row) {
@@ -94,9 +102,10 @@ export const ChildSkeletonLoading = ({
     </ContentLoader>
   );
 };
+
 ChildSkeletonLoading.metadata = {
   name: "I am Doong - I come from Việt Nam",
   github: "toiladoong",
-  description: "SkeletonLoading",
-  filename: "SkeletonLoading",
+  description: "ChildSkeletonLoading",
+  filename: "ChildSkeletonLoading",
 };

@@ -64,7 +64,7 @@ const Settings = () => {
         }, 1000);
       }
     } catch (error) {
-      console.log(error);
+      (error);
     } finally {
       setisLoading(false);
     }

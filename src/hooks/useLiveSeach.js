@@ -20,7 +20,7 @@ const useLiveSeach = () => {
     // Ensure the inputValue is updated before the following operations
     if (inputValue !== "" && ids) {
       setOpen(true);
-      console.log(inputValue.length);
+      (inputValue.length);
 
       if (inputValue.length > -1) {
         // Use toLowerCase for case-insensitive matching
@@ -31,7 +31,7 @@ const useLiveSeach = () => {
         setproperyId(ids);
         setSearch(getValue);
       } else {
-        console.log("empty");
+        ("empty");
         setSearch([]); // Clear search results if the input value length is greater than 3
       }
     } else {

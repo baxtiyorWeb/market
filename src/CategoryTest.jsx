@@ -49,7 +49,7 @@ const CategoryTest = () => {
 
   const ChildCategories = ({ data }) => {
     const lengthChild = data?.childCategories?.length;
-    console.log(lengthChild);
+    (lengthChild);
     return (
       <>
         {data?.childCategories?.length !== 0 ? (

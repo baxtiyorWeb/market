@@ -38,7 +38,7 @@ export default function LoginComponent() {
       loginAction(signIn);
       <Navigate to={"/profile/dashboard?tab=1"} />;
     } catch (error) {
-      console.log(error?.message);
+      (error?.message);
     } finally {
       setisLoading(false);
     }
