@@ -1,18 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { getCategories } from "../../exports/api";
 import MenuList from "./CategoryTab";
-import "./category.css";
-import { useQuery } from "@tanstack/react-query";
 
 const Catalogue = () => {
-  const { data } = useQuery({
-    queryKey: ["category"],
-    queryFnL: getCategories,
-  });
+  const [items, setItems] = useState([]);
+
+  const fetchCategories = async () => {
+    try {
+      const response = await getCategories();
+      setItems(response.data); // Adjust according to your API response structure
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
 
   return (
     <div className="max-h-max bg-white">
-      <MenuList categories={data} />
+      <MenuList categories={items} />
     </div>
   );
 };

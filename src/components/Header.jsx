@@ -144,7 +144,7 @@ const Header = ({ update, setUpdate }) => {
 
           <button
             className="flex h-[35px] w-[100px] flex-shrink-0 items-center justify-between rounded-md border border-bgColor bg-bgColor p-2 text-center text-textColor sm:hidden md:hidden  xs:hidden"
-            onClick={() => setOpen(!open)}
+            onClick={() => closed(!open)}
           >
             {!open ? (
               <MenuOutlined
@@ -160,26 +160,14 @@ const Header = ({ update, setUpdate }) => {
             </span>
           </button>
           {open && <Overlay closed={closed} />}
-          <div className="">
-            <div
-              className={
-                open
-                  ? `scroll-wrapper absolute   left-40 top-24 z-[302] rounded-md bg-[#FFFFFF]  opacity-100 shadow-xl  transition-all duration-100 `
-                  : "absolute left-40 top-24  z-[-100] h-[0] opacity-0 transition-all  duration-300 xs:absolute xs:left-0"
-              }
-            >
-              <div className="mb-10">
-                <MdClose
-                  className={`absolute right-3 top-3 mb-3 cursor-pointer text-[20px] text-slate-400 hover:text-slate-800 ${
-                    open
-                      ? "opacity-100 transition-all duration-0"
-                      : "opacity-0 "
-                  }`}
-                  onClick={() => setOpen(false)}
-                />
-              </div>
-              {(open && <Catalogue open={open} />) || backgroundUnset()}
-            </div>
+          <div
+            className={
+              open
+                ? `scroll-wrapper fixed   left-[380px] top-20   z-[302]   rounded-md bg-[#FFFFFF]  opacity-100 shadow-xl  transition-all duration-100 `
+                : "absolute left-[380px] top-10  z-[-100] h-[0] opacity-0  transition-all  duration-300 xs:absolute xs:left-0"
+            }
+          >
+            {(open && <Catalogue open={open} />) || backgroundUnset()}
           </div>
 
           <div

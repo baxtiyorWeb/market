@@ -3,16 +3,13 @@ import { Menu } from "antd";
 import { Link } from "react-router-dom";
 
 const transformCategoriesToMenuItems = (categories) => {
-  (categories?.data?.content);
-
-  return categories?.data?.content.map((category) => {
-    if (category?.childCategories?.length > 0) {
+  (categories);
+  return categories?.map((category) => {
+    if (category?.childCategories && category?.childCategories?.length > 0) {
       return {
         key: category.id,
         label: (
-          <Link
-            to={`/category/${category?.id}?category-name=${category?.name}`}
-          >
+          <Link to={`/category/${category.id}?category-name=${category.name}`}>
             {category.name}
           </Link>
         ),
@@ -22,9 +19,7 @@ const transformCategoriesToMenuItems = (categories) => {
       return {
         key: category.id,
         label: (
-          <Link
-            to={`/category/${category?.id}?category-name=${category?.name}`}
-          >
+          <Link to={`/category/${category.id}?category-name=${category.name}`}>
             {category.name}
           </Link>
         ),
