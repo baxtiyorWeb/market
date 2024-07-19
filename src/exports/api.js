@@ -106,7 +106,6 @@ export const fileUplaodLoadedData = async (data) => {
       headers: { "Content-Type": "multipart/form-data" },
     },
   );
-  res.data?.data;
   message.success("rasm yuklandi");
   return res.data;
 };

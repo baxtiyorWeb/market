@@ -78,6 +78,7 @@ const CategorySlider = () => {
               </List>
               <div className="flex items-center justify-between">
                 <h1>bo&apos;limlar</h1>
+
                 {viewMore === 5 ? (
                   <button
                     className="underline"
@@ -88,9 +89,14 @@ const CategorySlider = () => {
                     ko&apos;proq
                   </button>
                 ) : (
-                  <button onClick={() => setviewMore(5)} className="underline">
-                    yashirish
-                  </button>
+                  viewMore <= 5 && (
+                    <button
+                      onClick={() => setviewMore(5)}
+                      className="underline"
+                    >
+                      yashirish
+                    </button>
+                  )
                 )}
               </div>
             </div>

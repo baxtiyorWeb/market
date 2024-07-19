@@ -8,7 +8,7 @@ export default function Slider() {
     setCurrentSlide(to);
   };
   return (
-    <div className="slider-home h-full w-[78%] md:h-[100%]   overflow-hidden rounded-2xl shadow-xl  sm:max-h-full  sm:w-full">
+    <div className="slider-home h-full w-[78%]  overflow-hidden   rounded-2xl  sm:max-h-full  sm:w-full  md:h-[100%]">
       <Carousel
         draggable
         className="select-none "
@@ -17,7 +17,7 @@ export default function Slider() {
         slidesToShow={1}
         swipeToSlide
         centerMode
-        centerPadding="150px"
+        centerPadding="160px"
         slidesToScroll={1}
         infinite
         dotPosition="bottom"
@@ -29,9 +29,8 @@ export default function Slider() {
               centerMode: false,
               centerPadding: "0px",
               slidesToShow: 1,
-              slidesToScroll: 1
-
-            }
+              slidesToScroll: 1,
+            },
           },
           {
             breakpoint: 767,
@@ -39,9 +38,9 @@ export default function Slider() {
               centerMode: false,
               centerPadding: "0px",
               slidesToShow: 1,
-              slidesToScroll: 1
-            }
-          }
+              slidesToScroll: 1,
+            },
+          },
         ]}
         autoplaySpeed={3000}
         beforeChange={handleBeforeChange}
@@ -56,11 +55,11 @@ export default function Slider() {
           "https://minio.alifnasiya.uz/shop/catalog/carousel/185/1698244324-2%20uzb.jpg",
           "https://assets.asaxiy.uz/uploads/banner/desktop/659d2b642a872.jpg.webp",
           "https://assets.asaxiy.uz/uploads/banner/desktop/6586b4a2daf21.jpg.webp",
-          "https://assets.asaxiy.uz/uploads/banner/desktop/659d2b642a872.jpg.webp"
+          "https://assets.asaxiy.uz/uploads/banner/desktop/659d2b642a872.jpg.webp",
         ].map((src, index) => (
           <div
             key={index}
-            className={`h-[280px] md:h-[200px] w-[100%]  p-10 md:p-1 md:object-center md:object-cover shadow-2xl transition-all  duration-300 sm:max-h-[150px] ${
+            className={`h-[280px] w-[100%] p-10   transition-all duration-300 sm:max-h-[150px] md:h-[200px] md:object-cover  md:object-center md:p-1 ${
               currentSlide === index
                 ? " scale-110 transition duration-700 "
                 : " aspect-* opacity-15 "

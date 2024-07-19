@@ -1,4 +1,4 @@
-import { PlusOutlined } from "@ant-design/icons";
+import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import { Select, Spin, Switch, Upload } from "antd";
 
 import React, { useEffect, useState } from "react";
@@ -40,21 +40,22 @@ export default function AddProductCategory() {
   const [propertiesData, setPropertiesData] = useState([]);
   const [selltype, setSellType] = useState([]);
   const [paymenttype, setPaymentType] = useState([]);
+  const [fileSaveId, setFileSaveId] = useState([]);
   const [currency, setCurrency] = useState([]);
   const [currencyId, setCurrencyId] = useState([]);
   const [queryName, setQueryName] = useState(params.get("categoryName") || "");
   const [queryId, setQueryId] = useState(params.get("categoryId") || "");
   const [isLoading, setisLoading] = useState(false);
+  const [isUpload, setisUpload] = useState(false);
   const [productInitData, setProductInitData] = useState({
-    id: 0,
-    name: "Mashinalar",
-    price: 3400000000,
+    name: "",
+    price: 0,
     canAgree: false,
     regionId: regionId,
-    description: "bu mashinalar",
+    description: "",
     categoryId: queryId,
     districtId: districtId,
-    address: "Surkhandarya",
+    address: "",
     sellTypeId: 1,
     paymentTypeId: 1,
     propertyValues: null,
@@ -75,7 +76,6 @@ export default function AddProductCategory() {
   };
 
   const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
-
   const uploadButton = (
     <button
       style={{
@@ -130,6 +130,8 @@ export default function AddProductCategory() {
     imgFile.append("img", file);
     const imgList = new FileReader();
     imgList.readAsDataURL(file);
+    setisUpload(true);
+    console.log(file);
     try {
       const data = fileUplaodLoadedData(file);
       data.then((res) => {
@@ -140,16 +142,27 @@ export default function AddProductCategory() {
         setFileListId((prevFileList) => [
           ...prevFileList,
           {
-            id: 0, // Hozirgi faylning indeksi
+            id: fileId, // Hozirgi faylning indeksi
             fileItemId: fileId, // Fayl identifikatori
             mainFile: prevFileList.length === 0, // Agar bu birinchi fayl bo'lsa
           },
         ]);
+
+        setFileSaveId((prev) => [
+          ...prev,
+          {
+            id: res?.data?.id,
+          },
+        ]);
+
+        console.log(fileSaveId);
       });
       onSuccess("Ok");
     } catch (err) {
       "Eroor: ", err;
       onError({ err });
+    } finally {
+      setisUpload(false);
     }
   };
 
@@ -181,11 +194,17 @@ export default function AddProductCategory() {
     }
   };
 
+  const removeFileListID = (file) => {
+    const fileIdToRemove = file.id; // O'chirilishi kerak bo'lgan faylning identifikatorini olish
+    setFileListId((prev) =>
+      prev?.filter((item) => item?.fileItemId !== fileIdToRemove),
+    );
+  };
+
+  console.log(fileLisId);
   useEffect(() => {
     getSellType();
     getPaymenType();
-
-    propertiesData;
   }, []);
   return (
     <div className="product-layout">
@@ -404,16 +423,21 @@ export default function AddProductCategory() {
             rasm kiriting
           </span>
           <div className="my-3 flex items-center justify-start">
-            <div className="mb-10 w-auto">
-              <Upload
-                listType="picture-card"
-                customRequest={uploadImage}
-                fileList={fileList}
-                onPreview={handlePreview}
-                onChange={handleChange}
-              >
-                {fileList.length >= 8 ? null : uploadButton}
-              </Upload>
+            <div className="mb-10">
+              {isUpload ? (
+                <Spin indicator={<LoadingOutlined />} />
+              ) : (
+                <Upload
+                  listType="picture-card"
+                  customRequest={uploadImage}
+                  fileList={fileList}
+                  onRemove={removeFileListID}
+                  onPreview={handlePreview}
+                  onChange={handleChange}
+                >
+                  {fileList.length >= 8 ? null : uploadButton}
+                </Upload>
+              )}
               {previewImage && (
                 <Image
                   wrapperStyle={{
