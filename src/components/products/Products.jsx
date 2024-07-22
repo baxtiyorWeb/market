@@ -100,10 +100,10 @@ const Products = () => {
         </h1>
         <div className="flex w-max items-center justify-center">
           <div className="some-categories flex items-center justify-center">
-            <Link className="mr-3 border-b-2 border-bgColor p-2 text-lg font-normal sm:text-sm md:text-sm xs:text-sm">
+            <Link className="mr-3 border-b-2 border-bgColor p-2 text-lg font-normal sm:text-sm md:text-sm xs:text-sm lg:text-lg">
               Barcha Mahsulotlar{" "}
             </Link>
-            <div className="sm:hidden md:hidden xs:hidden">
+            <div className="lg:hidden sm:hidden md:hidden xs:hidden">
               <Link className="mr-3 border-b-2 border-transparent p-2 text-base font-normal">
                 Smartfonlar
               </Link>
@@ -123,7 +123,7 @@ const Products = () => {
           </Link>
         </div>
       </div>
-      <div className="response_product_category grid grid-cols-5 gap-1 sm:grid  sm:w-full sm:grid-cols-3 md:grid md:grid-cols-3 xs:grid xs:grid-cols-2 xs:gap-1 2xs:grid 2xs:grid-cols-2">
+      <div className="response_product_category lg:grid lg:grid-cols-4 lg:gap-5 grid grid-cols-5 gap-1 sm:grid  sm:w-full sm:grid-cols-3 md:grid md:grid-cols-3 xs:grid xs:grid-cols-2 xs:gap-1 2xs:grid 2xs:grid-cols-2">
         {isLoading ? (
           <SkeletonLoading />
         ) : (

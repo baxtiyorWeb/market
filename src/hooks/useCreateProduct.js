@@ -100,7 +100,7 @@ const useCreateProduct = () => {
     const imgList = new FileReader();
     imgList.readAsDataURL(file);
     setisUpload(true);
-    (file);
+    file;
     try {
       const data = uploadFile(file);
       data.then((res) => {
@@ -124,7 +124,7 @@ const useCreateProduct = () => {
           },
         ]);
 
-        (fileSaveId);
+        fileSaveId;
       });
       onSuccess("Ok");
     } catch (err) {
@@ -137,29 +137,29 @@ const useCreateProduct = () => {
 
   const handleSubmit = async (e) => {
     // Category tanlanganini olish
-    try {
-      setisLoading(true);
-      e.preventDefault();
-      createProduct({
-        ...productInitData,
-        regionId: regionId,
-        categoryId: queryId,
-        canAgree: productInitData.canAgree ? true : false,
-        districtId: districtId,
-        propertyValues: nextProductData,
-        files: fileLisId, // `fileList` yuborgan fayllar ro'yxati
-      });
+      try {
+        setisLoading(true);
+        e.preventDefault();
+        createProduct({
+          ...productInitData,
+          regionId: regionId,
+          categoryId: queryId,
+          canAgree: productInitData.canAgree ? true : false,
+          districtId: districtId,
+          propertyValues: nextProductData,
+          files: fileLisId, // `fileList` yuborgan fayllar ro'yxati
+        });
 
-      // State yangilanadi
-      setProductInitData({
-        ...productInitData,
-        propertyValues: nextProductData,
-        files: fileList, // `fileList` yuborgan fayllar ro'yxati
-      });
-    } catch (error) {
-      (error?.message);
-    } finally {
-      setisLoading(false);
+        // State yangilanadi
+        setProductInitData({
+          ...productInitData,
+          propertyValues: nextProductData,
+          files: fileList, // `fileList` yuborgan fayllar ro'yxati
+        });
+      } catch (error) {
+        error?.message;
+      } finally {
+        setisLoading(false);
     }
   };
 
