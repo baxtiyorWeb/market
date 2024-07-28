@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { getProductStringValues } from "../exports/api";
+import { getProductsByCategoryFilter } from "../exports/api";
 
 const useLiveSeach = () => {
   const { id } = useParams();
@@ -11,27 +11,27 @@ const useLiveSeach = () => {
   const [open, setOpen] = useState(false);
 
   const { data: productLiveFilter } = useQuery({
-    queryKey: ["product/string-values", id, propetyId],
-    queryFn: async () => await getProductStringValues(id, propetyId),
+    queryKey: ["product/string-values", value],
+    queryFn: async () => await getProductsByCategoryFilter(value),
   });
+
+  console.log(productLiveFilter);
   const liveSearch = (inputValue, ids) => {
     setValue(inputValue);
 
     // Ensure the inputValue is updated before the following operations
-    if (inputValue !== "" && ids) {
+    if (inputValue !== "") {
       setOpen(true);
-      (inputValue.length);
 
       if (inputValue.length > -1) {
         // Use toLowerCase for case-insensitive matching
         const getValue = productLiveFilter?.data?.filter((item) =>
-          item?.toLowerCase().includes(inputValue.toLowerCase()),
+          item?.name?.toLowerCase().includes(inputValue.toLowerCase()),
         );
 
         setproperyId(ids);
         setSearch(getValue);
       } else {
-        ("empty");
         setSearch([]); // Clear search results if the input value length is greater than 3
       }
     } else {

@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import api from "../config/api/api";
 import {
   createProduct,
-  uploadFile,
   getCategoryPropertiesById,
+  uploadFile,
 } from "../exports/api";
 import useToggle from "./useToggle";
-import api from "../config/api/api";
 
 const useCreateProduct = () => {
   const getBase64 = (file) =>
@@ -94,13 +94,12 @@ const useCreateProduct = () => {
   };
 
   const uploadImage = async (options) => {
-    const { onSuccess, onError, file, onProgress } = options;
+    const { onSuccess, onError, file } = options;
     const imgFile = new FormData();
     imgFile.append("img", file);
     const imgList = new FileReader();
     imgList.readAsDataURL(file);
     setisUpload(true);
-    file;
     try {
       const data = uploadFile(file);
       data.then((res) => {
@@ -123,8 +122,6 @@ const useCreateProduct = () => {
             id: res?.data?.id,
           },
         ]);
-
-        fileSaveId;
       });
       onSuccess("Ok");
     } catch (err) {
@@ -137,29 +134,26 @@ const useCreateProduct = () => {
 
   const handleSubmit = async (e) => {
     // Category tanlanganini olish
-      try {
-        setisLoading(true);
-        e.preventDefault();
-        createProduct({
-          ...productInitData,
-          regionId: regionId,
-          categoryId: queryId,
-          canAgree: productInitData.canAgree ? true : false,
-          districtId: districtId,
-          propertyValues: nextProductData,
-          files: fileLisId, // `fileList` yuborgan fayllar ro'yxati
-        });
+    e.preventDefault();
+    try {
+      createProduct({
+        ...productInitData,
+        regionId: regionId,
+        categoryId: queryId,
+        canAgree: productInitData.canAgree ? true : false,
+        districtId: districtId,
+        propertyValues: nextProductData,
+        files: fileLisId, // `fileList` yuborgan fayllar ro'yxati
+      });
 
-        // State yangilanadi
-        setProductInitData({
-          ...productInitData,
-          propertyValues: nextProductData,
-          files: fileList, // `fileList` yuborgan fayllar ro'yxati
-        });
-      } catch (error) {
-        error?.message;
-      } finally {
-        setisLoading(false);
+      // State yangilanadi
+      setProductInitData({
+        ...productInitData,
+        propertyValues: nextProductData,
+        files: fileList, // `fileList` yuborgan fayllar ro'yxati
+      });
+    } catch (error) {
+      error?.message;
     }
   };
 

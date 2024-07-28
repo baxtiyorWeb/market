@@ -108,13 +108,12 @@ export const getProductStringValues = async (categoryId, propertyId) => {
 };
 
 // GET PRODUCTS WITH CATEGORY FILTER
-export const getProductsByCategoryFilter = async (search, id) => {
-  const response = await api.get("/product/list", {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    data: JSON.stringify({
-      categoryId: 0,
+export const getProductsByCategoryFilter = async (search) => {
+  if (search === null || search === false) return false;
+  const response = await api.post(
+    "/product/list",
+    {
+      search: search || "",
       districtId: 0,
       regionId: 0,
       paymentTypeId: 0,
@@ -122,8 +121,13 @@ export const getProductsByCategoryFilter = async (search, id) => {
       ownProducts: false,
       userId: 0,
       valueFilter: [],
-    }),
-  });
+    },
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    },
+  );
   return response.data;
 };
 
