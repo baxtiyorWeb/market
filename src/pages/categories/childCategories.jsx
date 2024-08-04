@@ -21,6 +21,7 @@ const ChildCategories = () => {
     id,
     setFilter,
     setSearchParams,
+    clearFilter,
   } = useParamsFilter();
 
   return (
@@ -73,7 +74,15 @@ const ChildCategories = () => {
             />
           </div>
         </div>
-        <div className="col-span-5 row-span-3 h-full w-[1053px]   ">
+        <div className="relative col-span-5 row-span-3 h-full w-[1053px]   ">
+          {
+            <button
+              className="absolute -top-5 right-10 rounded-md border border-bgColor px-3 text-textColor hover:bg-bgColor hover:text-textColor"
+              onClick={clearFilter}
+            >
+              filterni tozalash
+            </button>
+          }
           <div>
             <div className=" my-5 grid h-auto grid-cols-4 items-center justify-between gap-3 rounded-md bg-white text-left text-[15px]">
               <Select

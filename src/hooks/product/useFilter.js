@@ -13,7 +13,6 @@ const useFilter = () => {
   const [searchParams] = useSearchParams();
   const [manufacture, setManufacture] = useState([]);
   const [filterValue, setFilterValue] = useState([]);
-
   const [saveFilter, setSaveFilter] = useState([]);
   const [reFetch, setRefetch] = useState();
   const [saveLocal, setSaveLocal] = useState([]);
@@ -113,6 +112,8 @@ const useFilter = () => {
       message.error("Mahsulot ro'yxatini  olishda xato");
     },
   });
+
+ 
 
   return {
     data,

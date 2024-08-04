@@ -39,6 +39,7 @@ const Exports = ({ filter, setFilter }) => {
     queryFn: getCategoryPropertyFilters,
   });
 
+  
   const updateSearchParams = (name, value, type) => {
     const updatedParams = new URLSearchParams(searchParams);
     if (value === "") {
@@ -164,8 +165,9 @@ const Exports = ({ filter, setFilter }) => {
   //   }
   // };
   const highlightText = (text, highlight) => {
+    console.log(text);
     if (!highlight) return text;
-    const parts = text.split(new RegExp(`(${highlight})`, "gi"));
+    const parts = text?.name?.split(new RegExp(`(${highlight})`, "gi"));
     return parts.map((part, index) =>
       part.toLowerCase() === highlight.toLowerCase() ? (
         <span key={index} className="text-red-500">
