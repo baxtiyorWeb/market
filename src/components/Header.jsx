@@ -74,7 +74,7 @@ const Header = ({ update, setUpdate }) => {
       } transitiona-all left-0 top-0  flex  h-[100px] w-full flex-col  items-center  justify-center bg-white duration-500   `}
     >
       <div
-        className={"lg_min_c:hidden flex w-full items-center justify-between "}
+        className={"flex w-full items-center justify-between lg_min_c:hidden "}
       >
         <Link to={"/"} className="">
           {" "}
@@ -124,11 +124,11 @@ const Header = ({ update, setUpdate }) => {
       </div>
 
       <Container>
-        <div className="flex h-full   w-full items-center justify-between">
+        <div className="flex h-full w-full   items-center justify-between md:relative">
           <div
             onClick={() => setOpen(!open)}
-            className="lg_min_c:hidden sm:mr-3 sm:flex sm:h-10 sm:w-10 sm:items-center sm:justify-center sm:rounded-md sm:bg-bgColor md:mr-3 md:flex md:h-10 md:w-10 md:items-center md:justify-center md:rounded-md md:bg-bgColor  md:text-2xl lg:mr-3 lg:flex lg:h-10 lg:w-10 lg:items-center lg:justify-center lg:rounded-md  lg:bg-bgColor   
-             lg:text-2xl xs:flex xs:h-10 xs:w-10 xs:items-center xs:justify-center xs:rounded-md xs:bg-bgColor xs:text-2xl  "
+            className="sm:mr-3 sm:flex sm:h-10 sm:w-10 sm:items-center sm:justify-center sm:rounded-md sm:bg-bgColor md:mr-3 md:flex md:h-10 md:w-10 md:items-center md:justify-center md:rounded-md md:bg-bgColor md:text-2xl  lg:mr-3 lg:flex lg:h-10 lg:w-10 lg:items-center lg:justify-center lg:rounded-md lg:bg-bgColor  lg:text-2xl   
+             lg_min_c:hidden xs:flex xs:h-10 xs:w-10 xs:items-center xs:justify-center xs:rounded-md xs:bg-bgColor xs:text-2xl  "
           >
             {!open ? (
               <IoMenu src={menuIcon} alt="" className=" text-textColor" />
@@ -166,8 +166,8 @@ const Header = ({ update, setUpdate }) => {
           <div
             className={
               open
-                ? `scroll-wrapper fixed   left-72 top-20   z-[302]   rounded-md bg-[#FFFFFF]  opacity-100 shadow-xl  transition-all duration-100 `
-                : "absolute left-[380px] top-10  z-[-100] h-[0] opacity-0  transition-all  duration-300 xs:absolute xs:left-0"
+                ? `scroll-wrapper fixed  left-72 top-20  z-[302] rounded-md   bg-[#FFFFFF]   opacity-100 shadow-xl  transition-all duration-100  md:fixed md:left-0  md:top-0 md:z-[999] md:w-full`
+                : "absolute left-[380px] top-10  z-[-100]  h-[0] opacity-0 transition-all  duration-300  md:top-0 xs:absolute xs:left-0"
             }
           >
             {(open && <Catalogue open={open} />) || backgroundUnset()}

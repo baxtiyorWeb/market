@@ -164,6 +164,7 @@ const Exports = ({ filter, setFilter }) => {
   //   }
   // };
   const highlightText = (text, highlight) => {
+    console.log(text);
     if (!highlight) return text;
     const parts = text.split(new RegExp(`(${highlight})`, "gi"));
     return parts.map((part, index) =>

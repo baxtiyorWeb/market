@@ -1,10 +1,10 @@
 import { Select, Space } from "antd";
 import { Link } from "react-router-dom";
+import useParamsFilter from "../../hooks/useParamsFilter";
 import BreadCrumbs from "../../ui/breadcrumbs/BreadCrumbs";
 import "./categories.css";
 import ProductFilter from "./productFilter/ProductFilter";
 import ProductGetList from "./productGetList";
-import useParamsFilter from "../../hooks/useParamsFilter";
 
 const ChildCategories = () => {
   const {
@@ -28,7 +28,7 @@ const ChildCategories = () => {
       <div className="mb-3 flex w-full items-center justify-start rounded-md">
         <Space
           direction="horizontal"
-          className="flex w-full items-center justify-between"
+          className="flex w-full items-center justify-between overflow-x-auto"
         >
           {categoryRoot?.map((item, index) => (
             <div className="flex items-center justify-center" key={index}>

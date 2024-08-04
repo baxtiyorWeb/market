@@ -61,7 +61,7 @@ const Breadcrumbs = () => {
   }
 
   return (
-    <div className="">
+    <div className="md:hidden">
       <div className="mt-2 flex h-auto  items-center justify-start rounded-md    p-1">
         <Link to={"/"} className="-skew-x-6 text-[13px] hover:text-[#212121]">
           bosh sahifa

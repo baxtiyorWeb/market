@@ -32,12 +32,7 @@ const MenuList = ({ categories }) => {
   const menuItems = transformCategoriesToMenuItems(categories);
 
   return (
-    <Menu
-      mode="vertical"
-      className="shadow-[none_!important] "
-      theme="light"
-      items={menuItems}
-    />
+    <Menu mode="inline" className="w-full" theme="light" items={menuItems} />
   );
 };
 

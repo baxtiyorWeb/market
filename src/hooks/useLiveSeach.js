@@ -14,7 +14,8 @@ const useLiveSeach = () => {
     queryKey: ["product/string-values", value],
     queryFn: async () => await getProductsByCategoryFilter(value),
   });
-
+  console.log(productLiveFilter);
+  console.log(value);
   console.log(productLiveFilter);
   const liveSearch = (inputValue, ids) => {
     setValue(inputValue);
