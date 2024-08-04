@@ -67,7 +67,7 @@ const useParamsFilter = () => {
         }
       }
     } catch (error) {
-      (error.message);
+      error.message;
     } finally {
       setIsLoading(false);
     }
@@ -87,11 +87,26 @@ const useParamsFilter = () => {
     }
   };
 
+  const clearFilter = () => {
+    setFilter({
+      search: "",
+      regionId: "",
+      districtId: "",
+      categoryId: "",
+      propertyId: "",
+      canAgree: "",
+      paymentType: "",
+      sellType: "",
+      price_min: "",
+      price_max: "",
+    });
+  };
   useEffect(() => {
-    categoriesRootList();
     regionsData();
+    categoriesRootList();
   }, [id, filter.regionId, filter.value, saveFilter]);
 
+  
   const totalProducts =
     data?.pages?.reduce((acc, page) => acc + page.data.length, 0) || 0;
   return {
@@ -108,6 +123,7 @@ const useParamsFilter = () => {
     id,
     setFilter,
     setSearchParams,
+    clearFilter,
   };
 };
 

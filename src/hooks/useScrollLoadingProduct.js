@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import useToggle from './../hooks/useToggle'
+import useToggle from "./../hooks/useToggle";
 import useFilter from "./product/useFilter";
 const useScrollLoadingProduct = () => {
   const { manufacture } = useFilter();
@@ -9,7 +9,6 @@ const useScrollLoadingProduct = () => {
     hasNextPage,
     isFetchingNextPage,
     isLoading,
-    error,
   } = useFilter();
   const [fastId, setFastId] = useState("");
   const { handleToggle, isOpen } = useToggle();
@@ -35,10 +34,18 @@ const useScrollLoadingProduct = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [hasNextPage, isFetchingNextPage, manufacture]);
 
-
   const existing = JSON.parse(localStorage.getItem("products")) || [];
 
-  return { fastId, existing, isOpen, data, getFastid, isLoading, handleToggle, isFetchingNextPage };
+  return {
+    fastId,
+    existing,
+    isOpen,
+    data,
+    getFastid,
+    isLoading,
+    handleToggle,
+    isFetchingNextPage,
+  };
 };
 
 export default useScrollLoadingProduct;

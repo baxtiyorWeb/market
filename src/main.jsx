@@ -21,7 +21,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <HelmetProvider>
         <QueryClientProvider client={queryClient} contextSharing={true}>
           <PrimeReactProvider value={{ unstyled: true, pt: Tailwind }}>
-            <NextTopLoader height={5} showSpinner={false} color="#1D828E" />
+            <NextTopLoader height={5} showSpinner={false} color="#1D828E"  />
             <AuthProvider>
               <App />
             </AuthProvider>
