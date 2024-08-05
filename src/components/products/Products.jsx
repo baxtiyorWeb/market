@@ -123,7 +123,7 @@ const Products = () => {
           </Link>
         </div>
       </div>
-      <div className="response_product_category lg:grid lg:grid-cols-4 lg:gap-5 grid grid-cols-5 gap-1 sm:grid  sm:w-full sm:grid-cols-3 md:grid md:grid-cols-3 xs:grid xs:grid-cols-2 xs:gap-1 2xs:grid 2xs:grid-cols-2">
+      <div className="response_product_category lg:grid lg:grid-cols-3 lg:gap-5 grid grid-cols-5 gap-1 sm:grid  sm:w-full sm:grid-cols-3 md:grid md:grid-cols-3 xs:grid xs:grid-cols-2 xs:gap-1 2xs:grid 2xs:grid-cols-1 ">
         {isLoading ? (
           <SkeletonLoading />
         ) : (

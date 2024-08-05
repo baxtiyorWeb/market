@@ -26,6 +26,7 @@ import Catalogue from "./catalogue/Catalogue";
 
 const Header = ({ update, setUpdate }) => {
   const { liveSearch } = useLiveSeach();
+
   const [open, setOpen] = useState(false);
   const [scroll, setScroll] = useState(false);
   const searchable = useSearchParams();
@@ -166,11 +167,12 @@ const Header = ({ update, setUpdate }) => {
           <div
             className={
               open
-                ? `scroll-wrapper fixed  left-72 top-20  z-[302] rounded-md   bg-[#FFFFFF]   opacity-100 shadow-xl  transition-all duration-100  md:fixed md:left-0  md:top-0 md:z-[999] md:w-full`
-                : "absolute left-[380px] top-10  z-[-100]  h-[0] opacity-0 transition-all  duration-300  md:top-0 xs:absolute xs:left-0"
+                ? `scroll-wrapper fixed left-72 top-20 z-[302] rounded-md bg-[#FFFFFF] opacity-100 shadow-xl transition-all duration-100 md:fixed  md:left-0 md:top-0   md:h-full   md:w-full md:overflow-scroll  lg:left-0 lg:top-0  lg:h-full lg:w-full `
+                : "absolute left-[380px] top-10  z-[-100] h-[0] opacity-0  transition-all  duration-300 xs:absolute xs:left-0"
             }
           >
-            {(open && <Catalogue open={open} />) || backgroundUnset()}
+            {(open && <Catalogue setOpen={setOpen} open={open} />) ||
+              backgroundUnset()}
           </div>
 
           <div
@@ -251,7 +253,8 @@ const Header = ({ update, setUpdate }) => {
             </div>
           </div>
         </div>
-        <div className="xs:fixed  xs:bottom-0 xs:left-0 xs:z-[99999] xs:flex xs:h-16 xs:w-full xs:items-center xs:justify-between xs:border xs:bg-whiteTextColor xs:px-5 xs_min:hidden">
+
+        <div className="xs:fixed   xs:bottom-0 xs:left-0 xs:z-[99999] xs:flex xs:h-16 xs:w-full xs:items-center xs:justify-between xs:border xs:bg-whiteTextColor xs:px-5 xs_min:hidden">
           <div className="flex h-[65px] w-[65px] flex-col items-center justify-evenly  rounded-full ">
             <Link
               to={"/"}
@@ -262,10 +265,13 @@ const Header = ({ update, setUpdate }) => {
             </Link>
           </div>
           <div className="flex h-[65px] w-[65px] flex-col items-center justify-evenly  rounded-full ">
-            <Link className="text flex h-[65px] w-[65px] flex-col items-center justify-evenly text-bgColor">
+            <button
+              onClick={() => setOpenDrawer(!isOpenDrawer)}
+              className="text flex h-[65px] w-[65px] flex-col items-center justify-evenly text-bgColor"
+            >
               <MenuOutlined className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[20px]" />
               <span className="text-[10px]">Categoriya</span>
-            </Link>
+            </button>
           </div>
           <div className="flex h-[65px] w-[65px] flex-col items-center justify-evenly  rounded-full ">
             <Link

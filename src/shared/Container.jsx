@@ -1,6 +1,6 @@
 export default function Container({ children }) {
   return (
-    <div className="relative m-auto h-full w-containerWidth overflow-hidden px-3  sm:w-full sm:border md:relative md:w-full lg:max-w-full 2xs:w-full 2xs:border">
+    <div className="relative m-auto h-full   w-containerWidth   px-3   md:w-full   lg:w-full xs:w-full 3xs:w-full ">
       {children}
     </div>
   );
