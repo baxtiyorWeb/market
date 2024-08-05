@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getCategories } from "../../exports/api";
 import MenuList from "./CategoryTab";
 
-const Catalogue = () => {
+const Catalogue = ({open, setOpen}) => {
   const [items, setItems] = useState([]);
 
   const fetchCategories = async () => {
@@ -20,7 +20,7 @@ const Catalogue = () => {
 
   return (
     <div className="max-h-max bg-white">
-      <MenuList categories={items} />
+      <MenuList setOpen={setOpen} open={open} categories={items} />
     </div>
   );
 };

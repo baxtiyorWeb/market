@@ -8,7 +8,7 @@ import {
   PlusCircleFilled,
   UserOutlined,
 } from "@ant-design/icons";
-import { Select } from "antd"; // Adjust the import based on your file structure
+import { Button, Select } from "antd"; // Adjust the import based on your file structure
 import { FaSearch } from "react-icons/fa";
 import { IoMenu } from "react-icons/io5";
 import { MdClose } from "react-icons/md";
@@ -23,9 +23,11 @@ import useLiveSeach from "./../hooks/useLiveSeach";
 import Container from "./../shared/Container"; // Adjust the import based on your file structure
 import Overlay from "./../ui/Overlay"; // Adjust the import based on your file structure
 import Catalogue from "./catalogue/Catalogue";
+import Drawer, { useToggleDrawer } from "../ui/Drawer/Drawer";
 
 const Header = ({ update, setUpdate }) => {
   const { liveSearch } = useLiveSeach();
+
   const [open, setOpen] = useState(false);
   const [scroll, setScroll] = useState(false);
   const searchable = useSearchParams();
@@ -74,7 +76,7 @@ const Header = ({ update, setUpdate }) => {
       } transitiona-all left-0 top-0  flex  h-[100px] w-full flex-col  items-center  justify-center bg-white duration-500   `}
     >
       <div
-        className={"lg_min_c:hidden flex w-full items-center justify-between "}
+        className={"flex w-full items-center justify-between lg_min_c:hidden "}
       >
         <Link to={"/"} className="">
           {" "}
@@ -127,8 +129,8 @@ const Header = ({ update, setUpdate }) => {
         <div className="flex h-full   w-full items-center justify-between">
           <div
             onClick={() => setOpen(!open)}
-            className="lg_min_c:hidden sm:mr-3 sm:flex sm:h-10 sm:w-10 sm:items-center sm:justify-center sm:rounded-md sm:bg-bgColor md:mr-3 md:flex md:h-10 md:w-10 md:items-center md:justify-center md:rounded-md md:bg-bgColor  md:text-2xl lg:mr-3 lg:flex lg:h-10 lg:w-10 lg:items-center lg:justify-center lg:rounded-md  lg:bg-bgColor   
-             lg:text-2xl xs:flex xs:h-10 xs:w-10 xs:items-center xs:justify-center xs:rounded-md xs:bg-bgColor xs:text-2xl  "
+            className="sm:mr-3 sm:flex sm:h-10 sm:w-10 sm:items-center sm:justify-center sm:rounded-md sm:bg-bgColor md:mr-3 md:flex md:h-10 md:w-10 md:items-center md:justify-center md:rounded-md md:bg-bgColor md:text-2xl  lg:mr-3 lg:flex lg:h-10 lg:w-10 lg:items-center lg:justify-center lg:rounded-md lg:bg-bgColor  lg:text-2xl   
+             lg_min_c:hidden xs:flex xs:h-10 xs:w-10 xs:items-center xs:justify-center xs:rounded-md xs:bg-bgColor xs:text-2xl  "
           >
             {!open ? (
               <IoMenu src={menuIcon} alt="" className=" text-textColor" />
@@ -166,11 +168,12 @@ const Header = ({ update, setUpdate }) => {
           <div
             className={
               open
-                ? `scroll-wrapper fixed   left-72 top-20   z-[302]   rounded-md bg-[#FFFFFF]  opacity-100 shadow-xl  transition-all duration-100 `
+                ? `scroll-wrapper fixed left-72 top-20 z-[302] rounded-md bg-[#FFFFFF] opacity-100 shadow-xl transition-all duration-100 md:fixed  md:left-0 md:top-0   md:h-full   md:w-full md:overflow-scroll  lg:left-0 lg:top-0  lg:h-full lg:w-full `
                 : "absolute left-[380px] top-10  z-[-100] h-[0] opacity-0  transition-all  duration-300 xs:absolute xs:left-0"
             }
           >
-            {(open && <Catalogue open={open} />) || backgroundUnset()}
+            {(open && <Catalogue setOpen={setOpen} open={open} />) ||
+              backgroundUnset()}
           </div>
 
           <div
@@ -251,7 +254,8 @@ const Header = ({ update, setUpdate }) => {
             </div>
           </div>
         </div>
-        <div className="xs:fixed  xs:bottom-0 xs:left-0 xs:z-[99999] xs:flex xs:h-16 xs:w-full xs:items-center xs:justify-between xs:border xs:bg-whiteTextColor xs:px-5 xs_min:hidden">
+
+        <div className="xs:fixed   xs:bottom-0 xs:left-0 xs:z-[99999] xs:flex xs:h-16 xs:w-full xs:items-center xs:justify-between xs:border xs:bg-whiteTextColor xs:px-5 xs_min:hidden">
           <div className="flex h-[65px] w-[65px] flex-col items-center justify-evenly  rounded-full ">
             <Link
               to={"/"}
@@ -262,10 +266,13 @@ const Header = ({ update, setUpdate }) => {
             </Link>
           </div>
           <div className="flex h-[65px] w-[65px] flex-col items-center justify-evenly  rounded-full ">
-            <Link className="text flex h-[65px] w-[65px] flex-col items-center justify-evenly text-bgColor">
+            <button
+              onClick={() => setOpenDrawer(!isOpenDrawer)}
+              className="text flex h-[65px] w-[65px] flex-col items-center justify-evenly text-bgColor"
+            >
               <MenuOutlined className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[20px]" />
               <span className="text-[10px]">Categoriya</span>
-            </Link>
+            </button>
           </div>
           <div className="flex h-[65px] w-[65px] flex-col items-center justify-evenly  rounded-full ">
             <Link
