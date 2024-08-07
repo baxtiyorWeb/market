@@ -1,4 +1,4 @@
-import { Image } from "antd";
+import { Image, Spin } from "antd";
 import React from "react";
 import { BsCalendarDate } from "react-icons/bs";
 import { CiHeart } from "react-icons/ci";
@@ -26,6 +26,8 @@ const ProductGetList = () => {
       </div>
     );
   }
+  console.log(data);
+  
   return (
     <>
       <div
@@ -47,10 +49,10 @@ const ProductGetList = () => {
         {isLoading ? (
           <ChildSkeletonLoading />
         ) : (
-          data?.pages?.map((page) =>
+          data?.pages?.map((page, i) =>
             page.data?.map((item, index) => (
               <div
-                className="relative h-[460px]   flex-shrink-0 rounded-md px-[10px] pt-2 transition-all hover:shadow-lg xs:h-[368px] "
+              className={` ${i ? "animation"  : "animation"} relative h-[460px]  flex-shrink-0 rounded-md px-[10px] pt-2 transition-all hover:shadow-lg xs:h-[368px] `}
                 key={index}
               >
                 <span className="absolute left-3 top-5 z-50 bg-red-500 px-1 text-sm text-white">
@@ -123,7 +125,7 @@ const ProductGetList = () => {
                     </span>
                     <div className="flex items-center justify-center">
                       <span
-                        onClick={() => saveLocalProductFavourite(item?.id)}
+                        // onClick={() => saveLocalProductFavourite(item?.id)}
                         className={`h-[40px] w-[40px] ${existing?.map(
                           (items) =>
                             items === item?.id &&
@@ -140,9 +142,10 @@ const ProductGetList = () => {
           )
         )}
       </div>
-      {/* <div className="mb-[50px] mt-[50px] flex items-center justify-center">
-        {isFetchingNextPage && <ChildSkeletonLoading />}
-      </div> */}
+      <div className="mb-[50px] mt-[50px] flex flex-col items-center justify-center">
+        {isFetchingNextPage ? <ChildSkeletonLoading /> : "mahsulot tugadi"}
+        {isFetchingNextPage ? <Spin /> : "mahsulot tugadi"}
+      </div>
     </>
   );
 };

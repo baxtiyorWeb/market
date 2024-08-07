@@ -366,14 +366,14 @@
 }
 
 .tab-el-active {
-  @apply flex h-[45px] w-[150px] md:h-[20px] md:p-4 md:px-0 md:mt-3 md:flex md:justify-start cursor-pointer  select-none items-center justify-center rounded-md border bg-[#EBEBEB] text-[#545454] transition-all duration-500 hover:bg-white;
+  @apply flex h-[45px] w-[150px] cursor-pointer select-none items-center justify-center rounded-md border bg-[#EBEBEB]  text-[#545454] transition-all duration-500 hover:bg-white md:mt-3 md:flex md:h-[20px] md:justify-start md:p-4 md:px-0;
 }
 .tab-icon {
   @apply ml-1 mr-1 text-[20px];
 }
 
 .tab-el {
-  @apply flex h-[45px] w-[150px] md:h-[20px] md:p-4 md:px-0 md:mt-3 md:flex md:justify-start cursor-pointer  select-none items-center justify-center rounded-md border bg-[#EBEBEB] text-[#545454] transition-all duration-500 hover:bg-white;
+  @apply flex h-[45px] w-[150px] cursor-pointer select-none items-center justify-center rounded-md border bg-[#EBEBEB]  text-[#545454] transition-all duration-500 hover:bg-white md:mt-3 md:flex md:h-[20px] md:justify-start md:p-4 md:px-0;
 }
 /* .tabs style  end*/
 
@@ -389,6 +389,19 @@
   margin: 5px !important;
   padding-right: 0 !important  ;
   border-radius: 0 0 0 0 !important;
+}
+
+@keyframes product {
+  0% {
+    transition: 1s ease;
+    opacity: 0;
+    transform: translateY(70px);
+  }
+  100% {
+    opacity: 1;
+    transition: 1s ease;
+    transform: translateY(0);
+  }
 }
 
 /* skeleton */

@@ -40,9 +40,6 @@ const Products = () => {
     };
   }, []);
 
-
-  
-
   const { handleToggle, isOpen } = useToggle();
   const [fastId, setFastId] = useState("");
   const addLikeFavoriteProduct = async (id) => {
@@ -79,7 +76,7 @@ const Products = () => {
     const handleScroll = () => {
       if (
         window.innerHeight + document.documentElement.scrollTop >=
-          document.documentElement.offsetHeight - 100 &&
+          document.documentElement.offsetHeight - 500 &&
         hasNextPage &&
         !isFetchingNextPage
       ) {
@@ -92,7 +89,7 @@ const Products = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [fetchNextPage, hasNextPage, isFetchingNextPage, fetchProducts]);
-  console.log(product);
+
   return (
     <div className="   h-full w-full">
       <div className="mb-5  flex items-center justify-between">

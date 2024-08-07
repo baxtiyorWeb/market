@@ -39,7 +39,6 @@ const Exports = ({ filter, setFilter }) => {
     queryFn: getCategoryPropertyFilters,
   });
 
-  
   const updateSearchParams = (name, value, type) => {
     const updatedParams = new URLSearchParams(searchParams);
     if (value === "") {
@@ -296,7 +295,13 @@ const Exports = ({ filter, setFilter }) => {
             />
 
             {item?.property?.id === propetyId && value && open ? (
-              <div className="absolute left-0 top-full z-10 flex w-full flex-col rounded-md border border-gray-300 bg-white shadow-md">
+              <div
+                className={`${
+                  item?.property?.id === propetyId && value && open
+                    ? "animation"
+                    : "animation"
+                } absolute left-0 top-full z-10 flex w-full flex-col rounded-md border border-gray-300 bg-white shadow-md`}
+              >
                 {search?.map((item, index) => (
                   <p
                     key={index}

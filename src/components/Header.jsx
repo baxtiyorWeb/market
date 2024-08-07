@@ -23,6 +23,7 @@ import useLiveSeach from "./../hooks/useLiveSeach";
 import Container from "./../shared/Container"; // Adjust the import based on your file structure
 import Overlay from "./../ui/Overlay"; // Adjust the import based on your file structure
 import Catalogue from "./catalogue/Catalogue";
+import { useSearch } from "../context/searchContext";
 
 const Header = ({ update, setUpdate }) => {
   const { liveSearch } = useLiveSeach();
@@ -31,7 +32,7 @@ const Header = ({ update, setUpdate }) => {
   const [scroll, setScroll] = useState(false);
   const searchable = useSearchParams();
   const search = searchable[0].get("search");
-
+  const { searchValue, setSearch, globalSearchData } = useSearch();
   const language = (langText) => {
     localStorage.setItem("lang", langText);
     window.location.reload();
@@ -194,12 +195,13 @@ const Header = ({ update, setUpdate }) => {
                 type="text"
                 placeholder="Qidiruv"
                 defaultValue={search}
-                onChange={(e) => liveSearch(e.target.value)}
+                onChange={(e) => setSearch(e.target.value)}
                 className="h-[35px] w-[480px] rounded-bl-md rounded-tl-md border border-bgColor bg-[#F9F9F9] pl-[19px] text-[#959EA7] outline-none sm:w-[100%] md:w-full lg:w-full xs:w-full"
               />
               <button
                 type="submit"
                 className="flex h-[35px] w-[50px]  items-center justify-center rounded-br-md rounded-tr-md bg-btnColor "
+                onClick={globalSearchData}
               >
                 <FaSearch className="text-white" />
               </button>

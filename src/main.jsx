@@ -10,6 +10,7 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App.jsx";
 import AuthProvider from "./context/authContext.jsx";
 import "./index.css";
+import SearchProvider from "./context/searchContext.jsx";
 axios.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem(
   "token",
 )}`;
@@ -21,9 +22,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <HelmetProvider>
         <QueryClientProvider client={queryClient} contextSharing={true}>
           <PrimeReactProvider value={{ unstyled: true, pt: Tailwind }}>
-            <NextTopLoader height={5} showSpinner={false} color="#1D828E"  />
+            <NextTopLoader height={5} showSpinner={false} color="#1D828E" />
             <AuthProvider>
-              <App />
+              <SearchProvider>
+                <App />
+              </SearchProvider>
             </AuthProvider>
           </PrimeReactProvider>
         </QueryClientProvider>
