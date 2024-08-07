@@ -40,6 +40,9 @@ const Products = () => {
     };
   }, []);
 
+
+  
+
   const { handleToggle, isOpen } = useToggle();
   const [fastId, setFastId] = useState("");
   const addLikeFavoriteProduct = async (id) => {
@@ -89,7 +92,7 @@ const Products = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [fetchNextPage, hasNextPage, isFetchingNextPage, fetchProducts]);
-
+  console.log(product);
   return (
     <div className="   h-full w-full">
       <div className="mb-5  flex items-center justify-between">
@@ -100,10 +103,10 @@ const Products = () => {
         </h1>
         <div className="flex w-max items-center justify-center">
           <div className="some-categories flex items-center justify-center">
-            <Link className="mr-3 border-b-2 border-bgColor p-2 text-lg font-normal sm:text-sm md:text-sm xs:text-sm lg:text-lg">
+            <Link className="mr-3 border-b-2 border-bgColor p-2 text-lg font-normal sm:text-sm md:text-sm lg:text-lg xs:text-sm">
               Barcha Mahsulotlar{" "}
             </Link>
-            <div className="lg:hidden sm:hidden md:hidden xs:hidden">
+            <div className="sm:hidden md:hidden lg:hidden xs:hidden">
               <Link className="mr-3 border-b-2 border-transparent p-2 text-base font-normal">
                 Smartfonlar
               </Link>
@@ -123,14 +126,16 @@ const Products = () => {
           </Link>
         </div>
       </div>
-      <div className="response_product_category lg:grid lg:grid-cols-3 lg:gap-5 grid grid-cols-5 gap-1 sm:grid  sm:w-full sm:grid-cols-3 md:grid md:grid-cols-3 xs:grid xs:grid-cols-2 xs:gap-1 2xs:grid 2xs:grid-cols-1 ">
+      <div
+        className={` response_product_category grid grid-cols-5 gap-1 sm:grid sm:w-full sm:grid-cols-3 md:grid  md:grid-cols-3 lg:grid lg:grid-cols-3 lg:gap-5 xs:grid xs:grid-cols-2 xs:gap-1 2xs:grid 2xs:grid-cols-2 `}
+      >
         {isLoading ? (
           <SkeletonLoading />
         ) : (
-          product?.pages?.map((page) =>
+          product?.pages?.map((page, i) =>
             page.data?.map((item, index) => (
               <div
-                className="relative h-[460px]  flex-shrink-0 rounded-md px-[10px] pt-2 transition-all hover:shadow-lg xs:h-[368px] xs:w-[180px]"
+                className={` ${i ? "animation"  : ""} relative h-[460px]  flex-shrink-0 rounded-md px-[10px] pt-2 transition-all hover:shadow-lg xs:h-[368px] `}
                 key={index}
               >
                 <span className="absolute left-3 top-5 z-50 bg-red-500 px-1 text-sm text-white">
@@ -148,7 +153,7 @@ const Products = () => {
                       to={`/details/${item.id}?infoTab=1`}
                       className="w-full xs:flex xs:h-[100%_!important] xs:w-[163px_!important] xs:items-center xs:justify-center"
                     >
-                      <div className="h-[200px]  xs:h-[150px_!important] xs:w-[150px_!important]">
+                      <div className="h-[200px]  xs:h-[100%_!important] xs:w-[100%_!important]">
                         <LazyLoad height={200}>
                           <Image
                             alt={"avatar"}

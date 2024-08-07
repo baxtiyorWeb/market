@@ -366,14 +366,14 @@
 }
 
 .tab-el-active {
-  @apply flex h-[45px] w-[150px] cursor-pointer  select-none items-center justify-center rounded-md border bg-white duration-500;
+  @apply flex h-[45px] w-[150px] md:h-[20px] md:p-4 md:px-0 md:mt-3 md:flex md:justify-start cursor-pointer  select-none items-center justify-center rounded-md border bg-[#EBEBEB] text-[#545454] transition-all duration-500 hover:bg-white;
 }
 .tab-icon {
   @apply ml-1 mr-1 text-[20px];
 }
 
 .tab-el {
-  @apply flex h-[45px] w-[150px] cursor-pointer  select-none items-center justify-center rounded-md border bg-[#EBEBEB] text-[#545454] transition-all duration-500 hover:bg-white;
+  @apply flex h-[45px] w-[150px] md:h-[20px] md:p-4 md:px-0 md:mt-3 md:flex md:justify-start cursor-pointer  select-none items-center justify-center rounded-md border bg-[#EBEBEB] text-[#545454] transition-all duration-500 hover:bg-white;
 }
 /* .tabs style  end*/
 

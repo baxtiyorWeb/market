@@ -1,10 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
 import { getProductsByCategoryFilter } from "../exports/api";
 
 const useLiveSeach = () => {
-  const { id } = useParams();
   const [search, setSearch] = useState([]);
   const [value, setValue] = useState("");
   const [propetyId, setproperyId] = useState(0);
@@ -14,9 +12,6 @@ const useLiveSeach = () => {
     queryKey: ["product/string-values", value],
     queryFn: async () => await getProductsByCategoryFilter(value),
   });
-  console.log(productLiveFilter);
-  console.log(value);
-  console.log(productLiveFilter);
   const liveSearch = (inputValue, ids) => {
     setValue(inputValue);
 

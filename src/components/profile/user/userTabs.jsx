@@ -10,8 +10,8 @@ export default function UserTabs() {
     setSearchParams({ tab: n });
   };
   return (
-    <div className="border-b pb-3">
-      <div className="flex w-full items-center justify-between  p-1">
+    <div className="border-b  pb-3  ">
+      <div className="flex w-full items-center justify-between md:gap-2  p-1 md:grid md:grid-cols-2">
         <NavLink
           to={"/profile/dashboard/products"}
           className={({ isActive, isPending }) =>
