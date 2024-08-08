@@ -9,7 +9,7 @@ const SearchProvider = ({ children }) => {
 
   const globalSearchData = () => {
     if (!filter.search) {
-      return false;
+      setFilter({ ...filter, search: search });
     } else {
       setFilter({
         search: search,

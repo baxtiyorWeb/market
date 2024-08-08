@@ -132,7 +132,9 @@ const Products = () => {
           product?.pages?.map((page, i) =>
             page.data?.map((item, index) => (
               <div
-                className={` ${i ? "animation"  : ""} relative h-[460px]  flex-shrink-0 rounded-md px-[10px] pt-2 transition-all hover:shadow-lg xs:h-[368px] `}
+                className={` ${
+                  i ? "animation" : ""
+                } relative h-[460px]  flex-shrink-0 rounded-md px-[10px] pt-2 transition-all hover:shadow-lg xs:h-[368px] `}
                 key={index}
               >
                 <span className="absolute left-3 top-5 z-50 bg-red-500 px-1 text-sm text-white">
@@ -194,7 +196,7 @@ const Products = () => {
                   </div>
                 </div>
                 <div className="flex h-20 flex-col justify-between">
-                  <span className="text inline-flex w-max items-center rounded-md bg-bgColor px-2 py-2 font-poppins text-[18px] font-medium not-italic leading-[100%] text-textColor xs:py-1 xs:text-sm">
+                  <span className="text inline-flex w-max items-center rounded-md px-2 py-2 font-poppins text-[18px] font-medium not-italic leading-[100%]  text-textColor xs:py-1 xs:text-sm">
                     {item?.price}
                     <p className="ml-1">so{"'"}m</p>
                   </span>

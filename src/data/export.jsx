@@ -40,6 +40,7 @@ const Exports = ({ filter, setFilter }) => {
   });
 
   const updateSearchParams = (name, value, type) => {
+    console.log(value);
     const updatedParams = new URLSearchParams(searchParams);
     if (value === "") {
       updatedParams.delete(type ? `${name}_${type}` : name);
@@ -164,12 +165,11 @@ const Exports = ({ filter, setFilter }) => {
   //   }
   // };
   const highlightText = (text, highlight) => {
-    console.log(text);
     if (!highlight) return text;
     const parts = text?.name?.split(new RegExp(`(${highlight})`, "gi"));
     return parts.map((part, index) =>
       part.toLowerCase() === highlight.toLowerCase() ? (
-        <span key={index} className="text-red-500">
+        <span key={index} className="text-red-500 hover:bg-blue-500">
           {part}
         </span>
       ) : (
@@ -178,15 +178,15 @@ const Exports = ({ filter, setFilter }) => {
     );
   };
 
-  const setPropertyFilterValue = (propertyId, valueTypeId, item, type) => {
+  const setPropertyFilterValue = (propertyId, valueTypeId, item) => {
+    const { e, type } = types;
+    console.log(item);
     setManufacture((prevManufacture) => {
       // Check if the property with the same ID exists in the manufacture
       const existingItemIndex = prevManufacture.findIndex(
         (manufactureItem) => manufactureItem.propertyId === propertyId,
         updateSearchParams(types?.item?.property?.name, item, type),
       );
-      setFullValue(item);
-      setTypes({ ...types, e: item });
 
       if (value === "") {
         return prevManufacture.filter(
@@ -198,8 +198,9 @@ const Exports = ({ filter, setFilter }) => {
       const newFilter = {
         propertyId,
         valueTypeId,
-        filter: value || item,
+        filter: e,
       };
+      console.log(newFilter);
 
       // If the property with the same ID exists, replace it; otherwise, add the new filter
       if (existingItemIndex !== -1) {
@@ -210,7 +211,9 @@ const Exports = ({ filter, setFilter }) => {
         return [...prevManufacture, newFilter];
       }
     });
+    updateSearchParams(item?.property?.name, e, type);
 
+    console.log(item?.property?.name, e, type);
     setOpen(!open);
   };
 
@@ -285,7 +288,7 @@ const Exports = ({ filter, setFilter }) => {
                   type: "text",
                 });
 
-                liveSearch(e.target.value, item?.property?.id);
+                liveSearch(e.target.value, item?.property?.id, item);
               }}
               onKeyDown={(e) => {
                 if (e.keyCode === 13) {
@@ -305,13 +308,13 @@ const Exports = ({ filter, setFilter }) => {
                 {search?.map((item, index) => (
                   <p
                     key={index}
-                    className="cursor-pointer p-1 text-base"
+                    className="cursor-pointer p-1 text-base hover:bg-red-300"
                     onClick={() =>
                       setPropertyFilterValue(
                         propetyId,
                         types?.item?.property?.valueTypeDto?.id,
                         item,
-                        "text",
+                        types,
                       )
                     }
                   >
