@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { Sheet } from "react-modal-sheet";
-import useParamsFilter from "../../hooks/useParamsFilter";
-import { Select } from "antd";
 import Exports from "../../data/export";
+import useParamsFilter from "../../hooks/useParamsFilter";
 
 export const useToggleDrawer = () => {
   const [isOpenDrawer, setOpenDrawer] = useState(false);
@@ -37,9 +36,9 @@ const Drawer = ({ setOpenDrawer, isOpenDrawer }) => {
         <Sheet.Container>
           <Sheet.Header />
           <Sheet.Content>
-            <div className="flex ">
+            <div className="flex gap-5 sm:grid sm:grid-cols-2">
               <select
-                className=" w-[230px]"
+                className=" m-1 w-[230px] rounded-md border text-white optional:bg-bgColor sm:w-[140px]"
                 onChange={(e) => {
                   setFilter({ ...filter, regionId: e.target.value });
                 }}
@@ -54,7 +53,7 @@ const Drawer = ({ setOpenDrawer, isOpenDrawer }) => {
 
               {searchParams.get("regionId") && (
                 <select
-                  className=" w-[230px]"
+                  className=" m-1 w-[230px] rounded-md border text-white optional:bg-bgColor sm:w-[140px]"
                   onChange={(e) => {
                     setFilter({ ...filter, districtId: e.target.value });
                   }}
@@ -70,7 +69,7 @@ const Drawer = ({ setOpenDrawer, isOpenDrawer }) => {
 
               {
                 <select
-                  className=" w-[230px]"
+                  className=" m-1 w-[230px] rounded-md border text-white optional:bg-bgColor sm:w-[140px]"
                   onChange={(e) => {
                     setFilter({ ...filter, sellType: e.target.value });
                   }}
@@ -85,7 +84,7 @@ const Drawer = ({ setOpenDrawer, isOpenDrawer }) => {
               }
               {
                 <select
-                  className=" w-[230px]"
+                  className=" m-1 w-[230px] rounded-md border text-white optional:bg-bgColor sm:w-[140px]"
                   onChange={(e) => {
                     setFilter({ ...filter, paymentType: e.target.value });
                   }}
@@ -106,7 +105,7 @@ const Drawer = ({ setOpenDrawer, isOpenDrawer }) => {
                   : data?.data?.data?.content?.length}
               </span>
             </div>
-            <div className="my-5 flex w-full items-center justify-center overflow-scroll">
+            <div className="my-5 flex w-full  items-center justify-center overflow-scroll">
               <Exports />
             </div>
 

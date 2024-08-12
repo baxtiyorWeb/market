@@ -37,28 +37,28 @@ export default function UserBalance() {
   ];
   return (
     <div className="px-[66px] py-5 md:p-0">
-      <div className="user-title flex md:flex-col md:w-full items-center justify-between">
-        <div className="md:flex md:w-full border md:justify-between">
-        <div className="mr-6 flex  h-[120px] w-[120px] md:w-[80px] md:h-[80px] cursor-pointer items-center justify-center rounded-full border p-1 hover:bg-slate-500/10">
-          <img
-            src="https://cdn.iconscout.com/icon/free/png-256/free-user-1374-433878.png"
-            alt=""
-            className="h-full  w-full   rounded-full "
-          />
-        </div>
-        <div className="flex flex-col">
-          <div>
-            <h1 className="mb-2 md:text-sm text-xl font-semibold capitalize text-[#130F1E]">
-              {user?.firstName} {user?.secondName}
-            </h1>
+      <div className="user-title flex items-center justify-between md:w-full md:flex-col">
+        <div className="border md:flex md:w-full md:justify-between">
+          <div className="mr-6 flex  h-[120px] w-[120px] cursor-pointer items-center justify-center rounded-full border p-1 hover:bg-slate-500/10 md:h-[80px] md:w-[80px]">
+            <img
+              src="https://cdn.iconscout.com/icon/free/png-256/free-user-1374-433878.png"
+              alt=""
+              className="h-full  w-full   rounded-full "
+            />
           </div>
-          <div className="flex  items-center">
-            <img src={Location} alt="" className="mr-1 h-5 w-5 " />
-            <span className="flex cursor-pointer items-center gap-x-2 text-[14px] capitalize text-gray-500 underline">
-              Qumqorgon
-            </span>
+          <div className="flex flex-col">
+            <div>
+              <h1 className="mb-2 text-xl font-semibold capitalize text-[#130F1E] md:text-sm">
+                {user?.firstName} {user?.secondName}
+              </h1>
+            </div>
+            <div className="flex  items-center">
+              <img src={Location} alt="" className="mr-1 h-5 w-5 " />
+              <span className="flex cursor-pointer items-center gap-x-2 text-[14px] capitalize text-gray-500 underline">
+                Qumqorgon
+              </span>
+            </div>
           </div>
-        </div>
         </div>
         <div className="flex w-[540px]  items-start justify-between ">
           <div>
@@ -69,8 +69,8 @@ export default function UserBalance() {
               hisobingiz
             </span>
           </div>
-          <div className="flex items-center justify-center md:w-full md:flex">
-            <button className="flex md:w-[140px] md:text-[13px]  h-10 w-[180px] items-center justify-center rounded-lg bg-bgColor text-[#fff] hover:bg-bgColor/70">
+          <div className="flex items-center justify-center md:flex md:w-full">
+            <button className="flex h-10 w-[180px]  items-center justify-center rounded-lg bg-bgColor text-[#fff] hover:bg-bgColor/70 md:w-[140px] md:text-[13px]">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -89,7 +89,7 @@ export default function UserBalance() {
               </svg>
               <span>Balansni to'ldirish</span>
             </button>
-            <button className="ml-3 md:w-[140px]  md:text-[13px] mr-3 flex h-10 w-[180px] items-center justify-center  rounded-md border bg-[#fff] text-sm font-medium text-[#000] hover:bg-[#fff]/10">
+            <button className="ml-3 mr-3  flex h-10 w-[180px] items-center justify-center rounded-md border  bg-[#fff] text-sm font-medium text-[#000] hover:bg-[#fff]/10 md:w-[140px] md:text-[13px]">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"

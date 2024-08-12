@@ -52,9 +52,8 @@ const CategorySlider = () => {
               <List
                 header={"bo'limlar"}
                 loading={isLoading}
-                className="px-1"
+                className="mb-3 border-b-2 px-1"
                 grid={0}
-                bordered
                 dataSource={categoryChild?.content}
                 renderItem={(item, index) => {
                   return index <= viewMore ? (

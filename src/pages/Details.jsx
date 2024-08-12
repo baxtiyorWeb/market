@@ -4,7 +4,6 @@ import ProductAbout from "../components/details/ProductAbout";
 import ProductSideMenu from "../components/details/product-side-menu/ProductSideMenu";
 import useProductDetail from "../hooks/useProductDetail";
 import Container from "../shared/Container";
-import Loading from "../ui/loading/Loading";
 import ProductDetailBreadCrumbs from "./../ui/breadcrumbs/ProductDetailBreadCrumbs";
 
 export default function Details() {
@@ -31,7 +30,7 @@ export default function Details() {
     scrollToTop();
   }, []);
 
-  if (isLoading) return <Loading />;
+  // if (isLoading) return <Loading />;
 
   return (
     <Container>

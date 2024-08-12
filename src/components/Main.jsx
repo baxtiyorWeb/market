@@ -1,4 +1,3 @@
-import Drawer from "../ui/Drawer/Drawer";
 import Slider from "./../components/Slider";
 import Categoriyes from "./Categoriyes";
 import Products from "./products/Products";

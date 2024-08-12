@@ -1,7 +1,7 @@
 import { LoadingOutlined } from "@ant-design/icons";
 import { useQuery } from "@tanstack/react-query";
 import { List, Spin } from "antd";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import api from "../config/api/api";
 import useFilter from "../hooks/product/useFilter";
@@ -11,6 +11,7 @@ import "./style.css";
 
 // eslint-disable-next-line react/prop-types
 const Exports = ({ filter, setFilter }) => {
+  const textRef = useRef(null);
   const { id } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
   const [fullValue, setFullValue] = useState("");
@@ -178,14 +179,18 @@ const Exports = ({ filter, setFilter }) => {
     );
   };
 
-  const setPropertyFilterValue = (propertyId, valueTypeId, item) => {
-    const { e, type } = types;
-    console.log(item);
+  const setPropertyFilterValue = (propertyId, valueTypeId) => {
+    const { e, type, item } = types;
+    console.log(e);
     setManufacture((prevManufacture) => {
       // Check if the property with the same ID exists in the manufacture
       const existingItemIndex = prevManufacture.findIndex(
         (manufactureItem) => manufactureItem.propertyId === propertyId,
-        updateSearchParams(types?.item?.property?.name, item, type),
+        updateSearchParams(
+          item?.property?.name,
+          textRef.current.innerText,
+          type,
+        ),
       );
 
       if (value === "") {
@@ -200,7 +205,6 @@ const Exports = ({ filter, setFilter }) => {
         valueTypeId,
         filter: e,
       };
-      console.log(newFilter);
 
       // If the property with the same ID exists, replace it; otherwise, add the new filter
       if (existingItemIndex !== -1) {
@@ -211,7 +215,6 @@ const Exports = ({ filter, setFilter }) => {
         return [...prevManufacture, newFilter];
       }
     });
-    updateSearchParams(item?.property?.name, e, type);
 
     console.log(item?.property?.name, e, type);
     setOpen(!open);
@@ -307,6 +310,7 @@ const Exports = ({ filter, setFilter }) => {
               >
                 {search?.map((item, index) => (
                   <p
+                    ref={textRef}
                     key={index}
                     className="cursor-pointer p-1 text-base hover:bg-red-300"
                     onClick={() =>
@@ -330,7 +334,7 @@ const Exports = ({ filter, setFilter }) => {
   };
 
   return (
-    <div className=" flex  flex-col items-start justify-start rounded-md border">
+    <div className="flex flex-col  items-start justify-start rounded-md border md:mt-36">
       <div>
         <CategorySlider />
         <List orientation="left" className="w-[100%_important] px-1 py-3">

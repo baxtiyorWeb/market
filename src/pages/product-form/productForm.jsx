@@ -3,9 +3,9 @@ import { Select, Spin, Switch, Upload } from "antd";
 import React from "react";
 import { Outlet } from "react-router-dom";
 import CategoryTab from "../../components/categoryTab/CategoryTab";
+import useCreateProduct from "../../hooks/useCreateProduct";
 import AddProductLocation from "../../layout/addProductLocation";
 import Container from "../../shared/Container";
-import useCreateProduct from "../../hooks/useCreateProduct";
 
 export default function AddProductCategory() {
   const {
@@ -34,6 +34,7 @@ export default function AddProductCategory() {
     setDistrictId,
     setRegionId,
     uploadImage,
+    handleImageUpload,
   } = useCreateProduct();
   const uploadButton = (
     <button

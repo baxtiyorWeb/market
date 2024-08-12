@@ -1,11 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import api from "../config/api/api";
-import {
-  createProduct,
-  getCategoryPropertiesById,
-  uploadFile,
-} from "../exports/api";
+import { getCategoryPropertiesById, uploadFile } from "../exports/api";
 import useToggle from "./useToggle";
 
 const useCreateProduct = () => {
@@ -36,18 +32,19 @@ const useCreateProduct = () => {
   const [isUpload, setisUpload] = useState(false);
   const [productInitData, setProductInitData] = useState({
     name: "",
-    price: 0,
-    canAgree: false,
-    regionId: regionId,
+    price: "",
+    canAgree: "",
+    regionId: "",
     description: "",
-    categoryId: queryId,
-    districtId: districtId,
+    categoryId: "",
+    districtId: "",
     address: "",
-    sellTypeId: 1,
-    paymentTypeId: 1,
-    propertyValues: null,
-    files: null,
+    sellTypeId: "",
+    paymentTypeId: "",
+    propertyValues: "",
+    files: "",
   });
+
   const [nextProductData, setNextProductData] = useState([{}]);
   const { isOpen } = useToggle();
   nextProductData;
@@ -132,26 +129,46 @@ const useCreateProduct = () => {
     }
   };
 
+  const nullableValues = {
+    price: productInitData.price != "",
+    region: productInitData.regionId != "",
+    district: productInitData.districtId != "",
+    address: productInitData.address != "",
+    selltype: productInitData.sellTypeId != "",
+    paymenttype: productInitData.paymentTypeId !== "",
+    files: productInitData.files != "",
+  };
+  if (Object.values(nullableValues) !== "") {
+    const checkGap = Object.values(nullableValues).map((item) =>
+      item ? "kiritildi" : "kiritilmadi",
+    );
+
+    const checkGaps = Object.keys(nullableValues).map((item) => item);
+
+    // createProduct({
+    //   ...productInitData,
+    //   regionId: regionId,
+    //   categoryId: queryId,
+    //   canAgree: productInitData.canAgree ? true : false,
+    //   districtId: districtId,
+    //   propertyValues: nextProductData,
+    //   files: fileLisId, // `fileList` yuborgan fayllar ro'yxati
+    // });
+
+    // // State yangilanadi
+    // setProductInitData({
+    //   ...productInitData,
+    //   propertyValues: nextProductData,
+    //   files: fileList, // `fileList` yuborgan fayllar ro'yxati
+    // });
+  } else {
+    console.log(nullableValues);
+  }
   const handleSubmit = async (e) => {
     // Category tanlanganini olish
     e.preventDefault();
-    try {
-      createProduct({
-        ...productInitData,
-        regionId: regionId,
-        categoryId: queryId,
-        canAgree: productInitData.canAgree ? true : false,
-        districtId: districtId,
-        propertyValues: nextProductData,
-        files: fileLisId, // `fileList` yuborgan fayllar ro'yxati
-      });
 
-      // State yangilanadi
-      setProductInitData({
-        ...productInitData,
-        propertyValues: nextProductData,
-        files: fileList, // `fileList` yuborgan fayllar ro'yxati
-      });
+    try {
     } catch (error) {
       error?.message;
     }

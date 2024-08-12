@@ -1,10 +1,10 @@
-import { Image, Spin } from "antd";
+import { Spin } from "antd";
 import React from "react";
 import { BsCalendarDate } from "react-icons/bs";
 import { CiHeart } from "react-icons/ci";
 import { FaEye } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
-import LazyLoad from "react-lazy-load";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
 import useScrollLoadingProduct from "../../hooks/useScrollLoadingProduct";
 import { ChildSkeletonLoading } from "../../ui/loading/ChildSkeletonLoading";
@@ -27,7 +27,7 @@ const ProductGetList = () => {
     );
   }
   console.log(data);
-  
+
   return (
     <>
       <div
@@ -52,7 +52,9 @@ const ProductGetList = () => {
           data?.pages?.map((page, i) =>
             page.data?.map((item, index) => (
               <div
-              className={` ${i ? "animation"  : "animation"} relative h-[460px]  flex-shrink-0 rounded-md px-[10px] pt-2 transition-all hover:shadow-lg xs:h-[368px] `}
+                className={` ${
+                  i ? "animation" : "animation"
+                } relative h-[460px]  flex-shrink-0 rounded-md px-[10px] pt-2 transition-all hover:shadow-lg xs:h-[368px] `}
                 key={index}
               >
                 <span className="absolute left-3 top-5 z-50 bg-red-500 px-1 text-sm text-white">
@@ -71,17 +73,21 @@ const ProductGetList = () => {
                       className="w-full xs:flex xs:h-[100%_!important] xs:w-[163px_!important] xs:items-center xs:justify-center"
                     >
                       <div className="h-[200px]  xs:h-[150px_!important] xs:w-[150px_!important]">
-                        <LazyLoad height={200}>
-                          <Image
-                            alt={"avatar"}
-                            src={`data:image/png;base64,${item.file?.fileBase64}`}
-                            title={`${item?.name}`}
-                            loading="lazy"
-                            width={"100%"}
-                            height={"200px"}
-                            className="h-[100%_!important] w-[100%_!important] rounded-xl bg-center object-cover align-middle xs:h-[150px_!important] xs:w-[145px_!important]"
-                          />
-                        </LazyLoad>
+                        <LazyLoadImage
+                          height={200}
+                          effect="opacity"
+                          delayTime={100}
+                          visibleByDefault
+                          wrapperProps={{
+                            // If you need to, you can tweak the effect transition using the wrapper style.
+                            style: { transitionDelay: "1s" },
+                          }}
+                          threshold={100}
+                          loading={"lazy"}
+                          srcSet={`data:image/png;base64,${item.file?.fileBase64}`}
+                          width={"100%"}
+                          className="h-[100%_!important] w-[100%_!important] rounded-xl bg-center object-cover align-middle xs:h-[150px_!important] xs:w-[145px_!important]"
+                        />
                       </div>
                     </Link>
                   </div>
