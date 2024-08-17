@@ -142,7 +142,7 @@ export default function AddProductCategory() {
             />
           </div>
           ;
-          <div className="grid grid-cols-3">
+          <div className="grid  grid-cols-3 gap-1 sm:grid sm:w-full sm:grid-cols-2 md:grid md:grid-cols-1  lg:grid lg:grid-cols-2 lg:gap-5 xs:grid xs:grid-cols-1 xs:justify-items-center xs:gap-1 2xs:grid 2xs:grid-cols-1 ">
             {propertiesData?.map((item, index) => {
               return (
                 <div key={index}>
@@ -161,7 +161,7 @@ export default function AddProductCategory() {
                         (item?.valueTypeDto?.typeName === "DOUBLE" && "number")
                       }
                       required
-                      className="focus:border-[1px_solid_rgb(59 130 246)] mt-2 h-[50px] w-[334px] shrink-0 rounded-[5px] border border-[#E2E2E2] bg-[#FAFAFA] p-3 font-poppins text-[16px] outline-none"
+                      className="focus:border-[1px_solid_rgb(59 130 246)] sm_res:w-[70%] mt-2 h-[50px] w-[100%] shrink-0 rounded-[5px] border  border-[#E2E2E2] bg-[#FAFAFA] p-3 font-poppins text-[16px] outline-none md:w-[80%] xs:m-auto  xs:w-[100%]  2xs:w-[80%]"
                       placeholder={item.name}
                       value={
                         nextProductData[index]?.stringValue ||

@@ -9,10 +9,7 @@ const transformCategoriesToMenuItems = (categories) => {
       return {
         key: category.id,
         label: (
-          <Link
-            onClick={() => setOpen(!open)}
-            to={`/category/${category.id}?category-name=${category.name}`}
-          >
+          <Link to={`/category/${category.id}?category-name=${category.name}`}>
             {category.name}
           </Link>
         ),
@@ -22,10 +19,7 @@ const transformCategoriesToMenuItems = (categories) => {
       return {
         key: category.id,
         label: (
-          <Link
-            onClick={() => setOpen(!open)}
-            to={`/category/${category.id}?category-name=${category.name}`}
-          >
+          <Link to={`/category/${category.id}?category-name=${category.name}`}>
             {category.name}
           </Link>
         ),

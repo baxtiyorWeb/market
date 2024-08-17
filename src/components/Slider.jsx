@@ -8,7 +8,7 @@ export default function Slider() {
     setCurrentSlide(to);
   };
   return (
-    <div className="slider-home h-full w-[78%] md:w-full   overflow-hidden   rounded-2xl  sm:max-h-full  sm:w-full  md:h-[100%]">
+    <div className="slider-home h-full w-[78%] overflow-hidden   rounded-2xl   sm:max-h-full  sm:w-full  md:h-[100%]  md:w-full">
       <Carousel
         draggable
         className="select-none "
@@ -50,7 +50,6 @@ export default function Slider() {
               slidesToScroll: 1,
             },
           },
-          
         ]}
         autoplaySpeed={3000}
         beforeChange={handleBeforeChange}

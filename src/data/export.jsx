@@ -1,11 +1,11 @@
 import { LoadingOutlined } from "@ant-design/icons";
 import { useQuery } from "@tanstack/react-query";
 import { List, Spin } from "antd";
-import React, { useRef, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import api from "../config/api/api";
+import { getProductStringValues } from "../exports/api";
 import useFilter from "../hooks/product/useFilter";
-import useLiveSeach from "../hooks/useLiveSeach";
 import CategorySlider from "../pages/categories/categorySlider";
 import "./style.css";
 
@@ -16,8 +16,9 @@ const Exports = ({ filter, setFilter }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [fullValue, setFullValue] = useState("");
   const { setManufacture } = useFilter();
-  const { liveSearch, open, setOpen, search, propetyId, value } =
-    useLiveSeach();
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(false);
+  const [propertyId, setPropertyId] = useState(0);
   const [types, setTypes] = useState({
     name: "",
     value: "",
@@ -34,24 +35,27 @@ const Exports = ({ filter, setFilter }) => {
     );
     return res.data?.data;
   };
-
   const { data: getFilters, isLoading } = useQuery({
     queryKey: ["category/get-filters", id],
     queryFn: getCategoryPropertyFilters,
   });
 
-  const updateSearchParams = (name, value, type) => {
-    console.log(value);
-    const updatedParams = new URLSearchParams(searchParams);
-    if (value === "") {
-      updatedParams.delete(type ? `${name}_${type}` : name);
-    } else {
-      updatedParams.set(type ? `${name}_${type}` : name, value);
-    }
-    setSearchParams(updatedParams);
-  };
+  const updateSearchParams = useCallback(
+    (name, value, type) => {
+      console.log(type, name, value);
+      console.log(fullValue);
+      const updatedParams = new URLSearchParams(searchParams);
+      if (value === "") {
+        updatedParams.delete(type ? `${name}_${type}` : name);
+      } else {
+        updatedParams.set(type ? `${name}_${type}` : name, value || fullValue);
+      }
+      setSearchParams(updatedParams);
+    },
+    [searchParams.toString(), id, fullValue],
+  );
 
-  const onChangeNumberEvent = () => {
+  const onChangeNumberEvent = useCallback(() => {
     const { e, item, type } = types;
     const propertyId = item?.property?.id;
     const valueTypeId = item?.property?.valueTypeDto?.id;
@@ -109,11 +113,11 @@ const Exports = ({ filter, setFilter }) => {
       return prevManufacture;
     });
 
-    // Update searchParams with the new values
+    // Update searchParams with the new valuess
     updateSearchParams(item?.property?.name, e, type);
-  };
+  }, [searchParams, setSearchParams]);
 
-  const addPropertyForFilter = (prevent) => {
+  const addPropertyForFilter = useCallback(() => {
     const { e, item, type } = types;
 
     if (type === "min" || type === "max") {
@@ -157,7 +161,8 @@ const Exports = ({ filter, setFilter }) => {
       };
       onChangeEvent();
     }
-  };
+  }, [onChangeNumberEvent, setManufacture, updateSearchParams, types]);
+
   // const handleClickPriceValue = (event, type) => {
   //   if (type === "min") {
   //     setFilter({ ...filter, price_min: event });
@@ -165,9 +170,14 @@ const Exports = ({ filter, setFilter }) => {
   //     setFilter({ ...filter, price_max: event });
   //   }
   // };
-  const highlightText = (text, highlight) => {
+  const { data: productLiveFilter } = useQuery({
+    queryKey: ["product/string-values", id, propertyId],
+    queryFn: () => getProductStringValues(id, propertyId),
+  });
+
+  const highlightText = useCallback((text, highlight) => {
     if (!highlight) return text;
-    const parts = text?.name?.split(new RegExp(`(${highlight})`, "gi"));
+    const parts = text?.split(new RegExp(`(${highlight})`, "gi"));
     return parts.map((part, index) =>
       part.toLowerCase() === highlight.toLowerCase() ? (
         <span key={index} className="text-red-500 hover:bg-blue-500">
@@ -177,48 +187,56 @@ const Exports = ({ filter, setFilter }) => {
         part
       ),
     );
-  };
+  }, []);
 
-  const setPropertyFilterValue = (propertyId, valueTypeId) => {
-    const { e, type, item } = types;
-    console.log(e);
-    setManufacture((prevManufacture) => {
-      // Check if the property with the same ID exists in the manufacture
-      const existingItemIndex = prevManufacture.findIndex(
-        (manufactureItem) => manufactureItem.propertyId === propertyId,
-        updateSearchParams(
-          item?.property?.name,
-          textRef.current.innerText,
-          type,
-        ),
-      );
+  const stringValues = useCallback(
+    (typeId, e) => {
+      setValue(e.target.value);
+      if (typeId) {
+        setPropertyId(typeId);
+        getProductStringValues(id, typeId);
+      }
+      setOpen(true);
+    },
+    [id, setTypes, setPropertyId, propertyId],
+  );
 
-      if (value === "") {
-        return prevManufacture.filter(
-          (manufactureItem) => manufactureItem.propertyId !== propertyId,
+  const setPropertyFilterValue = useCallback(
+    (propertyId, valueTypeId) => {
+      const { e, type, item } = types;
+      console.log(propertyId, valueTypeId);
+      setManufacture((prevManufacture) => {
+        // Check if the property with the same ID exists in the manufacture
+        const existingItemIndex = prevManufacture.findIndex(
+          (manufactureItem) => manufactureItem.propertyId === propertyId,
+          updateSearchParams(item?.property?.name, e, type),
         );
-      }
 
-      // Create the new filter object
-      const newFilter = {
-        propertyId,
-        valueTypeId,
-        filter: e,
-      };
+        if (value === "") {
+          return prevManufacture.filter(
+            (manufactureItem) => manufactureItem.propertyId !== propertyId,
+          );
+        }
 
-      // If the property with the same ID exists, replace it; otherwise, add the new filter
-      if (existingItemIndex !== -1) {
-        const updatedManufacture = [...prevManufacture];
-        updatedManufacture[existingItemIndex] = newFilter;
-        return updatedManufacture;
-      } else {
-        return [...prevManufacture, newFilter];
-      }
-    });
-
-    console.log(item?.property?.name, e, type);
-    setOpen(!open);
-  };
+        // Create the new filter object
+        const newFilter = {
+          propertyId,
+          valueTypeId,
+          filter: fullValue,
+        };
+        // If the property with the same ID exists, replace it; otherwise, add the new filter
+        if (existingItemIndex !== -1) {
+          const updatedManufacture = [...prevManufacture];
+          updatedManufacture[existingItemIndex] = newFilter;
+          return updatedManufacture;
+        } else {
+          return [...prevManufacture, newFilter];
+        }
+      });
+      setOpen(!open);
+    },
+    [types, setTypes, updateSearchParams],
+  );
 
   const renderFilterItem = (item) => {
     const isNumberType = ["INTEGER", "DOUBLE"].includes(
@@ -291,36 +309,40 @@ const Exports = ({ filter, setFilter }) => {
                   type: "text",
                 });
 
-                liveSearch(e.target.value, item?.property?.id, item);
+                stringValues(item?.property?.id, e);
               }}
               onKeyDown={(e) => {
                 if (e.keyCode === 13) {
                   addPropertyForFilter(e);
                 }
               }}
+              onClick={() =>
+                setOpen(item?.property?.id === propertyId && !open)
+              }
             />
 
-            {item?.property?.id === propetyId && value && open ? (
+            {item?.property?.id === propertyId && open ? (
               <div
                 className={`${
-                  item?.property?.id === propetyId && value && open
+                  item?.property?.id === propertyId && open
                     ? "animation"
                     : "animation"
-                } absolute left-0 top-full z-10 flex w-full flex-col rounded-md border border-gray-300 bg-white shadow-md`}
+                } absolute left-0 top-full  z-10 flex w-full flex-col rounded-md border border-gray-300 bg-white shadow-md`}
               >
-                {search?.map((item, index) => (
+                {productLiveFilter?.data?.map((item, index) => (
                   <p
                     ref={textRef}
                     key={index}
                     className="cursor-pointer p-1 text-base hover:bg-red-300"
-                    onClick={() =>
+                    onClick={() => {
                       setPropertyFilterValue(
-                        propetyId,
+                        propertyId,
                         types?.item?.property?.valueTypeDto?.id,
                         item,
                         types,
-                      )
-                    }
+                      );
+                      setFullValue(item);
+                    }}
                   >
                     {highlightText(item, value)}
                   </p>

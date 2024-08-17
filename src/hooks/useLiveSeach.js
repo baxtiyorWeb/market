@@ -1,17 +1,13 @@
-import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import { getProductsByCategoryFilter } from "../exports/api";
+import { useParams } from "react-router-dom";
+import { getProductStringValues } from "../exports/api";
 
 const useLiveSeach = () => {
   const [search, setSearch] = useState([]);
+  const { id } = useParams();
   const [value, setValue] = useState("");
   const [propetyId, setproperyId] = useState(0);
   const [open, setOpen] = useState(false);
-
-  const { data: productLiveFilter } = useQuery({
-    queryKey: ["product/string-values", value],
-    queryFn: async () => await getProductsByCategoryFilter(value),
-  });
   const liveSearch = (inputValue, ids) => {
     setValue(inputValue);
 
@@ -35,7 +31,7 @@ const useLiveSeach = () => {
     }
   };
   return {
-    productLiveFilter,
+    getProductStringValues,
     liveSearch,
     search,
     propetyId,

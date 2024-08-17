@@ -74,20 +74,24 @@ const useCreateProduct = () => {
 
   const handleChoosen = async (name, id) => {
     try {
-      const res = await getCategoryPropertiesById(id);
       setParams({ categoryName: name, categoryId: id });
       setQueryName(name);
       setQueryId(id);
+      getProperties();
       setNextProductData("");
-
       // Combine the fetched properties with nextProductData
-      const combinedData = [...res?.data];
-
-      // Set propertiesData state
-      setPropertiesData(combinedData);
     } catch (error) {
       console.error("Xatolik sodir  bo'ldi:", error);
     }
+  };
+
+  const getProperties = async () => {
+    const res = await getCategoryPropertiesById(queryId);
+    const combinedData = [...res?.data];
+    // Set propertiesData state
+    setPropertiesData(combinedData);
+
+    console.log(res);
   };
 
   const uploadImage = async (options) => {
@@ -129,41 +133,6 @@ const useCreateProduct = () => {
     }
   };
 
-  const nullableValues = {
-    price: productInitData.price != "",
-    region: productInitData.regionId != "",
-    district: productInitData.districtId != "",
-    address: productInitData.address != "",
-    selltype: productInitData.sellTypeId != "",
-    paymenttype: productInitData.paymentTypeId !== "",
-    files: productInitData.files != "",
-  };
-  if (Object.values(nullableValues) !== "") {
-    const checkGap = Object.values(nullableValues).map((item) =>
-      item ? "kiritildi" : "kiritilmadi",
-    );
-
-    const checkGaps = Object.keys(nullableValues).map((item) => item);
-
-    // createProduct({
-    //   ...productInitData,
-    //   regionId: regionId,
-    //   categoryId: queryId,
-    //   canAgree: productInitData.canAgree ? true : false,
-    //   districtId: districtId,
-    //   propertyValues: nextProductData,
-    //   files: fileLisId, // `fileList` yuborgan fayllar ro'yxati
-    // });
-
-    // // State yangilanadi
-    // setProductInitData({
-    //   ...productInitData,
-    //   propertyValues: nextProductData,
-    //   files: fileList, // `fileList` yuborgan fayllar ro'yxati
-    // });
-  } else {
-    console.log(nullableValues);
-  }
   const handleSubmit = async (e) => {
     // Category tanlanganini olish
     e.preventDefault();
@@ -181,9 +150,11 @@ const useCreateProduct = () => {
     );
   };
   useEffect(() => {
+    getProperties();
     getSellType();
     getPaymenType();
-  }, []);
+  }, [queryId]);
+
   return {
     previewOpen,
     previewImage,

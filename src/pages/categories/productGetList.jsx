@@ -6,19 +6,12 @@ import { FaEye } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
-import useScrollLoadingProduct from "../../hooks/useScrollLoadingProduct";
+import useProductFilter from "../../hooks/product-hooks/useProductFilter";
 import { ChildSkeletonLoading } from "../../ui/loading/ChildSkeletonLoading";
 import "./categories.css";
 const ProductGetList = () => {
-  const {
-    fastId,
-    existing,
-    isOpen,
-    data,
-    getFastid,
-    isLoading,
-    isFetchingNextPage,
-  } = useScrollLoadingProduct();
+  const existing = JSON.parse(localStorage.getItem("products")) || [];
+  const { data, isFetchingNextPage, isLoading } = useProductFilter();
   if (isLoading) {
     return (
       <div className="text-center">
@@ -26,7 +19,6 @@ const ProductGetList = () => {
       </div>
     );
   }
-  console.log(data);
 
   return (
     <>
@@ -35,7 +27,7 @@ const ProductGetList = () => {
        grid grid-cols-4 gap-1 
        sm:grid  sm:grid-cols-2
        md:grid  md:grid-cols-3
-       lg:gap-5 lg_min_c:grid lg_min_c:grid-cols-5 xs:grid 
+       lg:gap-5 lg_min_c:grid lg_min_c:grid-cols-4 xs:grid 
        xs:grid-cols-2 xs:gap-1
        2xs:grid 2xs:grid-cols-2
        3xs:grid

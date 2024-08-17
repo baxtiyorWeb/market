@@ -38,6 +38,7 @@ export default {
         // => @media (max-width: 767px) { ... }
 
         sm: { max: "639px" },
+        sm_res: { max: "600px" },
         // => @media (max-width: 639px) { ... }
         xs: { max: "500px" },
         xs_min: { min: "500px" },

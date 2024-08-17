@@ -98,6 +98,7 @@ export const searchProducts = async (searchValue) => {
 export const getProductStringValues = async (categoryId, propertyId) => {
   if (categoryId === null || categoryId === false) return false;
   if (propertyId === null || propertyId === false) return false;
+  console.log(categoryId, propertyId);
   const res = await api.get(`/product/string-values`, {
     params: {
       categoryId,

@@ -12,6 +12,7 @@ import { Select } from "antd"; // Adjust the import based on your file structure
 import { FaSearch } from "react-icons/fa";
 import { IoMenu } from "react-icons/io5";
 import { MdClose } from "react-icons/md";
+import { useSearch } from "../context/searchContext";
 import en from "./../assets/en.png";
 import m_logo from "./../assets/logo.png";
 import menuIcon from "./../assets/menuIcon.svg";
@@ -23,7 +24,6 @@ import useLiveSeach from "./../hooks/useLiveSeach";
 import Container from "./../shared/Container"; // Adjust the import based on your file structure
 import Overlay from "./../ui/Overlay"; // Adjust the import based on your file structure
 import Catalogue from "./catalogue/Catalogue";
-import { useSearch } from "../context/searchContext";
 
 const Header = ({ update, setUpdate }) => {
   const { liveSearch } = useLiveSeach();
@@ -169,7 +169,7 @@ const Header = ({ update, setUpdate }) => {
             className={
               open
                 ? `scroll-wrapper fixed left-72 top-20 z-[302] rounded-md bg-[#FFFFFF] opacity-100 shadow-xl transition-all duration-100 md:fixed  md:left-0 md:top-0   md:h-full   md:w-full md:overflow-scroll  lg:left-0 lg:top-0  lg:h-full lg:w-full `
-                : "absolute left-[380px] top-10  z-[-100] h-[0] opacity-0  transition-all  duration-300 xs:absolute xs:left-0"
+                : "absolute left-[290px]   z-[-100] h-[0] opacity-0  transition-all  duration-300 xs:absolute xs:left-0"
             }
           >
             {(open && <Catalogue setOpen={setOpen} open={open} />) ||
