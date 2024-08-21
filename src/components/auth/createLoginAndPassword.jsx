@@ -4,6 +4,7 @@ import ButtonUI from "../../ui/button/Button";
 
 const CreateLoginAndPassword = () => {
   const { auth, createUser, setAuth, isLoading } = useAuth();
+
   return (
     <div className="flex flex-col items-center justify-center">
       <div className="flex flex-col items-center justify-center">

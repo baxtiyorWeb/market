@@ -2,24 +2,32 @@
 import { IoLocation } from "react-icons/io5";
 import useToggle from "../../hooks/useToggle";
 import Overlay from "./../../ui/Overlay";
+import { getDistrictById, getRegions } from "./../../exports/api";
+import { useQuery } from "@tanstack/react-query";
+import { LoadingOutlined } from "@ant-design/icons";
+import { useCallback, useState } from "react";
 
 const Regions = () => {
-  // other states function elements
-  // const [value, setValue] = useState("");
+  const [id, setId] = useState("");
 
   const { handleToggle, keyWithCloseElement, isOpen } = useToggle();
 
-  // const { data, isLoading, error } = useQuery({
-  //   queryKey: ["regions"],
-  //   queryFn: () => getRegions(),
-  // });
+  const {
+    data: regions,
 
-  // if (error) return `Error: ${error}`;
+    error,
+  } = useQuery({
+    queryKey: ["regions"],
+    queryFn: () => getRegions(),
+  });
 
-  // if (isLoading) return <Loading />;
+  const { data: district, isLoading } = useQuery({
+    queryKey: ["district/all", id],
+    queryFn: () => getDistrictById(id),
+  });
 
-  // end function
-
+  if (error) return `Error: ${error}`;
+  
   return (
     <div>
       <button
@@ -38,13 +46,15 @@ const Regions = () => {
       ) : (
         isOpen
       )}
+
       <ul
         className={
           isOpen
             ? "fixed bottom-[-10px] left-[35%] z-[901]  h-[90%] w-[640px]  transform items-center overflow-scroll rounded-[10px] border bg-[#FFF] px-6 py-3 shadow-xl transition-all duration-300"
-            : "fixed bottom-[-600px] left-[35%] z-[-100] h-[601px] w-[640px]   transition-all duration-300"
+            : "fixed bottom-[-600px] left-[35%] z-[-100] h-[601px] w-[640px]   transition-all duration-300 "
         }
       >
+        <li>{id && <button onClick={() => setId(null)}>back</button>}</li>
         <li className="flex items-center justify-center">
           <input
             type="text"
@@ -54,13 +64,28 @@ const Regions = () => {
           />
         </li>
 
-        <li
-          // key={index}
-          className="cursor-pointer border-b border-t py-2  font-poppins text-[16px] font-normal not-italic leading-[100%] tracking-[-0.08px] text-[#747474] transition  hover:border-t hover:border-slate-500 hover:font-medium hover:text-[#000]"
-          onClick={() => setText(item.label) || handleCloseLocationMenu()}
-        >
-          {/* {item?.name?.replace((match) => `<mark>${match}</mark>`)} */}
-        </li>
+        {!id ? (
+          regions?.data?.map((item, index) => (
+            <li
+              key={index}
+              className="cursor-pointer border-b border-t py-3 font-poppins text-[16px] font-normal not-italic leading-[100%] tracking-[-0.08px] text-[#747474]  transition hover:border-t hover:border-slate-500 hover:font-medium hover:text-[#000]"
+              onClick={() => setId(item?.id)}
+            >
+              {item?.name}
+            </li>
+          ))
+        ) : isLoading ? (
+          <LoadingOutlined />
+        ) : (
+          district?.data?.map((item, index) => (
+            <li
+              key={index}
+              className="cursor-pointer border-b border-t py-3 font-poppins text-[16px] font-normal not-italic leading-[100%] tracking-[-0.08px] text-[#747474]  transition hover:border-t hover:border-slate-500 hover:font-medium hover:text-[#000]"
+            >
+              {item?.length  ? <span>tumanlar topilmadi</span> : item?.name}
+            </li>
+          ))
+        )}
       </ul>
     </div>
   );

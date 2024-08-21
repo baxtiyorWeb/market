@@ -69,7 +69,7 @@ export default function Categoriyes() {
           {data?.data?.content?.map((item, index) => (
             <div
               key={index}
-              className="my-1 flex h-[196px_!important] w-[160px_!important] flex-col items-center justify-center xs:h-[130px_important] xs:w-[130px_important]"
+              className="my-1 flex h-[196px_!important] w-[160px_!important] flex-col items-center justify-center xs:h-[130px_important] xs:w-[130px_important] xl:w-[130px_!important] xl:h-[130px_!important]"
             >
               <PrefetchComponent item={item} />
             </div>

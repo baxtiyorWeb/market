@@ -34,7 +34,6 @@ export default function AddProductCategory() {
     setDistrictId,
     setRegionId,
     uploadImage,
-    handleImageUpload,
   } = useCreateProduct();
   const uploadButton = (
     <button
