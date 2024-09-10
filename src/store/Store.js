@@ -1,7 +1,11 @@
-// import { create } from 'zustand';
+import { configureStore } from '@reduxjs/toolkit';
+import createProductSlice from '../slices/createProductSlice';// Product slice-ni import qiling
 
-// const useProductStore = create((set) => {
-//   product: [];
-//   addProduct: (product) => set((state) => ({cart: [...state.cart, product]})),
-//   getProduct: ,
-// })
+const store = configureStore({
+  reducer: {
+    product: createProductSlice,
+    // boshqa slice-larni ham qo'shing
+  },
+});
+
+export default store;

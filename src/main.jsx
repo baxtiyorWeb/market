@@ -7,15 +7,19 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { HelmetProvider } from "react-helmet-async";
 import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux"; // Redux Provider-ni import qiling
+import store from "./store/Store.js"; // Store-ni import qiling
 import App from "./App.jsx";
 import AuthProvider from "./context/authContext.jsx";
 import "./index.css";
 import SearchProvider from "./context/searchContext.jsx";
+
 axios.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem(
   "token",
 )}`;
 
 const queryClient = new QueryClient();
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>

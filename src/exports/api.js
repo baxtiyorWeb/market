@@ -50,6 +50,8 @@ export const getCategoryById = async (id) => {
 
 // GET CATEGORY PROPERTIES BY ID
 export const getCategoryPropertiesById = async (id) => {
+  const param = new URLSearchParams()
+  const districtId = param.get("districtId");
   const res = await api.get(`/category/properties/${id}`);
   return res.data;
 };
@@ -165,6 +167,7 @@ export const updateUserData = async (data) => {
 
 // GET DISTRICT BY ID
 export const getDistrictById = async (id) => {
+  if (id === undefined || null && undefined) return 0;
   const res = await api.get(`/district/all/${id}`);
   return res.data;
 };

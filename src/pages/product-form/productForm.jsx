@@ -19,7 +19,8 @@ export default function AddProductCategory() {
     nextProductData,
     productInitData,
     propertiesData,
-    queryName,
+    queryName,  
+     
     selltype,
     regionId,
     fileList,
@@ -160,7 +161,7 @@ export default function AddProductCategory() {
                         (item?.valueTypeDto?.typeName === "DOUBLE" && "number")
                       }
                       required
-                      className="focus:border-[1px_solid_rgb(59 130 246)] sm_res:w-[70%] mt-2 h-[50px] w-[100%] shrink-0 rounded-[5px] border  border-[#E2E2E2] bg-[#FAFAFA] p-3 font-poppins text-[16px] outline-none md:w-[80%] xs:m-auto  xs:w-[100%]  2xs:w-[80%]"
+                      className="focus:border-[1px_solid_rgb(59 130 246)] mt-2 h-[50px] w-[100%] shrink-0 rounded-[5px] border border-[#E2E2E2]  bg-[#FAFAFA] p-3 font-poppins text-[16px] outline-none md:w-[80%] sm_res:w-[70%] xs:m-auto  xs:w-[100%]  2xs:w-[80%]"
                       placeholder={item.name}
                       value={
                         nextProductData[index]?.stringValue ||

@@ -84,14 +84,10 @@ const useCreateProduct = () => {
       console.error("Xatolik sodir  bo'ldi:", error);
     }
   };
-
   const getProperties = async () => {
     const res = await getCategoryPropertiesById(queryId);
     const combinedData = [...res?.data];
-    // Set propertiesData state
     setPropertiesData(combinedData);
-
-    console.log(res);
   };
 
   const uploadImage = async (options) => {

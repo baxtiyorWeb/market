@@ -2,8 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import { Select } from "antd";
 import React from "react";
 import { getDistrictById, getRegions } from "../exports/api";
+import { useSearchParams } from "react-router-dom";
 
 const AddProductLocation = ({ regionId, setRegionId, setDistrictId }) => {
+  const params = useSearchParams();
   const { data, isPending, refetch } = useQuery({
     queryKey: ["regions"],
     queryFn: () => getRegions(), // Pass function reference
@@ -12,6 +14,16 @@ const AddProductLocation = ({ regionId, setRegionId, setDistrictId }) => {
     queryKey: ["district", regionId],
     queryFn: () => getDistrictById(regionId), // Pass function reference and regionId as dependency
     enabled: regionId !== "", // Enable the query only when regionId is not empty
+  });
+
+  const handleChangeDistrictId = () => {
+   
+  };
+
+  window.addEventListener("keydown", (e) => {
+    if (e.keyCode === 13) {
+      handleChangeDistrictId();
+    }
   });
 
   if (isPending) return "loading...";
