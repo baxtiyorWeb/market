@@ -70,7 +70,7 @@ const Products = (React.memo = () => {
         </div>
       </div>
       <div
-        className={` response_product_category grid grid-cols-5 gap-1 sm:grid sm:w-full sm:grid-cols-3  md:grid  md:grid-cols-3 lg:grid lg:grid-cols-4 lg:gap-5 xs:grid xs:grid-cols-2 xs:gap-1 2xs:grid 2xs:grid-cols-2 `}
+        className={`response_product_category grid grid-cols-5 gap-1 sm:grid sm:w-full sm:grid-cols-2 xs_2:grid-cols-2 xmd:grid  xmd:grid-cols-3  lg:grid lg:grid-cols-4 lg:gap-4 xs:grid xs:grid-cols-2 xs:gap-1 2xs:grid 2xs:grid-cols-2 `}
       >
         {isLoading ? (
           <SkeletonLoading />

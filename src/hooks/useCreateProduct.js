@@ -100,16 +100,14 @@ const useCreateProduct = () => {
     try {
       const data = uploadFile(file);
       data.then((res) => {
-        // Fayl id (identifikatorini) olish
         const fileId = res?.data?.id;
 
-        // fileList ni yangilash
         setFileListId((prevFileList) => [
           ...prevFileList,
           {
-            id: fileId, // Hozirgi faylning indeksi
-            fileItemId: fileId, // Fayl identifikatori
-            mainFile: prevFileList.length === 0, // Agar bu birinchi fayl bo'lsa
+            id: fileId, 
+            fileItemId: fileId, 
+            mainFile: prevFileList.length === 0,
           },
         ]);
 

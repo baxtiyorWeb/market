@@ -35,12 +35,14 @@ export default {
         // => @media (max-width: 1023px) { ... }
 
         md: { max: "767px" },
+        xmd: { max: "821px" },
         // => @media (max-width: 767px) { ... }
 
         sm: { max: "639px" },
         sm_res: { max: "600px" },
         // => @media (max-width: 639px) { ... }
         xs: { max: "500px" },
+        xs_2: { max: "580px" },
         xs_min: { min: "500px" },
         md_min: { min: "600px" },
         lg_min: { min: "769px" },
