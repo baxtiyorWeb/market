@@ -22,8 +22,6 @@ const useAddFavourite = () => {
       localStorage.setItem("product", JSON.stringify(updatedProducts));
       setUpdate(updatedProducts);
     } else {
-      // Mahsulotni qo'shish
-
       existingProducts.push(productItem);
 
       localStorage.setItem("product", JSON.stringify(existingProducts));
