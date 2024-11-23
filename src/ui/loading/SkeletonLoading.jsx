@@ -37,56 +37,83 @@ export const SkeletonLoading = ({
 
     const yHeading = padding + space * (i - 1);
     let pushedNumber = [];
+    for (let i = 1; i <= row; i++) {
+      for (let j = 0; j < column; j++) {
+        const x = padding + j * (itemWidth + padding);
+        const y1 = yHeading + headingHeight + (padding * 3) / 2;
+        const y2 = y1 + padding + height1;
+        const y3 = y2 + padding / 2 + height2;
 
-    pushedNumber.push((Math.random() * 45 - 22 * 10 + i ).toPrecision(3));
+        list.push(
+          <React.Fragment
+            key={`rectangle_${i}_${j}_${Date.now()}_${Math.random()}`}
+          >
+            <rect
+              x={x}
+              y={y1}
+              rx={borderRadius}
+              ry={borderRadius}
+              width={itemWidth}
+              height={height1}
+            />
+            <rect
+              x={x}
+              y={y2}
+              rx={0}
+              ry={0}
+              width={itemWidth}
+              height={height2}
+            />
+            <rect
+              x={x}
+              y={y3}
+              rx={0}
+              ry={0}
+              width={itemWidth * 0.6}
+              height={height3}
+            />
+          </React.Fragment>,
+        );
+      }
+    }
 
-    list.push(
-      <rect
-        key={`rect_${(Math.random() * 45 - 22 * i).toPrecision(3)}`}
-        x={padding}
-        y={yHeading}
-        rx={0}
-        ry={0}
-        width={headingWidth}
-        height={headingHeight}
-      />,
-    );
+    for (let i = 1; i <= row; i++) {
+      for (let j = 0; j < column; j++) {
+        const x = padding + j * (itemWidth + padding);
+        const y1 = yHeading + headingHeight + (padding * 3) / 2;
+        const y2 = y1 + padding + height1;
+        const y3 = y2 + padding / 2 + height2;
 
-    for (let j = 0; j < column; j++) {
-      const x = padding + j * (itemWidth + padding);
-
-      const y1 = yHeading + headingHeight + (padding * 3) / 2;
-
-      const y2 = y1 + padding + height1;
-
-      const y3 = y2 + padding / 2 + height2;
-
-      list.push(
-        <React.Fragment
-          key={`rectangle_${(Math.random() * 38 - 22 * i).toPrecision(3)}`}
-        >
-          <rect
-            x={x}
-            y={y1}
-            rx={borderRadius}
-            ry={borderRadius}
-            width={itemWidth}
-            height={height1}
-          />
-          <rect x={x} y={y2} rx={0} ry={0} width={itemWidth} height={height2} />
-          <rect
-            x={x}
-            y={y3}
-            rx={0}
-            ry={0}
-            width={itemWidth * 0.6}
-            height={height3}
-          />
-        </React.Fragment>,
-      );
-
-      if (i === row) {
-        height = y3 + height3;
+        list.push(
+          <React.Fragment
+            key={`rectangle_${i}_${j}_${Date.now()}_${Math.random()}`}
+          >
+            <rect
+              x={x}
+              y={y1}
+              rx={borderRadius}
+              ry={borderRadius}
+              width={itemWidth}
+              height={height1}
+            />
+            <rect
+              x={x}
+              y={y2}
+              rx={0}
+              ry={0}
+              width={itemWidth}
+              height={height2}
+            />
+            <rect
+              x={x}
+              y={y3}
+              rx={0}
+              ry={0}
+              width={itemWidth * 0.6}
+              height={height3}
+            />
+          </React.Fragment>,
+        );
       }
     }
   }

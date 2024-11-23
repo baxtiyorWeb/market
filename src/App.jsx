@@ -30,6 +30,7 @@ const ChildCategories = lazy(
 );
 const ProfileLayout = lazy(() => import("./layout/profileLayout"));
 const CategoriesLayout = lazy(() => import("./layout/categoriesLayout"));
+const ProductSearch = lazy(() => import("./pages/Search"));
 // routes
 
 const App = () => {
@@ -68,6 +69,14 @@ const App = () => {
                   scroll={scroll}
                   setScroll={setScroll}
                 />
+              </React.Suspense>
+            }
+          />
+          <Route
+            path="/search"
+            element={
+              <React.Suspense fallback={<Loading />}>
+                <ProductSearch />
               </React.Suspense>
             }
           />

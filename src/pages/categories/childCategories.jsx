@@ -2,12 +2,12 @@ import { Select } from "antd";
 import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import useParamsFilter from "../../hooks/useParamsFilter";
-import Container from "../../shared/Container";
 import Drawer from "../../ui/Drawer/Drawer";
 import BreadCrumbs from "../../ui/breadcrumbs/BreadCrumbs";
 import "./categories.css";
 import ProductFilter from "./productFilter/ProductFilter";
 import ProductGetList from "./productGetList";
+import { Cookies } from "react-cookie";
 
 const ChildCategories = () => {
   const {
@@ -27,6 +27,7 @@ const ChildCategories = () => {
     clearFilter,
   } = useParamsFilter();
   const [isOpenDrawer, setOpenDrawer] = useState(false);
+  
   const params = useSearchParams();
   const [dir, setDir] = useState("vertical");
 
@@ -45,6 +46,14 @@ const ChildCategories = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, [dir]);
+
+  const cookies = new Cookies()
+  useEffect(() => {
+    if (id) {
+      cookies.set("categoryId", id, { path: "/" });
+       // tekshirish uchun log qo'shildi
+    }
+  }, [id, cookies]);
 
   return (
     <div className="child-categ h-full  items-start justify-center lg:w-full xs:w-full 2xs:w-full 3xs:w-full ">

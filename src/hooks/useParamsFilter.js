@@ -1,12 +1,20 @@
-import React, { useEffect, useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import useFilter from "./product/useFilter";
 import api from "../config/api/api";
+import { Cookies } from "react-cookie";
 
 const useParamsFilter = () => {
   const { id } = useParams();
+
+  useEffect(() => {
+    const setCookieId = new Cookies();
+    setCookieId.set("cateoryId", id);
+  }, [id]);
+
   const [searchParams, setSearchParams] = useSearchParams();
   const { data, saveFilter, district, paymentType, sellType } = useFilter();
+  const [error, setError] = useState("");
   // Data states
   const [regions, setRegions] = useState({
     regions: [],
@@ -26,6 +34,7 @@ const useParamsFilter = () => {
     price_min: "",
     price_max: "",
   });
+
   useEffect(() => {
     const params = Object.fromEntries([...searchParams]);
     setFilter({
@@ -106,7 +115,6 @@ const useParamsFilter = () => {
     categoriesRootList();
   }, [id, filter.regionId, filter.value, saveFilter]);
 
-  
   const totalProducts =
     data?.pages?.reduce((acc, page) => acc + page.data.length, 0) || 0;
   return {
@@ -121,6 +129,7 @@ const useParamsFilter = () => {
     filter,
     searchParams,
     id,
+    error,
     setFilter,
     setSearchParams,
     clearFilter,

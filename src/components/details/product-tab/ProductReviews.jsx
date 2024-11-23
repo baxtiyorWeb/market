@@ -3,7 +3,7 @@ import { CgMailReply } from "react-icons/cg";
 import { FaRegComment } from "react-icons/fa";
 const ProductReviews = () => {
   return (
-    <div className="w-[600px]">
+    <div className="w-auto">
       <div className="flex items-center justify-between">
         <h1 className="mb-8 mt-3 inline-block border-b text-2xl">
           Barcha Sharxlar

@@ -167,8 +167,8 @@ export const updateUserData = async (data) => {
 
 // GET DISTRICT BY ID
 export const getDistrictById = async (id) => {
-  if (id === undefined || null && undefined) return 0;
-  const res = await api.get(`/district/all/${id}`);
+
+  const res = await api.get(`/district/all/${id || 1}`);
   return res.data;
 };
 

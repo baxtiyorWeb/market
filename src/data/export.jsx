@@ -1,13 +1,13 @@
 import { LoadingOutlined } from "@ant-design/icons";
 import { useQuery } from "@tanstack/react-query";
 import { List, Spin } from "antd";
-import React, { useCallback, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import api from "../config/api/api";
 import { getProductStringValues } from "../exports/api";
-import useFilter from "../hooks/product/useFilter";
 import CategorySlider from "../pages/categories/categorySlider";
 import "./style.css";
+import { useFilterProduct } from "../context/filterProvider";
 
 // eslint-disable-next-line react/prop-types
 const Exports = ({ filter, setFilter }) => {
@@ -15,7 +15,7 @@ const Exports = ({ filter, setFilter }) => {
   const { id } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
   const [fullValue, setFullValue] = useState("");
-  const { setManufacture } = useFilter();
+  const { setManufacture } = useFilterProduct();
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(false);
   const [propertyId, setPropertyId] = useState(0);
@@ -42,8 +42,6 @@ const Exports = ({ filter, setFilter }) => {
 
   const updateSearchParams = useCallback(
     (name, value, type) => {
-      console.log(type, name, value);
-      console.log(fullValue);
       const updatedParams = new URLSearchParams(searchParams);
       if (value === "") {
         updatedParams.delete(type ? `${name}_${type}` : name);
@@ -52,7 +50,7 @@ const Exports = ({ filter, setFilter }) => {
       }
       setSearchParams(updatedParams);
     },
-    [searchParams.toString(), id, fullValue],
+    [searchParams, setSearchParams, fullValue],
   );
 
   const onChangeNumberEvent = useCallback(() => {
@@ -61,61 +59,33 @@ const Exports = ({ filter, setFilter }) => {
     const valueTypeId = item?.property?.valueTypeDto?.id;
 
     setManufacture((prevManufacture) => {
-      const existingItemIndex = prevManufacture.findIndex(
+      const existingIndex = prevManufacture.findIndex(
         (manufactureItem) =>
           manufactureItem.propertyId === propertyId &&
           manufactureItem.valueTypeId === valueTypeId,
       );
 
+      const newFilter = {
+        propertyId,
+        valueTypeId,
+        filter: { [type]: Number(e) },
+      };
+
       if (e === "") {
-        return prevManufacture.filter(
-          (manufactureItem) => manufactureItem.propertyId !== propertyId,
-        );
+        return prevManufacture.filter((item) => item.propertyId !== propertyId);
       }
 
-      if (existingItemIndex !== -1) {
-        const updatedManufacture = [...prevManufacture];
-        const currentFilter =
-          updatedManufacture[existingItemIndex].filter || {};
-        // Update the filter with the new min/max value
-        if (e === "") {
-          // If input is empty, remove the corresponding value from the filter
-          delete currentFilter[type];
-        } else {
-          // Otherwise, update the filter with the new value
-          currentFilter[type] = Number(e);
-        }
-
-        // If both min and max are 0, remove the filter
-        if (currentFilter.min === 0 && currentFilter.max === 0) {
-          updatedManufacture.splice(existingItemIndex, 1);
-        } else {
-          updatedManufacture[existingItemIndex].filter = currentFilter;
-        }
-
-        return updatedManufacture;
+      if (existingIndex !== -1) {
+        const updated = [...prevManufacture];
+        updated[existingIndex] = newFilter;
+        return updated;
+      } else {
+        return [...prevManufacture, newFilter];
       }
-
-      // If the item doesn't exist in the manufacture array, add it
-      if (e !== "") {
-        return [
-          ...prevManufacture,
-          {
-            propertyId,
-            valueTypeId,
-            filter: {
-              [type]: Number(e),
-            },
-          },
-        ];
-      }
-
-      return prevManufacture;
     });
 
-    // Update searchParams with the new valuess
     updateSearchParams(item?.property?.name, e, type);
-  }, [searchParams, setSearchParams]);
+  }, [types, setManufacture, updateSearchParams]);
 
   const addPropertyForFilter = useCallback(() => {
     const { e, item, type } = types;
@@ -170,6 +140,7 @@ const Exports = ({ filter, setFilter }) => {
   //     setFilter({ ...filter, price_max: event });
   //   }
   // };
+
   const { data: productLiveFilter } = useQuery({
     queryKey: ["product/string-values", id, propertyId],
     queryFn: () => getProductStringValues(id, propertyId),
@@ -189,17 +160,28 @@ const Exports = ({ filter, setFilter }) => {
     );
   }, []);
 
-  const stringValues = useCallback(
-    (typeId, e) => {
-      setValue(e.target.value);
-      if (typeId) {
-        setPropertyId(typeId);
-        getProductStringValues(id, typeId);
+  const handleTextFilterChange = useCallback(
+    (e, item) => {
+      setTypes({ ...types, e: e.target.value, item, type: "text" });
+      if (item?.property?.id) {
+        setPropertyId(item.property.id);
       }
       setOpen(true);
     },
-    [id, setTypes, setPropertyId, propertyId],
+    [types],
   );
+
+  // const stringValues = useCallback(
+  //   (typeId, e) => {
+  //     setValue(e.target.value);
+  //     if (typeId) {
+  //       setPropertyId(typeId);
+  //       getProductStringValues(id, typeId);
+  //     }
+  //     setOpen(true);
+  //   },
+  //   [id, setTypes, setPropertyId, propertyId],
+  // );
 
   const setPropertyFilterValue = useCallback(
     (propertyId, valueTypeId) => {
@@ -309,7 +291,7 @@ const Exports = ({ filter, setFilter }) => {
                   type: "text",
                 });
 
-                stringValues(item?.property?.id, e);
+                handleTextFilterChange(e, item);
               }}
               onKeyDown={(e) => {
                 if (e.keyCode === 13) {

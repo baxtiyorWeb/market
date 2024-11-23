@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import { Input, Select } from "antd";
 import React from "react";
 import {
   FaEye,
@@ -9,18 +8,15 @@ import {
   FaShare,
 } from "react-icons/fa";
 import { Link, useParams } from "react-router-dom";
-import api from "../../config/api/api";
-import Exports from "../../data/export";
-import ChildCategories from "../../pages/categories/childCategories";
-import Breadcrumbs from "../../ui/breadcrumbs/BreadCrumbs";
-import SpinLoading from "../../ui/loading/spinLoading";
-import { Container, SegmentedUi } from "./../../common/common";
-import "./../../pages/categories/categories.css";
-const FilterComponent = () => {
+import "./../pages/categories/categories.css";
+import SpinLoading from "../ui/loading/spinLoading";
+import ChildCategories from "./categories/childCategories";
+import { Container } from "../common/common";
+const Search = () => {
   const { name } = useParams();
   const getproductgetFileterSearch = async (value) => {
     const res = await api.get(
-      `/product/list?page=${0}&size=${10}&search=${value}`,
+      `/product/list?page=${0}&size=${10}&search=${value}`,  
     );
     return res.data?.data?.content;
   };
@@ -29,73 +25,11 @@ const FilterComponent = () => {
     queryFn: () => getproductgetFileterSearch(name),
   }); // fetchData funksiyasiga tanlangan qidiruvni yuborish
 
-  if (isLoading) return <SpinLoading />;
   return (
     <Container>
-      <Breadcrumbs />
       <ChildCategories />
       <div className="grid grid-flow-col grid-rows-3 gap-4">
-        <div className="row-span-3  flex h-[600px]  w-[330px] flex-col rounded-2xl border bg-white p-5  shadow-lg  ">
-          <div className="my-5 border-b border-b-gray-500 text-left text-[15px] font-bold">
-            Filterlar
-          </div>
-          <div>
-            <Exports />s
-          </div>
-        </div>
         <div className="product-section">
-          <div className="col-span-0 row-span-1 w-full    p-3">
-            <div className="my-5 flex items-center justify-between  rounded-md bg-white p-2 text-left text-[15px]  shadow-md">
-              <div>{name}</div>
-              <div className="">
-                <Select
-                  className="w-[60px]"
-                  defaultValue={5 || ""}
-                  options={[
-                    {
-                      label: 5,
-                      value: 5,
-                    },
-                    {
-                      label: 10,
-                      value: 10,
-                    },
-                    {
-                      label: 15,
-                      value: 15,
-                    },
-                  ]}
-                />
-
-                <Select
-                  className="mx-5 w-[230px]"
-                  options={[
-                    {
-                      label: "Yangi kelganlar",
-                      value: "Yangi kelganlar",
-                    },
-                    {
-                      label: "eskilar",
-                      value: "eskilar ",
-                    },
-                    {
-                      label: "arzonlar ",
-                      value: "arzonlar ",
-                    },
-                  ]}
-                />
-
-                <Input.Search
-                  loading={isLoading}
-                  enterButton
-                  enterKeyHint="send"
-                  placeholder="categoriya boyicha qidiring"
-                  className="w-56 "
-                />
-              </div>
-              <SegmentedUi />
-            </div>
-          </div>
           <div className="col-span-2 row-span-2 grid grid-cols-3 border">
             {isLoading ? (
               <SpinLoading />
@@ -175,4 +109,4 @@ const FilterComponent = () => {
   );
 };
 
-export default FilterComponent;
+export default Search;

@@ -5,6 +5,7 @@ import ProductSideMenu from "../components/details/product-side-menu/ProductSide
 import useProductDetail from "../hooks/useProductDetail";
 import Container from "../shared/Container";
 import ProductDetailBreadCrumbs from "./../ui/breadcrumbs/ProductDetailBreadCrumbs";
+import Loading from '../ui/loading/Loading';
 
 export default function Details() {
   const { isLoading, productDetail } = useProductDetail();
@@ -30,15 +31,23 @@ export default function Details() {
     scrollToTop();
   }, []);
 
-  // if (isLoading) return <Loading />;
+  if (isLoading) {
+    
+    return <Loading />
+  }else{
+    window.scroll({top: 0, left: 0, behavior: 'smooth'})
+  }
+
+  console.log(productDetail);
+  
 
   return (
     <Container>
       <ProductDetailBreadCrumbs data={productDetail} />
-      <div className={"mb-10 flex items-start justify-between"}>
+      <div className={"mb-10 flex items-start justify-between md:flex md:flex-col lg:flex lg:flex-col lg:justify-center lg:items-center lg:w-full"}>
         <div className="mt-5 h-auto w-[680px] flex-shrink-0 bg-white px-[30px] py-5 pb-[30px]">
           <ProductAbout productDetail={productDetail} />
-          <h1 className="my-10 text-2xl font-medium">Xusuiyatlari</h1>
+          <h1 className="my-10 text-2xl font-medium">Xususiyatlari</h1>
           <div className="mb-10 mt-3 flex w-full flex-col justify-center  gap-y-3 rounded-xl bg-whiteTextColor p-2">
             {productDetail?.propertyValues?.map((item, index) => (
               <div

@@ -1,17 +1,16 @@
 import { Spin } from "antd";
-import React from "react";
 import { BsCalendarDate } from "react-icons/bs";
 import { CiHeart } from "react-icons/ci";
 import { FaEye } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
-import useProductFilter from "../../hooks/product-hooks/useProductFilter";
 import { ChildSkeletonLoading } from "../../ui/loading/ChildSkeletonLoading";
 import "./categories.css";
+import { useFilterProduct } from "../../context/filterProvider";
 const ProductGetList = () => {
   const existing = JSON.parse(localStorage.getItem("products")) || [];
-  const { data, isFetchingNextPage, isLoading } = useProductFilter();
+  const { data, isFetchingNextPage, isLoading } = useFilterProduct();
   if (isLoading) {
     return (
       <div className="text-center">

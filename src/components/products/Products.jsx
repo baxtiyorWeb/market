@@ -1,15 +1,16 @@
 import { Spin } from "antd";
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { Link, useNavigate } from "react-router-dom";
-import useProduct from "../../hooks/product-hooks/useProduct";
 import PrefetchProduct from "../../prefetch/PrefetchProduct";
 import { SkeletonLoading } from "../../ui/loading/SkeletonLoading";
 import "./Product.css";
+import { useFilterProduct } from "../../context/filterProvider";
+import { LoadingOutlined } from "@ant-design/icons";
 
-const Products = (React.memo = () => {
-  const { data, isFetchingNextPage, isLoading } = useProduct();
+const Products = () => {
+  const { data, isFetchingNextPage, isLoading } = useFilterProduct();
   const [{ isLoading: loading }, setLoading] = useState(false);
   const navigate = useNavigate();
   const handleClick = (e, item) => {
@@ -39,7 +40,7 @@ const Products = (React.memo = () => {
 
   if (loading) return <LoadingOutlined />;
   return (
-    <div className="   h-full w-full">
+    <div className="h-full w-full">
       <div className="mb-5  flex items-center justify-between">
         <h1 className="font-poppins text-[28px] font-medium not-italic leading-normal tracking-[-0.66px] xs:text-lg">
           Top Mahsulotlar
@@ -70,7 +71,7 @@ const Products = (React.memo = () => {
         </div>
       </div>
       <div
-        className={`response_product_category grid grid-cols-5 gap-1 sm:grid sm:w-full sm:grid-cols-2 xs_2:grid-cols-2 xmd:grid  xmd:grid-cols-3  lg:grid lg:grid-cols-4 lg:gap-4 xs:grid xs:grid-cols-2 xs:gap-1 2xs:grid 2xs:grid-cols-2 `}
+        className={`response_product_category grid grid-cols-5 gap-1 sm:grid sm:w-full sm:grid-cols-2 lg:grid lg:grid-cols-3 lg:gap-4  xl:grid-cols-4  xmd:grid xmd:grid-cols-3 xs:grid xs:grid-cols-2 xs:gap-1 xs_2:grid-cols-2 2xs:grid 2xs:grid-cols-2 `}
       >
         {isLoading ? (
           <SkeletonLoading />
@@ -80,7 +81,7 @@ const Products = (React.memo = () => {
               <PrefetchProduct
                 index={index}
                 item={item}
-                key={item}
+                key={index}
                 i={i}
                 handleClick={(e) => handleClick(e, item)}
               />
@@ -94,6 +95,6 @@ const Products = (React.memo = () => {
       </div>
     </div>
   );
-});
+};
 
 export default Products;

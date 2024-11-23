@@ -1,4 +1,4 @@
-import React from "react";
+/* eslint-disable react/prop-types */
 import Exports from "../../../data/export";
 
 const ProductFilter = ({

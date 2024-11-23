@@ -1,9 +1,10 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 
 import {
   HeartOutlined,
   HomeOutlined,
+  LoadingOutlined,
   MenuOutlined,
   PlusCircleFilled,
   UserOutlined,
@@ -24,6 +25,7 @@ import useLiveSeach from "./../hooks/useLiveSeach";
 import Container from "./../shared/Container"; // Adjust the import based on your file structure
 import Overlay from "./../ui/Overlay"; // Adjust the import based on your file structure
 import Catalogue from "./catalogue/Catalogue";
+import api, { getRefreshToken } from "../config/api/api";
 
 const Header = ({ update, setUpdate }) => {
   const { liveSearch } = useLiveSeach();
@@ -33,6 +35,8 @@ const Header = ({ update, setUpdate }) => {
   const searchable = useSearchParams();
   const search = searchable[0].get("search");
   const { searchValue, setSearch, globalSearchData } = useSearch();
+
+  const [isLoading, setisLoading] = useState(false);
   const language = (langText) => {
     localStorage.setItem("lang", langText);
     window.location.reload();
@@ -294,13 +298,16 @@ const Header = ({ update, setUpdate }) => {
             </Link>
           </div>
           <div className="flex h-[65px] w-[65px] flex-col items-center justify-evenly  rounded-full ">
-            <Link
-              to={`/profile/dashboard?tab=1`}
-              className="text flex h-[65px] w-[65px] flex-col items-center justify-evenly text-bgColor"
-            >
-              <UserOutlined className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[20px]" />
-              <span className="text-[10px]">Kabinet</span>
-            </Link>
+            {
+              <Link
+                // to={`#`}
+               
+                className="text flex h-[65px] w-[65px] flex-col items-center justify-evenly text-bgColor"
+              >
+                <UserOutlined className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[20px]" />
+                <span className="text-[10px]">Kabinets</span>
+              </Link>
+            }
           </div>
         </div>
       </Container>

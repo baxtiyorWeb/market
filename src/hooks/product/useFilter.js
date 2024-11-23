@@ -8,7 +8,6 @@ import {
 } from "../../exports/api";
 
 const useFilter = () => {
-  const [manufacture, setManufacture] = useState([]);
   const [filterValue, setFilterValue] = useState([]);
   const [saveFilter, setSaveFilter] = useState([]);
   const [reFetch, setRefetch] = useState();
@@ -34,8 +33,7 @@ const useFilter = () => {
     setSaveFilter,
     saveFilter,
     setRefetch,
-    setManufacture,
-    manufacture,
+
     setSaveLocal,
     saveLocal,
     district,

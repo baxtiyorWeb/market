@@ -63,7 +63,7 @@ const ProductTabs = ({ productDetail }) => {
             foydalanuvchining boshqa elonlari <FaArrowDown className="mx-3" />
           </h1>
         </div>
-        <div className="my-3 grid  h-[581px] w-[600px] grid-cols-1 border bg-whiteTextColor">
+        <div className="my-3 grid  h-[581px] w-auto grid-cols-1 border bg-whiteTextColor">
           <div className="w-full"></div>
         </div>
       </div>
