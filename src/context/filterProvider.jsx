@@ -1,17 +1,20 @@
 /* eslint-disable react/prop-types */
 import { message } from "antd";
 import { createContext, useContext, useEffect, useState } from "react";
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
 import api from "../config/api/api";
 import { useSearchParams } from "react-router-dom";
 import { Cookies } from "react-cookie";
+import { useDebounce } from "use-debounce";
+import { throttle } from "lodash";
 
 export const FilterContext = createContext([]);
 
 const FilterProvider = ({ children }) => {
   const [manufacture, setManufacture] = useState([]);
   const searchParams = useSearchParams();
-
+  const [debouncedManufacture] = useDebounce(manufacture, 500);
+  const queryClient = useQueryClient();
   const searchValue = searchParams[0].get("search") || "";
   const regionId = searchParams[0].get("regionId") || "";
   const districtId = searchParams[0].get("districtId") || "";
@@ -25,14 +28,15 @@ const FilterProvider = ({ children }) => {
       ? { min: +price_min || 0, max: +price_max || 0 }
       : null;
 
-      const setCookieId = new Cookies();
-      const categoryId = setCookieId.get("cateoryId");
+  const setCookieId = new Cookies();
+  const categoryId = setCookieId.get("cateoryId");
+
   const fetchProducts = async ({ pageParam = 0 }) => {
     const response = await api.post("/product/list", {
       search: searchValue,
       page: pageParam,
       size: 5,
-      categoryId: categoryId,
+      categoryId: categoryId || 0,
       districtId: districtId,
       regionId: regionId,
       paymentTypeId: paymentTypeId,
@@ -49,6 +53,20 @@ const FilterProvider = ({ children }) => {
     };
   };
 
+  const getQueryDependencies = () => [
+    searchValue,
+    regionId,
+    districtId,
+    price_min,
+    price_max,
+    paymentTypeId,
+    sellTypeId,
+    categoryId,
+    manufacture,
+  ];
+
+  const queryDependencies = getQueryDependencies();
+
   const {
     data,
     fetchNextPage,
@@ -57,28 +75,45 @@ const FilterProvider = ({ children }) => {
     isLoading,
     refetch,
   } = useInfiniteQuery({
-    queryKey: ["product/list", manufacture, searchParams.toString(), categoryId], // Add manufacture as a dependency
+    queryKey: ["product/list", ...queryDependencies],
     queryFn: fetchProducts,
     initialPageParam: 0,
     getNextPageParam: (lastPage) => {
       return lastPage.hasNextPage ? lastPage.nextPage : undefined;
     },
-    onError: () => {
-      message.error("Mahsulot ro'yxatini olishda xato");
+    onError: (error) => {
+      message.error(`Mahsulot ro'yxatini olishda xato: ${error.message}`);
     },
+    staleTime: 5 * 60 * 1000,
+    cacheTime: 10 * 60 * 1000,
   });
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (
-        window.innerHeight + document.documentElement.scrollTop >=
-          document.documentElement.offsetHeight - 500 &&
-        hasNextPage &&
-        !isFetchingNextPage
-      ) {
-        fetchNextPage();
+    if (hasNextPage && data?.pages?.length > 0) {
+      const nextPage = data.pages[data.pages.length - 1]?.nextPage;
+      if (nextPage) {
+        queryClient.prefetchQuery(["product/list", nextPage], () =>
+          fetchProducts({ pageParam: nextPage }),
+        );
       }
-    };
+    }
+  }, [hasNextPage, queryClient, data]);
+
+  useEffect(() => {
+    const handleScroll = throttle(
+      () => {
+        if (
+          window.innerHeight + document.documentElement.scrollTop >=
+            document.documentElement.offsetHeight - 500 &&
+          hasNextPage &&
+          !isFetchingNextPage
+        ) {
+          fetchNextPage();
+        }
+      },
+      300,
+      { leading: false, trailing: true },
+    );
 
     window.addEventListener("scroll", handleScroll);
     return () => {
@@ -86,16 +121,12 @@ const FilterProvider = ({ children }) => {
     };
   }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
 
-  // Refetch whenever manufacture changes
   useEffect(() => {
-    if (manufacture.length > 0) {
+    if (debouncedManufacture.length > 0) {
       refetch();
     }
-  }, [manufacture, refetch]);
+  }, [debouncedManufacture, refetch]);
 
-  useEffect(() => {
-    console.log("API response:", data);
-  }, [data]);
   return (
     <FilterContext.Provider
       value={{
@@ -111,7 +142,6 @@ const FilterProvider = ({ children }) => {
   );
 };
 
-// eslint-disable-next-line react-refresh/only-export-components
 export const useFilterProduct = () => {
   return useContext(FilterContext);
 };

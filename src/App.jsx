@@ -28,7 +28,7 @@ const Login = lazy(() => import("./pages/auth/Login"));
 const ChildCategories = lazy(
   () => import("./pages/categories/childCategories"),
 );
-const ProfileLayout = lazy(() => import("./layout/profileLayout"));
+// const ProfileLayout = lazy(() => import("./layout/profileLayout"));
 const CategoriesLayout = lazy(() => import("./layout/categoriesLayout"));
 const ProductSearch = lazy(() => import("./pages/Search"));
 // routes

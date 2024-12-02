@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
 import {
   FaEye,
   FaQuestionCircle,
@@ -12,6 +11,7 @@ import "./../pages/categories/categories.css";
 import SpinLoading from "../ui/loading/spinLoading";
 import ChildCategories from "./categories/childCategories";
 import { Container } from "../common/common";
+import api from "../config/api/api";
 const Search = () => {
   const { name } = useParams();
   const getproductgetFileterSearch = async (value) => {
