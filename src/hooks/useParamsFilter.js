@@ -2,15 +2,9 @@ import { useParams, useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useFilter from "./product/useFilter";
 import api from "../config/api/api";
-import { Cookies } from "react-cookie";
 
 const useParamsFilter = () => {
   const { id } = useParams();
-
-  useEffect(() => {
-    const setCookieId = new Cookies();
-    setCookieId.set("cateoryId", id);
-  }, [id]);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const { data, saveFilter, district, paymentType, sellType } = useFilter();

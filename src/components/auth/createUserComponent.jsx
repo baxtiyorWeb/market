@@ -1,6 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery } from "react-query";
 import { Button, DatePicker, Form, Input, Select, Space, Spin } from "antd";
-import React from "react";
+
 import { Link } from "react-router-dom";
 import { getRegions, getDistrictById } from "../../exports/api";
 import useCreateUser from "../../hooks/useCreateUser";
@@ -26,7 +26,6 @@ const CreateUser = () => {
     queryFn: () => getDistrictById(id),
     enabled: !!id,
   });
-  // if (error) return `error: ${error}`;
 
   return (
     <Form {...formItemLayout} variant="filled" className="">

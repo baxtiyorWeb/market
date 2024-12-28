@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery } from "react-query";
 import React, { useState } from "react";
 import { getCategories } from "./exports/api";
 

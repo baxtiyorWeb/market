@@ -1,11 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery } from "react-query";
 import { Input, Space, Spin, Table } from "antd";
-import React, { useCallback, useEffect } from "react";
-import { FaEye } from "react-icons/fa";
-import { MdDelete } from "react-icons/md";
+import { useCallback, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useUser from "../../hooks/useUser";
 import api from "./../../config/api/api";
+import { Delete, Eye } from "lucide-react";
 const Products = () => {
   const { token } = useUser();
   const getUserProductFilter = useCallback(async () => {
@@ -102,13 +101,10 @@ const Products = () => {
           <span>
             <Space size="middle" className="flex items-center justify-center">
               <span>
-                <MdDelete
-                  onClick={() => handleDelete(record)}
-                  className="cursor-pointer text-center text-xl text-red-500"
-                />
+                <Delete className="cursor-pointer text-center text-xl text-red-500" />
               </span>
               <Link to={`/details/${record}?infoTab=1`}>
-                <FaEye className="cursor-pointer text-center text-xl text-teal-800" />
+                <Eye className="cursor-pointer text-center text-xl text-teal-800" />
               </Link>
             </Space>
           </span>
@@ -116,7 +112,7 @@ const Products = () => {
       },
     },
   ];
-  (products);
+  products;
   return (
     <div className="p-3">
       {isLoading ? (

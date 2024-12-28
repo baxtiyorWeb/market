@@ -1,9 +1,8 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery } from "react-query";
 import { Breadcrumb } from "antd";
-import React from "react";
-import { FaArrowRight } from "react-icons/fa";
 import { Link, useParams } from "react-router-dom";
 import api from "../../config/api/api";
+import { ArrowRight } from "lucide-react";
 
 const Breadcrumbs = () => {
   const { id } = useParams();
@@ -48,7 +47,7 @@ const Breadcrumbs = () => {
               <span className=" flex transform items-center justify-center rounded-md p-1 text-[13px]  hover:text-[#212121]">
                 {currentData?.name}{" "}
                 <span className="mx-5">
-                  {currentData.id == id ? "" : <FaArrowRight />}
+                  {currentData.id == id ? "" : <ArrowRight />}
                 </span>
               </span>
             </div>

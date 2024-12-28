@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 import { Menu } from "antd";
-import React, { useEffect, useState } from "react";
-import { MdClose } from "react-icons/md";
+import { Cog } from "lucide-react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const transformCategoriesToMenuItems = (categories) => {
@@ -51,7 +52,7 @@ const MenuList = ({ categories, open, setOpen }) => {
         <div className="flex w-full items-center  justify-between py-3 pl-3 pr-6">
           <span>Categoriya</span>
           <span className="rounded-full border p-1 text-lg">
-            <MdClose onClick={() => setOpen(!open)} />
+            <Cog onClick={() => setOpen(!open)} />
           </span>
         </div>
       ) : (

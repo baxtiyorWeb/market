@@ -1,22 +1,17 @@
-import { useQuery } from "@tanstack/react-query";
-import {
-  FaEye,
-  FaQuestionCircle,
-  FaRegComments,
-  FaRegHeart,
-  FaShare,
-} from "react-icons/fa";
+import { useQuery } from "react-query";
+
 import { Link, useParams } from "react-router-dom";
 import "./../pages/categories/categories.css";
 import SpinLoading from "../ui/loading/spinLoading";
 import ChildCategories from "./categories/childCategories";
 import { Container } from "../common/common";
 import api from "../config/api/api";
+import { Eye } from "lucide-react";
 const Search = () => {
   const { name } = useParams();
   const getproductgetFileterSearch = async (value) => {
     const res = await api.get(
-      `/product/list?page=${0}&size=${10}&search=${value}`,  
+      `/product/list?page=${0}&size=${10}&search=${value}`,
     );
     return res.data?.data?.content;
   };
@@ -67,15 +62,15 @@ const Search = () => {
                           </span>
                           <div className="mt-2 flex items-center justify-start border-t pt-3">
                             <div className="mx-1 flex h-14 w-14 flex-col items-center justify-center rounded-md border px-1">
-                              <FaRegComments className="mr-1" />
+                              Comment
                               <span className="mr-1">10</span>
                             </div>
                             <div className="mx-1 flex h-14 w-14 flex-col items-center justify-center rounded-md border px-1">
-                              <FaEye className="mr-1" />
+                              <Eye />
                               <span className="mr-1">{item?.viewCount}</span>
                             </div>
                             <div className="mx-1 flex h-14 w-14 flex-col items-center justify-center rounded-md border px-1">
-                              <FaQuestionCircle className="mr-1" />
+                              Heart
                               <span className="mr-1">10</span>
                             </div>
                           </div>

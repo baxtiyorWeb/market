@@ -1,5 +1,4 @@
 import { createContext, useContext, useState } from "react";
-import { toast } from "react-toastify";
 import api from "../config/api/api";
 
 const AuthContext = createContext();
@@ -20,13 +19,12 @@ const AuthProvider = ({ children }) => {
         window.location.href = "/profile/dashboard?tab=1";
       } else {
         setError(res.errorResponse);
-        (res.message);
+        res.message;
       }
     } catch (err) {
       const errorMessage =
         err?.response?.data?.errorResponse?.message || err.message;
       setError(errorMessage);
-      toast.error(errorMessage);
     }
   };
 

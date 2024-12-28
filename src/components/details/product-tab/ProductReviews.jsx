@@ -1,6 +1,5 @@
-import React from "react";
-import { CgMailReply } from "react-icons/cg";
-import { FaRegComment } from "react-icons/fa";
+import { ReplyAll } from "lucide-react";
+
 const ProductReviews = () => {
   return (
     <div className="w-auto">
@@ -33,10 +32,10 @@ const ProductReviews = () => {
         </div>
         <div className="mt-3 flex w-full justify-end ">
           <span className="mx-3 flex h-10 w-10 cursor-pointer items-center justify-center  rounded-md border border-bgColor p-1 text-xl text-textColor hover:bg-bgColor hover:text-whiteTextColor">
-            <CgMailReply />
+            <ReplyAll />
           </span>
           <span className="mx-3 flex h-10 w-10 cursor-pointer items-center justify-center  rounded-md border border-bgColor p-1 text-xl text-textColor hover:bg-bgColor hover:text-whiteTextColor">
-            <FaRegComment />
+            Comment
           </span>
         </div>
       </div>

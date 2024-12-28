@@ -1,5 +1,3 @@
-import { FaGoogle } from "react-icons/fa";
-import { RiAppleFill, RiTelegramLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import Container from "../shared/Container";
 export default function Footer() {
@@ -67,20 +65,16 @@ export default function Footer() {
                 to={"#"}
                 className="mr-3 flex h-[40px] w-[40px] flex-shrink-0 cursor-pointer items-center justify-center rounded-[5px] border border-[#DFE2E5] text-[#1D828E]"
               >
-                <FaGoogle />
+                Google
               </div>
               <div
                 to={"#"}
                 className="mr-3 flex h-[40px] w-[40px] flex-shrink-0 cursor-pointer items-center justify-center rounded-[5px] border border-[#DFE2E5] text-[#1D828E]"
-              >
-                <RiTelegramLine />
-              </div>
+              ></div>
               <div
                 to={"#"}
                 className="mr-3 flex h-[40px] w-[40px] flex-shrink-0 cursor-pointer items-center justify-center rounded-[5px] border border-[#DFE2E5] text-[#1D828E]"
-              >
-                <RiAppleFill />
-              </div>
+              ></div>
             </div>
           </div>
         </div>

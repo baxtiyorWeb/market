@@ -1,11 +1,11 @@
 import { useEffect, useRef } from "react";
-import { FaArrowDown } from "react-icons/fa";
 import ProductAbout from "../components/details/ProductAbout";
 import ProductSideMenu from "../components/details/product-side-menu/ProductSideMenu";
 import useProductDetail from "../hooks/useProductDetail";
 import Container from "../shared/Container";
 import ProductDetailBreadCrumbs from "./../ui/breadcrumbs/ProductDetailBreadCrumbs";
-import Loading from '../ui/loading/Loading';
+import Loading from "../ui/loading/Loading";
+import { ArrowDown } from "lucide-react";
 
 export default function Details() {
   const { isLoading, productDetail } = useProductDetail();
@@ -32,19 +32,21 @@ export default function Details() {
   }, []);
 
   if (isLoading) {
-    
-    return <Loading />
-  }else{
-    window.scroll({top: 0, left: 0, behavior: 'smooth'})
+    return <Loading />;
+  } else {
+    window.scroll({ top: 0, left: 0, behavior: "smooth" });
   }
 
   console.log(productDetail);
-  
 
   return (
     <Container>
       <ProductDetailBreadCrumbs data={productDetail} />
-      <div className={"mb-10 flex items-start justify-between md:flex md:flex-col lg:flex lg:flex-col lg:justify-center lg:items-center lg:w-full"}>
+      <div
+        className={
+          "mb-10 flex items-start justify-between md:flex md:flex-col lg:flex lg:w-full lg:flex-col lg:items-center lg:justify-center"
+        }
+      >
         <div className="mt-5 h-auto w-[680px] flex-shrink-0 bg-white px-[30px] py-5 pb-[30px]">
           <ProductAbout productDetail={productDetail} />
           <h1 className="my-10 text-2xl font-medium">Xususiyatlari</h1>
@@ -68,7 +70,7 @@ export default function Details() {
           ref={ref}
           onClick={scrollToBottom}
         >
-          <FaArrowDown />
+          <ArrowDown />
         </div>
       </div>
     </Container>

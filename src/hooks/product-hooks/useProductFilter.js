@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQuery } from "react-query";
 import { useCallback, useEffect, useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import api from "../../config/api/api";

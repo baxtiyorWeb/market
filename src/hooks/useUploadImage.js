@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation } from "react-query";
 import { uploadFile } from "../exports/api"; // Adjust the import if needed
 
 const useUploadImage = (setisUpload, setFileSaveId, setFileListId) => {

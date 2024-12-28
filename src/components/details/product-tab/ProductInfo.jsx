@@ -1,5 +1,6 @@
-import React from "react";
-import { FaEye } from "react-icons/fa";
+/* eslint-disable react/prop-types */
+
+import { Eye } from "lucide-react";
 
 const ProductInfo = ({ productDetail }) => {
   return (
@@ -84,7 +85,7 @@ const ProductInfo = ({ productDetail }) => {
       <div className="text text-[#959EA7 ] text flex justify-between font-poppins text-[14px] font-normal leading-[100%] text-[#959EA7]">
         <span>E'lon raqami: {productDetail?.id}</span>
         <span className="flex items-center justify-center">
-          Ko’rganlar: <FaEye className="ml-2 mr-2" /> {productDetail?.viewCount}
+          Ko’rganlar: <Eye className="ml-2 mr-2" /> {productDetail?.viewCount}
         </span>
       </div>
     </div>

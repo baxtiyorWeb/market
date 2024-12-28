@@ -1,13 +1,11 @@
 import { Carousel, Image } from "antd";
 import { useEffect, useRef, useState } from "react";
-import "react-medium-image-zoom/dist/styles.css";
 
 export default function ProductImage({ productDetail }) {
   const [imgGetIndex, setImgGetIndex] = useState(0);
 
   const [width, setWidth] = useState(0);
   const refs = useRef(null);
-  const contextMenuImg = useRef(null);
 
   const handleThumbnailClick = (index) => {
     setImgGetIndex(index);

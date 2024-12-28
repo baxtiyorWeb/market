@@ -1,14 +1,14 @@
-import { useQuery } from "@tanstack/react-query";
-import React from "react";
-import { getCategories } from "../../exports/api";
 import MenuList from "./CategoryTab";
+import useGetAllQuery from "../../hooks/api/useGetAllQuery";
+import { URLS } from "../../config/export/urls";
+import { KEYS } from "../../config/export/keys";
 
 const Catalogue = ({ open, setOpen }) => {
-  const { data } = useQuery({
-    queryKey: ["/category/all"],
-    queryFn: getCategories,
+  const { data } = useGetAllQuery({
+    key: KEYS.category_list,
+    url: URLS.category_list,
+    enabled: !!open,
   });
-  console.log(data);
 
   return (
     <div className="max-h-max bg-white">

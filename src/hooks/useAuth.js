@@ -17,7 +17,7 @@ const useAuth = () => {
 
       navigate("/auth/create");
     } catch (error) {
-      error;
+      return error;
     } finally {
       setisLoading(false);
     }

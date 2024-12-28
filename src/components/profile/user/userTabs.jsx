@@ -1,8 +1,6 @@
-import React from "react";
-import { FaCog, FaRegHeart } from "react-icons/fa";
-import { MdOutlineDashboard, MdOutlineMail } from "react-icons/md";
 import { NavLink, useSearchParams } from "react-router-dom";
 import "../product-details.css";
+import { Cog, Heart, LayoutDashboardIcon, Mail } from "lucide-react";
 export default function UserTabs() {
   const [searchParams, setSearchParams] = useSearchParams();
   const tab = searchParams.get("tab") || 1;
@@ -11,7 +9,7 @@ export default function UserTabs() {
   };
   return (
     <div className="border-b  pb-3  ">
-      <div className="flex w-full items-center justify-between md:gap-2  p-1 md:grid md:grid-cols-2">
+      <div className="flex w-full items-center justify-between p-1  md:grid md:grid-cols-2 md:gap-2">
         <NavLink
           to={"/profile/dashboard/products"}
           className={({ isActive, isPending }) =>
@@ -19,7 +17,7 @@ export default function UserTabs() {
           }
         >
           <i className="tab-icon">
-            <MdOutlineDashboard />
+            <LayoutDashboardIcon />
           </i>
           Elonlarim
         </NavLink>
@@ -30,7 +28,7 @@ export default function UserTabs() {
           }
         >
           <i className="tab-icon">
-            <FaRegHeart />{" "}
+            <Heart />{" "}
           </i>
           yoqtirganlarim
         </NavLink>
@@ -40,7 +38,7 @@ export default function UserTabs() {
         >
           <i className="tab-icon">
             {" "}
-            <MdOutlineMail />
+            <Mail />
           </i>
           <span>xabarlarim</span>
         </div>
@@ -50,7 +48,7 @@ export default function UserTabs() {
         >
           <i className="tab-icon">
             {" "}
-            <MdOutlineMail />
+            <Mail />
           </i>
           <span>Narxlar</span>
         </div>
@@ -61,7 +59,7 @@ export default function UserTabs() {
           }
         >
           <i className="tab-icon">
-            <FaCog />
+            <Cog />
           </i>
           <span>sozlamalar</span>
         </NavLink>

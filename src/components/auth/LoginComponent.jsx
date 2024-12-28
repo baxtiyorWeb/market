@@ -1,13 +1,12 @@
 import { Input, Spin, message } from "antd";
 import { useState } from "react";
-import { FaArrowRight, FaEye, FaEyeSlash, FaTelegram } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
 import { Link, Navigate, useNavigate, useSearchParams } from "react-router-dom";
 import api from "../../config/api/api";
 import useGenerateuuid from "../../hooks/useGenerateuuid";
 import ButtonUI from "../../ui/button/Button";
 import SpinLoading from "../../ui/loading/spinLoading";
 import { useAuth } from "./../../context/authContext";
+import { ArrowRight, Eye, EyeClosed } from "lucide-react";
 
 export default function LoginComponent() {
   const [params, setParams] = useSearchParams();
@@ -38,7 +37,7 @@ export default function LoginComponent() {
       loginAction(signIn);
       <Navigate to={"/profile/dashboard?tab=1"} />;
     } catch (error) {
-      (error?.message);
+      error?.message;
     } finally {
       setisLoading(false);
     }
@@ -122,9 +121,9 @@ export default function LoginComponent() {
               onClick={() => setInputType(!inputType)}
             >
               {inputType ? (
-                <FaEye className="text-lg" />
+                <Eye className="text-lg" />
               ) : (
-                <FaEyeSlash className="text-lg" />
+                <EyeClosed className="text-lg" />
               )}
             </span>
           </div>
@@ -141,7 +140,7 @@ export default function LoginComponent() {
                 <Spin />
               ) : (
                 <span className="flex items-center justify-center">
-                  Kirish <FaArrowRight className="mx-3" />
+                  Kirish <ArrowRight className="mx-3" />
                 </span>
               )}
             </ButtonUI>
@@ -150,13 +149,13 @@ export default function LoginComponent() {
 
           <div className="w-full">
             <ButtonUI className="mb-1 mt-3 flex h-[50px] w-full items-center justify-start rounded-md border border-borderColor bg-whiteTextColor px-5 text-textColor disabled:cursor-not-allowed disabled:bg-bgColor/60">
-              <FcGoogle className="text t text-3xl" />
+              Google
               <span className="m-auto">Google orqali kirish</span>
             </ButtonUI>
           </div>
           <div className="w-full">
             <ButtonUI className="mb-1 mt-3 flex h-[50px] w-full items-center justify-start rounded-md border border-borderColor bg-whiteTextColor px-5 text-textColor disabled:cursor-not-allowed disabled:bg-bgColor/60">
-              <FaTelegram className="text text-3xl text-blue-500" />
+              telegram
               <span className="m-auto">Google orqali kirish</span>
             </ButtonUI>
           </div>
@@ -225,7 +224,7 @@ export default function LoginComponent() {
 
             <div className="w-full">
               <ButtonUI className="mb-1 mt-3 flex h-[50px] w-full items-center justify-start rounded-md border border-borderColor bg-whiteTextColor px-5 text-textColor disabled:cursor-not-allowed disabled:bg-bgColor/60">
-                <FaTelegram className="text text-3xl text-blue-500" />
+                telegram
                 <span className="m-auto">
                   Telegram orqali ro&apos;yxatdan o&apos;tish
                 </span>
@@ -233,7 +232,7 @@ export default function LoginComponent() {
             </div>
             <div className="w-full">
               <ButtonUI className="mb-1 mt-3 flex h-[50px] w-full items-center justify-start rounded-md border border-borderColor bg-whiteTextColor px-5 text-textColor disabled:cursor-not-allowed disabled:bg-bgColor/60">
-                <FcGoogle className="text t text-3xl" />
+                Google
                 <span className="m-auto">
                   Google orqali ro&apos;yxatdan o&apos;tish
                 </span>

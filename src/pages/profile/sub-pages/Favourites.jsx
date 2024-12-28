@@ -1,11 +1,10 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { Space, Table, message } from "antd";
-import React, { useEffect } from "react";
-import { FaEye } from "react-icons/fa";
-import { MdDelete } from "react-icons/md";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import api from "../../../config/api/api";
 import { deleteFavoriteProduct } from "../../../exports/api";
+import { Delete, Eye } from "lucide-react";
 const MyFavourites = () => {
   const queryClient = useQueryClient();
   const myFavourites = async () => {
@@ -115,13 +114,13 @@ const MyFavourites = () => {
           <span>
             <Space size="middle" className="flex items-center justify-center">
               <span>
-                <MdDelete
+                <Delete
                   onClick={() => handleDelete(record)}
                   className="cursor-pointer text-center text-xl text-red-500"
                 />
               </span>
               <Link to={`/details/${record}?infoTab=1`}>
-                <FaEye className="cursor-pointer text-center text-xl text-teal-800" />
+                <Eye className="cursor-pointer text-center text-xl text-teal-800" />
               </Link>
             </Space>
           </span>

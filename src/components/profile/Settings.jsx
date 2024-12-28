@@ -1,6 +1,5 @@
 import { Button, Input, Spin } from "antd";
 import React, { useEffect, useState } from "react";
-import { toast } from "react-toastify";
 import api from "../../config/api/api";
 import useUser from "../../hooks/useUser";
 
@@ -58,13 +57,12 @@ const Settings = () => {
       if (currentRefreshToken) {
         await updateUser({ ...state, id: user?.id });
         refreshTokens();
-        toast.success("ma'lumotingiz yangilandi");
         setTimeout(() => {
           window.location.href = window.location.pathname;
         }, 1000);
       }
     } catch (error) {
-      (error);
+      error;
     } finally {
       setisLoading(false);
     }

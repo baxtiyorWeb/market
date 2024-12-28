@@ -12,7 +12,7 @@ export const ChildSkeletonLoading = ({
 }) => {
   const list = [];
 
-  let height;
+  let height; 
 
   for (let i = 1; i <= row; i++) {
     const itemWidth = (width - padding * (column + 1)) / column;

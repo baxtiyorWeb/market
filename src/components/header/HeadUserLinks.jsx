@@ -1,9 +1,9 @@
-import { LoadingOutlined, UserOutlined } from "@ant-design/icons";
-import { FaRegHeart } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import useAddFavourite from "../../hooks/useAddFavourite";
 import api, { getRefreshToken } from "../../config/api/api";
 import { useState } from "react";
+import { Heart, User } from "lucide-react";
+import Loading from "../../ui/loading/Loading";
 const HeadUserLinks = () => {
   const { savedLocal } = useAddFavourite();
   const token = localStorage.getItem("accessToken");
@@ -65,7 +65,7 @@ const HeadUserLinks = () => {
           to={"/profile/dashboard/favourites"}
           className="hover/heart relative flex flex-col items-center justify-center"
         >
-          <FaRegHeart className="text text-base text-textColor hover/heart:text-bgColor" />
+          <Heart className="text text-base text-textColor hover/heart:text-bgColor" />
           <span className="text text-[16px] text-spanColor">Sevimlilar</span>
           <span className="absolute -top-5 right-0 flex h-5 w-5 items-center justify-center rounded-md bg-bgColor p-3">
             {savedLocal()}
@@ -74,14 +74,14 @@ const HeadUserLinks = () => {
       </div>
       <div className="">
         {isLoading ? (
-          <LoadingOutlined size={50} />
+          <Loading size={50} />
         ) : (
           <Link
             to={`#`}
             onClick={handleProfileClick}
             className="flex flex-col items-center justify-center"
           >
-            <UserOutlined className="text text-base  text-textColor " />
+            <User className="text text-base  text-textColor " />
             <span className="text text-[16px] text-spanColor">kabinet</span>
           </Link>
         )}

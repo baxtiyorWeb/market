@@ -14,20 +14,14 @@ export const useToggleDrawer = () => {
 
 const Drawer = ({ setOpenDrawer, isOpenDrawer }) => {
   const {
-    categoryRoot,
     district,
-    isLoading,
     paymentType,
     regions,
     sellType,
-    totalProducts,
     data,
     filter,
     searchParams,
-    id,
     setFilter,
-    setSearchParams,
-    clearFilter,
   } = useParamsFilter();
 
   return (

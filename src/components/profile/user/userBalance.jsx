@@ -1,11 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery } from "react-query";
 import { Dropdown, Space, message } from "antd";
-import React from "react";
-import { HiDotsVertical } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import api from "../../../config/api/api";
 import useUser from "../../../hooks/useUser";
 import Location from "./../../../assets/location.svg";
+import { LucideDotSquare } from "lucide-react";
 export default function UserBalance() {
   const { user, token } = useUser();
   const navigate = useNavigate();
@@ -118,7 +117,7 @@ export default function UserBalance() {
               >
                 <div onClick={(e) => e.preventDefault()}>
                   <Space>
-                    <HiDotsVertical />
+                    <LucideDotSquare />
                   </Space>
                 </div>
               </Dropdown>

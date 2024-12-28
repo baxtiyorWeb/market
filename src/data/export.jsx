@@ -1,5 +1,5 @@
 import { LoadingOutlined } from "@ant-design/icons";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery } from "react-query";
 import { List, Spin } from "antd";
 import { useCallback, useRef, useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";

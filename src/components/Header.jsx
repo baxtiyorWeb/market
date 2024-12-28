@@ -1,19 +1,8 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+/* eslint-disable react/prop-types */
+import { useCallback, useEffect, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 
-import {
-  HeartOutlined,
-  HomeOutlined,
-  LoadingOutlined,
-  MenuOutlined,
-  PlusCircleFilled,
-  UserOutlined,
-} from "@ant-design/icons";
 import { Select } from "antd"; // Adjust the import based on your file structure
-import { FaSearch } from "react-icons/fa";
-import { IoMenu } from "react-icons/io5";
-import { MdClose } from "react-icons/md";
-import { useSearch } from "../context/searchContext";
 import en from "./../assets/en.png";
 import m_logo from "./../assets/logo.png";
 import menuIcon from "./../assets/menuIcon.svg";
@@ -21,22 +10,25 @@ import ru from "./../assets/ru.png";
 import uz from "./../assets/uz.png";
 import HeadUserLinks from "./../components/header/HeadUserLinks"; // Adjust the import based on your file structure
 import Regions from "./../components/regions/regions"; // Adjust the import based on your file structure
-import useLiveSeach from "./../hooks/useLiveSeach";
 import Container from "./../shared/Container"; // Adjust the import based on your file structure
 import Overlay from "./../ui/Overlay"; // Adjust the import based on your file structure
 import Catalogue from "./catalogue/Catalogue";
-import api, { getRefreshToken } from "../config/api/api";
+import {
+  Cog,
+  Heart,
+  Home,
+  Menu,
+  PlusCircleIcon,
+  Search,
+  User,
+} from "lucide-react";
 
 const Header = ({ update, setUpdate }) => {
-  const { liveSearch } = useLiveSeach();
-
   const [open, setOpen] = useState(false);
   const [scroll, setScroll] = useState(false);
   const searchable = useSearchParams();
   const search = searchable[0].get("search");
-  const { searchValue, setSearch, globalSearchData } = useSearch();
 
-  const [isLoading, setisLoading] = useState(false);
   const language = (langText) => {
     localStorage.setItem("lang", langText);
     window.location.reload();
@@ -137,13 +129,12 @@ const Header = ({ update, setUpdate }) => {
              lg_min_c:hidden xs:flex xs:h-10 xs:w-10 xs:items-center xs:justify-center xs:rounded-md xs:bg-bgColor xs:text-2xl  "
           >
             {!open ? (
-              <IoMenu src={menuIcon} alt="" className=" text-textColor" />
+              <Menu src={menuIcon} alt="" className=" text-textColor" />
             ) : (
-              <MdClose className="text-[30px] text-textColor" />
+              <Cog className="text-[30px] text-textColor" />
             )}
           </div>
           <Link to={"/"} className="sm:hidden md:hidden lg:hidden xs:hidden">
-            {" "}
             <img
               src={m_logo}
               alt=""
@@ -156,13 +147,9 @@ const Header = ({ update, setUpdate }) => {
             onClick={() => closed(!open)}
           >
             {!open ? (
-              <MenuOutlined
-                src={menuIcon}
-                alt=""
-                className="text-whiteTextColor"
-              />
+              <Menu src={menuIcon} alt="" className="text-whiteTextColor" />
             ) : (
-              <MdClose className="text-[30px] text-whiteTextColor" />
+              <Cog className="text-[30px] text-whiteTextColor" />
             )}
             <span className="text font-poppins text-base  font-normal not-italic leading-[100%] text-whiteTextColor sm:hidden xs:hidden">
               Katalog
@@ -199,15 +186,13 @@ const Header = ({ update, setUpdate }) => {
                 type="text"
                 placeholder="Qidiruv"
                 defaultValue={search}
-                onChange={(e) => setSearch(e.target.value)}
                 className="h-[35px] w-[480px] rounded-bl-md rounded-tl-md border border-bgColor bg-[#F9F9F9] pl-[19px] text-[#959EA7] outline-none sm:w-[100%] md:w-full lg:w-full xs:w-full"
               />
               <button
                 type="submit"
                 className="flex h-[35px] w-[50px]  items-center justify-center rounded-br-md rounded-tr-md bg-btnColor "
-                onClick={globalSearchData}
               >
-                <FaSearch className="text-white" />
+                <Search className="text-white" />
               </button>
             </form>
           </div>
@@ -266,16 +251,16 @@ const Header = ({ update, setUpdate }) => {
               to={"/"}
               className="text flex h-[65px] w-[65px] flex-col items-center justify-evenly text-bgColor"
             >
-              <HomeOutlined className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[20px]" />
+              <Home className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[20px]" />
               <span className="text-[10px]">bosh sahifa</span>
             </Link>
           </div>
           <div className="flex h-[65px] w-[65px] flex-col items-center justify-evenly  rounded-full ">
             <button
-              onClick={() => setOpenDrawer(!isOpenDrawer)}
+              // onClick={() => setOpenDrawer(!isOpenDrawer)}
               className="text flex h-[65px] w-[65px] flex-col items-center justify-evenly text-bgColor"
             >
-              <MenuOutlined className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[20px]" />
+              <Home className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[20px]" />
               <span className="text-[10px]">Categoriya</span>
             </button>
           </div>
@@ -284,7 +269,7 @@ const Header = ({ update, setUpdate }) => {
               to={"product-form/add-product?"}
               className="text flex h-[65px] w-[65px] flex-col items-center justify-evenly  text-bgColor"
             >
-              <PlusCircleFilled className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[30px]" />
+              <PlusCircleIcon className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[30px]" />
               <span className="text-[10px]">E&apos;lon berish</span>
             </Link>
           </div>
@@ -293,18 +278,14 @@ const Header = ({ update, setUpdate }) => {
               to={"/profile/dashboard?tab=2"}
               className="text flex h-[65px] w-[65px] flex-col items-center justify-evenly text-bgColor"
             >
-              <HeartOutlined className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[20px]" />
+              <Heart className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[20px]" />
               <span className="text-[10px]">Sevimlilar</span>
             </Link>
           </div>
           <div className="flex h-[65px] w-[65px] flex-col items-center justify-evenly  rounded-full ">
             {
-              <Link
-                // to={`#`}
-               
-                className="text flex h-[65px] w-[65px] flex-col items-center justify-evenly text-bgColor"
-              >
-                <UserOutlined className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[20px]" />
+              <Link className="text flex h-[65px] w-[65px] flex-col items-center justify-evenly text-bgColor">
+                <User className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-bgColor  text-[20px]" />
                 <span className="text-[10px]">Kabinets</span>
               </Link>
             }

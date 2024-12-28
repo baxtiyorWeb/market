@@ -1,5 +1,5 @@
 import { LoadingOutlined } from "@ant-design/icons";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery } from "react-query";
 import { Carousel, Image, Spin } from "antd";
 import React from "react";
 import { FaEye } from "react-icons/fa";

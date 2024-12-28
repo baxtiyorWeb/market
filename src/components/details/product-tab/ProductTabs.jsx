@@ -1,10 +1,9 @@
-import React from "react";
-import { FaArrowDown } from "react-icons/fa";
 import { useSearchParams } from "react-router-dom";
 import ProductInfo from "./ProductInfo";
 import ProductQuestions from "./ProductQuestions";
 import ProductReviews from "./ProductReviews";
 import Seller from "./Seller";
+import { ArrowDown } from "lucide-react";
 
 const ProductTabs = ({ productDetail }) => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -60,7 +59,7 @@ const ProductTabs = ({ productDetail }) => {
         </div>
         <div className="text cursor-pointer text-textColor">
           <h1 className=" flex items-center justify-start">
-            foydalanuvchining boshqa elonlari <FaArrowDown className="mx-3" />
+            foydalanuvchining boshqa elonlari <ArrowDown className="mx-3" />
           </h1>
         </div>
         <div className="my-3 grid  h-[581px] w-auto grid-cols-1 border bg-whiteTextColor">

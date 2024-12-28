@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery } from "react-query";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import {
@@ -15,6 +15,9 @@ const useFilter = () => {
   const [searchParams] = useSearchParams();
 
   const regionId = searchParams.get("regionId") || 0;
+  const sellTypeId = searchParams.get("sellTypeId") || 0;
+  const paymentTypeId = searchParams.get("paymentTypeId") || 0;
+
   const { data: district } = useQuery({
     queryKey: ["district/all", regionId],
     queryFn: async () => await getDistrictById(regionId),
@@ -23,17 +26,18 @@ const useFilter = () => {
   const { data: paymentType } = useQuery({
     queryKey: ["payment-type"],
     queryFn: getPaymentTypes,
+    enabled: !!paymentTypeId,
   });
   const { data: sellType } = useQuery({
     queryKey: ["sell-type"],
     queryFn: getSellTypes,
+    enabled: !!sellTypeId,
   });
 
   return {
     setSaveFilter,
     saveFilter,
     setRefetch,
-
     setSaveLocal,
     saveLocal,
     district,

@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
-import { IoLocation } from "react-icons/io5";
 import useToggle from "../../hooks/useToggle";
 import Overlay from "./../../ui/Overlay";
 import { getDistrictById, getRegions } from "./../../exports/api";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery } from "react-query";
 import { LoadingOutlined } from "@ant-design/icons";
-import { useCallback, useState } from "react";
+import { useState } from "react";
+import { LocateIcon } from "lucide-react";
 
 const Regions = () => {
   const [id, setId] = useState("");
@@ -19,6 +19,7 @@ const Regions = () => {
   } = useQuery({
     queryKey: ["regions"],
     queryFn: () => getRegions(),
+    enabled: !!isOpen,
   });
 
   const { data: district, isLoading } = useQuery({
@@ -27,7 +28,7 @@ const Regions = () => {
   });
 
   if (error) return `Error: ${error}`;
-  
+
   return (
     <div>
       <button
@@ -36,7 +37,7 @@ const Regions = () => {
         }
         onClick={handleToggle}
       >
-        <IoLocation className="text-2xl text-whiteTextColor" />
+        <LocateIcon className="text-2xl text-whiteTextColor" />
         <span className="text line-clamp-1  text-ellipsis  font-poppins  text-[16px] font-normal not-italic leading-[100%]">
           surxondaryo
         </span>
@@ -82,7 +83,7 @@ const Regions = () => {
               key={index}
               className="cursor-pointer border-b border-t py-3 font-poppins text-[16px] font-normal not-italic leading-[100%] tracking-[-0.08px] text-[#747474]  transition hover:border-t hover:border-slate-500 hover:font-medium hover:text-[#000]"
             >
-              {item?.length  ? <span>tumanlar topilmadi</span> : item?.name}
+              {item?.length ? <span>tumanlar topilmadi</span> : item?.name}
             </li>
           ))
         )}

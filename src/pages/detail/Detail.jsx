@@ -1,8 +1,5 @@
-import { StarFilled } from "@ant-design/icons";
 import { Image } from "antd";
-import React from "react";
-import { FaRegHeart, FaShare } from "react-icons/fa";
-import { MdOutlineCompareArrows } from "react-icons/md";
+import { GitCompareArrows, Heart, Share, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Detail = () => {
@@ -29,33 +26,33 @@ const Detail = () => {
         <div className="mb-5 flex w-full  items-center justify-between ">
           <div className=" flex h-max  w-max items-center justify-center">
             <span className="mr-3 cursor-pointer">
-              <StarFilled className="text   text-bgColor" />
+              <Star className="text   text-bgColor" />
             </span>
             <span className="mr-3 cursor-pointer">
-              <StarFilled className="text   text-bgColor" />
+              <Star className="text   text-bgColor" />
             </span>
             <span className="mr-3 cursor-pointer">
-              <StarFilled className="text   text-bgColor" />
+              <Star className="text   text-bgColor" />
             </span>
             <span className="mr-3 cursor-pointer">
-              <StarFilled className="text   text-bgColor" />
+              <Star className="text   text-bgColor" />
             </span>
             <span className="mr-3 cursor-pointer">
-              <StarFilled className="text   text-bgColor" />
+              <Star className="text   text-bgColor" />
             </span>
             <span>0 ta sharxlar </span>
           </div>
           <div className="flex  w-max items-center justify-center ">
             <div className="mr-8 inline-flex cursor-pointer  items-center justify-center text-xl text-red-500">
-              <MdOutlineCompareArrows className="mr-3 " />
+              <GitCompareArrows className="mr-3 " />
               <span className="text-base">taqqoslash</span>
             </div>
             <div className="mr-8 inline-flex cursor-pointer  items-center justify-center text-xl text-red-500">
-              <FaRegHeart className="mr-3 " />{" "}
+              <Heart className="mr-3 " />{" "}
               <span className="text-base">yoqtirganlarga qo&apos;shish</span>
             </div>
             <div className="inline-flex  items-center justify-center text-xl text-red-500">
-              <FaShare className="mr-3 " />{" "}
+              <Share className="mr-3 " />{" "}
               <span className="text-base">Ulashish</span>
             </div>
           </div>
@@ -164,15 +161,15 @@ const Detail = () => {
             <div>
               <div className="flex items-center justify-between">
                 <div className="text m-0 text-[22px] font-semibold leading-8 text-textColor">
-                  2 295 000 so'm
+                  2 295 000 so&apos;m
                 </div>
                 <strike className="text m-0 text-[16px] font-normal leading-8 text-[#999]">
-                  2 695 000 so'm
+                  2 695 000 so&apos;m
                 </strike>
               </div>
               <div className="my-10">
                 <span className="text  text-[14px] font-normal leading-8 text-[#999]">
-                  Yetkazib berish to'g'risida ma'lumot:
+                  Yetkazib berish to&apos;g&apos;risida ma&apos;lumot:
                 </span>
                 <div className="text m-0 text-[18px] font-semibold leading-8 text-textColor">
                   <span>Standart yetkazib berish</span>
@@ -184,7 +181,7 @@ const Detail = () => {
                 </div>
               </div>
               <button className="text my-5 flex h-[48px] w-[338px] items-center justify-center rounded-xl bg-[#12BF6C] text-white">
-                Savatchaga qo'shish
+                Savatchaga qo&apos;shish
               </button>
               <button className="text flex h-[48px] w-[338px] items-center justify-center rounded-xl border-2 border-textColor bg-whiteTextColor text-textColor">
                 Bir klikda sotib olish
@@ -199,12 +196,12 @@ const Detail = () => {
         </h1>
         <div className="text text-base font-normal text-[#999] ">
           <p className="leading-6 ">
-            Yupqa korpusdagi sig'imli batareya Honor X7b: 6000 mA/soat batareya
-            quvvatiga ega eng nozik va engil smartfon Yupqa ramkalar va
-            ergonomik dizayn Qo'lingizdagi smartfonni qulay his qilish uchun
-            orqa panel 63 daraja egilgan Yon tomonda barmoq izlari skaneri
+            Yupqa korpusdagi sig&apos;imli batareya Honor X7b: 6000 mA/soat
+            batareya quvvatiga ega eng nozik va engil smartfon Yupqa ramkalar va
+            ergonomik dizayn Qo&apos;lingizdagi smartfonni qulay his qilish
+            uchun orqa panel 63 daraja egilgan Yon tomonda barmoq izlari skaneri
             Xavfsiz va samarali. Tegish orqali qulfni oching Surround ovoz
-            effektiga ega stereo dinamiklar 2 karnay, 2 baravar ko'proq
+            effektiga ega stereo dinamiklar 2 karnay, 2 baravar ko&apos;proq
             taassurot\ Stereo ovoz Eshitish vositasi va multimediya dinamiki
             audio ijro etilganda stereo tovush chiqaradi, bu yuqori ovoz
             balandligi va ovoz sifati bilan ajralib turadi. 200% ovoz
@@ -219,13 +216,14 @@ const Detail = () => {
             esa Tungi suratga olish rejimida 1,92 mikron oʻlchamdagi bitta katta
             pikselni yaratish uchun 9 pikselgacha avtomatik ravishda 1
             pikselgacha birlashtirish imkonini beradi. Batareya Aqlli energiya
-            tejash texnologiyasiga ega sig'imli batareya. DXOMARK sertifikati,
-            batareyaning ishlash muddati 3 kungacha Uzoq muddatli batareya 3 yil
-            doimiy foydalanishdan keyin ham batareya quvvatini saqlab qoladi
-            1000 ta zaryadlash davridan keyin maksimal quvvatning 80% dan
-            ortig'i HONOR eslatmalari Ekranda uchta barmoq bilan pastga suring,
-            hujjat avtomatik ravishda HONOR Notes-da saqlanadi, bu sizga
-            sahifani hatto oflayn rejimda ham ko'rish imkonini beradi.
+            tejash texnologiyasiga ega sig&apos;imli batareya. DXOMARK
+            sertifikati, batareyaning ishlash muddati 3 kungacha Uzoq muddatli
+            batareya 3 yil doimiy foydalanishdan keyin ham batareya quvvatini
+            saqlab qoladi 1000 ta zaryadlash davridan keyin maksimal quvvatning
+            80% dan ortig&apos;i HONOR eslatmalari Ekranda uchta barmoq bilan
+            pastga suring, hujjat avtomatik ravishda HONOR Notes-da saqlanadi,
+            bu sizga sahifani hatto oflayn rejimda ham ko&apos;rish imkonini
+            beradi.
           </p>
         </div>
         <div className="mt-10">

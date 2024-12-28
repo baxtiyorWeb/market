@@ -1,13 +1,9 @@
-import { Spin } from "antd";
-import { BsCalendarDate } from "react-icons/bs";
-import { CiHeart } from "react-icons/ci";
-import { FaEye } from "react-icons/fa";
-import { IoLocationOutline } from "react-icons/io5";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import { Calendar, Spin } from "antd";
 import { Link } from "react-router-dom";
 import { ChildSkeletonLoading } from "../../ui/loading/ChildSkeletonLoading";
 import "./categories.css";
 import { useFilterProduct } from "../../context/filterProvider";
+import { Eye, Heart, Locate } from "lucide-react";
 const ProductGetList = () => {
   const existing = JSON.parse(localStorage.getItem("products")) || [];
   const { data, isFetchingNextPage, isLoading } = useFilterProduct();
@@ -55,7 +51,7 @@ const ProductGetList = () => {
                   <div className="cart-slider group flex h-full items-center justify-center">
                     <button
                       className="absolute right-[30%] top-[40%] z-50 hidden rounded-3xl bg-bgColor px-3 py-2 text-white hover:border-bgColor hover:bg-bgColor/90 group-hover:block xs:right-[13%] xs:h-10 xs:w-32 xs:rounded-md xs:px-1 xs:py-1 xs:text-sm"
-                      onClick={() => getFastid(item.id)}
+                      // onClick={() => getFastid(item.id)}
                     >
                       Tezkor ko&apos;rish
                     </button>
@@ -64,18 +60,9 @@ const ProductGetList = () => {
                       className="w-full xs:flex xs:h-[100%_!important] xs:w-[163px_!important] xs:items-center xs:justify-center"
                     >
                       <div className="h-[200px]  xs:h-[150px_!important] xs:w-[150px_!important]">
-                        <LazyLoadImage
-                          height={200}
-                          effect="opacity"
-                          delayTime={100}
-                          visibleByDefault
-                          wrapperProps={{
-                            // If you need to, you can tweak the effect transition using the wrapper style.
-                            style: { transitionDelay: "1s" },
-                          }}
-                          threshold={100}
-                          loading={"lazy"}
-                          srcSet={`data:image/png;base64,${item.file?.fileBase64}`}
+                        <img
+                          src={`data:image/png;base64,${item.file?.fileBase64}`}
+                          alt=""
                           width={"100%"}
                           className="h-[100%_!important] w-[100%_!important] rounded-xl bg-center object-cover align-middle xs:h-[150px_!important] xs:w-[145px_!important]"
                         />
@@ -94,13 +81,13 @@ const ProductGetList = () => {
                       <div className="text mt-3 flex flex-col items-start justify-start font-poppins text-[14px] font-normal leading-[100%] tracking-[-0.22px] text-spanColor xs:mt-3 xs:text-[10px]">
                         <div className="flex w-full items-center justify-start">
                           <span className="flex items-center justify-start">
-                            <IoLocationOutline className="mr-3" />
+                            <Locate className="mr-3" />
                             {item?.regionName} / {item?.districtName}
                           </span>
                         </div>
                         <span className="text mt-3 flex items-center justify-between font-poppins text-[13px] font-normal leading-[100%] tracking-[-0.22px] text-spanColor xs:text-sm">
                           <div className="flex items-center justify-center">
-                            <BsCalendarDate className="mr-3" />
+                            <Calendar className="mr-3" />
                             <span className="xs:text-sm">
                               {item?.dateValue}
                             </span>
@@ -117,7 +104,7 @@ const ProductGetList = () => {
                   </span>
                   <div className="text flex items-center justify-between font-poppins font-normal leading-[100%] tracking-[-0.22px] text-spanColor">
                     <span className="flex items-center justify-center">
-                      <FaEye className="mr-3 text-[16px]" />
+                      <Eye className="mr-3 text-[16px]" />
                       {item?.viewCount}
                     </span>
                     <div className="flex items-center justify-center">
@@ -129,7 +116,7 @@ const ProductGetList = () => {
                             "r mx-1 flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-md bg-bgColor text-whiteTextColor hover:text-whiteTextColor",
                         )}`}
                       >
-                        <CiHeart className="cursor-pointer text-[28px]" />
+                        <Heart className="cursor-pointer text-[28px]" />
                       </span>
                     </div>
                   </div>

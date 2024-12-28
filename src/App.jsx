@@ -1,8 +1,5 @@
 import React, { lazy, useState } from "react";
-import { Helmet } from "react-helmet-async";
 import { Route, Routes } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import CategoryTest from "./CategoryTest";
 import PrivateRouter from "./PrivateRouter";
@@ -38,18 +35,6 @@ const App = () => {
   const [update, setUpdate] = useState([]);
   return (
     <>
-      <ToastContainer
-        position="top-right"
-        draggable={true}
-        rtl={false}
-        draggableDirection="x"
-        closeOnClick={true}
-        pauseOnHover={true}
-      />
-      <Helmet>
-        <title>Kelishamiz.uz saytiga hush kelibsiz</title>
-        <link rel="stylesheet" href="http://95.130.227.131" />
-      </Helmet>
       <div className="fixed z-[10000] ml-5 p-2"></div>
 
       <Routes>

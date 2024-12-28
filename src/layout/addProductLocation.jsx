@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery } from "react-query";
 import { Select } from "antd";
 import React from "react";
 import { getDistrictById, getRegions } from "../exports/api";

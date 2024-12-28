@@ -1,8 +1,6 @@
 import { Input } from "antd";
 import axios from "axios";
 import { useState } from "react";
-import { FaTelegram } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
 import ButtonUI from "../../ui/button/Button";
 import SpinLoading from "../../ui/loading/spinLoading";
@@ -99,7 +97,7 @@ export default function RegisterComponent() {
 
         <div className="w-full">
           <ButtonUI className="mb-1 mt-3 flex h-[50px] w-full items-center justify-start rounded-md border border-borderColor bg-whiteTextColor px-5 text-textColor disabled:cursor-not-allowed disabled:bg-bgColor/60">
-            <FaTelegram className="text text-3xl text-blue-500" />
+            telegram
             <span className="m-auto">
               Telegram orqali ro&apos;yxatdan o&apos;tish
             </span>
@@ -107,7 +105,7 @@ export default function RegisterComponent() {
         </div>
         <div className="w-full">
           <ButtonUI className="mb-1 mt-3 flex h-[50px] w-full items-center justify-start rounded-md border border-borderColor bg-whiteTextColor px-5 text-textColor disabled:cursor-not-allowed disabled:bg-bgColor/60">
-            <FcGoogle className="text t text-3xl" />
+            google
             <span className="m-auto">
               Google orqali ro&apos;yxatdan o&apos;tish
             </span>

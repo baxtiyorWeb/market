@@ -1,13 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery } from "react-query";
 import { Input, Select } from "antd";
-import React from "react";
-import {
-  FaEye,
-  FaQuestionCircle,
-  FaRegComments,
-  FaRegHeart,
-  FaShare,
-} from "react-icons/fa";
+
 import { Link, useParams } from "react-router-dom";
 import api from "../../config/api/api";
 import Exports from "../../data/export";
@@ -16,6 +9,7 @@ import Breadcrumbs from "../../ui/breadcrumbs/BreadCrumbs";
 import SpinLoading from "../../ui/loading/spinLoading";
 import { Container, SegmentedUi } from "./../../common/common";
 import "./../../pages/categories/categories.css";
+import { Eye, Heart, MailQuestion, MessagesSquare, Share } from "lucide-react";
 const FilterComponent = () => {
   const { name } = useParams();
   const getproductgetFileterSearch = async (value) => {
@@ -133,15 +127,15 @@ const FilterComponent = () => {
                           </span>
                           <div className="mt-2 flex items-center justify-start border-t pt-3">
                             <div className="mx-1 flex h-14 w-14 flex-col items-center justify-center rounded-md border px-1">
-                              <FaRegComments className="mr-1" />
+                              <MessagesSquare className="mr-1" />
                               <span className="mr-1">10</span>
                             </div>
                             <div className="mx-1 flex h-14 w-14 flex-col items-center justify-center rounded-md border px-1">
-                              <FaEye className="mr-1" />
+                              <Eye className="mr-1" />
                               <span className="mr-1">{item?.viewCount}</span>
                             </div>
                             <div className="mx-1 flex h-14 w-14 flex-col items-center justify-center rounded-md border px-1">
-                              <FaQuestionCircle className="mr-1" />
+                              <MailQuestion className="mr-1" />
                               <span className="mr-1">10</span>
                             </div>
                           </div>
@@ -152,14 +146,13 @@ const FilterComponent = () => {
 
                         <div className="my-3 flex items-center justify-start">
                           <span className="mx-1 flex cursor-pointer items-center justify-center rounded-md border p-[2px]">
-                            <FaRegHeart className="mr-1" /> <span>saqlash</span>
+                            <Heart className="mr-1" /> <span>saqlash</span>
                           </span>
                           <span className="mx-1 flex cursor-pointer items-center justify-center rounded-md border p-[2px]">
-                            <FaQuestionCircle className="mr-1" />{" "}
-                            <span>savol</span>
+                            <MailQuestion className="mr-1" /> <span>savol</span>
                           </span>
                           <span className="mx-1 flex cursor-pointer items-center justify-center rounded-md border p-[2px]">
-                            <FaShare className="mr-1" /> <span>ulashish</span>
+                            <Share className="mr-1" /> <span>ulashish</span>
                           </span>
                         </div>
                       </div>
