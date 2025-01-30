@@ -1,5 +1,4 @@
 import { Outlet } from "react-router-dom";
-import "./layout.css";
 
 export default function AuthLayout() {
   return (
@@ -7,7 +6,7 @@ export default function AuthLayout() {
       <h1 className="mb-10 mt-1 text-3xl">
         <span className="text-teal-500">Kelishamiz.uz</span> saytiga hush
         kelibsiz
-      </h1>
+      </h1>``
       <div className="flex h-[780px] w-[650px] items-center justify-center bg-white shadow-lg">
         <Outlet />
       </div>

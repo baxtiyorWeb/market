@@ -10,7 +10,6 @@ import AuthLayout from "./layout/authLayout";
 import Layout from "./layout/layout";
 import CreateUser from "./pages/auth/createUser";
 import CategoryPage from "./pages/category/CategoryPage";
-import Detail from "./pages/detail/Detail";
 import FilterPage from "./pages/filter/FilterPage";
 import NotFound from "./pages/not-found";
 import AddProductCategoryLayout from "./pages/product-form/productForm";
@@ -120,15 +119,7 @@ const App = () => {
                 </React.Suspense>
               }
             ></Route>
-            <Route
-              loader={<Loading />}
-              path="/category/detail"
-              element={
-                <React.Suspense fallback={<Loading />}>
-                  <Detail />
-                </React.Suspense>
-              }
-            ></Route>
+
             <Route
               path="/category/:id"
               element={
